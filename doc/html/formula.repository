@@ -1,5 +1,0 @@
-\form#0:$\lambda$
-\form#1:$\rho$
-\form#2:$ \lambda = \left\{ \begin{array}{l l} \mathtt{taxa.basal} - (\mathtt{taxa.basal}/\mathtt{densi.max})\rho& \quad \textrm{se } \rho < \mathtt{densi.max}\\ 0& \quad \textrm{se } \rho \geq \mathtt{densi.max} \end{array} \right. $
-\form#3:$\lambda=\mathtt{taxa.basal}$
-\form#4:$\lambda=0$
