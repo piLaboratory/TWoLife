@@ -1,6 +1,6 @@
-#include "individuo.h"
+#include "individuo.hpp"
 #include <cmath>
-#include "paisagem.h"
+#include "paisagem.hpp"
 #include <cstdlib>
 #include <iostream>
 #include <R.h>
