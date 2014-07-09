@@ -32,7 +32,7 @@ e \f$\lambda=0\f$ quando a densidade de vizinhos iguala ou ultrapassa <tt>densi.
   (parâmetro <tt>tempo</tt>).
 
 \section TBI
-As classes do VivoMorto estão recebendo atualizações constantes. A sigla TBI, do inglês To Be Implemented, documenta
+As classes do TWoLife estão recebendo atualizações constantes. A sigla TBI, do inglês To Be Implemented, documenta
 características das classes que estão previstas para serem implementadas no futuro.
 
 \section Biblioteca R
