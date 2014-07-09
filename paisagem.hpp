@@ -1,6 +1,6 @@
 #ifndef PAISAGEM_H
 #define PAISAGEM_H
-#include "individuo.h"
+#include "individuo.hpp"
 #include<vector>
 #include<cstdlib>
 #include<cmath>
