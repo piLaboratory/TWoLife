@@ -53,12 +53,12 @@ raio.sd <- sd(log(mccoy.m$raio.m))
 ### code chunk number 5: create-dynamic-library-for-C-routines
 ###################################################
 Sys.setenv("PKG_CPPFLAGS" = "-fopenmp")
-system ("R CMD SHLIB VivoMorto.cpp")
-dyn.load("VivoMorto.so")
-VivoMorto <- function (tamanho, raio, N, AngVis, passo, move, densi.max, 
+system ("R CMD SHLIB TWoLife.cpp")
+dyn.load("TWoLife.so")
+TWoLife <- function (tamanho, raio, N, AngVis, passo, move, densi.max, 
                        taxa.basal, taxa.morte, fragmentacao, numero.manchas,
                        tempo) {
-	saida.C <- .C("VivoMorto", as.double(tamanho), as.double(raio),
+	saida.C <- .C("TWoLife", as.double(tamanho), as.double(raio),
 				  as.integer(N),as.double(AngVis), as.double(passo),
 				  as.double(move), as.double(densi.max), 
 				  as.double(taxa.basal), as.double(taxa.morte),
@@ -85,7 +85,7 @@ ProbExt2 <- function (Nsim, N, AngVis, passo.rel, move.rel, ln.taxa.morte,
   #tempo <- (tempo.rel/p.morte)/(taxa.morte+taxa.basal+move)
   vivo = c()
   for (i in 1:Nsim) {
-    vivo[i] <- VivoMorto(tamanho, raio, N, AngVis, passo, move, 
+    vivo[i] <- TWoLife(tamanho, raio, N, AngVis, passo, move, 
                          densi.max, taxa.basal, taxa.morte,
                          fragmentacao=0, numero.manchas=0, tempo)
   }
