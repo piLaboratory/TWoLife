@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.7"/>
-<title>TWoLife: VivoMorto</title>
+<title>TWoLife: Índice dos componentes</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -38,8 +38,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
 </script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
-      <li class="current"><a href="index.html"><span>Página&#160;principal</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="index.html"><span>Página&#160;principal</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Ficheiros</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -59,6 +59,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
       </li>
     </ul>
   </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>Lista&#160;de&#160;componentes</span></a></li>
+      <li class="current"><a href="classes.html"><span>Índice&#160;dos&#160;componentes</span></a></li>
+      <li><a href="hierarchy.html"><span>Hierarquia&#160;de&#160;classes</span></a></li>
+      <li><a href="functions.html"><span>Componentes&#160;membro</span></a></li>
+    </ul>
+  </div>
 </div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -76,32 +84,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
 
 <div class="header">
   <div class="headertitle">
-<div class="title">TwoLife </div>  </div>
+<div class="title">Índice dos componentes</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="Introdução"></a>
-Introdução</h1>
-<p>Este conjunto de funções em C++ implementa o algoritmo de Gillespie para dinâmicas estocásticas em tempo contínuo, adaptado para o formalismo de modelos baseados em agentes. Os eventos possíveis são o movimento, morte ou nascimento de um indivíduo. O tempo passa continuamente até que um desses eventos ocorra. Os eventos são independentes, portanto o tempo até que um deles aconteça segue uma distribuição exponencial. A simulação é a repetição dos eventos da seguinte maneira:</p><ol type="1">
-<li>Condições iniciais: contador de tempo zerado, número inicial de indivíduos (parâmetro <code>N</code>) são distribuídos ao acaso em um plano cartesiano quadrado de lado <code>tamanho</code>.</li>
-<li>A densidade de vizinhos no raio de vizinhança (<code>raio</code>) é atualizada.</li>
-<li>A taxa de natalidade <img class="formulaInl" alt="$\lambda$" src="form_0.png"/> de cada indivíduo é atualizada, como uma função linear da densidade de vizinhos do indivíduo <img class="formulaInl" alt="$\rho$" src="form_1.png"/>: <img class="formulaInl" alt="$ \lambda = \left\{ \begin{array}{l l} \mathtt{taxa.basal} - (\mathtt{taxa.basal}/\mathtt{densi.max})\rho&amp; \quad \textrm{se } \rho < \mathtt{densi.max}\\ 0&amp; \quad \textrm{se } \rho \geq \mathtt{densi.max} \end{array} \right. $" src="form_2.png"/> O que implica que <img class="formulaInl" alt="$\lambda=\mathtt{taxa.basal}$" src="form_3.png"/> quando não há vizinhos, e <img class="formulaInl" alt="$\lambda=0$" src="form_4.png"/> quando a densidade de vizinhos iguala ou ultrapassa <code>densi.max</code>, que é a capacidade de suporte individual.</li>
-<li>Todos os indivíduos da população sorteiam um valor de tempo da distribuição exponencial, cujo parâmetro é a soma das taxas de movimentação, nascimento e morte.</li>
-<li>O indivíduo com o menor tempo sorteia o evento que vai lhe ocorrer com probabilidades proporcionais às taxas de cada evento:<ul>
-<li><b>nascimento:</b> um novo indivíduo com as mesmas características é adicionado no mesmo local;</li>
-<li><b>morte:</b> o indivíduo é retirado da população;</li>
-<li><b>movimento:</b> o indivíduo move-se para uma distância <code>passo</code>, com direção sorteada do arco <code>AngVis</code>.</li>
-</ul>
-</li>
-<li>O tempo sorteado é somado ao contador de tempo. Retorna-se ao segundo passo até que o tempo acumulado pelo contador alcance o tempo máximo estipulado (parâmetro <code>tempo</code>).</li>
-</ol>
-<h1><a class="anchor" id="TBI"></a>
-TBI</h1>
-<p>As classes do TWoLife estão recebendo atualizações constantes. A sigla TBI, do inglês To Be Implemented, documenta características das classes que estão previstas para serem implementadas no futuro.</p>
-<h1><a class="anchor" id="Biblioteca"></a>
-R</h1>
-<p>O código descrito aqui é uma biblioteca de funções para uso no ambiente R e usa geradores de números aleatórios internos do R. Desta forma, as funções <b>NÃO PODEM</b> ser chamadas de um programa C/C++ <code>stand-alone</code>.</p>
-<p>.. </p>
-</div></div><!-- contents -->
+<div class="qindex"><a class="qindex" href="#letter_I">I</a>&#160;|&#160;<a class="qindex" href="#letter_P">P</a></div>
+<table style="margin: 10px; white-space: nowrap;" align="center" width="95%" border="0" cellspacing="0" cellpadding="0">
+<tr><td rowspan="2" valign="bottom"><a name="letter_i"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;i&#160;&#160;</div></td></tr></table>
+</td><td valign="top"><a class="el" href="classindividuo__exception.html">individuo_exception</a>&#160;&#160;&#160;</td><td></td></tr>
+<tr><td rowspan="2" valign="bottom"><a name="letter_p"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;p&#160;&#160;</div></td></tr></table>
+</td><td></td></tr>
+<tr><td valign="top"><a class="el" href="classindividuo.html">individuo</a>&#160;&#160;&#160;</td><td></td></tr>
+<tr><td></td><td valign="top"><a class="el" href="classpaisagem.html">paisagem</a>&#160;&#160;&#160;</td><td></td></tr>
+<tr><td></td><td></td><td></td></tr>
+</table>
+<div class="qindex"><a class="qindex" href="#letter_I">I</a>&#160;|&#160;<a class="qindex" href="#letter_P">P</a></div>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Gerado em Domingo, 6 de Julho de 2014 05:34:22 para TWoLife por &#160;<a href="http://www.doxygen.org/index.html">
