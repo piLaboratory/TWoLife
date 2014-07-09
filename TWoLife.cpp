@@ -8,10 +8,9 @@
 
 using namespace std;
 
-/** \file VivoMorto.cpp \brief Arquivo usado na exploração de espaços de parâmetros
+/** \file TWoLife.cpp \brief Arquivo usado na na integração C++/R
  * 
- * Este arquivo é muito semelhante ao main.cpp, mas ao invés de aceitar parâmetros pela linha de comando, ele gera
- * uma função que pode ser chamada facilmente a partir do R */
+ * Este arquivo define a função TwoLife em C, que será usada a partir do R. */
 
 
 /** Funcao que recebe os parâmetros da simulação e a executa,
