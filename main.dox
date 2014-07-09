@@ -1,5 +1,5 @@
 /** 
-\mainpage VivoMorto
+\mainpage TWoLife
 
 \section Introdução
 Este conjunto de funções em C++ implementa o algoritmo de Gillespie para dinâmicas estocásticas em tempo contínuo, 
