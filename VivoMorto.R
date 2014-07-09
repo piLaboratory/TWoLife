@@ -3,30 +3,30 @@
 # Os passos abaixo foram adaptados de http://users.stat.umn.edu/~geyer/rc/
 
 Sys.setenv("PKG_CPPFLAGS" = "-fopenmp") # liga biblioteca de paralelismo
-system("rm VivoMorto.{so,o}") #limpa sources velhos
-system ("R CMD SHLIB VivoMorto.cpp") ## compila no R
-dyn.load("VivoMorto.so") ## carrega os source resultantes como biblioteca dinamica no R
+system("rm TWoLife.{so,o}") #limpa sources velhos
+system ("R CMD SHLIB TWoLife.cpp") ## compila no R
+dyn.load("TWoLife.so") ## carrega os source resultantes como biblioteca dinamica no R
 
-VivoMorto <- function (
-    raio, 
-    N, 
-    AngVis, 
-    passo, 
-    move, 
-    taxa.basal, 
-    taxa.morte, 
-    incl.birth, 
-    incl.death, 
-    numb.cells, 
-    cell.size, 
-    land.shape, 
-    density.type,
-    death.mat, 
-    bound.condition, 
-    cover, 
-    tempo) 
+TWoLife <- function (
+    raio=0.1, 
+    N=80, 
+    AngVis=360, 
+    passo=5, 
+    move=3, 
+    taxa.basal=0.6, 
+    taxa.morte=0.1, 
+    incl.birth=0.5/0.01, 
+    incl.death=0, 
+    numb.cells=200, 
+    cell.size=1, 
+    land.shape=1, 
+    density.type=0,
+    death.mat=7, 
+    bound.condition=0, 
+    cover=1, 
+    tempo=20) 
 {
-    saida.C <- .C("VivoMorto", as.double(raio), as.integer(N),as.double(AngVis), as.double(passo),
+    saida.C <- .C("TWoLife", as.double(raio), as.integer(N),as.double(AngVis), as.double(passo),
                   as.double(move), as.double(taxa.basal), as.double(taxa.morte), 
                   as.double(incl.birth), as.double(incl.death), as.integer(numb.cells), 
                   as.double(cell.size), as.integer(land.shape), as.integer(density.type), 
@@ -43,7 +43,7 @@ VivoMorto <- function (
 
 ## Um teste rapido
 ## Uma rodada: coordenadas dos sobreviventes apos t=20
-teste1 <- VivoMorto(raio=0.1,
+teste1 <- TWoLife(raio=0.1,
                     N=80,
                     AngVis=360,
                     passo=5,
@@ -68,7 +68,7 @@ for (i in 1:100)
   {
     pop.size[i] = 
       nrow(
-          VivoMorto(raio=0.1, N=80, AngVis=360, passo=5, move=0.1, taxa.basal=0.6,
+          TWoLife(raio=0.1, N=80, AngVis=360, passo=5, move=0.1, taxa.basal=0.6,
                     taxa.morte=0.1, 
                     incl.birth=0.5/0.01, incl.death=0, numb.cells=200, cell.size=1, land.shape=1, 
                     density.type=0, death.mat=7,bound.condition=0, cover=1, tempo=6))
