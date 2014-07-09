@@ -1,5 +1,5 @@
-#include "paisagem.h"
-#include "individuo.h"
+#include "paisagem.hpp"
+#include "individuo.hpp"
 #include <R.h>
 #include <Rmath.h>
 
