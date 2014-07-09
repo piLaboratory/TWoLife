@@ -7,6 +7,9 @@ system("rm TWoLife.{so,o}") #limpa sources velhos
 system ("R CMD SHLIB TWoLife.cpp") ## compila no R
 dyn.load("TWoLife.so") ## carrega os source resultantes como biblioteca dinamica no R
 
+# Esta função é a responsável pela simulação. IMPORTANTE: sempre use os parâmetros pelo nome,
+# afinal a ordem dos parâmetros PODE MUDAR sem qualquer aviso!
+
 TWoLife <- function (
     raio=0.1, 
     N=100, 
