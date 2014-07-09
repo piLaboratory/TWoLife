@@ -27,7 +27,7 @@ extern "C" void TWoLife (double * raio, int * N, double * angulo_visada, double 
 						   double * death_mat, int * bound_condition, double * cover, double * tempo, int * nPop, double * x, double * y)
 {
   GetRNGstate(); /* (mudar para doxygen):  este comando chama o engine de numeros aleatorios do R
-		    Por causa dela  nossa biblioteca VivoMorto nao eh standalone */
+		    Por causa dela  nossa biblioteca nao eh standalone */
 	paisagem* floresta = new paisagem(raio[0], N[0], angulo_visada[0], passo[0], 
 					  move[0], taxa_basal[0], taxa_morte[0], incl_b[0], 
 					  incl_d[0], numb_cells[0], cell_size[0], land_shape[0],
