@@ -22,7 +22,7 @@ using namespace std;
 //
 // Veja a descrição da classe \ref paisagem para o significado dos parâmetros
 // */
-extern "C" void VivoMorto (double * raio, int * N, double * angulo_visada, double * passo, double * move,
+extern "C" void TWoLife (double * raio, int * N, double * angulo_visada, double * passo, double * move,
 						   double * taxa_basal, double * taxa_morte, double * incl_b, double * incl_d,
 						   int * numb_cells, double * cell_size, int * land_shape, int * density_type, 
 						   double * death_mat, int * bound_condition, double * cover, double * tempo, int * nPop, double * x, double * y)
