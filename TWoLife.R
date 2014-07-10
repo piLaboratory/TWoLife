@@ -11,25 +11,47 @@ dyn.load("TWoLife.so") ## carrega os source resultantes como biblioteca dinamica
 # numb.cells represents both the lenght AND width of the landscape, so numb.cells=100 creates a 100x100 landscape
 # Land.shape can be 0 = XXX or 1 = XXX.
 # Bound.condition can be 0 = XXX or 1 = XXX. The only type supported right now is random. 
-Landscape <- function (numb.cells = 100, cell.size = 1, land.shape = 1, type="random", bound.condition=0, cover=1) {
+Landscape <- function (numb.cells = 100, cell.size = 1, land.shape = 1, type=c("random","blob"), bound.condition=0, cover=1) {
+	type=match.arg(type)
 	if(cover < 0 || cover > 1) {
 		stop("Error creating landscape. Cover must be between 0 and 1")
-	}
-	if (type != "random") {
-		stop("Only random landscapes are currently implemented")
 	}
 	# scape represents the actual landscape
 	scape <- rep(1, numb.cells*numb.cells)
 	if(cover < 1) {
 		NtoRemove=round((1-cover)*numb.cells*numb.cells);
-		while(NtoRemove>0)
-		{
+		if(type=="random") {
+			while(NtoRemove>0)
+			{
+				i=round(runif(1,0,numb.cells-1));
+				j=round(runif(1,0,numb.cells-1));
+				# tests to see if this point has already been removed
+				if(scape[1+numb.cells*j+i] == 1) {
+					NtoRemove = NtoRemove - 1
+					scape[1+numb.cells*j+i] = 0
+				}
+			}
+		}
+		if(type=="blob") {
 			i=round(runif(1,0,numb.cells-1));
 			j=round(runif(1,0,numb.cells-1));
-			# tests to see if this point has already been removed
-			if(scape[numb.cells*j+i] == 1) {
-				NtoRemove = NtoRemove - 1
-				scape[numb.cells*j+i] = 0
+			while(NtoRemove>0)
+			{
+				# tests to see if this point has already been removed
+				if(scape[1+numb.cells*j+i] == 1) {
+					NtoRemove = NtoRemove - 1
+					scape[1+numb.cells*j+i] = 0
+				}
+				# Draft a new point to be removed (random walk!)
+				if(sample(1:2,1) == 1) {
+					i = i + (-1)**sample(1:2,1)
+				} else {
+					j = j + (-1)**sample(1:2,1)
+				}
+				if(i == -1) { i=numb.cells-1}
+				if(i == numb.cells) { i=1}
+				if(j == -1) { j=numb.cells-1}
+				if(j == numb.cells) { j=1}
 			}
 		}
 	}
@@ -75,18 +97,18 @@ TWoLife <- function (
 land <- Landscape(cover=0.5)
 ## Uma rodada: coordenadas dos sobreviventes apos t=20
 teste <- TWoLife(raio=0.1,
-				  N=80,
-				  AngVis=360,
-				  passo=5,
-				  move=3,
-				  taxa.basal=0.6,
-				  taxa.morte=0.1, 
-				  incl.birth=0.5/0.01,
-				  incl.death=0,
-				  density.type=0,
-				  death.mat=7,
-				  landscape=land,
-				  tempo=10)
+				 N=80,
+				 AngVis=360,
+				 passo=5,
+				 move=3,
+				 taxa.basal=0.6,
+				 taxa.morte=0.1, 
+				 incl.birth=0.5/0.01,
+				 incl.death=0,
+				 density.type=0,
+				 death.mat=7,
+				 landscape=land,
+				 tempo=10)
 TWoPlot <- function(pop, land) {
 	n = land$numb.cells
 	s <- seq(-n*land$cell.size/2, n*land$cell.size/2, length=n) # creates the x- and y- sequences for image
