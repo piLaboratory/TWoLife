@@ -10,7 +10,7 @@ dyn.load("TWoLife.so") ## carrega os source resultantes como biblioteca dinamica
 # Generates the landscape with specified conditions. 
 # numb.cells represents both the lenght AND width of the landscape, so numb.cells=100 creates a 100x100 landscape
 # Land.shape can be 0 = XXX or 1 = XXX.
-# Bound.condition can be 0 = XXX or 1 = XXX. The only type supported right now is random. 
+# Bound.condition can be 0 = XXX or 1 = XXX. 
 Landscape <- function (numb.cells = 100, cell.size = 1, land.shape = 1, type=c("random","blob"), bound.condition=0, cover=1) {
 	type=match.arg(type)
 	if(cover < 0 || cover > 1) {
@@ -94,21 +94,22 @@ TWoLife <- function (
 }
 
 ## Um teste rapido
-land <- Landscape(cover=0.5)
+land <- Landscape(cover=0.95, type="b")
 ## Uma rodada: coordenadas dos sobreviventes apos t=20
 teste <- TWoLife(raio=0.1,
 				 N=80,
 				 AngVis=360,
 				 passo=5,
 				 move=3,
-				 taxa.basal=0.6,
+				 taxa.basal=2,
 				 taxa.morte=0.1, 
 				 incl.birth=0.5/0.01,
 				 incl.death=0,
 				 density.type=0,
-				 death.mat=7,
+				 death.mat=700,
 				 landscape=land,
-				 tempo=10)
+				 tempo=30)
+
 TWoPlot <- function(pop, land) {
 	n = land$numb.cells
 	s <- seq(-n*land$cell.size/2, n*land$cell.size/2, length=n) # creates the x- and y- sequences for image
@@ -120,6 +121,7 @@ TWoPlot <- function(pop, land) {
 	image(s, s, matrix(land$scape,ncol=n), col=color)
 	points(pop, pch=4, col=2)
 }
+TWoPlot(teste, land)
 #plot(teste1, xlim=c(-100,100), ylim=c(-100,100))
 #dim(teste1)
 ## Tamanho de populacao apos t=6 de 100 repeticoes

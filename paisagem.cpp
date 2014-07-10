@@ -263,13 +263,13 @@ void paisagem::atualiza_vizinhos(individuo * const ag1) const //acessando os viz
 
 void paisagem::atualiza_habitat(individuo * const ind) const
 {
-    if(this->landscape_shape==0) ind->set_habitat(1); //Ampliar para poder considerar paisagens fragmentadas circulares. TBI
-	if(this->landscape_shape==1)
-	{
-		int hx,hy;
-		hx= (double)ind->get_x()/this->cell_size+this->numb_cells/2;
-		hy= ((double)ind->get_x()/this->cell_size-this->numb_cells/2)*(-1);
-		ind->set_habitat(this->landscape[hx][hy]);
-	}
+	// Tinha um IF com landscape_shape que eu removi. Não entendi como a paisagem ser circular 
+	// interfere em ser habitat ou não: isso deve interferir na apply_boundary apenas, certo?
+	// Also: Tinha uma inversão do y que eu também não entendi e removi
+	// A.C. 10.07.13
+	int hx,hy;
+	hx= (double)ind->get_x()/this->cell_size+this->numb_cells/2;
+	hy= (double)ind->get_y()/this->cell_size+this->numb_cells/2;
+	ind->set_habitat(this->landscape[hx][hy]);
 }
 
