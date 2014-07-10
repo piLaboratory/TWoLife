@@ -1,60 +1,28 @@
-#include "paisagem.h"
-#include "individuo.h"
+#include "paisagem.hpp"
+#include "individuo.hpp"
 #include <R.h>
 #include <Rmath.h>
 
 paisagem::paisagem(double raio, int N, double angulo_visada, double passo, double move, double taxa_basal, 
 				   double taxa_morte, double incl_b, double incl_d, int numb_cells, double cell_size, int land_shape, 
-				   int density_type, double death_mat, int bound_condition, double cover):
+				   int density_type, double death_mat, int bound_condition, int scape[]):
 	tamanho(numb_cells*cell_size),
 	N(N),
 	tempo_do_mundo(0),
 	numb_cells(numb_cells),
 	cell_size(cell_size),
 	landscape_shape(land_shape),
-	boundary_condition(bound_condition),
-	habitat_cover(cover)
-	
+	boundary_condition(bound_condition)
 {	
 		for(int i=0;i<this->numb_cells;i++)
 		{
 			for(int j=0;j<this->numb_cells;j++)
 			{
-				this->landscape[i][j]=1;
+				// transforma o vetor scape recebido do construtor em uma matriz
+				this->landscape[i][j]=scape[j*numb_cells+i];
 			}
 		}
 		
-		if(this->habitat_cover < 1)
-		{
-			int NtoRemove=(1-this->habitat_cover)*this->numb_cells*this->numb_cells;
-			int Remaining=NtoRemove;
-			int index_i, index_j;
-			
-			while(Remaining>0)
-			{
-				for(int k=1;k<Remaining+1;k++)
-				{
-					index_i=runif(0,(double)this->numb_cells);
-					if(index_i==this->numb_cells) continue;
-					index_j=runif(0,(double)this->numb_cells);
-					if(index_j==this->numb_cells) continue;
-					
-					this->landscape[index_i][index_j]=0;
-				}
-				
-				int sum=0;
-				for(int i=0; i<this->numb_cells;i++)
-				{
-					for(int j=0;j<this->numb_cells;j++)
-					{
-						sum=sum+this->landscape[i][j];
-					}
-				}
-				Remaining=NtoRemove-(this->numb_cells*this->numb_cells-sum);
-			}		
-		}
-	
-	
 	// Calculo do raio dependendo do tipo de densidade
 	if(density_type==0)
 	{

@@ -1,6 +1,6 @@
 #ifndef PAISAGEM_H
 #define PAISAGEM_H
-#include "individuo.h"
+#include "individuo.hpp"
 #include<vector>
 #include<cstdlib>
 #include<cmath>
@@ -25,7 +25,6 @@ private:
     const double cell_size;// tamanho do lada de uma célula ou tamanho do pixel da imagem usada para a classificação da paisagem
 	const int landscape_shape; // paramâmetro do modelo relacionado à forma da paisagem (por enquanto, 1 = "quadrada" ou  0 = "circular")
 	const int boundary_condition; // tipo de condição de contorno (0 = absortiva, 1 = periódica, 2 = reflexiva)
-	const double habitat_cover; // Cobertura de habitat na paisagem (0 < habitat_cover <=1)
 	int landscape[dim][dim];//[linha][coluna] temporariamente substituido or valor fixo
 	
 	//metodos privados
@@ -97,8 +96,8 @@ public:
 			const double death_mat,
 			/** Condição de contorno */
 			const int bound_condition,
-			/** Cobertura de habitat na paisagem */
-			const double cover
+			/** Vetor de cobertura de habitat na paisagem */
+			int scape[]
 			); //construtor
 
 	/** Atualiza as variáveis de todos os indivíduos (ver individuo::set_vizinhos, individuo::set_habitat e individuo::update) e escolhe uma ação para ser executada. Executa a ação e atualiza o tempo do mundo de acordo \sa \ref Introdução */
