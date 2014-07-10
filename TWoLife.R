@@ -82,7 +82,7 @@ TWoLife <- function (
 				  as.double(move), as.double(taxa.basal), as.double(taxa.morte), 
 				  as.double(incl.birth), as.double(incl.death), as.integer(landscape$numb.cells), 
 				  as.double(landscape$cell.size), as.integer(landscape$land.shape), as.integer(density.type), 
-				  as.double(death.mat), as.integer(landscape$bound.condition), as.double(landscape$cover),
+				  as.double(death.mat), as.integer(landscape$bound.condition), as.integer(landscape$scape),
 				  as.double(tempo), as.integer(0),
 				  as.double(rep(0, 5000)), as.double(rep(0,5000)) ## verificar se precisa definir o tamanho e se isto nao dará problemas
 				  )
