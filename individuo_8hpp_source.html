@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.7"/>
+<title>TWoLife: Código-Fonte de individuo.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">TWoLife
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Biblioteca em C++ para simulações baseadas em agentes de demografia e dispersão</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.8.7 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;principal</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="files.html"><span>Ficheiros</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Localizar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Lista&#160;de&#160;ficheiros</span></a></li>
+      <li><a href="globals.html"><span>Ficheiros&#160;membro</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tudo</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Ficheiros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Funções</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variáveis</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Páginas</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">individuo.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="individuo_8hpp.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef INDIVIDUO_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define INDIVIDUO_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">using namespace </span>std;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="classindividuo.html">   10</a></span>&#160;<span class="keyword">class </span><a class="code" href="classindividuo.html">individuo</a></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="comment">//propriedades privadas</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="classindividuo.html#a551748d02b63340e5957d522f65ffa8b">   15</a></span>&#160;<span class="comment"></span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="classindividuo.html#a551748d02b63340e5957d522f65ffa8b">id</a>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classindividuo.html#a9cc07b3d07b6065aca5505dd969f06da">   17</a></span>&#160;        <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="classindividuo.html#a9cc07b3d07b6065aca5505dd969f06da">MAXID</a>;</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="classindividuo.html#a70850dd01cc2e8309f3fef89450926a6">   19</a></span>&#160;    <span class="keywordtype">double</span> <a class="code" href="classindividuo.html#a70850dd01cc2e8309f3fef89450926a6">x</a>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="classindividuo.html#a88314da36b3e1b1005efedc458f67619">   21</a></span>&#160;        <span class="keywordtype">double</span> <a class="code" href="classindividuo.html#a88314da36b3e1b1005efedc458f67619">y</a>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classindividuo.html#a5845641bbeddf8d400534031c1d74256">   23</a></span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classindividuo.html#a5845641bbeddf8d400534031c1d74256">especie</a>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="classindividuo.html#a83671926affdb02b3890e9f25fc14880">   24</a></span>&#160;    <span class="keywordtype">double</span> <a class="code" href="classindividuo.html#a83671926affdb02b3890e9f25fc14880">birth</a>;<span class="comment">//taxa de nascimento</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classindividuo.html#a1d9ddb04adc5fa7cdb758fe7fb1b2026">   25</a></span>&#160;    <span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="classindividuo.html#a1d9ddb04adc5fa7cdb758fe7fb1b2026">taxa_morte</a>;<span class="comment">//taxa intrínseca de morte quando no habitat e na ausencia de outros individuos na vizinhanca local</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classindividuo.html#ad059724393211a95dde696073c97ff0a">   26</a></span>&#160;    <span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="classindividuo.html#ad059724393211a95dde696073c97ff0a">move</a>; <span class="comment">//taxa de movimentacao</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="classindividuo.html#a7c21d08b52fa543ead994489b414974f">   27</a></span>&#160;    <span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="classindividuo.html#a7c21d08b52fa543ead994489b414974f">passo</a>;<span class="comment">//tamanho do passo</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="classindividuo.html#ab67a8ef848778c9b0a892bfd7cf364c6">   28</a></span>&#160;    <span class="keywordtype">double</span> <a class="code" href="classindividuo.html#ab67a8ef848778c9b0a892bfd7cf364c6">orientacao</a>;<span class="comment">//orientacao</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classindividuo.html#a39c4131e5eec074bfd54789b7cbf1529">   29</a></span>&#160;    <span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="classindividuo.html#a39c4131e5eec074bfd54789b7cbf1529">ang_visada</a>;<span class="comment">//angulo de visada</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="classindividuo.html#a1de4ce1a55923d48fc2248e98dcef6eb">   30</a></span>&#160;    <span class="keywordtype">double</span> <a class="code" href="classindividuo.html#a1de4ce1a55923d48fc2248e98dcef6eb">tempo_evento</a>;<span class="comment">//tempo sorteado para a proxima acao</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="classindividuo.html#a730c059666e76153be8865a6a8ff197e">   31</a></span>&#160;    <span class="keywordtype">double</span> <a class="code" href="classindividuo.html#a730c059666e76153be8865a6a8ff197e">densi_max</a>;<span class="comment">//densidade maxima suportada pelo individuo</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classindividuo.html#a0a25771dbaa69b26961c6b1c679d3a31">   32</a></span>&#160;    <span class="keywordtype">double</span> <a class="code" href="classindividuo.html#a0a25771dbaa69b26961c6b1c679d3a31">raio</a>;<span class="comment">//raio de percepcao da densidade</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="classindividuo.html#ac38b589599c99e0e782af3e722de9fb9">   33</a></span>&#160;    vector&lt;individuo*&gt; <a class="code" href="classindividuo.html#ac38b589599c99e0e782af3e722de9fb9">lisViz</a>;<span class="comment">//vetor de vizinhanca    ----//CAMADA PERCEPTIVA</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="classindividuo.html#ad35cc493b815e734775691768d8b64da">   34</a></span>&#160;    <span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="classindividuo.html#ad35cc493b815e734775691768d8b64da">taxa_basal</a>;<span class="comment">//taxa intrínseca de nascimento quando no habitat e na ausencia de outros individuos na vizinhanca local</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classindividuo.html#a5e09908a2eb3f7d0fc827f907a2bd18b">   35</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classindividuo.html#a5e09908a2eb3f7d0fc827f907a2bd18b">tipo_habitat</a>;<span class="comment">//CAMADA PERCEPTIVA</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classindividuo.html#af72f02d46e57768405bd4f52cfa6deff">   36</a></span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classindividuo.html#af72f02d46e57768405bd4f52cfa6deff">semente</a>;<span class="comment">//semente para gerar os numeros aleatorios</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        </div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classindividuo.html#a7b9900dcac82775d6178706130b25c0d">   38</a></span>&#160;        <span class="keywordtype">double</span> <a class="code" href="classindividuo.html#a7b9900dcac82775d6178706130b25c0d">death</a>;<span class="comment">// taxa de morte</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classindividuo.html#ae8d2ec2d5a034fb7fbbed86a13c3f853">   39</a></span>&#160;        <span class="keywordtype">double</span> <a class="code" href="classindividuo.html#ae8d2ec2d5a034fb7fbbed86a13c3f853">birth_death_eq</a>; <span class="comment">// taxa de natalidade e mortalidade quando N = K ou dens = dens_max</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classindividuo.html#a5f8703c88ef2c16581560ad92eaf3410">   40</a></span>&#160;        <span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="classindividuo.html#a5f8703c88ef2c16581560ad92eaf3410">incl_birth</a>;<span class="comment">//inclinação da curva de denso-depedência para natalidade</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classindividuo.html#a0af98ac9a33b2f929852cc501f12513c">   41</a></span>&#160;        <span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="classindividuo.html#a0af98ac9a33b2f929852cc501f12513c">incl_death</a>;<span class="comment">//inclinação da curva de denso-depedência para mortalidade</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classindividuo.html#a545d5a0675c243362f1d749206dd00e4">   42</a></span>&#160;        <span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="classindividuo.html#a545d5a0675c243362f1d749206dd00e4">const_d_matrix</a>;<span class="comment">// constante que indica quantas vezes a mortalidade basal na matriz eh maior que no habitat. Pensar em como considerar diferentes mortalidades (constantes) em diferentes tipos de matriz</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classindividuo.html#a054f0f7f9e2e2e6ddadff620f786ae9d">   43</a></span>&#160;        <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classindividuo.html#a054f0f7f9e2e2e6ddadff620f786ae9d">dens_type</a>; <span class="comment">//forma como a densidade √© calculada (0 = GLOBAL, 1 = LOCAL)</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="comment">//metodos privados</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">void</span> sorteiaTempo(); <span class="comment">//tempo para ocorrer um evento</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="classindividuo.html">individuo</a>(</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                        <span class="keywordtype">double</span> x, </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                        <span class="keywordtype">double</span> y, </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                        <span class="keyword">const</span> <span class="keywordtype">int</span> especie, </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                        <span class="keyword">const</span> <span class="keywordtype">double</span> taxa_morte,</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                        <span class="keywordtype">double</span> orientacao, </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                        <span class="keyword">const</span> <span class="keywordtype">double</span> angulo_visada,</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            <span class="keyword">const</span> <span class="keywordtype">double</span> passo,</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                        <span class="keyword">const</span> <span class="keywordtype">double</span> move,</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                        <span class="keyword">const</span> <span class="keywordtype">double</span> raio, </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            <span class="keyword">const</span> <span class="keywordtype">double</span> taxa_basal,</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                        <span class="keyword">const</span> <span class="keywordtype">int</span> semente,<span class="comment">// ??????????????</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                        <span class="keyword">const</span> <span class="keywordtype">double</span> incl_birth,</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                        <span class="keyword">const</span> <span class="keywordtype">double</span> incl_death,</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                        <span class="keyword">const</span> <span class="keywordtype">double</span> death_mat,</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                        <span class="keyword">const</span> <span class="keywordtype">int</span> dens_type);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <a class="code" href="classindividuo.html">individuo</a>( <span class="keyword">const</span> <a class="code" href="classindividuo.html">individuo</a>&amp; rhs); </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="classindividuo.html#a3a49a8754c6aa7339ce1370711c25328">   86</a></span>&#160;        <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="classindividuo.html#a3a49a8754c6aa7339ce1370711c25328">get_id</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> this-&gt;id;}</div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="classindividuo.html#af0f42fea861cc82bec2981620f0a1749">   88</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classindividuo.html#af0f42fea861cc82bec2981620f0a1749">set_vizinhos</a> ( <span class="keyword">const</span> vector&lt;individuo*&gt; lis){this-&gt;lisViz=lis;}</div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="classindividuo.html#ad0569613107a4e3ed3730d6834205dd9">   90</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classindividuo.html#ad0569613107a4e3ed3730d6834205dd9">set_habitat</a> (<span class="keyword">const</span> <span class="keywordtype">int</span> tipo){this-&gt;tipo_habitat=tipo;}</div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="classindividuo.html#aa434f73172c9839f161273a84455a7ab">   92</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classindividuo.html#aa434f73172c9839f161273a84455a7ab">set_x</a>(<span class="keywordtype">double</span> i){this-&gt;x =i;}</div>
+<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="classindividuo.html#a2f67f3311384cdb2afdd6a1383e4b376">   94</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classindividuo.html#a2f67f3311384cdb2afdd6a1383e4b376">set_y</a>(<span class="keywordtype">double</span> i){this-&gt;y =i;}</div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="classindividuo.html#a4f2ea84343134bb8dedd9af423b525f9">   96</a></span>&#160;    <span class="keyword">inline</span> <span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="classindividuo.html#a4f2ea84343134bb8dedd9af423b525f9">get_x</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> this-&gt;x;}</div>
+<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="classindividuo.html#aff855fcae13e77e6666bf191adb7cf65">   98</a></span>&#160;    <span class="keyword">inline</span> <span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="classindividuo.html#aff855fcae13e77e6666bf191adb7cf65">get_y</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> this-&gt;y;}</div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="classindividuo.html#a4e1be14f8f3f14160cf98868f9b19e7b">  100</a></span>&#160;    <span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="classindividuo.html#a4e1be14f8f3f14160cf98868f9b19e7b">get_raio</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> this-&gt;raio;}</div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="classindividuo.html#a86c48f8fdb88eef119980f4c9ff603cf">  102</a></span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classindividuo.html#a86c48f8fdb88eef119980f4c9ff603cf">get_densType</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> this-&gt;dens_type;}</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="comment">// outros metodos publicos</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="classindividuo.html#a9d1029325161c182fd88002eae239fe6">  109</a></span>&#160;<span class="comment"></span>    <span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="classindividuo.html#a9d1029325161c182fd88002eae239fe6">get_tempo</a>(){<span class="keywordflow">return</span> this-&gt;tempo_evento;}</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keywordtype">int</span> sorteia_acao();</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keywordtype">void</span> update();</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keywordtype">void</span> anda( <span class="keywordtype">bool</span> aleatorio = <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;};</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="preprocessor">#endif // INDIVIDUO_H</span></div>
+<div class="ttc" id="classindividuo_html_a054f0f7f9e2e2e6ddadff620f786ae9d"><div class="ttname"><a href="classindividuo.html#a054f0f7f9e2e2e6ddadff620f786ae9d">individuo::dens_type</a></div><div class="ttdeci">const int dens_type</div><div class="ttdef"><b>Definition:</b> <a href="individuo_8hpp_source.html#l00043">individuo.hpp:43</a></div></div>
+<div class="ttc" id="classindividuo_html_a9d1029325161c182fd88002eae239fe6"><div class="ttname"><a href="classindividuo.html#a9d1029325161c182fd88002eae239fe6">individuo::get_tempo</a></div><div class="ttdeci">const double get_tempo()</div><div class="ttdef"><b>Definition:</b> <a href="individuo_8hpp_source.html#l00109">individuo.hpp:109</a></div></div>
+<div class="ttc" id="classindividuo_html_a2f67f3311384cdb2afdd6a1383e4b376"><div class="ttname"><a href="classindividuo.html#a2f67f3311384cdb2afdd6a1383e4b376">individuo::set_y</a></div><div class="ttdeci">void set_y(double i)</div><div class="ttdef"><b>Definition:</b> <a href="individuo_8hpp_source.html#l00094">individuo.hpp:94</a></div></div>
+<div class="ttc" id="classindividuo_html_a83671926affdb02b3890e9f25fc14880"><div class="ttname"><a href="classindividuo.html#a83671926affdb02b3890e9f25fc14880">individuo::birth</a></div><div class="ttdeci">double birth</div><div class="ttdef"><b>Definition:</b> <a href="individuo_8hpp_source.html#l00024">individuo.hpp:24</a></div></div>
+<div class="ttc" id="classindividuo_html_af72f02d46e57768405bd4f52cfa6deff"><div class="ttname"><a href="classindividuo.html#af72f02d46e57768405bd4f52cfa6deff">individuo::semente</a></div><div class="ttdeci">const int semente</div><div class="ttdef"><b>Definition:</b> <a href="individuo_8hpp_source.html#l00036">individuo.hpp:36</a></div></div>
+<div class="ttc" id="classindividuo_html_a7c21d08b52fa543ead994489b414974f"><div class="ttname"><a href="classindividuo.html#a7c21d08b52fa543ead994489b414974f">individuo::passo</a></div><div class="ttdeci">const double passo</div><div class="ttdef"><b>Definition:</b> <a href="individuo_8hpp_source.html#l00027">individuo.hpp:27</a></div></div>
+<div class="ttc" id="classindividuo_html_a4f2ea84343134bb8dedd9af423b525f9"><div class="ttname"><a href="classindividuo.html#a4f2ea84343134bb8dedd9af423b525f9">individuo::get_x</a></div><div class="ttdeci">const double get_x() const </div><div class="ttdef"><b>Definition:</b> <a href="individuo_8hpp_source.html#l00096">individuo.hpp:96</a></div></div>
+<div class="ttc" id="classindividuo_html_a5845641bbeddf8d400534031c1d74256"><div class="ttname"><a href="classindividuo.html#a5845641bbeddf8d400534031c1d74256">individuo::especie</a></div><div class="ttdeci">const int especie</div><div class="ttdef"><b>Definition:</b> <a href="individuo_8hpp_source.html#l00023">individuo.hpp:23</a></div></div>
+<div class="ttc" id="classindividuo_html_aff855fcae13e77e6666bf191adb7cf65"><div class="ttname"><a href="classindividuo.html#aff855fcae13e77e6666bf191adb7cf65">individuo::get_y</a></div><div class="ttdeci">const double get_y() const </div><div class="ttdef"><b>Definition:</b> <a href="individuo_8hpp_source.html#l00098">individuo.hpp:98</a></div></div>
+<div class="ttc" id="classindividuo_html_a0a25771dbaa69b26961c6b1c679d3a31"><div class="ttname"><a href="classindividuo.html#a0a25771dbaa69b26961c6b1c679d3a31">individuo::raio</a></div><div class="ttdeci">double raio</div><div class="ttdef"><b>Definition:</b> <a href="individuo_8hpp_source.html#l00032">individuo.hpp:32</a></div></div>
+<div class="ttc" id="classindividuo_html_a70850dd01cc2e8309f3fef89450926a6"><div class="ttname"><a href="classindividuo.html#a70850dd01cc2e8309f3fef89450926a6">individuo::x</a></div><div class="ttdeci">double x</div><div class="ttdef"><b>Definition:</b> <a href="individuo_8hpp_source.html#l00019">individuo.hpp:19</a></div></div>
+<div class="ttc" id="classindividuo_html_a0af98ac9a33b2f929852cc501f12513c"><div class="ttname"><a href="classindividuo.html#a0af98ac9a33b2f929852cc501f12513c">individuo::incl_death</a></div><div class="ttdeci">const double incl_death</div><div class="ttdef"><b>Definition:</b> <a href="individuo_8hpp_source.html#l00041">individuo.hpp:41</a></div></div>
+<div class="ttc" id="classindividuo_html_ad35cc493b815e734775691768d8b64da"><div class="ttname"><a href="classindividuo.html#ad35cc493b815e734775691768d8b64da">individuo::taxa_basal</a></div><div class="ttdeci">const double taxa_basal</div><div class="ttdef"><b>Definition:</b> <a href="individuo_8hpp_source.html#l00034">individuo.hpp:34</a></div></div>
+<div class="ttc" id="classindividuo_html_af0f42fea861cc82bec2981620f0a1749"><div class="ttname"><a href="classindividuo.html#af0f42fea861cc82bec2981620f0a1749">individuo::set_vizinhos</a></div><div class="ttdeci">void set_vizinhos(const vector&lt; individuo * &gt; lis)</div><div class="ttdef"><b>Definition:</b> <a href="individuo_8hpp_source.html#l00088">individuo.hpp:88</a></div></div>
+<div class="ttc" id="classindividuo_html_a39c4131e5eec074bfd54789b7cbf1529"><div class="ttname"><a href="classindividuo.html#a39c4131e5eec074bfd54789b7cbf1529">individuo::ang_visada</a></div><div class="ttdeci">const double ang_visada</div><div class="ttdef"><b>Definition:</b> <a href="individuo_8hpp_source.html#l00029">individuo.hpp:29</a></div></div>
+<div class="ttc" id="classindividuo_html_a551748d02b63340e5957d522f65ffa8b"><div class="ttname"><a href="classindividuo.html#a551748d02b63340e5957d522f65ffa8b">individuo::id</a></div><div class="ttdeci">const unsigned long id</div><div class="ttdef"><b>Definition:</b> <a href="individuo_8hpp_source.html#l00015">individuo.hpp:15</a></div></div>
+<div class="ttc" id="classindividuo_html_a1d9ddb04adc5fa7cdb758fe7fb1b2026"><div class="ttname"><a href="classindividuo.html#a1d9ddb04adc5fa7cdb758fe7fb1b2026">individuo::taxa_morte</a></div><div class="ttdeci">const double taxa_morte</div><div class="ttdef"><b>Definition:</b> <a href="individuo_8hpp_source.html#l00025">individuo.hpp:25</a></div></div>
+<div class="ttc" id="classindividuo_html_a545d5a0675c243362f1d749206dd00e4"><div class="ttname"><a href="classindividuo.html#a545d5a0675c243362f1d749206dd00e4">individuo::const_d_matrix</a></div><div class="ttdeci">const double const_d_matrix</div><div class="ttdef"><b>Definition:</b> <a href="individuo_8hpp_source.html#l00042">individuo.hpp:42</a></div></div>
+<div class="ttc" id="classindividuo_html"><div class="ttname"><a href="classindividuo.html">individuo</a></div><div class="ttdoc">A classe individuo representa um agente da simulação. </div><div class="ttdef"><b>Definition:</b> <a href="individuo_8hpp_source.html#l00010">individuo.hpp:10</a></div></div>
+<div class="ttc" id="classindividuo_html_a5e09908a2eb3f7d0fc827f907a2bd18b"><div class="ttname"><a href="classindividuo.html#a5e09908a2eb3f7d0fc827f907a2bd18b">individuo::tipo_habitat</a></div><div class="ttdeci">int tipo_habitat</div><div class="ttdef"><b>Definition:</b> <a href="individuo_8hpp_source.html#l00035">individuo.hpp:35</a></div></div>
+<div class="ttc" id="classindividuo_html_ae8d2ec2d5a034fb7fbbed86a13c3f853"><div class="ttname"><a href="classindividuo.html#ae8d2ec2d5a034fb7fbbed86a13c3f853">individuo::birth_death_eq</a></div><div class="ttdeci">double birth_death_eq</div><div class="ttdef"><b>Definition:</b> <a href="individuo_8hpp_source.html#l00039">individuo.hpp:39</a></div></div>
+<div class="ttc" id="classindividuo_html_ab67a8ef848778c9b0a892bfd7cf364c6"><div class="ttname"><a href="classindividuo.html#ab67a8ef848778c9b0a892bfd7cf364c6">individuo::orientacao</a></div><div class="ttdeci">double orientacao</div><div class="ttdef"><b>Definition:</b> <a href="individuo_8hpp_source.html#l00028">individuo.hpp:28</a></div></div>
+<div class="ttc" id="classindividuo_html_ac38b589599c99e0e782af3e722de9fb9"><div class="ttname"><a href="classindividuo.html#ac38b589599c99e0e782af3e722de9fb9">individuo::lisViz</a></div><div class="ttdeci">vector&lt; individuo * &gt; lisViz</div><div class="ttdef"><b>Definition:</b> <a href="individuo_8hpp_source.html#l00033">individuo.hpp:33</a></div></div>
+<div class="ttc" id="classindividuo_html_aa434f73172c9839f161273a84455a7ab"><div class="ttname"><a href="classindividuo.html#aa434f73172c9839f161273a84455a7ab">individuo::set_x</a></div><div class="ttdeci">void set_x(double i)</div><div class="ttdef"><b>Definition:</b> <a href="individuo_8hpp_source.html#l00092">individuo.hpp:92</a></div></div>
+<div class="ttc" id="classindividuo_html_a1de4ce1a55923d48fc2248e98dcef6eb"><div class="ttname"><a href="classindividuo.html#a1de4ce1a55923d48fc2248e98dcef6eb">individuo::tempo_evento</a></div><div class="ttdeci">double tempo_evento</div><div class="ttdef"><b>Definition:</b> <a href="individuo_8hpp_source.html#l00030">individuo.hpp:30</a></div></div>
+<div class="ttc" id="classindividuo_html_a730c059666e76153be8865a6a8ff197e"><div class="ttname"><a href="classindividuo.html#a730c059666e76153be8865a6a8ff197e">individuo::densi_max</a></div><div class="ttdeci">double densi_max</div><div class="ttdef"><b>Definition:</b> <a href="individuo_8hpp_source.html#l00031">individuo.hpp:31</a></div></div>
+<div class="ttc" id="classindividuo_html_ad0569613107a4e3ed3730d6834205dd9"><div class="ttname"><a href="classindividuo.html#ad0569613107a4e3ed3730d6834205dd9">individuo::set_habitat</a></div><div class="ttdeci">void set_habitat(const int tipo)</div><div class="ttdef"><b>Definition:</b> <a href="individuo_8hpp_source.html#l00090">individuo.hpp:90</a></div></div>
+<div class="ttc" id="classindividuo_html_a88314da36b3e1b1005efedc458f67619"><div class="ttname"><a href="classindividuo.html#a88314da36b3e1b1005efedc458f67619">individuo::y</a></div><div class="ttdeci">double y</div><div class="ttdef"><b>Definition:</b> <a href="individuo_8hpp_source.html#l00021">individuo.hpp:21</a></div></div>
+<div class="ttc" id="classindividuo_html_a5f8703c88ef2c16581560ad92eaf3410"><div class="ttname"><a href="classindividuo.html#a5f8703c88ef2c16581560ad92eaf3410">individuo::incl_birth</a></div><div class="ttdeci">const double incl_birth</div><div class="ttdef"><b>Definition:</b> <a href="individuo_8hpp_source.html#l00040">individuo.hpp:40</a></div></div>
+<div class="ttc" id="classindividuo_html_a86c48f8fdb88eef119980f4c9ff603cf"><div class="ttname"><a href="classindividuo.html#a86c48f8fdb88eef119980f4c9ff603cf">individuo::get_densType</a></div><div class="ttdeci">const int get_densType() const </div><div class="ttdef"><b>Definition:</b> <a href="individuo_8hpp_source.html#l00102">individuo.hpp:102</a></div></div>
+<div class="ttc" id="classindividuo_html_ad059724393211a95dde696073c97ff0a"><div class="ttname"><a href="classindividuo.html#ad059724393211a95dde696073c97ff0a">individuo::move</a></div><div class="ttdeci">const double move</div><div class="ttdef"><b>Definition:</b> <a href="individuo_8hpp_source.html#l00026">individuo.hpp:26</a></div></div>
+<div class="ttc" id="classindividuo_html_a3a49a8754c6aa7339ce1370711c25328"><div class="ttname"><a href="classindividuo.html#a3a49a8754c6aa7339ce1370711c25328">individuo::get_id</a></div><div class="ttdeci">const unsigned long get_id() const </div><div class="ttdef"><b>Definition:</b> <a href="individuo_8hpp_source.html#l00086">individuo.hpp:86</a></div></div>
+<div class="ttc" id="classindividuo_html_a9cc07b3d07b6065aca5505dd969f06da"><div class="ttname"><a href="classindividuo.html#a9cc07b3d07b6065aca5505dd969f06da">individuo::MAXID</a></div><div class="ttdeci">static unsigned long MAXID</div><div class="ttdef"><b>Definition:</b> <a href="individuo_8hpp_source.html#l00017">individuo.hpp:17</a></div></div>
+<div class="ttc" id="classindividuo_html_a7b9900dcac82775d6178706130b25c0d"><div class="ttname"><a href="classindividuo.html#a7b9900dcac82775d6178706130b25c0d">individuo::death</a></div><div class="ttdeci">double death</div><div class="ttdef"><b>Definition:</b> <a href="individuo_8hpp_source.html#l00038">individuo.hpp:38</a></div></div>
+<div class="ttc" id="classindividuo_html_a4e1be14f8f3f14160cf98868f9b19e7b"><div class="ttname"><a href="classindividuo.html#a4e1be14f8f3f14160cf98868f9b19e7b">individuo::get_raio</a></div><div class="ttdeci">const double get_raio() const </div><div class="ttdef"><b>Definition:</b> <a href="individuo_8hpp_source.html#l00100">individuo.hpp:100</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado em Sexta, 1 de Agosto de 2014 18:27:51 para TWoLife por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.7
+</small></address>
+</body>
+</html>
