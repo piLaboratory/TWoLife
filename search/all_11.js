@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['vivomorto',['VivoMorto',['../index.html',1,'']]],
-  ['vivomorto',['VivoMorto',['../VivoMorto_8cpp.html#aaffb0774144119fd7efa88ce8a3c7936',1,'VivoMorto.cpp']]],
-  ['vivomorto_2ecpp',['VivoMorto.cpp',['../VivoMorto_8cpp.html',1,'']]]
+  ['x',['x',['../classindividuo.html#a70850dd01cc2e8309f3fef89450926a6',1,'individuo']]]
 ];
