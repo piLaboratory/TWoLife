@@ -2,6 +2,7 @@
 #define PAISAGEM_H
 #include "individuo.hpp"
 #include<vector>
+#include<algorithm>
 #include<cstdlib>
 #include<cmath>
 ///** Dimensão maxima do mapa, usada para rotinas de fragmentação TBI */
@@ -48,17 +49,19 @@ private:
 					const double incl_d,
 					/** Constante de acrescimo na taxa basal de morte na matriz em relação à essa taxa basal no habitat */ 
 					const double death_m,
-					/** Tipo de densidade ("g" = GLOBAL, "l" = LOCAL) */
+					/** Tipo de densidade (0 = GLOBAL, 1 = LOCAL) */
 					const int dens_type
 					);
 					
     void atualiza_vizinhos(individuo * const ind) const;//contabilizador de vizinhos
     void atualiza_habitat(individuo * const i) const;//vai informar o individuo em que tipo de habitat ele esta
-    void realiza_acao();//vai pegar os tempos de cada individuo e informa qual foi o escolhido e manda ele fazer
+    //int define_tempo();
+	void realiza_acao();//vai pegar os tempos de cada individuo e informa qual foi o escolhido e manda ele fazer
 	void apply_boundary(individuo * const ind); //const; // metodo para aplicação da condicao de contorno
     		
 
 public:
+	//vector <individuo*> popIndividuos;
 	
 	/** Contador de quanto tempo já transcorreu no mundo simulado */
     double tempo_do_mundo;
@@ -112,6 +115,8 @@ public:
     const double get_tamanho() const {return this->tamanho;}
 	
 	double calcDist(const individuo* a1, const individuo* a2) const;
+	
+	double calcDensity(const individuo* ind1) const;
 
     /** Retorna false se o indivíduo estava no ambiente no passod de tempo 0, e true se ele nasceu durante a simulação.
 	 * Usado para pintar os indivíduos nascidos de um cor diferente dos individuos originais */

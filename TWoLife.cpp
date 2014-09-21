@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <cstdlib>
 #include <R.h>
@@ -33,9 +34,35 @@ extern "C" void TWoLife (double * raio, int * N, double * angulo_visada, double 
 					  incl_d[0], numb_cells[0], cell_size[0], land_shape[0],
 					  density_type[0], death_mat[0], bound_condition[0], 
 					  scape);
-	while (floresta->tempo_do_mundo < tempo[0] && floresta->conta_individuos() > 0) {
-			floresta->update();
+	ofstream test; // inicio do arquivo que vai conter os outputs
+	test.open("teste.txt");
+	for(unsigned int i=0; i<floresta->conta_individuos();i++)
+	{
+		test << " " << floresta->tempo_do_mundo << " " << floresta->get_individuos(i)->get_id() << endl;
 	}
+	while (floresta->tempo_do_mundo < tempo[0] && floresta->conta_individuos() > 0)
+	{
+		double t_ant = floresta->tempo_do_mundo;
+		floresta->update();
+		if(t_ant < (int)floresta->tempo_do_mundo)
+		{
+			for(unsigned int i=0; i<floresta->conta_individuos();i++)
+			{
+				test << " " << floresta->tempo_do_mundo << " " << floresta->get_individuos(i)->get_id() << endl;
+			}
+		}
+		
+	}
+	if(floresta->conta_individuos()==0){test << " " << floresta->tempo_do_mundo << " " << "NA" << endl;}
+	/*else 
+	{
+		for(unsigned int i=0; i<floresta->popIndividuos.size();i++)
+		{
+			test << " " << floresta->tempo_do_mundo << " " << floresta->popIndividuos[i]->get_id() << endl;
+		}
+	}*/
+	test.close(); //fim do arquivo de outputs.
+	
 	*nPop = floresta->conta_individuos();
 	for (int i =0; i < *nPop; i ++) {
 		x[i] = floresta->get_individuos(i)->get_x();
@@ -44,3 +71,5 @@ extern "C" void TWoLife (double * raio, int * N, double * angulo_visada, double 
 	delete floresta;
 	PutRNGstate();
 }
+
+

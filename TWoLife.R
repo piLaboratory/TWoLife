@@ -78,13 +78,31 @@ TWoLife <- function (
 	if(class(landscape) != "landscape") {
 		stop("Error in function TWoLife: you must provide a valid landscape. See ?Landscape")
 	}
-	saida.C <- .C("TWoLife", as.double(raio), as.integer(N),as.double(AngVis), as.double(passo),
-				  as.double(move), as.double(taxa.basal), as.double(taxa.morte), 
-				  as.double(incl.birth), as.double(incl.death), as.integer(landscape$numb.cells), 
-				  as.double(landscape$cell.size), as.integer(landscape$land.shape), as.integer(density.type), 
-				  as.double(death.mat), as.integer(landscape$bound.condition), as.integer(landscape$scape),
-				  as.double(tempo), as.integer(0),
-				  as.double(rep(0, 5000)), as.double(rep(0,5000)) ## verificar se precisa definir o tamanho e se isto nao dará problemas
+  if(raio>landscape$numb.cells*landscape$cell.size/2)
+  {stop("Error in function TWoLife: the radius must be lower than or equal to the half of landscape side (radius <= numb.cells*cell.size/2)")}
+	
+  saida.C <- .C("TWoLife", 
+              as.double(raio),# 1
+              as.integer(N),# 2
+              as.double(AngVis),# 3
+              as.double(passo),# 4
+              as.double(move),# 5
+              as.double(taxa.basal),# 6
+              as.double(taxa.morte),# 7
+              as.double(incl.birth),# 8
+              as.double(incl.death),# 9
+              as.integer(landscape$numb.cells),# 10
+              as.double(landscape$cell.size),# 11
+              as.integer(landscape$land.shape),# 12
+              as.integer(density.type),# 13
+              as.double(death.mat), # 14
+              as.integer(landscape$bound.condition), #15
+              as.integer(landscape$scape), #16
+              as.double(tempo), #17
+              as.integer(0), # 18
+              as.double(rep(0, 5000)), # 19
+              as.double(rep(0,5000)) # 20 
+              ## verificar se precisa definir o tamanho e se isto nao dará problemas (dois ultimos argumentos)
 				  )
 	n <- saida.C[[18]]
 	x <- saida.C[[19]]
@@ -94,21 +112,26 @@ TWoLife <- function (
 }
 
 ## Um teste rapido
-land <- Landscape(cover=0.95, type="b")
+land <- Landscape(cover=1,type="b",cell.size=100)
 ## Uma rodada: coordenadas dos sobreviventes apos t=20
-teste <- TWoLife(raio=0.1,
-				 N=80,
+teste <- TWoLife(raio=100,
+				 N=50,
 				 AngVis=360,
-				 passo=5,
-				 move=3,
-				 taxa.basal=2,
-				 taxa.morte=0.1, 
-				 incl.birth=0.5/0.01,
+				 passo=10,
+				 move=0,
+				 taxa.basal=0.5,
+				 taxa.morte=0.45, 
+				 incl.birth=0,
 				 incl.death=0,
 				 density.type=0,
-				 death.mat=700,
+				 death.mat=1,
 				 landscape=land,
 				 tempo=30)
+
+50*exp(0.05*30)
+length(teste[,1])
+teste
+length(teste[,1])
 
 TWoPlot <- function(pop, land) {
 	n = land$numb.cells

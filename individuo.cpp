@@ -107,7 +107,7 @@ void individuo::update()
   if(this->tipo_habitat==0) 
 	{
 		this->birth = 0;
-		// Implementar aqui modelo mais geral para mortalidade na matriz. Aqui a denso dependencia é igual à do habitat, só muda a mortalidade basal que é maior que no habitat.
+		// ToDo: Implementar aqui modelo mais geral para mortalidade na matriz. Aqui a denso dependencia é igual à do habitat, só muda a mortalidade basal que é maior que no habitat.
 		this->death = this->const_d_matrix*this->taxa_morte+this->incl_death*densi; 
 	}
   else 

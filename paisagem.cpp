@@ -2,7 +2,6 @@
 #include "individuo.hpp"
 #include <R.h>
 #include <Rmath.h>
-
 paisagem::paisagem(double raio, int N, double angulo_visada, double passo, double move, double taxa_basal, 
 				   double taxa_morte, double incl_b, double incl_d, int numb_cells, double cell_size, int land_shape, 
 				   int density_type, double death_mat, int bound_condition, int scape[]):
@@ -23,7 +22,7 @@ paisagem::paisagem(double raio, int N, double angulo_visada, double passo, doubl
 			}
 		}
 		
-	// Calculo do raio dependendo do tipo de densidade
+	// Calculo do raio dependendo do tipo de densidade. 0 = global, 1 = local (raio), 2 = kernel.
 	if(density_type==0)
 	{
 		raio = this->tamanho/sqrt(M_PI);
@@ -66,7 +65,7 @@ void paisagem::update()
     if(this->popIndividuos.size()>0)
     {    
 		// Este for loop pode ser paralelizado, pois o que acontece com cada individuo eh independente
-		#pragma omp parallel for
+		//#pragma omp parallel for
         for(unsigned int i=0; i<this->popIndividuos.size(); i++)
         {
             this->atualiza_vizinhos(this->popIndividuos[i]);//atualiza os vizinhos
@@ -76,35 +75,14 @@ void paisagem::update()
 		// aleatorias sao chamadas sempre na mesma ordem (garante reprodutibilidade)
         for(unsigned int i=0; i<this->popIndividuos.size(); i++)
         {
+			this->calcDensity(popIndividuos[i]);
             this->popIndividuos[i]->update();   //e atualiza o individuo i da populacao
         }
-
-        this->realiza_acao();//escolhe tempo, indica e faz
-    }
+		
+		this->realiza_acao();//escolhe tempo, indica e faz
+		
+	}
 }
-
-
-//para quando tiver especies, a definir...
-//int paisagem::conta_especies()
-//{
-//    {
-//        vector<int> especie_individuos;
-//        int contador=0;
-//        spIndividuos.assign(this->popIndividuos.size(),0);
-//        int espe;
-//        for(int i=0; i<this->popIndividuos.size(); i++)
-//           {
-//            espe = this->get_individuo(i)->get_sp();
-//            especie_individuos[espe]++;
-//        }
-//        for(int z=0; z<this->popIndividuos.size();z++)
-//        {
-//            if(especie_individuos[z]!=0)
-//            contador++;
-//        }
-//    return contador;
-//    }
-//}
 
 void paisagem::realiza_acao() //TODO : criar matriz de distancias como atributo do mundo e atualiza-la apenas quanto ao individuos afetado nesta funcao)
 {
@@ -144,6 +122,29 @@ void paisagem::realiza_acao() //TODO : criar matriz de distancias como atributo 
     }
 }
 
+//para quando tiver especies, a definir...
+//int paisagem::conta_especies()
+//{
+//    {
+//        vector<int> especie_individuos;
+//        int contador=0;
+//        spIndividuos.assign(this->popIndividuos.size(),0);
+//        int espe;
+//        for(int i=0; i<this->popIndividuos.size(); i++)
+//           {
+//            espe = this->get_individuo(i)->get_sp();
+//            especie_individuos[espe]++;
+//        }
+//        for(int z=0; z<this->popIndividuos.size();z++)
+//        {
+//            if(especie_individuos[z]!=0)
+//            contador++;
+//        }
+//    return contador;
+//    }
+//}
+
+
 // metodo para condicao de contorno, argumento é um ponteiro para um individuo
 //TODO: conferir se a combinacao x , y da condicao esta gerando o efeito desejado
 //TBI: condicao periodica do codigo antigo feito com Garcia. Verificar se estah correta
@@ -179,7 +180,7 @@ void paisagem::apply_boundary(individuo * const ind) //const
 			{
 				for(unsigned int i=0; i<popIndividuos.size();i++)
 				{
-					if(this->popIndividuos[i]->get_id()==(int)ind->get_id())
+					if(this->popIndividuos[i]->get_id()==(int)ind->get_id()) //DUVIDA: porque tem int?
 					{
 						delete this->popIndividuos[i];
 						this->popIndividuos.erase(this->popIndividuos.begin()+i);
@@ -229,6 +230,120 @@ double paisagem::calcDist(const individuo* a1, const individuo* a2) const //Viro
 	}
 }
 
+// A function to calculate de density of individuals according to density type (global or local) and considering landscape boundary effects in the calculation.
+double paisagem::calcDensity(const individuo* ind1) const 
+{
+	double density;
+	density=ind1->NBHood_size()/(M_PI*(ind1->get_raio()*ind1->get_raio()));
+	
+// Functions for local density calculation 
+	
+	/* 1. Circular area defining a region in which denso-dependence occurs: landscape boundary effects.
+			In this case, density is the number of individuals inside the circle divided by circle area.  
+			This is the same calculation as for global density, except by the cases in which landscape boundary affects
+			the area of the circle.			
+	 */
+	
+	// Condition giving the boundary effects cases
+	if(ind1->get_densType()==1 && 
+	   (ind1->get_x()*ind1->get_x()>((this->tamanho/2)-ind1->get_raio())*((this->tamanho/2)-ind1->get_raio()) ||
+		ind1->get_y()*ind1->get_y()>((this->tamanho/2)-ind1->get_raio())*((this->tamanho/2)-ind1->get_raio())))
+	 {
+		// temporary objects
+		double modIx = fabs(ind1->get_x());
+		double modIy = fabs(ind1->get_y());
+		double XYmax = this->tamanho/2;
+		vector<double>secX;
+		vector<double>secY;
+		//int Quad; //object informing the quadrant in which the individual is
+		int NsecPts;// Number of circunference points touching the landscape boundary. %%%%% Definir melhor 
+		
+		// Functions for adjusted local density calculation, according to the specific case
+		
+		// 1)
+		if(modIx>XYmax-ind1->get_raio() && modIy<=XYmax-ind1->get_raio())
+		{
+			secX.push_back(XYmax);
+			secX.push_back(XYmax);
+			secY.push_back(modIy+sqrt(ind1->get_raio()*ind1->get_raio()-((XYmax-modIx)*(XYmax-modIx))));
+			secY.push_back(modIy-sqrt(ind1->get_raio()*ind1->get_raio()-((XYmax-modIx)*(XYmax-modIx))));
+						
+			double distSecs = secY[1]-secY[2];
+			double height = XYmax - modIx;
+			double theta = acos(1-(distSecs/(2*ind1->get_raio()*ind1->get_raio()))); // angle in radians
+			double adjArea = M_PI*ind1->get_raio()*ind1->get_raio() - (theta*ind1->get_raio()*ind1->get_raio()/2 - (distSecs*height/2));
+			
+			density = ind1->NBHood_size()/adjArea;
+			
+		}
+		
+		// 2)
+		if(modIx<=XYmax-ind1->get_raio() && modIy>XYmax-ind1->get_raio())
+		{
+			secY.push_back(XYmax);
+			secY.push_back(XYmax);
+			secX.push_back(modIx+sqrt(ind1->get_raio()*ind1->get_raio()-((XYmax-modIy)*(XYmax-modIy))));
+			secX.push_back(modIx-sqrt(ind1->get_raio()*ind1->get_raio()-((XYmax-modIy)*(XYmax-modIy))));
+						
+			double distSecs = secX[1]-secX[2];
+			double height = XYmax - modIy;
+			double theta = acos(1-((distSecs*distSecs)/(2*ind1->get_raio()*ind1->get_raio()))); // angle in radians
+			double adjArea = M_PI*ind1->get_raio()*ind1->get_raio() - (theta*ind1->get_raio()*ind1->get_raio()/2 - (distSecs*height/2));
+			
+			density = ind1->NBHood_size()/adjArea;
+		}
+		
+		
+		if(modIx>XYmax-ind1->get_raio() && modIy>XYmax-ind1->get_raio())
+		{
+			
+			// 3)
+			if((modIx-XYmax)*(modIx-XYmax)+(modIy-XYmax)*(modIy-XYmax)>ind1->get_raio()*ind1->get_raio())
+			{
+				secX.push_back(modIx+sqrt(ind1->get_raio()*ind1->get_raio()-((XYmax-modIy)*(XYmax-modIy))));
+				secY.push_back(XYmax);
+				secX.push_back(modIx-sqrt(ind1->get_raio()*ind1->get_raio()-((XYmax-modIy)*(XYmax-modIy))));
+				secY.push_back(XYmax);
+				secX.push_back(XYmax);
+				secY.push_back(modIy+sqrt(ind1->get_raio()*ind1->get_raio()-((XYmax-modIx)*(XYmax-modIx))));
+				secX.push_back(XYmax);
+				secY.push_back(modIy-sqrt(ind1->get_raio()*ind1->get_raio()-((XYmax-modIx)*(XYmax-modIx))));
+				
+				double distSecs = sqrt((secX[4]-secX[2])*(secX[4]-secX[2])+(secY[2]-secY[4])*(secY[2]-secY[4]));
+				double distSecs2 = sqrt((secX[3]-secX[1])*(secX[3]-secX[1])+(secY[1]-secY[3])*(secY[1]-secY[3]));
+				double theta = acos(1-((distSecs*distSecs)/(2*ind1->get_raio()*ind1->get_raio()))); // angle in radians
+				double phi = acos(1-((distSecs2*distSecs2)/(2*ind1->get_raio()*ind1->get_raio()))); // angle in radians
+				double adjArea = (2*M_PI-theta)*ind1->get_raio()*ind1->get_raio()/2 + phi*ind1->get_raio()*ind1->get_raio()/2 + (secX[1]-secX[2])*(XYmax-modIy)/2 + (secY[3]-secY[4])*(XYmax-modIx)/2;
+				
+				density = ind1->NBHood_size()/adjArea;
+			}
+			// 4)
+			else 
+			{
+				secX.push_back(modIx-sqrt(ind1->get_raio()*ind1->get_raio()-((XYmax-modIy)*(XYmax-modIy))));
+				secY.push_back(XYmax);
+				secX.push_back(XYmax);
+				secY.push_back(modIy-sqrt(ind1->get_raio()*ind1->get_raio()-((XYmax-modIx)*(XYmax-modIx))));
+				
+				double distSecs = sqrt((secX[2]-secX[1])*(secX[2]-secX[1])+(secY[1]-secY[2])*(secY[1]-secY[2]));
+				double theta = acos(1-((distSecs*distSecs)/(2*ind1->get_raio()*ind1->get_raio()))); // angle in radians
+				double adjArea = theta*ind1->get_raio()*ind1->get_raio()/2 + (XYmax-secX[1])*(XYmax-modIy) + (XYmax-secY[2])*(XYmax-modIx);
+				
+				density = ind1->NBHood_size()/adjArea;
+			}
+		}
+	 }
+
+	/* 2. Density kernel (TBI).
+				
+	if(ind1->get_densType()==2) {}
+			
+	*/
+	
+	return density;	
+}
+
+
 /*
   Sempre adicione const aos argumentos de métodos quando o método não
   deve alterá-los. Previne vários erros e pode otimizar compilação
@@ -267,9 +382,13 @@ void paisagem::atualiza_habitat(individuo * const ind) const
 	// interfere em ser habitat ou não: isso deve interferir na apply_boundary apenas, certo?
 	// Also: Tinha uma inversão do y que eu também não entendi e removi
 	// A.C. 10.07.13
+	
+	// Um termo (-1) foi removido erroneamente por A.C.. Para o hy, o sentido em que o número de células aumenta é o 
+	//contrário do sentido em que as coordenadas aumentam. Portanto a multiplicação por - 1 é necessária.
+	// M.A. 12.09.14
 	int hx,hy;
 	hx= (double)ind->get_x()/this->cell_size+this->numb_cells/2;
-	hy= (double)ind->get_y()/this->cell_size+this->numb_cells/2;
+	hy= ((double)ind->get_y()/this->cell_size)*(-1)+this->numb_cells/2;
 	ind->set_habitat(this->landscape[hx][hy]);
 }
 
