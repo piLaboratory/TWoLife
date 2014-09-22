@@ -73,7 +73,8 @@ TWoLife <- function (
 					 density.type=0,
 					 death.mat=7, 
 					 landscape,
-					 tempo=20) 
+					 tempo=20,
+           ini.config=0) 
 {
 	if(class(landscape) != "landscape") {
 		stop("Error in function TWoLife: you must provide a valid landscape. See ?Landscape")
@@ -96,17 +97,18 @@ TWoLife <- function (
               as.integer(landscape$land.shape),# 12
               as.integer(density.type),# 13
               as.double(death.mat), # 14
-              as.integer(landscape$bound.condition), #15
-              as.integer(landscape$scape), #16
-              as.double(tempo), #17
-              as.integer(0), # 18
-              as.double(rep(0, 5000)), # 19
-              as.double(rep(0,5000)) # 20 
+              as.integer(ini.config), #15
+              as.integer(landscape$bound.condition), #16
+              as.integer(landscape$scape), #17
+              as.double(tempo), #18
+              as.integer(0), # 19
+              as.double(rep(0, 5000)), # 20
+              as.double(rep(0,5000)) # 21 
               ## verificar se precisa definir o tamanho e se isto nao dará problemas (dois ultimos argumentos)
 				  )
-	n <- saida.C[[18]]
-	x <- saida.C[[19]]
-	y <- saida.C[[20]]
+	n <- saida.C[[19]]
+	x <- saida.C[[20]]
+	y <- saida.C[[21]]
 	x <- x[1:n]; y <- y[1:n]  
 	return(data.frame(x=x,y=y))
 }
@@ -114,24 +116,21 @@ TWoLife <- function (
 ## Um teste rapido
 land <- Landscape(cover=1,type="b",cell.size=100)
 ## Uma rodada: coordenadas dos sobreviventes apos t=20
-teste <- TWoLife(raio=100,
-				 N=50,
+teste <- TWoLife(raio=1560,
+				 N=10,
 				 AngVis=360,
 				 passo=10,
 				 move=0,
-				 taxa.basal=0.5,
-				 taxa.morte=0.45, 
-				 incl.birth=0,
+				 taxa.basal=0.2,
+				 taxa.morte=0, 
+				 incl.birth=1529.076,
 				 incl.death=0,
-				 density.type=0,
+				 density.type=1,
 				 death.mat=1,
 				 landscape=land,
-				 tempo=30)
+				 tempo=30,
+         ini.config=1)
 
-50*exp(0.05*30)
-length(teste[,1])
-teste
-length(teste[,1])
 
 TWoPlot <- function(pop, land) {
 	n = land$numb.cells

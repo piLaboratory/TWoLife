@@ -27,6 +27,7 @@ private:
 	const int landscape_shape; // paramâmetro do modelo relacionado à forma da paisagem (por enquanto, 1 = "quadrada" ou  0 = "circular")
 	const int boundary_condition; // tipo de condição de contorno (0 = absortiva, 1 = periódica, 2 = reflexiva)
 	int landscape[dim][dim];//[linha][coluna] temporariamente substituido or valor fixo
+	const int initialPos;
 	
 	//metodos privados
 	void populating(
@@ -97,10 +98,12 @@ public:
 			const int density_type,
 			/** Constante de acrescimo na taxa basal de morte na matriz em relação à essa taxa basal no habitat */ 
 			const double death_mat,
+			/** How individuals are initially set into the landscpae **/
+			const int inipos,
 			/** Condição de contorno */
 			const int bound_condition,
 			/** Vetor de cobertura de habitat na paisagem */
-			int scape[]
+			int scape[]			
 			); //construtor
 
 	/** Atualiza as variáveis de todos os indivíduos (ver individuo::set_vizinhos, individuo::set_habitat e individuo::update) e escolhe uma ação para ser executada. Executa a ação e atualiza o tempo do mundo de acordo \sa \ref Introdução */

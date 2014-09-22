@@ -115,7 +115,7 @@ public:
 	/** Atualiza a taxa de nascimento e/ou de morte baseado na densidade de indiv√≠duos dentro do raio de percep√ß√£o e sorteia o tempo
 	 * do pr√≥ximo evento baseado nas taxas de nascimento, morte e movimenta√ß√£o 
 	 * \sa \ref individuo::get_tempo */
-    void update();
+    void update(double dens);
 	/** Faz com que o indiv√≠duo ande um passo, do tamanho passo. A orienta√ß√£o na qual o indiv√≠duo vai andar √© a orienta√ß√£o atual
 	 * (definida no construtor como orientacao) mais um √¢ngulo aleat√≥rio dentro do √¢ngulo de visada (angulo_visada). A defini√ß√£o de um 
 	 * √¢ngulo de visada de 360 graus equivale a uma caminhada aleat√≥ria. */

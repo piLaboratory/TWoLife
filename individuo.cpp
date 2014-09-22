@@ -101,9 +101,9 @@ individuo::individuo(const individuo& rhs)
  * - Sorteia o tempo de acordo com as novas taxas
  * As taxas de morte e movimentação no momento fixas. Mas tambem serão funções da densidade de vizinhos (\ref TBI).
  */
-void individuo::update()
+void individuo::update(double dens)
 {
-  double densi = (this->lisViz.size()+1)/(M_PI*(this->raio*this->raio)); // densidade inclui n de vizinhos + o individuo
+  double densi = dens; // densidade inclui n de vizinhos + o individuo
   if(this->tipo_habitat==0) 
 	{
 		this->birth = 0;

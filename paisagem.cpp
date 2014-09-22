@@ -4,14 +4,15 @@
 #include <Rmath.h>
 paisagem::paisagem(double raio, int N, double angulo_visada, double passo, double move, double taxa_basal, 
 				   double taxa_morte, double incl_b, double incl_d, int numb_cells, double cell_size, int land_shape, 
-				   int density_type, double death_mat, int bound_condition, int scape[]):
+				   int density_type, double death_mat, int inipos, int bound_condition, int scape[]):
 	tamanho(numb_cells*cell_size),
 	N(N),
 	tempo_do_mundo(0),
 	numb_cells(numb_cells),
 	cell_size(cell_size),
 	landscape_shape(land_shape),
-	boundary_condition(bound_condition)
+	boundary_condition(bound_condition),
+	initialPos(inipos)
 {	
 		for(int i=0;i<this->numb_cells;i++)
 		{
@@ -37,26 +38,51 @@ void paisagem::populating(double raio, int N, double angulo_visada, double passo
 						  int dens_type)
 {
 	// Considerar diferentes possibilidades de posições iniciais. TBI.
-	for(int i=0; i<this->N; i++)
-    {
-        this->popIndividuos.push_back(new individuo(
-                                                    0,//posicao x
-                                                    0,//posicao y
-                                                    0,//especie
-                                                    taxa_morte,//taxa de morte
-                                                    runif(0,360),// orientacao
-                                                    angulo_visada,//angulo de visada
-                                                    passo,//tamanho do passo
-                                                    move, //taxa de movimentacao
-                                                    raio,//tamanho do raio
-                                                    taxa_basal,// taxa máxima de nascimento
-                                                    99, // semente de numero aleatorio
-													incl_b,
-													incl_d,
-                                                    death_m,
-													dens_type));
-        // como o popAgentes eh um ponteiro de vetores, ao adicionar enderecos das variaveis, usamos os new. Dessa forma fica mais rapido
-        //pois podemos acessar apenas o endereco e nao ficar guardando todos os valores
+	if(this->initialPos==0)
+	{
+		for(int i=0; i<this->N; i++)
+		{
+			this->popIndividuos.push_back(new individuo(
+														0,//posicao x
+														0,//posicao y
+														0,//especie
+														taxa_morte,//taxa de morte
+														runif(0,360),// orientacao
+														angulo_visada,//angulo de visada
+														passo,//tamanho do passo
+														move, //taxa de movimentacao
+														raio,//tamanho do raio
+														taxa_basal,// taxa máxima de nascimento
+														99, // semente de numero aleatorio
+														incl_b,
+														incl_d,
+														death_m,
+														dens_type));
+			// como o popAgentes eh um ponteiro de vetores, ao adicionar enderecos das variaveis, usamos os new. Dessa forma fica mais rapido
+			//pois podemos acessar apenas o endereco e nao ficar guardando todos os valores
+		}
+	}
+	if(this->initialPos==1) // Random initial positions (initialPos==1)
+	{
+		for(int i=0; i<this->N; i++)
+		{
+			this->popIndividuos.push_back(new individuo(
+														runif(this->tamanho/(-2),this->tamanho/2),//posicao x
+														runif(this->tamanho/(-2),this->tamanho/2),//posicao y
+														0,//especie
+														taxa_morte,//taxa de morte
+														runif(0,360),// orientacao
+														angulo_visada,//angulo de visada
+														passo,//tamanho do passo
+														move, //taxa de movimentacao
+														raio,//tamanho do raio
+														taxa_basal,// taxa máxima de nascimento
+														99, // semente de numero aleatorio
+														incl_b,
+														incl_d,
+														death_m,
+														dens_type));
+		}	
     }
 }
 
@@ -75,8 +101,8 @@ void paisagem::update()
 		// aleatorias sao chamadas sempre na mesma ordem (garante reprodutibilidade)
         for(unsigned int i=0; i<this->popIndividuos.size(); i++)
         {
-			this->calcDensity(popIndividuos[i]);
-            this->popIndividuos[i]->update();   //e atualiza o individuo i da populacao
+			double dsty=this->calcDensity(popIndividuos[i]);
+            this->popIndividuos[i]->update(dsty);   //e atualiza o individuo i da populacao
         }
 		
 		this->realiza_acao();//escolhe tempo, indica e faz
@@ -236,110 +262,110 @@ double paisagem::calcDensity(const individuo* ind1) const
 	double density;
 	density=ind1->NBHood_size()/(M_PI*(ind1->get_raio()*ind1->get_raio()));
 	
-// Functions for local density calculation 
+	// Functions for local density calculation 
 	
 	/* 1. Circular area defining a region in which denso-dependence occurs: landscape boundary effects.
-			In this case, density is the number of individuals inside the circle divided by circle area.  
-			This is the same calculation as for global density, except by the cases in which landscape boundary affects
-			the area of the circle.			
+	 In this case, density is the number of individuals inside the circle divided by circle area.  
+	 This is the same calculation as for global density, except by the cases in which landscape boundary affects
+	 the area of the circle.			
 	 */
 	
 	// Condition giving the boundary effects cases
-	if(ind1->get_densType()==1 && 
-	   (ind1->get_x()*ind1->get_x()>((this->tamanho/2)-ind1->get_raio())*((this->tamanho/2)-ind1->get_raio()) ||
-		ind1->get_y()*ind1->get_y()>((this->tamanho/2)-ind1->get_raio())*((this->tamanho/2)-ind1->get_raio())))
-	 {
-		// temporary objects
-		double modIx = fabs(ind1->get_x());
-		double modIy = fabs(ind1->get_y());
-		double XYmax = this->tamanho/2;
-		vector<double>secX;
-		vector<double>secY;
-		//int Quad; //object informing the quadrant in which the individual is
-		int NsecPts;// Number of circunference points touching the landscape boundary. %%%%% Definir melhor 
-		
-		// Functions for adjusted local density calculation, according to the specific case
-		
-		// 1)
-		if(modIx>XYmax-ind1->get_raio() && modIy<=XYmax-ind1->get_raio())
+	if(ind1->get_densType()==1)
+	{
+		if(ind1->get_x()*ind1->get_x()>((this->tamanho/2)-ind1->get_raio())*((this->tamanho/2)-ind1->get_raio()) ||
+		   ind1->get_y()*ind1->get_y()>((this->tamanho/2)-ind1->get_raio())*((this->tamanho/2)-ind1->get_raio()))
 		{
-			secX.push_back(XYmax);
-			secX.push_back(XYmax);
-			secY.push_back(modIy+sqrt(ind1->get_raio()*ind1->get_raio()-((XYmax-modIx)*(XYmax-modIx))));
-			secY.push_back(modIy-sqrt(ind1->get_raio()*ind1->get_raio()-((XYmax-modIx)*(XYmax-modIx))));
-						
-			double distSecs = secY[1]-secY[2];
-			double height = XYmax - modIx;
-			double theta = acos(1-(distSecs/(2*ind1->get_raio()*ind1->get_raio()))); // angle in radians
-			double adjArea = M_PI*ind1->get_raio()*ind1->get_raio() - (theta*ind1->get_raio()*ind1->get_raio()/2 - (distSecs*height/2));
+			// temporary objects
+			double modIx = fabs(ind1->get_x());
+			double modIy = fabs(ind1->get_y());
+			double XYmax = this->tamanho/2;
+			vector<double>secX;
+			vector<double>secY;
 			
-			density = ind1->NBHood_size()/adjArea;
-			
-		}
-		
-		// 2)
-		if(modIx<=XYmax-ind1->get_raio() && modIy>XYmax-ind1->get_raio())
-		{
-			secY.push_back(XYmax);
-			secY.push_back(XYmax);
-			secX.push_back(modIx+sqrt(ind1->get_raio()*ind1->get_raio()-((XYmax-modIy)*(XYmax-modIy))));
-			secX.push_back(modIx-sqrt(ind1->get_raio()*ind1->get_raio()-((XYmax-modIy)*(XYmax-modIy))));
-						
-			double distSecs = secX[1]-secX[2];
-			double height = XYmax - modIy;
-			double theta = acos(1-((distSecs*distSecs)/(2*ind1->get_raio()*ind1->get_raio()))); // angle in radians
-			double adjArea = M_PI*ind1->get_raio()*ind1->get_raio() - (theta*ind1->get_raio()*ind1->get_raio()/2 - (distSecs*height/2));
-			
-			density = ind1->NBHood_size()/adjArea;
-		}
-		
-		
-		if(modIx>XYmax-ind1->get_raio() && modIy>XYmax-ind1->get_raio())
-		{
-			
-			// 3)
-			if((modIx-XYmax)*(modIx-XYmax)+(modIy-XYmax)*(modIy-XYmax)>ind1->get_raio()*ind1->get_raio())
+			// Functions for adjusted local density calculation, according to the specific case
+			// 1)
+			if(modIx>XYmax-ind1->get_raio() && modIy<=XYmax-ind1->get_raio())
 			{
-				secX.push_back(modIx+sqrt(ind1->get_raio()*ind1->get_raio()-((XYmax-modIy)*(XYmax-modIy))));
-				secY.push_back(XYmax);
-				secX.push_back(modIx-sqrt(ind1->get_raio()*ind1->get_raio()-((XYmax-modIy)*(XYmax-modIy))));
-				secY.push_back(XYmax);
+				secX.push_back(XYmax);
 				secX.push_back(XYmax);
 				secY.push_back(modIy+sqrt(ind1->get_raio()*ind1->get_raio()-((XYmax-modIx)*(XYmax-modIx))));
-				secX.push_back(XYmax);
 				secY.push_back(modIy-sqrt(ind1->get_raio()*ind1->get_raio()-((XYmax-modIx)*(XYmax-modIx))));
 				
-				double distSecs = sqrt((secX[4]-secX[2])*(secX[4]-secX[2])+(secY[2]-secY[4])*(secY[2]-secY[4]));
-				double distSecs2 = sqrt((secX[3]-secX[1])*(secX[3]-secX[1])+(secY[1]-secY[3])*(secY[1]-secY[3]));
-				double theta = acos(1-((distSecs*distSecs)/(2*ind1->get_raio()*ind1->get_raio()))); // angle in radians
-				double phi = acos(1-((distSecs2*distSecs2)/(2*ind1->get_raio()*ind1->get_raio()))); // angle in radians
-				double adjArea = (2*M_PI-theta)*ind1->get_raio()*ind1->get_raio()/2 + phi*ind1->get_raio()*ind1->get_raio()/2 + (secX[1]-secX[2])*(XYmax-modIy)/2 + (secY[3]-secY[4])*(XYmax-modIx)/2;
+				double distSecs = secY[0]-secY[1];
+				double height = XYmax - modIx;
+				double theta = acos(1-(distSecs*distSecs/(2*ind1->get_raio()*ind1->get_raio()))); // angle in radians
+				double adjArea = M_PI*ind1->get_raio()*ind1->get_raio() - (theta*ind1->get_raio()*ind1->get_raio()/2 - (distSecs*height/2));
+				
+				density = ind1->NBHood_size()/adjArea;
+				
+			}
+			
+			// 2)
+			if(modIx<=XYmax-ind1->get_raio() && modIy>XYmax-ind1->get_raio())
+			{
+				secY.push_back(XYmax);
+				secY.push_back(XYmax);
+				secX.push_back(modIx+sqrt(ind1->get_raio()*ind1->get_raio()-((XYmax-modIy)*(XYmax-modIy))));
+				secX.push_back(modIx-sqrt(ind1->get_raio()*ind1->get_raio()-((XYmax-modIy)*(XYmax-modIy))));
+				
+				double distSecs = secX[0]-secX[1];
+				double height = XYmax - modIy;
+				double theta = acos(1-(distSecs*distSecs/(2*ind1->get_raio()*ind1->get_raio()))); // angle in radians
+				double adjArea = M_PI*ind1->get_raio()*ind1->get_raio() - (theta*ind1->get_raio()*ind1->get_raio()/2 - (distSecs*height/2));
 				
 				density = ind1->NBHood_size()/adjArea;
 			}
-			// 4)
-			else 
+			
+			
+			if(modIx>XYmax-ind1->get_raio() && modIy>XYmax-ind1->get_raio())
 			{
-				secX.push_back(modIx-sqrt(ind1->get_raio()*ind1->get_raio()-((XYmax-modIy)*(XYmax-modIy))));
-				secY.push_back(XYmax);
-				secX.push_back(XYmax);
-				secY.push_back(modIy-sqrt(ind1->get_raio()*ind1->get_raio()-((XYmax-modIx)*(XYmax-modIx))));
 				
-				double distSecs = sqrt((secX[2]-secX[1])*(secX[2]-secX[1])+(secY[1]-secY[2])*(secY[1]-secY[2]));
-				double theta = acos(1-((distSecs*distSecs)/(2*ind1->get_raio()*ind1->get_raio()))); // angle in radians
-				double adjArea = theta*ind1->get_raio()*ind1->get_raio()/2 + (XYmax-secX[1])*(XYmax-modIy) + (XYmax-secY[2])*(XYmax-modIx);
+				// 3)
+				if((modIx-XYmax)*(modIx-XYmax)+(modIy-XYmax)*(modIy-XYmax)>ind1->get_raio()*ind1->get_raio())
+				{
+					secX.push_back(modIx+sqrt(ind1->get_raio()*ind1->get_raio()-((XYmax-modIy)*(XYmax-modIy))));
+					secY.push_back(XYmax);
+					secX.push_back(modIx-sqrt(ind1->get_raio()*ind1->get_raio()-((XYmax-modIy)*(XYmax-modIy))));
+					secY.push_back(XYmax);
+					secX.push_back(XYmax);
+					secY.push_back(modIy+sqrt(ind1->get_raio()*ind1->get_raio()-((XYmax-modIx)*(XYmax-modIx))));
+					secX.push_back(XYmax);
+					secY.push_back(modIy-sqrt(ind1->get_raio()*ind1->get_raio()-((XYmax-modIx)*(XYmax-modIx))));
+					
+					double distSecs = sqrt((secX[3]-secX[1])*(secX[3]-secX[1])+(secY[1]-secY[3])*(secY[1]-secY[3]));
+					double distSecs2 = sqrt((secX[2]-secX[0])*(secX[2]-secX[0])+(secY[0]-secY[2])*(secY[0]-secY[2]));
+					double theta = acos(1-(distSecs*distSecs/(2*ind1->get_raio()*ind1->get_raio()))); // angle in radians
+					double phi = acos(1-(distSecs2*distSecs2/(2*ind1->get_raio()*ind1->get_raio()))); // angle in radians
+					double adjArea = (2*M_PI-theta)*ind1->get_raio()*ind1->get_raio()/2 + phi*ind1->get_raio()*ind1->get_raio()/2 + (secX[0]-secX[1])*(XYmax-modIy)/2 + (secY[2]-secY[3])*(XYmax-modIx)/2;
+					
+					density = ind1->NBHood_size()/adjArea;
+					
+				}
+				// 4)
+				else 
+				{
+					secX.push_back(modIx-sqrt(ind1->get_raio()*ind1->get_raio()-((XYmax-modIy)*(XYmax-modIy))));
+					secY.push_back(XYmax);
+					secX.push_back(XYmax);
+					secY.push_back(modIy-sqrt(ind1->get_raio()*ind1->get_raio()-((XYmax-modIx)*(XYmax-modIx))));
+					
+					double distSecs = sqrt((secX[1]-secX[0])*(secX[1]-secX[0])+(secY[0]-secY[1])*(secY[0]-secY[1]));
+					double theta = acos(1-(distSecs*distSecs/(2*ind1->get_raio()*ind1->get_raio()))); // angle in radians
+					double adjArea = theta*ind1->get_raio()*ind1->get_raio()/2 + (XYmax-secX[0])*(XYmax-modIy) + (XYmax-secY[1])*(XYmax-modIx);
+					
+					density = ind1->NBHood_size()/adjArea;
+				}
 				
-				density = ind1->NBHood_size()/adjArea;
 			}
 		}
-	 }
-
-	/* 2. Density kernel (TBI).
-				
-	if(ind1->get_densType()==2) {}
-			
-	*/
+	}
 	
+	/* 2. Density kernel (TBI).
+	 
+	 if(ind1->get_densType()==2) {}
+	 
+	 */
 	return density;	
 }
 

@@ -25,20 +25,20 @@ using namespace std;
 extern "C" void TWoLife (double * raio, int * N, double * angulo_visada, double * passo, double * move,
 						   double * taxa_basal, double * taxa_morte, double * incl_b, double * incl_d,
 						   int * numb_cells, double * cell_size, int * land_shape, int * density_type, 
-						   double * death_mat, int * bound_condition, int * scape, double * tempo, int * nPop, double * x, double * y)
+						   double * death_mat, int * inipos, int * bound_condition, int * scape, double * tempo, int * nPop, double * x, double * y)
 {
   GetRNGstate(); /* (mudar para doxygen):  este comando chama o engine de numeros aleatorios do R
 		    Por causa dela  nossa biblioteca nao eh standalone */
 	paisagem* floresta = new paisagem(raio[0], N[0], angulo_visada[0], passo[0], 
 					  move[0], taxa_basal[0], taxa_morte[0], incl_b[0], 
 					  incl_d[0], numb_cells[0], cell_size[0], land_shape[0],
-					  density_type[0], death_mat[0], bound_condition[0], 
+					  density_type[0], death_mat[0], inipos[0], bound_condition[0], 
 					  scape);
 	ofstream test; // inicio do arquivo que vai conter os outputs
 	test.open("teste.txt");
 	for(unsigned int i=0; i<floresta->conta_individuos();i++)
 	{
-		test << " " << floresta->tempo_do_mundo << " " << floresta->get_individuos(i)->get_id() << endl;
+		test << " " << floresta->tempo_do_mundo << " " << floresta->get_individuos(i)->get_x() << endl;
 	}
 	while (floresta->tempo_do_mundo < tempo[0] && floresta->conta_individuos() > 0)
 	{
@@ -48,7 +48,7 @@ extern "C" void TWoLife (double * raio, int * N, double * angulo_visada, double 
 		{
 			for(unsigned int i=0; i<floresta->conta_individuos();i++)
 			{
-				test << " " << floresta->tempo_do_mundo << " " << floresta->get_individuos(i)->get_id() << endl;
+				test << " " << floresta->tempo_do_mundo << " " << floresta->get_individuos(i)->get_x() << endl;
 			}
 		}
 		
