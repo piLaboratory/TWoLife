@@ -89,8 +89,8 @@ void paisagem::populating(double raio, int N, double angulo_visada, double passo
 		for(int i=0; i<this->N; i++)
 		{
 			this->popIndividuos.push_back(new individuo(
-														rnorm(0,this->tamanho/10),//posicao x
-														rnorm(0,this->tamanho/10),//posicao y
+														rnorm(0,sqrt(move)*passo),//posicao x
+														rnorm(0,sqrt(move)*passo),//posicao y
 														0,//especie
 														taxa_morte,//taxa de morte
 														runif(0,360),// orientacao
