@@ -67,8 +67,8 @@ void paisagem::populating(double raio, int N, double angulo_visada, double passo
 		for(int i=0; i<this->N; i++)
 		{
 			this->popIndividuos.push_back(new individuo(
-														runif(this->tamanho/(-2),this->tamanho/2),//posicao x
-														runif(this->tamanho/(-2),this->tamanho/2),//posicao y
+														runif(this->tamanho/(-2),this->tamanho/2), //posicao x
+														runif(this->tamanho/(-2),this->tamanho/2), //posicao y
 														0,//especie
 														taxa_morte,//taxa de morte
 														runif(0,360),// orientacao
@@ -84,9 +84,31 @@ void paisagem::populating(double raio, int N, double angulo_visada, double passo
 														dens_type));
 		}	
     }
+	if(this->initialPos==2) // Random initial positions with normal distribution. TBI: tornar os parametros da rnorm livres
+	{
+		for(int i=0; i<this->N; i++)
+		{
+			this->popIndividuos.push_back(new individuo(
+														rnorm(0,this->tamanho/10),//posicao x
+														rnorm(0,this->tamanho/10),//posicao y
+														0,//especie
+														taxa_morte,//taxa de morte
+														runif(0,360),// orientacao
+														angulo_visada,//angulo de visada
+														passo,//tamanho do passo
+														move, //taxa de movimentacao
+														raio,//tamanho do raio
+														taxa_basal,// taxa máxima de nascimento
+														99, // semente de numero aleatorio
+														incl_b,
+														incl_d,
+														death_m,
+														dens_type));
+		}
+	}	
 }
 
-void paisagem::update()
+int paisagem::update()
 {
     if(this->popIndividuos.size()>0)
     {    
@@ -105,45 +127,44 @@ void paisagem::update()
             this->popIndividuos[i]->update(dsty);   //e atualiza o individuo i da populacao
         }
 		
-		this->realiza_acao();//escolhe tempo, indica e faz
+		// time for next event and simulation time update
+		int menor=0;
+		double menor_tempo = this->popIndividuos[0]->get_tempo();
 		
+		for(unsigned int i=1; i<this->popIndividuos.size(); i++)
+		{
+			if(this->popIndividuos[i]->get_tempo()<menor_tempo)
+			{
+				menor = i;
+				menor_tempo = this->popIndividuos[i]->get_tempo();
+			}
+		}
+		this->tempo_do_mundo = this->tempo_do_mundo+menor_tempo;
+		return menor;
 	}
 }
 
-void paisagem::realiza_acao() //TODO : criar matriz de distancias como atributo do mundo e atualiza-la apenas quanto ao individuos afetado nesta funcao)
+void paisagem::realiza_acao(int lower) //TODO : criar matriz de distancias como atributo do mundo e atualiza-la apenas quanto ao individuos afetado nesta funcao)
 {
-    int menor=0;
-    double menor_tempo = this->popIndividuos[0]->get_tempo();
-
-    for(unsigned int i=1; i<this->popIndividuos.size(); i++)
-    {
-        if(this->popIndividuos[i]->get_tempo()<menor_tempo)
-        {
-            menor = i;
-            menor_tempo = this->popIndividuos[i]->get_tempo();
-        }
-    }
-
-    this->tempo_do_mundo = this->tempo_do_mundo+menor_tempo;
-    int acao = this->popIndividuos[menor]->sorteia_acao();
+	int acao = this->popIndividuos[lower]->sorteia_acao();
 
     switch(acao) //0 eh morte, 1 eh nascer, 2 eh andar
     {
     case 0:
-        delete this->popIndividuos[menor];
-        this->popIndividuos.erase(this->popIndividuos.begin()+menor);
+        delete this->popIndividuos[lower];
+        this->popIndividuos.erase(this->popIndividuos.begin()+lower);
         break;
 
     case 1:
         individuo* chosen;
         //Novo metodo para fazer copia do individuo:
-        chosen = new individuo(*this->popIndividuos[menor]);
+        chosen = new individuo(*this->popIndividuos[lower]);
         this->popIndividuos.push_back(chosen);
         break;
 
     case 2: 
-        this->popIndividuos[menor]->anda();
-		this->apply_boundary(popIndividuos[menor]);
+        this->popIndividuos[lower]->anda();
+		this->apply_boundary(popIndividuos[lower]);
 		break;
     }
 }

@@ -57,7 +57,6 @@ private:
     void atualiza_vizinhos(individuo * const ind) const;//contabilizador de vizinhos
     void atualiza_habitat(individuo * const i) const;//vai informar o individuo em que tipo de habitat ele esta
     //int define_tempo();
-	void realiza_acao();//vai pegar os tempos de cada individuo e informa qual foi o escolhido e manda ele fazer
 	void apply_boundary(individuo * const ind); //const; // metodo para aplicação da condicao de contorno
     		
 
@@ -107,7 +106,8 @@ public:
 			); //construtor
 
 	/** Atualiza as variáveis de todos os indivíduos (ver individuo::set_vizinhos, individuo::set_habitat e individuo::update) e escolhe uma ação para ser executada. Executa a ação e atualiza o tempo do mundo de acordo \sa \ref Introdução */
-    void update();//atualizador
+    int update();//atualizador
+	void realiza_acao(int lower);//vai pegar os tempos de cada individuo e informa qual foi o escolhido e manda ele fazer
 	/** Retorna o número total de indivíduos na paisagem */
     const int conta_individuos() const{return popIndividuos.size();}
 	/** Retorna um vetor contendo todos os indivíduos na paisagem */
