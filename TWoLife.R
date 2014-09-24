@@ -74,7 +74,8 @@ TWoLife <- function (
 					 death.mat=7, 
 					 landscape,
 					 tempo=20,
-           ini.config=0) 
+           ini.config=0,
+           out.code=1) 
 {
 	if(class(landscape) != "landscape") {
 		stop("Error in function TWoLife: you must provide a valid landscape. See ?Landscape")
@@ -103,7 +104,8 @@ TWoLife <- function (
               as.double(tempo), #18
               as.integer(0), # 19
               as.double(rep(0, 5000)), # 20
-              as.double(rep(0,5000)) # 21 
+              as.double(rep(0,5000)), # 21 
+              as.integer(out.code)
               ## verificar se precisa definir o tamanho e se isto nao dará problemas (dois ultimos argumentos)
 				  )
 	n <- saida.C[[19]]
@@ -129,7 +131,8 @@ teste <- TWoLife(raio=1560,
 				 death.mat=1,
 				 landscape=land,
 				 tempo=30,
-         ini.config=1)
+         ini.config=1,
+         out.code=234)
 
 
 TWoPlot <- function(pop, land) {
