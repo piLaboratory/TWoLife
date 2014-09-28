@@ -65,8 +65,10 @@ void paisagem::update()
 {
     if(this->popIndividuos.size()>0)
     {    
-		// Este for loop pode ser paralelizado, pois o que acontece com cada individuo eh independente
-		#pragma omp parallel for
+	// Este for loop pode ser paralelizado, pois o que acontece com cada individuo eh independente
+	#ifdef PARALLEL
+	#pragma omp parallel for
+	#endif
         for(unsigned int i=0; i<this->popIndividuos.size(); i++)
         {
             this->atualiza_vizinhos(this->popIndividuos[i]);//atualiza os vizinhos
