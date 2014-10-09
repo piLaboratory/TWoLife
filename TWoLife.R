@@ -115,38 +115,38 @@ TWoLife <- function (
 	return(data.frame(x=x,y=y))
 }
 
-## Um teste rapido
-land <- Landscape(cover=1,type="b",cell.size=100)
-## Uma rodada: coordenadas dos sobreviventes apos t=20
-teste <- TWoLife(raio=1560,
-				 N=10,
-				 AngVis=360,
-				 passo=10,
-				 move=0,
-				 taxa.basal=0.2,
-				 taxa.morte=0, 
-				 incl.birth=1529.076,
-				 incl.death=0,
-				 density.type=1,
-				 death.mat=1,
-				 landscape=land,
-				 tempo=30,
-         ini.config=1,
-         out.code=234)
+# ## Um teste rapido
+# land <- Landscape(cover=1,type="b",cell.size=100)
+# ## Uma rodada: coordenadas dos sobreviventes apos t=20
+# teste <- TWoLife(raio=1560,
+# 				 N=10,
+# 				 AngVis=360,
+# 				 passo=10,
+# 				 move=0,
+# 				 taxa.basal=0.2,
+# 				 taxa.morte=0, 
+# 				 incl.birth=1529.076,
+# 				 incl.death=0,
+# 				 density.type=1,
+# 				 death.mat=1,
+# 				 landscape=land,
+# 				 tempo=30,
+#          ini.config=1,
+#          out.code=234)
 
 
-TWoPlot <- function(pop, land) {
-	n = land$numb.cells
-	s <- seq(-n*land$cell.size/2, n*land$cell.size/2, length=n) # creates the x- and y- sequences for image
-	if (sum(land$scape) == n*n) { 
-		color = "gray20"
-	} else {
-		color = c("gray70", "gray20")
-	}
-	image(s, s, matrix(land$scape,ncol=n), col=color)
-	points(pop, pch=4, col=2)
-}
-TWoPlot(teste, land)
+# TWoPlot <- function(pop, land, col1="gray20", col2="gray70") {
+# 	n = land$numb.cells
+# 	s <- seq(-n*land$cell.size/2, n*land$cell.size/2, length=n) # creates the x- and y- sequences for image
+# 	if (sum(land$scape) == n*n) { 
+# 		color = col1
+# 	} else {
+# 		color = c(col2, col1)
+# 	}
+# 	image(s, s, matrix(land$scape,ncol=n), col=color)
+# 	points(pop, pch=4, col=2)
+# }
+# TWoPlot(teste, land)
 #plot(teste1, xlim=c(-100,100), ylim=c(-100,100))
 #dim(teste1)
 ## Tamanho de populacao apos t=6 de 100 repeticoes
@@ -162,11 +162,11 @@ TWoPlot(teste, land)
 #  }
 
 ## esperado: capacidade de suporte 
-Support <- function(taxa.basal=0.6, taxa.morte=0.1, incl.birth=0.5/0.01, 
-					incl.death=0, numb.cells=200, cell.size=2) {
-	densi.max = (taxa.basal-taxa.morte)/(incl.birth+incl.death)
-	return ((numb.cells*cell.size)^2 * densi.max)
-}
+# Support <- function(taxa.basal=0.6, taxa.morte=0.1, incl.birth=0.5/0.01, 
+# 					incl.death=0, numb.cells=200, cell.size=2) {
+# 	densi.max = (taxa.basal-taxa.morte)/(incl.birth+incl.death)
+# 	return ((numb.cells*cell.size)^2 * densi.max)
+# }
 ## Media das simulacoes
 #print(pop.size - Support())
 #print(mean(pop.size - Support()))
