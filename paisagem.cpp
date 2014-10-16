@@ -37,6 +37,7 @@ void paisagem::populating(double raio, int N, double angulo_visada, double passo
 						  double taxa_morte, double incl_b, double incl_d, double death_m,
 						  int dens_type)
 {
+	individuo::reset_id(); // reinicia o contador de id dos individuos
 	// Considerar diferentes possibilidades de posições iniciais. TBI.
 	for(int i=0; i<this->N; i++)
     {
@@ -65,8 +66,10 @@ void paisagem::update()
 {
     if(this->popIndividuos.size()>0)
     {    
-		// Este for loop pode ser paralelizado, pois o que acontece com cada individuo eh independente
-		#pragma omp parallel for
+	// Este for loop pode ser paralelizado, pois o que acontece com cada individuo eh independente
+	#ifdef PARALLEL
+	#pragma omp parallel for
+	#endif
         for(unsigned int i=0; i<this->popIndividuos.size(); i++)
         {
             this->atualiza_vizinhos(this->popIndividuos[i]);//atualiza os vizinhos
