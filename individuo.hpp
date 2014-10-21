@@ -100,8 +100,10 @@ public:
     inline const double get_y() const {return this->y;}
 	/** Retorna o raio de percep√ßa√£o do indiv√≠duo */
     const double get_raio() const {return this->raio;}
-	/** Retorna o tiop de densidadeque afeta o indiv√≠duo */
+	/** Retorna o tipo de densidade que afeta o indiv√≠duo */
     const int get_densType() const {return this->dens_type;}
+	/** Returns the number of individuals inside the neighbourhood of the individual (it includes the focal individual) */
+    const int NBHood_size() const {return this->lisViz.size()+1;}
 
     // outros metodos publicos
 	/** Retorna o tempo sorteado para o próximo evento acontecer com este indivíduo.
@@ -115,7 +117,7 @@ public:
 	/** Atualiza a taxa de nascimento e/ou de morte baseado na densidade de indiv√≠duos dentro do raio de percep√ß√£o e sorteia o tempo
 	 * do pr√≥ximo evento baseado nas taxas de nascimento, morte e movimenta√ß√£o 
 	 * \sa \ref individuo::get_tempo */
-    void update();
+    void update(double dens);
 	/** Faz com que o indiv√≠duo ande um passo, do tamanho passo. A orienta√ß√£o na qual o indiv√≠duo vai andar √© a orienta√ß√£o atual
 	 * (definida no construtor como orientacao) mais um √¢ngulo aleat√≥rio dentro do √¢ngulo de visada (angulo_visada). A defini√ß√£o de um 
 	 * √¢ngulo de visada de 360 graus equivale a uma caminhada aleat√≥ria. */
