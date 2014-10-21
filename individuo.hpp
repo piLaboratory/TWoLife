@@ -14,7 +14,7 @@ private:
 	/** Identificador único de cada indivíduo */
     const unsigned long id;
 	/** Identificador máximo já usado */
-	static unsigned long MAXID;
+    static unsigned long MAXID;
 	/** Posição X da localização do indivíduo */
     double x;
 	/** Posição Y da localização do indivíduo */
@@ -82,6 +82,8 @@ public:
 	 *  */
     individuo(/** Individuo pai */ const individuo& rhs); 
 
+    /** Reinicia o contador de indivíduos **/
+    static void reset_id() {MAXID = 0;}
 	/** Retorna o identificador único deste indivíduo */
 	const unsigned long get_id() const {return this->id;}
 	/** Atualiza a lista de vizinhos deste indivíduo. Deve ser chamada a cada passo de tempo pela \ref paisagem */
