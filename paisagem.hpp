@@ -2,6 +2,7 @@
 #define PAISAGEM_H
 #include "individuo.hpp"
 #include<vector>
+#include<algorithm>
 #include<cstdlib>
 #include<cmath>
 ///** Dimensão maxima do mapa, usada para rotinas de fragmentação TBI */
@@ -26,6 +27,7 @@ private:
 	const int landscape_shape; // paramâmetro do modelo relacionado à forma da paisagem (por enquanto, 1 = "quadrada" ou  0 = "circular")
 	const int boundary_condition; // tipo de condição de contorno (0 = absortiva, 1 = periódica, 2 = reflexiva)
 	int landscape[dim][dim];//[linha][coluna] temporariamente substituido or valor fixo
+	const int initialPos;
 	
 	//metodos privados
 	void populating(
@@ -48,17 +50,18 @@ private:
 					const double incl_d,
 					/** Constante de acrescimo na taxa basal de morte na matriz em relação à essa taxa basal no habitat */ 
 					const double death_m,
-					/** Tipo de densidade ("g" = GLOBAL, "l" = LOCAL) */
+					/** Tipo de densidade (0 = GLOBAL, 1 = LOCAL) */
 					const int dens_type
 					);
 					
     void atualiza_vizinhos(individuo * const ind) const;//contabilizador de vizinhos
     void atualiza_habitat(individuo * const i) const;//vai informar o individuo em que tipo de habitat ele esta
-    void realiza_acao();//vai pegar os tempos de cada individuo e informa qual foi o escolhido e manda ele fazer
+    //int define_tempo();
 	void apply_boundary(individuo * const ind); //const; // metodo para aplicação da condicao de contorno
     		
 
 public:
+	//vector <individuo*> popIndividuos;
 	
 	/** Contador de quanto tempo já transcorreu no mundo simulado */
     double tempo_do_mundo;
@@ -94,14 +97,17 @@ public:
 			const int density_type,
 			/** Constante de acrescimo na taxa basal de morte na matriz em relação à essa taxa basal no habitat */ 
 			const double death_mat,
+			/** How individuals are initially set into the landscpae **/
+			const int inipos,
 			/** Condição de contorno */
 			const int bound_condition,
 			/** Vetor de cobertura de habitat na paisagem */
-			int scape[]
+			int scape[]			
 			); //construtor
 
 	/** Atualiza as variáveis de todos os indivíduos (ver individuo::set_vizinhos, individuo::set_habitat e individuo::update) e escolhe uma ação para ser executada. Executa a ação e atualiza o tempo do mundo de acordo \sa \ref Introdução */
-    void update();//atualizador
+    int update();//atualizador
+	void realiza_acao(int lower);//vai pegar os tempos de cada individuo e informa qual foi o escolhido e manda ele fazer
 	/** Retorna o número total de indivíduos na paisagem */
     const int conta_individuos() const{return popIndividuos.size();}
 	/** Retorna um vetor contendo todos os indivíduos na paisagem */
@@ -112,6 +118,8 @@ public:
     const double get_tamanho() const {return this->tamanho;}
 	
 	double calcDist(const individuo* a1, const individuo* a2) const;
+	
+	double calcDensity(const individuo* ind1) const;
 
     /** Retorna false se o indivíduo estava no ambiente no passod de tempo 0, e true se ele nasceu durante a simulação.
 	 * Usado para pintar os indivíduos nascidos de um cor diferente dos individuos originais */

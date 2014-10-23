@@ -101,13 +101,13 @@ individuo::individuo(const individuo& rhs)
  * - Sorteia o tempo de acordo com as novas taxas
  * As taxas de morte e movimentação no momento fixas. Mas tambem serão funções da densidade de vizinhos (\ref TBI).
  */
-void individuo::update()
+void individuo::update(double dens)
 {
-  double densi = (this->lisViz.size()+1)/(M_PI*(this->raio*this->raio)); // densidade inclui n de vizinhos + o individuo
+  double densi = dens; // densidade inclui n de vizinhos + o individuo
   if(this->tipo_habitat==0) 
 	{
 		this->birth = 0;
-		// Implementar aqui modelo mais geral para mortalidade na matriz. Aqui a denso dependencia é igual à do habitat, só muda a mortalidade basal que é maior que no habitat.
+		// ToDo: Implementar aqui modelo mais geral para mortalidade na matriz. Aqui a denso dependencia é igual à do habitat, só muda a mortalidade basal que é maior que no habitat.
 		this->death = this->const_d_matrix*this->taxa_morte+this->incl_death*densi; 
 	}
   else 

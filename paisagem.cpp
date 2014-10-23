@@ -5,14 +5,15 @@
 
 paisagem::paisagem(double raio, int N, double angulo_visada, double passo, double move, double taxa_basal, 
 				   double taxa_morte, double incl_b, double incl_d, int numb_cells, double cell_size, int land_shape, 
-				   int density_type, double death_mat, int bound_condition, int scape[]):
+				   int density_type, double death_mat, int inipos, int bound_condition, int scape[]):
 	tamanho(numb_cells*cell_size),
 	N(N),
 	tempo_do_mundo(0),
 	numb_cells(numb_cells),
 	cell_size(cell_size),
 	landscape_shape(land_shape),
-	boundary_condition(bound_condition)
+	boundary_condition(bound_condition),
+	initialPos(inipos)
 {	
 		for(int i=0;i<this->numb_cells;i++)
 		{
@@ -23,7 +24,7 @@ paisagem::paisagem(double raio, int N, double angulo_visada, double passo, doubl
 			}
 		}
 		
-	// Calculo do raio dependendo do tipo de densidade
+	// Calculo do raio dependendo do tipo de densidade. 0 = global, 1 = local (raio), 2 = kernel.
 	if(density_type==0)
 	{
 		raio = this->tamanho/sqrt(M_PI);
@@ -39,30 +40,77 @@ void paisagem::populating(double raio, int N, double angulo_visada, double passo
 {
 	individuo::reset_id(); // reinicia o contador de id dos individuos
 	// Considerar diferentes possibilidades de posições iniciais. TBI.
-	for(int i=0; i<this->N; i++)
-    {
-        this->popIndividuos.push_back(new individuo(
-                                                    0,//posicao x
-                                                    0,//posicao y
-                                                    0,//especie
-                                                    taxa_morte,//taxa de morte
-                                                    runif(0,360),// orientacao
-                                                    angulo_visada,//angulo de visada
-                                                    passo,//tamanho do passo
-                                                    move, //taxa de movimentacao
-                                                    raio,//tamanho do raio
-                                                    taxa_basal,// taxa máxima de nascimento
-                                                    99, // semente de numero aleatorio
-													incl_b,
-													incl_d,
-                                                    death_m,
-													dens_type));
-        // como o popAgentes eh um ponteiro de vetores, ao adicionar enderecos das variaveis, usamos os new. Dessa forma fica mais rapido
-        //pois podemos acessar apenas o endereco e nao ficar guardando todos os valores
+	if(this->initialPos==0)
+	{
+		for(int i=0; i<this->N; i++)
+		{
+			this->popIndividuos.push_back(new individuo(
+														0,//posicao x
+														0,//posicao y
+														0,//especie
+														taxa_morte,//taxa de morte
+														runif(0,360),// orientacao
+														angulo_visada,//angulo de visada
+														passo,//tamanho do passo
+														move, //taxa de movimentacao
+														raio,//tamanho do raio
+														taxa_basal,// taxa máxima de nascimento
+														99, // semente de numero aleatorio
+														incl_b,
+														incl_d,
+														death_m,
+														dens_type));
+			// como o popAgentes eh um ponteiro de vetores, ao adicionar enderecos das variaveis, usamos os new. Dessa forma fica mais rapido
+			//pois podemos acessar apenas o endereco e nao ficar guardando todos os valores
+		}
+	}
+	if(this->initialPos==1) // Random initial positions (initialPos==1)
+	{
+		for(int i=0; i<this->N; i++)
+		{
+			this->popIndividuos.push_back(new individuo(
+														runif(this->tamanho/(-2),this->tamanho/2), //posicao x
+														runif(this->tamanho/(-2),this->tamanho/2), //posicao y
+														0,//especie
+														taxa_morte,//taxa de morte
+														runif(0,360),// orientacao
+														angulo_visada,//angulo de visada
+														passo,//tamanho do passo
+														move, //taxa de movimentacao
+														raio,//tamanho do raio
+														taxa_basal,// taxa máxima de nascimento
+														99, // semente de numero aleatorio
+														incl_b,
+														incl_d,
+														death_m,
+														dens_type));
+		}	
     }
+	if(this->initialPos==2) // Random initial positions with normal distribution. TBI: tornar os parametros da rnorm livres
+	{
+		for(int i=0; i<this->N; i++)
+		{
+			this->popIndividuos.push_back(new individuo(
+														rnorm(0,sqrt(move)*passo),//posicao x
+														rnorm(0,sqrt(move)*passo),//posicao y
+														0,//especie
+														taxa_morte,//taxa de morte
+														runif(0,360),// orientacao
+														angulo_visada,//angulo de visada
+														passo,//tamanho do passo
+														move, //taxa de movimentacao
+														raio,//tamanho do raio
+														taxa_basal,// taxa máxima de nascimento
+														99, // semente de numero aleatorio
+														incl_b,
+														incl_d,
+														death_m,
+														dens_type));
+		}
+	}	
 }
 
-void paisagem::update()
+int paisagem::update()
 {
     if(this->popIndividuos.size()>0)
     {    
@@ -79,13 +127,51 @@ void paisagem::update()
 		// aleatorias sao chamadas sempre na mesma ordem (garante reprodutibilidade)
         for(unsigned int i=0; i<this->popIndividuos.size(); i++)
         {
-            this->popIndividuos[i]->update();   //e atualiza o individuo i da populacao
+			double dsty=this->calcDensity(popIndividuos[i]);
+            this->popIndividuos[i]->update(dsty);   //e atualiza o individuo i da populacao
         }
-
-        this->realiza_acao();//escolhe tempo, indica e faz
-    }
+		
+		// time for next event and simulation time update
+		int menor=0;
+		double menor_tempo = this->popIndividuos[0]->get_tempo();
+		
+		for(unsigned int i=1; i<this->popIndividuos.size(); i++)
+		{
+			if(this->popIndividuos[i]->get_tempo()<menor_tempo)
+			{
+				menor = i;
+				menor_tempo = this->popIndividuos[i]->get_tempo();
+			}
+		}
+		this->tempo_do_mundo = this->tempo_do_mundo+menor_tempo;
+		return menor;
+	}
 }
 
+void paisagem::realiza_acao(int lower) //TODO : criar matriz de distancias como atributo do mundo e atualiza-la apenas quanto ao individuos afetado nesta funcao)
+{
+	int acao = this->popIndividuos[lower]->sorteia_acao();
+
+    switch(acao) //0 eh morte, 1 eh nascer, 2 eh andar
+    {
+    case 0:
+        delete this->popIndividuos[lower];
+        this->popIndividuos.erase(this->popIndividuos.begin()+lower);
+        break;
+
+    case 1:
+        individuo* chosen;
+        //Novo metodo para fazer copia do individuo:
+        chosen = new individuo(*this->popIndividuos[lower]);
+        this->popIndividuos.push_back(chosen);
+        break;
+
+    case 2: 
+        this->popIndividuos[lower]->anda();
+		this->apply_boundary(popIndividuos[lower]);
+		break;
+    }
+}
 
 //para quando tiver especies, a definir...
 //int paisagem::conta_especies()
@@ -109,43 +195,6 @@ void paisagem::update()
 //    }
 //}
 
-void paisagem::realiza_acao() //TODO : criar matriz de distancias como atributo do mundo e atualiza-la apenas quanto ao individuos afetado nesta funcao)
-{
-    int menor=0;
-    double menor_tempo = this->popIndividuos[0]->get_tempo();
-
-    for(unsigned int i=1; i<this->popIndividuos.size(); i++)
-    {
-        if(this->popIndividuos[i]->get_tempo()<menor_tempo)
-        {
-            menor = i;
-            menor_tempo = this->popIndividuos[i]->get_tempo();
-        }
-    }
-
-    this->tempo_do_mundo = this->tempo_do_mundo+menor_tempo;
-    int acao = this->popIndividuos[menor]->sorteia_acao();
-
-    switch(acao) //0 eh morte, 1 eh nascer, 2 eh andar
-    {
-    case 0:
-        delete this->popIndividuos[menor];
-        this->popIndividuos.erase(this->popIndividuos.begin()+menor);
-        break;
-
-    case 1:
-        individuo* chosen;
-        //Novo metodo para fazer copia do individuo:
-        chosen = new individuo(*this->popIndividuos[menor]);
-        this->popIndividuos.push_back(chosen);
-        break;
-
-    case 2: 
-        this->popIndividuos[menor]->anda();
-		this->apply_boundary(popIndividuos[menor]);
-		break;
-    }
-}
 
 // metodo para condicao de contorno, argumento é um ponteiro para um individuo
 //TODO: conferir se a combinacao x , y da condicao esta gerando o efeito desejado
@@ -182,7 +231,7 @@ void paisagem::apply_boundary(individuo * const ind) //const
 			{
 				for(unsigned int i=0; i<popIndividuos.size();i++)
 				{
-					if(this->popIndividuos[i]->get_id()==(int)ind->get_id())
+					if(this->popIndividuos[i]->get_id()==(int)ind->get_id()) //DUVIDA: porque tem int?
 					{
 						delete this->popIndividuos[i];
 						this->popIndividuos.erase(this->popIndividuos.begin()+i);
@@ -232,6 +281,120 @@ double paisagem::calcDist(const individuo* a1, const individuo* a2) const //Viro
 	}
 }
 
+// A function to calculate de density of individuals according to density type (global or local) and considering landscape boundary effects in the calculation.
+double paisagem::calcDensity(const individuo* ind1) const 
+{
+	double density;
+	density=ind1->NBHood_size()/(M_PI*(ind1->get_raio()*ind1->get_raio()));
+	
+	// Functions for local density calculation 
+	
+	/* 1. Circular area defining a region in which denso-dependence occurs: landscape boundary effects.
+	 In this case, density is the number of individuals inside the circle divided by circle area.  
+	 This is the same calculation as for global density, except by the cases in which landscape boundary affects
+	 the area of the circle.			
+	 */
+	
+	// Condition giving the boundary effects cases
+	if(ind1->get_densType()==1)
+	{
+		if(ind1->get_x()*ind1->get_x()>((this->tamanho/2)-ind1->get_raio())*((this->tamanho/2)-ind1->get_raio()) ||
+		   ind1->get_y()*ind1->get_y()>((this->tamanho/2)-ind1->get_raio())*((this->tamanho/2)-ind1->get_raio()))
+		{
+			// temporary objects
+			double modIx = fabs(ind1->get_x());
+			double modIy = fabs(ind1->get_y());
+			double XYmax = this->tamanho/2;
+			vector<double>secX;
+			vector<double>secY;
+			
+			// Functions for adjusted local density calculation, according to the specific case
+			// 1)
+			if(modIx>XYmax-ind1->get_raio() && modIy<=XYmax-ind1->get_raio())
+			{
+				secX.push_back(XYmax);
+				secX.push_back(XYmax);
+				secY.push_back(modIy+sqrt(ind1->get_raio()*ind1->get_raio()-((XYmax-modIx)*(XYmax-modIx))));
+				secY.push_back(modIy-sqrt(ind1->get_raio()*ind1->get_raio()-((XYmax-modIx)*(XYmax-modIx))));
+				
+				double distSecs = secY[0]-secY[1];
+				double height = XYmax - modIx;
+				double theta = acos(1-(distSecs*distSecs/(2*ind1->get_raio()*ind1->get_raio()))); // angle in radians
+				double adjArea = M_PI*ind1->get_raio()*ind1->get_raio() - (theta*ind1->get_raio()*ind1->get_raio()/2 - (distSecs*height/2));
+				
+				density = ind1->NBHood_size()/adjArea;
+				
+			}
+			
+			// 2)
+			if(modIx<=XYmax-ind1->get_raio() && modIy>XYmax-ind1->get_raio())
+			{
+				secY.push_back(XYmax);
+				secY.push_back(XYmax);
+				secX.push_back(modIx+sqrt(ind1->get_raio()*ind1->get_raio()-((XYmax-modIy)*(XYmax-modIy))));
+				secX.push_back(modIx-sqrt(ind1->get_raio()*ind1->get_raio()-((XYmax-modIy)*(XYmax-modIy))));
+				
+				double distSecs = secX[0]-secX[1];
+				double height = XYmax - modIy;
+				double theta = acos(1-(distSecs*distSecs/(2*ind1->get_raio()*ind1->get_raio()))); // angle in radians
+				double adjArea = M_PI*ind1->get_raio()*ind1->get_raio() - (theta*ind1->get_raio()*ind1->get_raio()/2 - (distSecs*height/2));
+				
+				density = ind1->NBHood_size()/adjArea;
+			}
+			
+			
+			if(modIx>XYmax-ind1->get_raio() && modIy>XYmax-ind1->get_raio())
+			{
+				
+				// 3)
+				if((modIx-XYmax)*(modIx-XYmax)+(modIy-XYmax)*(modIy-XYmax)>ind1->get_raio()*ind1->get_raio())
+				{
+					secX.push_back(modIx+sqrt(ind1->get_raio()*ind1->get_raio()-((XYmax-modIy)*(XYmax-modIy))));
+					secY.push_back(XYmax);
+					secX.push_back(modIx-sqrt(ind1->get_raio()*ind1->get_raio()-((XYmax-modIy)*(XYmax-modIy))));
+					secY.push_back(XYmax);
+					secX.push_back(XYmax);
+					secY.push_back(modIy+sqrt(ind1->get_raio()*ind1->get_raio()-((XYmax-modIx)*(XYmax-modIx))));
+					secX.push_back(XYmax);
+					secY.push_back(modIy-sqrt(ind1->get_raio()*ind1->get_raio()-((XYmax-modIx)*(XYmax-modIx))));
+					
+					double distSecs = sqrt((secX[3]-secX[1])*(secX[3]-secX[1])+(secY[1]-secY[3])*(secY[1]-secY[3]));
+					double distSecs2 = sqrt((secX[2]-secX[0])*(secX[2]-secX[0])+(secY[0]-secY[2])*(secY[0]-secY[2]));
+					double theta = acos(1-(distSecs*distSecs/(2*ind1->get_raio()*ind1->get_raio()))); // angle in radians
+					double phi = acos(1-(distSecs2*distSecs2/(2*ind1->get_raio()*ind1->get_raio()))); // angle in radians
+					double adjArea = (2*M_PI-theta)*ind1->get_raio()*ind1->get_raio()/2 + phi*ind1->get_raio()*ind1->get_raio()/2 + (secX[0]-secX[1])*(XYmax-modIy)/2 + (secY[2]-secY[3])*(XYmax-modIx)/2;
+					
+					density = ind1->NBHood_size()/adjArea;
+					
+				}
+				// 4)
+				else 
+				{
+					secX.push_back(modIx-sqrt(ind1->get_raio()*ind1->get_raio()-((XYmax-modIy)*(XYmax-modIy))));
+					secY.push_back(XYmax);
+					secX.push_back(XYmax);
+					secY.push_back(modIy-sqrt(ind1->get_raio()*ind1->get_raio()-((XYmax-modIx)*(XYmax-modIx))));
+					
+					double distSecs = sqrt((secX[1]-secX[0])*(secX[1]-secX[0])+(secY[0]-secY[1])*(secY[0]-secY[1]));
+					double theta = acos(1-(distSecs*distSecs/(2*ind1->get_raio()*ind1->get_raio()))); // angle in radians
+					double adjArea = theta*ind1->get_raio()*ind1->get_raio()/2 + (XYmax-secX[0])*(XYmax-modIy) + (XYmax-secY[1])*(XYmax-modIx);
+					
+					density = ind1->NBHood_size()/adjArea;
+				}
+				
+			}
+		}
+	}
+	
+	/* 2. Density kernel (TBI).
+	 
+	 if(ind1->get_densType()==2) {}
+	 
+	 */
+	return density;	
+}
+
+
 /*
   Sempre adicione const aos argumentos de métodos quando o método não
   deve alterá-los. Previne vários erros e pode otimizar compilação
@@ -270,9 +433,13 @@ void paisagem::atualiza_habitat(individuo * const ind) const
 	// interfere em ser habitat ou não: isso deve interferir na apply_boundary apenas, certo?
 	// Also: Tinha uma inversão do y que eu também não entendi e removi
 	// A.C. 10.07.13
+	
+	// Um termo (-1) foi removido erroneamente por A.C.. Para o hy, o sentido em que o número de células aumenta é o 
+	//contrário do sentido em que as coordenadas aumentam. Portanto a multiplicação por - 1 é necessária.
+	// M.A. 12.09.14
 	int hx,hy;
 	hx= (double)ind->get_x()/this->cell_size+this->numb_cells/2;
-	hy= (double)ind->get_y()/this->cell_size+this->numb_cells/2;
+	hy= ((double)ind->get_y()/this->cell_size)*(-1)+this->numb_cells/2;
 	ind->set_habitat(this->landscape[hx][hy]);
 }
 
