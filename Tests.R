@@ -1,3 +1,5 @@
+## source("TWoLife.R") ## calls the C++ sources with parallel.
+source("Analytical-pckg.R")
 ##########################################
 ########## Set of Parameteres Combinations
 ##########################################
@@ -79,11 +81,12 @@ params=data.frame(b0=b0s,d0=d0s,movem.rate=m0s,incl.birth=incl.bs,incl.death=inc
                   dens.type=d.types,initial.config=i.configs,N0=N0s,death.matrix=d.matrix,tmax=times)
 # params$b0[51]
 # dim(params)
+## Create a directory for the output files, here named TWotests
 land <- Landscape(cover=1,type="b",cell.size=100)
 combs=1:51
 for (i in combs)
 {
-  multiRun(PATH=paste("~/Desktop/TWoTests/Comb-",CODE[i],sep=""),
+  multiRun(PATH=paste("./TWoTests/Comb-",CODE[i],sep=""),
                 nrep=20,
                 b0=params$b0[i],
                 d0=params$d0[i],
@@ -142,17 +145,18 @@ titles
 
 ###############
 ####### Plots
+## First create a directory for the plots (./TWoResults here)
 ###############
-paths=paste("~/Desktop/TWoTests/Comb-",CODE,sep="")
+paths=paste("./TWoTests/Comb-",CODE,sep="")
 paths
 ind1=c(1,4,2,5,3,6)
 
-pdf("~/Desktop/TWoResults/Nt/Nt_Simple-Birth-Death.pdf",width = 8,height = 12)
+pdf("./TWoResults/Nt/Nt_Simple-Birth-Death.pdf",width = 8,height = 12)
 par(mfrow=c(3,2))
 for(i in ind1)
 {
   teste=Nt.data(wdir = paths[i],tmax=params$tmax[i])
-  setwd("~/Desktop/TWoResults/Nt")
+  setwd("./TWoResults/Nt")
   plot.Nt(teste,growth=params$b0[i]-params$d0[i],sum.incl = params$incl.birth[i]+params$incl.death[i],name = titles[i])
 }
 par(mfrow=c(1,1))
@@ -160,12 +164,12 @@ dev.off()
 
 ind=c(19:23,25)
 
-pdf("~/Desktop/TWoResults/Nt/Nt_General-Birth-Death-gd2.pdf",width = 8,height = 12)
+pdf("./TWoResults/Nt/Nt_General-Birth-Death-gd2.pdf",width = 8,height = 12)
 par(mfrow=c(3,2))
 for(i in ind)
 {
   teste=Nt.data(wdir = paths[i],tmax=params$tmax[i])
-  setwd("~/Desktop/TWoResults/Nt")
+  setwd("./TWoResults/Nt")
   plot.Nt(teste,growth=params$b0[i]-params$d0[i],sum.incl = params$incl.birth[i]+params$incl.death[i],name = titles[i])
 }
 par(mfrow=c(1,1))
@@ -173,12 +177,12 @@ dev.off()
 
 ind=c(19:23,25)
 
-pdf("~/Desktop/TWoResults/Nt/Nt_General-Birth-Death-ld.pdf",width = 8,height = 12)
+pdf("./TWoResults/Nt/Nt_General-Birth-Death-ld.pdf",width = 8,height = 12)
 par(mfrow=c(3,2))
 for(i in ind)
 {
   teste=Nt.data(wdir = paths[i],tmax=params$tmax[i])
-  setwd("~/Desktop/TWoResults/Nt")
+  setwd("./TWoResults/Nt")
   plot.Nt(teste,growth=params$b0[i]-params$d0[i],sum.incl = params$incl.birth[i]+params$incl.death[i],name = titles[i])
 }
 par(mfrow=c(1,1))
@@ -189,19 +193,19 @@ dev.off()
 #################
 #################
 ind=27:29
-pdf("~/Desktop/TWoResults/Velocity/Vel_Simple-Random-Walk.pdf",width = 8,height = 8)
+pdf("./TWoResults/Velocity/Vel_Simple-Random-Walk.pdf",width = 8,height = 8)
 par(mfrow=c(2,2))
 for(i in ind)
 {
   teste=velocity(work.dir = paths[i],tmax = params$tmax[i],nrep = 50)
-  setwd("~/Desktop/TWoResults/Velocity")
+  setwd("./TWoResults/Velocity")
   plot.vel(teste,Dcoef = (params$step.length[i]^2)*params$movem.rate[i]/4, growth=params$b0[i]-params$d0[i],
            name = titles[i])
 }
 par(mfrow=c(1,1))
 dev.off()
 #######################
-pdf("~/Desktop/TWoResults/Distribution/Dist_Simple-Random-Walk.pdf",width = 8,height = 12)
+pdf("./TWoResults/Distribution/Dist_Simple-Random-Walk.pdf",width = 8,height = 12)
 par(mfrow=c(length(ind),2))
 for(i in ind)
 {
@@ -214,25 +218,25 @@ dev.off()
 ###############
 ###############
 ind=c(30,33,31,34,32,35)
-pdf("~/Desktop/TWoResults/Velocity/Vel_Skellam-b.pdf",width = 8,height = 12)
+pdf("./TWoResults/Velocity/Vel_Skellam-b.pdf",width = 8,height = 12)
 par(mfrow=c(3,2))
 for(i in ind)
 {
   Dcoefs=(params$step.length[i]^2)*params$movem.rate[i]/4
   growths=params$b0[i]-params$d0[i]
   teste=velocity(work.dir = paths[i],tmax = params$tmax[i],nrep = 50)
-  setwd("~/Desktop/TWoResults/Velocity")
+  setwd("./TWoResults/Velocity")
   plot.vel(teste,Dcoef = Dcoefs, b0=params$b0[i],d0=params$d0[i], yrange = c(-1,30),name = titles[i])
 }
 par(mfrow=c(1,1))
 dev.off()
 ###
-pdf("~/Desktop/TWoResults/Nt/Nt_Skellam.pdf",width = 8,height = 12)
+pdf("./TWoResults/Nt/Nt_Skellam.pdf",width = 8,height = 12)
 par(mfrow=c(3,2))
 for(i in ind)
 {
   teste=Nt.data(wdir = paths[i],tmax=params$tmax[i])
-  setwd("~/Desktop/TWoResults/Nt")
+  setwd("./TWoResults/Nt")
   plot.Nt(teste,growth=params$b0[i]-params$d0[i],sum.incl = params$incl.birth[i]+params$incl.death[i],name = titles[i])
 }
 par(mfrow=c(1,1))
@@ -240,71 +244,71 @@ dev.off()
 
 
 ind=c(36:43)
-pdf("~/Desktop/TWoResults/Velocity/Vel_Fisher-gd-b.pdf",width = 8,height = 16)
+pdf("./TWoResults/Velocity/Vel_Fisher-gd-b.pdf",width = 8,height = 16)
 par(mfrow=c(4,2))
 for(i in ind)
 {
   Dcoefs=(params$step.length[i]^2)*params$movem.rate[i]/4
   growths=params$b0[i]-params$d0[i]
   teste=velocity(work.dir = paths[i],tmax = params$tmax[i],nrep = 20)
-  setwd("~/Desktop/TWoResults/Velocity")
+  setwd("./TWoResults/Velocity")
   plot.vel(teste,Dcoef = Dcoefs, b0=params$b0[i],d0=params$d0[i], yrange = c(-100,100),name = titles[i])    
 }
 par(mfrow=c(1,1))
 dev.off()
-pdf("~/Desktop/TWoResults/Nt/Nt_Fisher-gd.pdf",width = 8,height = 12)
+pdf("./TWoResults/Nt/Nt_Fisher-gd.pdf",width = 8,height = 12)
 par(mfrow=c(4,2))
 for(i in ind)
 {
   teste=Nt.data(wdir = paths[i],tmax=params$tmax[i])
-  setwd("~/Desktop/TWoResults/Nt")
+  setwd("./TWoResults/Nt")
   plot.Nt(teste,growth=params$b0[i]-params$d0[i],sum.incl = params$incl.birth[i]+params$incl.death[i],name = titles[i])
 }
 par(mfrow=c(1,1))
 dev.off()
 
 ind=c(44:47)
-pdf("~/Desktop/TWoResults/Velocity/Vel_Fisher-ld.pdf",width = 8,height = 8)
+pdf("./TWoResults/Velocity/Vel_Fisher-ld.pdf",width = 8,height = 8)
 par(mfrow=c(2,2))
 for(i in ind)
 {
   teste=velocity(work.dir = paths[i],tmax = params$tmax[i],nrep = 20)
-  setwd("~/Desktop/TWoResults/Velocity")
+  setwd("./TWoResults/Velocity")
   plot.vel(teste,Dcoef = (params$step.length[i]^2)*params$movem.rate[i]/4, growth=params$b0[i]-params$d0[i],name = titles[i])
 }
 par(mfrow=c(1,1))
 dev.off()
-pdf("~/Desktop/TWoResults/Nt/Nt_Fisher-ld.pdf",width = 8,height = 8)
+pdf("./TWoResults/Nt/Nt_Fisher-ld.pdf",width = 8,height = 8)
 par(mfrow=c(2,2))
 for(i in ind)
 {
   teste=Nt.data(wdir = paths[i],tmax=params$tmax[i])
-  setwd("~/Desktop/TWoResults/Nt")
+  setwd("./TWoResults/Nt")
   plot.Nt(teste,growth=params$b0[i]-params$d0[i],sum.incl = params$incl.birth[i]+params$incl.death[i],name = titles[i])
 }
 par(mfrow=c(1,1))
 dev.off()
 
 ind=c(48:51)
-pdf("~/Desktop/TWoResults/Velocity/Vel_Fisher-ld-c2b.pdf",width = 8,height = 8)
+pdf("./TWoResults/Velocity/Vel_Fisher-ld-c2b.pdf",width = 8,height = 8)
 par(mfrow=c(2,2))
 for(i in ind)
 {
   Dcoefs=(params$step.length[i]^2)*params$movem.rate[i]/4
   growths=params$b0[i]-params$d0[i]
   teste=velocity(work.dir = paths[i],tmax = params$tmax[i],nrep = 20)
-  setwd("~/Desktop/TWoResults/Velocity")
+  setwd("./TWoResults/Velocity")
   plot.vel(teste,Dcoef = Dcoefs, b0=params$b0[i],d0=params$d0[i], yrange = c(-150+2*sqrt(growths*Dcoefs),50+2*sqrt(growths*Dcoefs)),
            name = titles[i])
 }
 par(mfrow=c(1,1))
 dev.off()
-pdf("~/Desktop/TWoResults/Nt/Nt_Fisher-ld-c2.pdf",width = 8,height = 8)
+pdf("./TWoResults/Nt/Nt_Fisher-ld-c2.pdf",width = 8,height = 8)
 par(mfrow=c(2,2)) 
 for(i in ind)
 {
   teste=Nt.data(wdir = paths[i],tmax=params$tmax[i])
-  setwd("~/Desktop/TWoResults/Nt")
+  setwd("./TWoResults/Nt")
   plot.Nt(teste,growth=params$b0[i]-params$d0[i],sum.incl = params$incl.birth[i]+params$incl.death[i],
           name = titles[i])
 }
@@ -313,9 +317,9 @@ dev.off()
 
 #####################
 #####################
-testes=data.Acrit("~/Desktop/TWoTests/Critical_Patch/Comb-02")
+testes=data.Acrit("./TWoTests/Critical_Patch/Comb-02")
 
-pdf("~/Desktop/TWoResults/Acrit/Skellam_Comb-02.pdf",width = 8,height = 5)
+pdf("./TWoResults/Acrit/Skellam_Comb-02.pdf",width = 8,height = 5)
 plot.Acrit(teste[[1]])
 dev.off()
 

@@ -1,6 +1,7 @@
-multiRun=function(PATH="~/Desktop/Comb-0001",nrep=10,b0,d0,m0,inc.b,inc.d,step,radius,dens.t,config,N0,lands=land,tm=100)
+multiRun=function(PATH,nrep=10,b0,d0,m0,inc.b,inc.d,step,radius,dens.t,config,N0,lands=land,tm=100)
 {
-  dir.create(PATH)
+  oldpath <- getwd()
+  dir.create(PATH, recursive=TRUE)
   setwd(PATH)
   for(i in 1:nrep)
   {
@@ -21,10 +22,10 @@ multiRun=function(PATH="~/Desktop/Comb-0001",nrep=10,b0,d0,m0,inc.b,inc.d,step,r
             tempo=tm,            
             out.code=i)
   }
-  
   #Nt.reps=Nt.data(wdir=PATH,intervals=1,tmax=tm)
   #plot.Nt(data=Nt.reps,growth=b0-d0,sum.incl=inc.b+inc.d)
   #return(Nt.reps)
+  setwd(oldpath)
 }
 
 # land <- Landscape(cover=1,type="b",cell.size=100)
@@ -59,6 +60,7 @@ Support <- function(taxa.basal=0.6, taxa.morte=0.1, incl.birth=0.5/0.01,
 #  Get N(t) data
 ####################
 Nt.data=function(wdir,intervals=1,tmax){
+  oldpath <- getwd()
   setwd(wdir)
   files=dir()
   Nt.arr=array(0,c(tmax+1,2,length(files)))
@@ -95,6 +97,7 @@ Nt.data=function(wdir,intervals=1,tmax){
   Nt.arr[,2,i]=Nt[1:(tmax+1),2]
   }
 return(Nt.arr)
+setwd(oldpath)  
 }
 # Nt.test=Nt.data("~/Desktop/Comb-0004",tmax=50)
 
@@ -146,7 +149,8 @@ dist.front=function(data,ind=10)
 #  Get velocity(t) data
 #########################
 velocity=function(work.dir="~/Desktop/Comb-0003",tmax=50,nrep=20,intervals=1)
-{  
+{
+  oldpath <- getwd()
   setwd(work.dir)
   files=dir()
   vels.arr=matrix(0,tmax,(nrep+1))
@@ -180,6 +184,7 @@ velocity=function(work.dir="~/Desktop/Comb-0003",tmax=50,nrep=20,intervals=1)
     } else {vels.arr[,i+1]= diff(front[,2])}# front[-1,2]/front[-1,1]
   }
   return(vels.arr)
+  setwd(oldpath)
 }
 
 ####################
@@ -276,6 +281,7 @@ plot.sdXY=function(FILE="output-00001.txt",Dcoef,tmax=50,name="Standard Deviatio
 multi.run.cP=function(PATH="~/Desktop/TWoTests/Critical_Patch/Comb-01",nrep=20,b0=0.007,d0=0.004,m0=0.8,inc.b=0,inc.d=0,
                       step=500,radius=0,dens.t=0,config=0,N0=20,tm=1000,lands.range=c(-5000,5000,1000))
 {
+  oldpath <- getwd()  
   dir.create(PATH)
   setwd(PATH)
   Dcoef=m0*(step^2)/4
@@ -310,10 +316,11 @@ multi.run.cP=function(PATH="~/Desktop/TWoTests/Critical_Patch/Comb-01",nrep=20,b
     setwd(PATH)
   }
   return(land.sides)
+  setwd(oldpath)
 }
 
-multi.run.cP(nrep=50)
-multi.run.cP(PATH="~/Desktop/TWoTests/Critical_Patch/Comb-03",lands.range=c(2000,17000,1000),nrep=50)
+##multi.run.cP(nrep=50)
+##multi.run.cP(PATH="TWoTests/Critical_Patch/Comb-03",lands.range=c(2000,17000,1000),nrep=50)
 
 data.Acrit=function(PATH="~/Desktop/TWoTests/Critical_Patch/Comb-01",nreps=50,tmaxi=1000)
 {
