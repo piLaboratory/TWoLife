@@ -60,6 +60,7 @@ void paisagem::populating(double raio, int N, double angulo_visada, double passo
 														dens_type));
 			// como o popAgentes eh um ponteiro de vetores, ao adicionar enderecos das variaveis, usamos os new. Dessa forma fica mais rapido
 			//pois podemos acessar apenas o endereco e nao ficar guardando todos os valores
+			cout << this->popIndividuos[i]->get_id() << endl;
 		}
 	}
 	if(this->initialPos==1) // Random initial positions (initialPos==1)

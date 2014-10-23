@@ -116,8 +116,8 @@ TWoLife <- function (
 }
 
 # ## Um teste rapido
-# land <- Landscape(cover=1,type="b",cell.size=100)
-# ## Uma rodada: coordenadas dos sobreviventes apos t=20
+#  land <- Landscape(cover=1,type="b",cell.size=100)
+# # ## Uma rodada: coordenadas dos sobreviventes apos t=20
 # teste <- TWoLife(raio=1560,
 # 				 N=10,
 # 				 AngVis=360,
