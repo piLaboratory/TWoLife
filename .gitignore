@@ -2,3 +2,5 @@
 *.so
 *.o
 html/
+TWoTests/
+.Rhistory
