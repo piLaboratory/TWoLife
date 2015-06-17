@@ -58,7 +58,9 @@ private:
     void atualiza_habitat(individuo * const i) const;//vai informar o individuo em que tipo de habitat ele esta
     //int define_tempo();
 	void apply_boundary(individuo * const ind); //const; // metodo para aplicação da condicao de contorno
-    		
+    int shortTime(); // Select the individual who will make the action. This individual is the one with the shortest time ("tempo_eventp")
+    //void deathLocalDD(int lower);
+    //void birthLocalDD(int lower);
 
 public:
 	//vector <individuo*> popIndividuos;
@@ -106,8 +108,16 @@ public:
 			); //construtor
 
 	/** Atualiza as variáveis de todos os indivíduos (ver individuo::set_vizinhos, individuo::set_habitat e individuo::update) e escolhe uma ação para ser executada. Executa a ação e atualiza o tempo do mundo de acordo \sa \ref Introdução */
-    int update();//atualizador
+    int updateEXP();//atualizador
+    int updateLOG();
+    int updateLOGL();
+    int updateRW();
+    int updateSKEXP();
+    int updateSKLOGG();
+    int updateSKLOGL();
 	void realiza_acao(int lower);//vai pegar os tempos de cada individuo e informa qual foi o escolhido e manda ele fazer
+    void doActionRW(int lower);
+    //void doActionNB(int lowerIndi);
 	/** Retorna o número total de indivíduos na paisagem */
     const int conta_individuos() const{return popIndividuos.size();}
 	/** Retorna um vetor contendo todos os indivíduos na paisagem */
