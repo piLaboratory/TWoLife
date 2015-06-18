@@ -43,6 +43,8 @@ private:
 	const int dens_type; //forma como a densidade √© calculada (0 = GLOBAL, 1 = LOCAL)
 	//metodos privados
     void sorteiaTempo(); //tempo para ocorrer um evento
+    void sampleTimeEXP();
+    void sampleTimeRW();
 	
 public:
 	/** Construtor da classe individuo. Deve ser chamado pela paisagem para posicionar os 
@@ -88,7 +90,11 @@ public:
 	const unsigned long get_id() const {return this->id;}
 	/** Atualiza a lista de vizinhos deste indivíduo. Deve ser chamada a cada passo de tempo pela \ref paisagem */
     void set_vizinhos (/** Lista dos vizinhos */ const vector<individuo*> lis){this->lisViz=lis;}
-	/** Atualiza o tipo de hábitat no qual o indivíduo está. Deve ser chamada a cada passo de tempo pela \ref paisagem. */
+    /**        **/
+    const vector<individuo*> get_NBHood() const {return this->lisViz;}
+    /**        **/
+    void include_Neighbour(individuo * const agent){this->lisViz.push_back(agent);}
+    /** Atualiza o tipo de hábitat no qual o indivíduo está. Deve ser chamada a cada passo de tempo pela \ref paisagem. */
     void set_habitat (const int tipo){this->tipo_habitat=tipo;}
 	/** Atualiza a posi√ß√£o X do invid√≠duo */
     void set_x(/** Nova posi√ß√£o */double i){this->x =i;}
@@ -100,8 +106,10 @@ public:
     inline const double get_y() const {return this->y;}
 	/** Retorna o raio de percep√ßa√£o do indiv√≠duo */
     const double get_raio() const {return this->raio;}
-	/** Retorna o tiop de densidadeque afeta o indiv√≠duo */
+	/** Retorna o tipo de densidade que afeta o indiv√≠duo */
     const int get_densType() const {return this->dens_type;}
+	/** Returns the number of individuals inside the neighbourhood of the individual (it includes the focal individual) */
+    const int NBHood_size() const {return this->lisViz.size()+1;}
 
     // outros metodos publicos
 	/** Retorna o tempo sorteado para o próximo evento acontecer com este indivíduo.
@@ -115,7 +123,11 @@ public:
 	/** Atualiza a taxa de nascimento e/ou de morte baseado na densidade de indiv√≠duos dentro do raio de percep√ß√£o e sorteia o tempo
 	 * do pr√≥ximo evento baseado nas taxas de nascimento, morte e movimenta√ß√£o 
 	 * \sa \ref individuo::get_tempo */
-    void update();
+    void updateEXPi();
+    void updateLOGi(double dens);
+    void updateRWi();
+    void updateSKEXPi();
+    void updateSKLOGi(double dens);
 	/** Faz com que o indiv√≠duo ande um passo, do tamanho passo. A orienta√ß√£o na qual o indiv√≠duo vai andar √© a orienta√ß√£o atual
 	 * (definida no construtor como orientacao) mais um √¢ngulo aleat√≥rio dentro do √¢ngulo de visada (angulo_visada). A defini√ß√£o de um 
 	 * √¢ngulo de visada de 360 graus equivale a uma caminhada aleat√≥ria. */
