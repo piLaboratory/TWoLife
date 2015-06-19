@@ -117,6 +117,7 @@ public:
     int updateSKLOGL();
 	void realiza_acao(int lower);//vai pegar os tempos de cada individuo e informa qual foi o escolhido e manda ele fazer
     void doActionRW(int lower);
+    void doActionSKLOGL(int lower);
     //void doActionNB(int lowerIndi);
 	/** Retorna o número total de indivíduos na paisagem */
     const int conta_individuos() const{return popIndividuos.size();}

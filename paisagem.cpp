@@ -335,6 +335,30 @@ void paisagem::doActionRW(int lower)
     this->apply_boundary(popIndividuos[lower]);
 }
 
+void paisagem::doActionSKLOGL(int lower) 
+{
+	int acao = this->popIndividuos[lower]->sorteia_acao();
+
+    switch(acao) //0 eh morte, 1 eh nascer, 2 eh andar
+    {
+    case 0:
+        delete this->popIndividuos[lower];
+        this->popIndividuos.erase(this->popIndividuos.begin()+lower);
+        break;
+
+    case 1:
+        individuo* chosen;
+        //Novo metodo para fazer copia do individuo:
+        chosen = new individuo(*this->popIndividuos[lower]);
+        this->popIndividuos.push_back(chosen);
+        break;
+
+    case 2: 
+        this->popIndividuos[lower]->anda();
+		this->apply_boundary(popIndividuos[lower]);
+		break;
+    }
+}
 /*
  Sempre adicione const aos argumentos de métodos quando o método não
  deve alterá-los. Previne vários erros e pode otimizar compilação
