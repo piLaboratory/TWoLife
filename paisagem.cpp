@@ -270,7 +270,7 @@ int paisagem::updateSKLOGL()
         #endif
         for(unsigned int i=0; i<this->popIndividuos.size(); i++)
         {
-            this->atualiza_vizinhos(this->popIndividuos[i]);
+            //this->atualiza_vizinhos(this->popIndividuos[i]);
             this->atualiza_habitat(this->popIndividuos[i]);//retorna o tipo de habitat
         }
         // Este loop não é parelelizado, APESAR de ser independente, para garantir que as funcoes
@@ -338,10 +338,16 @@ void paisagem::doActionRW(int lower)
 void paisagem::doActionSKLOGL(int lower) 
 {
 	int acao = this->popIndividuos[lower]->sorteia_acao();
+	vector<individuo *> NB ;
+	vector<individuo *> blank ;
 
     switch(acao) //0 eh morte, 1 eh nascer, 2 eh andar
     {
     case 0:
+	    // remove este individuo da vizinhanca dos outros individuos
+	NB = this->popIndividuos[lower]->get_NBHood();
+	for (unsigned int i = 0; i<NB.size(); i++)
+		NB[i]->drop_Neighbour(this->popIndividuos[lower]);
         delete this->popIndividuos[lower];
         this->popIndividuos.erase(this->popIndividuos.begin()+lower);
         break;
@@ -351,12 +357,36 @@ void paisagem::doActionSKLOGL(int lower)
         //Novo metodo para fazer copia do individuo:
         chosen = new individuo(*this->popIndividuos[lower]);
         this->popIndividuos.push_back(chosen);
+	// Adiciona o novo individuo na vizinhanca do pai. o construtor de copia jah copia a lisViz do pai 
+		// para o novo individuo, soh precisamos lembrar de incluir um na lisViz do outro
+	NB = this->popIndividuos[lower]->get_NBHood();
+	for (unsigned int i = 0; i<NB.size(); i++)
+		NB[i]->include_Neighbour(chosen);
+	this->popIndividuos[lower]->include_Neighbour(chosen);
+	chosen->include_Neighbour(this->popIndividuos[lower]);
         break;
 
     case 2: 
+	// remove este individuo da vizinhanca antiga
+	NB = this->popIndividuos[lower]->get_NBHood();
+	for (unsigned int i = 0; i<NB.size(); i++)
+		NB[i]->drop_Neighbour(this->popIndividuos[lower]);
+	this->popIndividuos[lower]->set_vizinhos(blank);
         this->popIndividuos[lower]->anda();
-		this->apply_boundary(popIndividuos[lower]);
-		break;
+	this->apply_boundary(popIndividuos[lower]);
+	// adiciona este individuo na vizinhanca nova e vice-versa
+        for(int i=0; i<(popIndividuos.size());i++)
+	{
+		double d=this->calcDist(this->popIndividuos[lower],this->popIndividuos[i]);
+		if(d<=this->popIndividuos[lower]->get_raio() && lower != i)
+		{
+			this->popIndividuos[lower]->include_Neighbour(this->popIndividuos[i]);
+			this->popIndividuos[i]->include_Neighbour(this->popIndividuos[lower]);
+		}
+
+	}
+
+	break;
     }
 }
 /*
