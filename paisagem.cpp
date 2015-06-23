@@ -451,6 +451,7 @@ void paisagem::atualiza_vizinhos(individuo * const ag1) const //acessando os viz
 
 void paisagem::apply_boundary(individuo * const ind) //const
 {
+	vector<individuo *> NB ;
 	double rad = (double)ind->get_raio();
 	switch(this->boundary_condition)
 	{
@@ -464,6 +465,9 @@ void paisagem::apply_boundary(individuo * const ind) //const
 				{
 					if(this->popIndividuos[i]->get_id()==(int)ind->get_id())
 					{
+						NB = this->popIndividuos[i]->get_NBHood();
+						for (unsigned int i = 0; i<NB.size(); i++)
+							NB[i]->drop_Neighbour(this->popIndividuos[i]);
 						delete this->popIndividuos[i];
 						this->popIndividuos.erase(this->popIndividuos.begin()+i);
 					}
@@ -482,6 +486,9 @@ void paisagem::apply_boundary(individuo * const ind) //const
 				{
 					if(this->popIndividuos[i]->get_id()==(int)ind->get_id()) //DUVIDA: porque tem int?
 					{
+						NB = this->popIndividuos[i]->get_NBHood();
+						for (unsigned int i = 0; i<NB.size(); i++)
+							NB[i]->drop_Neighbour(this->popIndividuos[i]);
 						delete this->popIndividuos[i];
 						this->popIndividuos.erase(this->popIndividuos.begin()+i);
 					}
@@ -535,7 +542,6 @@ double paisagem::calcDensity(const individuo* ind1) const
 {
 	double density;
     density = ind1->NBHood_size()/(M_PI*ind1->get_raio()*ind1->get_raio());
-	
 	// Functions for local density calculation 
 	
 	/* 1. Circular area defining a region in which denso-dependence occurs: landscape boundary effects.
