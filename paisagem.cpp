@@ -374,6 +374,9 @@ void paisagem::doActionSKLOGL(int lower)
 		NB[i]->drop_Neighbour(this->popIndividuos[lower]);
 	this->popIndividuos[lower]->set_vizinhos(blank);
         this->popIndividuos[lower]->anda();
+		int old_ind = this->popIndividuos[lower]->get_id();
+	this->apply_boundary(lower); // nessa linha, o individuo pode morrer (cair fora do mundo)
+	if (this->popIndividuos[lower]->get_id() == old_ind) // verificamos se ele nao morreu
 	// adiciona este individuo na vizinhanca nova e vice-versa
         for(int i=0; i<(popIndividuos.size());i++)
 	{
@@ -385,7 +388,6 @@ void paisagem::doActionSKLOGL(int lower)
 		}
 
 	}
-	this->apply_boundary(lower);
 
 	break;
     }
