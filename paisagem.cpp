@@ -466,8 +466,8 @@ void paisagem::apply_boundary(individuo * const ind) //const
 					if(this->popIndividuos[i]->get_id()==(int)ind->get_id())
 					{
 						NB = this->popIndividuos[i]->get_NBHood();
-						for (unsigned int i = 0; i<NB.size(); i++)
-							NB[i]->drop_Neighbour(this->popIndividuos[i]);
+						for (unsigned int j = 0; j<NB.size(); j++)
+							NB[j]->drop_Neighbour(this->popIndividuos[i]);
 						delete this->popIndividuos[i];
 						this->popIndividuos.erase(this->popIndividuos.begin()+i);
 					}
@@ -487,8 +487,8 @@ void paisagem::apply_boundary(individuo * const ind) //const
 					if(this->popIndividuos[i]->get_id()==(int)ind->get_id()) //DUVIDA: porque tem int?
 					{
 						NB = this->popIndividuos[i]->get_NBHood();
-						for (unsigned int i = 0; i<NB.size(); i++)
-							NB[i]->drop_Neighbour(this->popIndividuos[i]);
+						for (unsigned int j = 0; j<NB.size(); j++)
+							NB[j]->drop_Neighbour(this->popIndividuos[i]);
 						delete this->popIndividuos[i];
 						this->popIndividuos.erase(this->popIndividuos.begin()+i);
 					}
