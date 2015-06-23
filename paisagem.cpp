@@ -264,11 +264,7 @@ int paisagem::updateSKLOGL()
 {
     if(this->popIndividuos.size()>0)
     {
-		    cout << "STEP " << this->popIndividuos[8]->get_NBHood().size() << ":";
 		    vector <individuo *> NB = this->popIndividuos[8]->get_NBHood();
-		    for(int i = 0; i < NB.size(); i++)
-			    cout << NB[i]->get_id() << "  ";
-		    cout <<endl;
         // Este for loop pode ser paralelizado, pois o que acontece com cada individuo eh independente
         #ifdef PARALLEL
         #pragma omp parallel for
@@ -329,7 +325,7 @@ void paisagem::realiza_acao(int lower) //TODO : criar matriz de distancias como 
 
     case 2: 
         this->popIndividuos[lower]->anda();
-		this->apply_boundary(popIndividuos[lower]);
+		this->apply_boundary(lower);
 		break;
     }
 }
@@ -337,7 +333,7 @@ void paisagem::realiza_acao(int lower) //TODO : criar matriz de distancias como 
 void paisagem::doActionRW(int lower)
 {
     this->popIndividuos[lower]->anda();
-    this->apply_boundary(popIndividuos[lower]);
+    this->apply_boundary(lower);
 }
 
 void paisagem::doActionSKLOGL(int lower) 
@@ -345,7 +341,6 @@ void paisagem::doActionSKLOGL(int lower)
 	int acao = this->popIndividuos[lower]->sorteia_acao();
 	vector<individuo *> NB ;
 	vector<individuo *> blank ;
-	cout << "DEBUG "<<this->popIndividuos[lower]->get_id()<<" acted "<<acao << endl;
 
     switch(acao) //0 eh morte, 1 eh nascer, 2 eh andar
     {
@@ -354,7 +349,6 @@ void paisagem::doActionSKLOGL(int lower)
 	NB = this->popIndividuos[lower]->get_NBHood();
 	for (unsigned int i = 0; i<NB.size(); i++)
 		NB[i]->drop_Neighbour(this->popIndividuos[lower]);
-						cout << "DEBUG dead " << this->popIndividuos[lower]->get_id() << endl;
         delete this->popIndividuos[lower];
         this->popIndividuos.erase(this->popIndividuos.begin()+lower);
         break;
@@ -380,7 +374,6 @@ void paisagem::doActionSKLOGL(int lower)
 		NB[i]->drop_Neighbour(this->popIndividuos[lower]);
 	this->popIndividuos[lower]->set_vizinhos(blank);
         this->popIndividuos[lower]->anda();
-	this->apply_boundary(popIndividuos[lower]);
 	// adiciona este individuo na vizinhanca nova e vice-versa
         for(int i=0; i<(popIndividuos.size());i++)
 	{
@@ -392,6 +385,7 @@ void paisagem::doActionSKLOGL(int lower)
 		}
 
 	}
+	this->apply_boundary(lower);
 
 	break;
     }
@@ -455,53 +449,40 @@ void paisagem::atualiza_vizinhos(individuo * const ag1) const //acessando os viz
 //TODO: conferir se a combinacao x , y da condicao esta gerando o efeito desejado
 //TBI: condicao periodica do codigo antigo feito com Garcia. Verificar se estah correta
 // (veja p. ex. um unico individuo apenas se movimentando)
-
-void paisagem::apply_boundary(individuo * const ind) //const
+// alterado para usar o indice do individuo (int i) ao inves de passar o individuo em si
+// como parametro para evitar um problema intermitente de acesso invalido de memoria
+// ~~ andrechalom 23/06/15
+void paisagem::apply_boundary(int i) //const
 {
 	vector<individuo *> NB ;
+	individuo * ind = this->popIndividuos[i];
 	double rad = (double)ind->get_raio();
 	switch(this->boundary_condition)
 	{
-			
 		case 0:
 		if(this->landscape_shape==0)
 		{
 			if(rad*rad < (double)ind->get_x()*(double)ind->get_x()+(double)ind->get_y()*(double)ind->get_y())
 			{
-				for(unsigned int i=0; i<popIndividuos.size();i++)
-				{
-					if(this->popIndividuos[i]->get_id()==(int)ind->get_id())
-					{
 						NB = this->popIndividuos[i]->get_NBHood();
 						for (unsigned int j = 0; j<NB.size(); j++)
 							NB[j]->drop_Neighbour(this->popIndividuos[i]);
-						cout << "DEBUG dead " << this->popIndividuos[i]->get_id() << endl;
 						delete this->popIndividuos[i];
 						this->popIndividuos.erase(this->popIndividuos.begin()+i);
-					}
-				}
 			}
 		}
-		
-		if(this->landscape_shape==1)
+		else if(this->landscape_shape==1)
 		{
 			if((double)ind->get_x()>=this->numb_cells*this->cell_size/2 || //>= porque na paisagem quadrado as bordas mais distantes de 0 iniciariam um proximo pixel que estaria fora da paisagem. Ou teriamos que assumir que esses pixels mais extremos tenha uma área maior, o que daria um trabalho adicional para implementar uma situação irreal.
 			   (double)ind->get_x()<(this->numb_cells*this->cell_size/2)*(-1)||
 			   (double)ind->get_y()>this->numb_cells*this->cell_size/2 ||
 			   (double)ind->get_y()<=(this->numb_cells*this->cell_size/-2))
 			{
-				for(unsigned int i=0; i<popIndividuos.size();i++)
-				{
-					if(this->popIndividuos[i]->get_id()==(int)ind->get_id()) //DUVIDA: porque tem int?
-					{
 						NB = this->popIndividuos[i]->get_NBHood();
 						for (unsigned int j = 0; j<NB.size(); j++)
 							NB[j]->drop_Neighbour(this->popIndividuos[i]);
-						cout << "DEBUG dead " << this->popIndividuos[i]->get_id() << endl;
 						delete this->popIndividuos[i];
 						this->popIndividuos.erase(this->popIndividuos.begin()+i);
-					}
-				}
 			}			   
 		}		
 		break;
