@@ -1,0 +1,19 @@
+source("TWoLife.R")
+land=Landscape(cover=1,type="b",cell.size=30) # Generates the landscape.
+set.seed(42)
+TWoLife(taxa.basal=0.211,
+	taxa.morte=0.0074,
+	move=0.455,
+	incl.birth=56186,
+	incl.death=0,
+	passo=145.8,            
+	raio=662,
+	density.type=1,
+	ini.config=0,
+	#####################
+	N=80,
+	AngVis=360,
+	death.mat=1,
+	landscape=land,
+	tempo=100,            
+	out.code=1)

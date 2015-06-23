@@ -93,7 +93,12 @@ public:
     /**        **/
     const vector<individuo*> get_NBHood() const {return this->lisViz;}
     /**        **/
-    void include_Neighbour(individuo * const agent){this->lisViz.push_back(agent);}
+    void include_Neighbour(individuo * const agent){
+	    for (unsigned int i = 0; i<this->lisViz.size(); i++)
+		    if (agent == this->lisViz[i])
+			    return; // already included
+		    this->lisViz.push_back(agent);
+    }
     void drop_Neighbour(individuo * const agent){
 	    for (unsigned int i = 0; i<this->lisViz.size(); i++)
 		    if (agent == this->lisViz[i])

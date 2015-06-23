@@ -264,6 +264,11 @@ int paisagem::updateSKLOGL()
 {
     if(this->popIndividuos.size()>0)
     {
+		    cout << "STEP " << this->popIndividuos[8]->get_NBHood().size() << ":";
+		    vector <individuo *> NB = this->popIndividuos[8]->get_NBHood();
+		    for(int i = 0; i < NB.size(); i++)
+			    cout << NB[i]->get_id() << "  ";
+		    cout <<endl;
         // Este for loop pode ser paralelizado, pois o que acontece com cada individuo eh independente
         #ifdef PARALLEL
         #pragma omp parallel for
@@ -340,6 +345,7 @@ void paisagem::doActionSKLOGL(int lower)
 	int acao = this->popIndividuos[lower]->sorteia_acao();
 	vector<individuo *> NB ;
 	vector<individuo *> blank ;
+	cout << "DEBUG "<<this->popIndividuos[lower]->get_id()<<" acted "<<acao << endl;
 
     switch(acao) //0 eh morte, 1 eh nascer, 2 eh andar
     {
@@ -348,6 +354,7 @@ void paisagem::doActionSKLOGL(int lower)
 	NB = this->popIndividuos[lower]->get_NBHood();
 	for (unsigned int i = 0; i<NB.size(); i++)
 		NB[i]->drop_Neighbour(this->popIndividuos[lower]);
+						cout << "DEBUG dead " << this->popIndividuos[lower]->get_id() << endl;
         delete this->popIndividuos[lower];
         this->popIndividuos.erase(this->popIndividuos.begin()+lower);
         break;
@@ -468,6 +475,7 @@ void paisagem::apply_boundary(individuo * const ind) //const
 						NB = this->popIndividuos[i]->get_NBHood();
 						for (unsigned int j = 0; j<NB.size(); j++)
 							NB[j]->drop_Neighbour(this->popIndividuos[i]);
+						cout << "DEBUG dead " << this->popIndividuos[i]->get_id() << endl;
 						delete this->popIndividuos[i];
 						this->popIndividuos.erase(this->popIndividuos.begin()+i);
 					}
@@ -489,6 +497,7 @@ void paisagem::apply_boundary(individuo * const ind) //const
 						NB = this->popIndividuos[i]->get_NBHood();
 						for (unsigned int j = 0; j<NB.size(); j++)
 							NB[j]->drop_Neighbour(this->popIndividuos[i]);
+						cout << "DEBUG dead " << this->popIndividuos[i]->get_id() << endl;
 						delete this->popIndividuos[i];
 						this->popIndividuos.erase(this->popIndividuos.begin()+i);
 					}
