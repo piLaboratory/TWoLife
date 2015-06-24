@@ -367,27 +367,26 @@ void paisagem::doActionSKLOGL(int lower)
 	chosen->include_Neighbour(this->popIndividuos[lower]);
         break;
 
-    case 2: 
-	// remove este individuo da vizinhanca antiga
-	NB = this->popIndividuos[lower]->get_NBHood();
-	for (unsigned int i = 0; i<NB.size(); i++)
-		NB[i]->drop_Neighbour(this->popIndividuos[lower]);
-	this->popIndividuos[lower]->set_vizinhos(blank);
-        this->popIndividuos[lower]->anda();
-		int old_ind = this->popIndividuos[lower]->get_id();
-	this->apply_boundary(lower); // nessa linha, o individuo pode morrer (cair fora do mundo)
-	if (this->popIndividuos[lower]->get_id() == old_ind) // verificamos se ele nao morreu
-	// adiciona este individuo na vizinhanca nova e vice-versa
-        for(int i=0; i<(popIndividuos.size());i++)
-	{
-		double d=this->calcDist(this->popIndividuos[lower],this->popIndividuos[i]);
-		if(d<=this->popIndividuos[lower]->get_raio() && lower != i)
-		{
-			this->popIndividuos[lower]->include_Neighbour(this->popIndividuos[i]);
-			this->popIndividuos[i]->include_Neighbour(this->popIndividuos[lower]);
-		}
+	case 2: 
+		// remove este individuo da vizinhanca antiga
+		NB = this->popIndividuos[lower]->get_NBHood();
+		for (unsigned int i = 0; i<NB.size(); i++)
+			NB[i]->drop_Neighbour(this->popIndividuos[lower]);
+		this->popIndividuos[lower]->set_vizinhos(blank);
+		this->popIndividuos[lower]->anda();
+		if (this->apply_boundary(lower) == 0) { // nessa linha, o individuo pode morrer (cair fora do mundo)
+			// adiciona este individuo na vizinhanca nova e vice-versa
+			for(int i=0; i<(popIndividuos.size());i++)
+			{
+				double d=this->calcDist(this->popIndividuos[lower],this->popIndividuos[i]);
+				if(d<=this->popIndividuos[lower]->get_raio() && lower != i)
+				{
+					this->popIndividuos[lower]->include_Neighbour(this->popIndividuos[i]);
+					this->popIndividuos[i]->include_Neighbour(this->popIndividuos[lower]);
+				}
 
-	}
+			}
+		}
 
 	break;
     }
@@ -454,7 +453,8 @@ void paisagem::atualiza_vizinhos(individuo * const ag1) const //acessando os viz
 // alterado para usar o indice do individuo (int i) ao inves de passar o individuo em si
 // como parametro para evitar um problema intermitente de acesso invalido de memoria
 // ~~ andrechalom 23/06/15
-void paisagem::apply_boundary(int i) //const
+// função retorna 0 caso o individuo ainda exista, ou 1 caso ele tenha morrido
+int paisagem::apply_boundary(int i) //const
 {
 	vector<individuo *> NB ;
 	individuo * ind = this->popIndividuos[i];
@@ -471,6 +471,7 @@ void paisagem::apply_boundary(int i) //const
 							NB[j]->drop_Neighbour(this->popIndividuos[i]);
 						delete this->popIndividuos[i];
 						this->popIndividuos.erase(this->popIndividuos.begin()+i);
+						return 1;
 			}
 		}
 		else if(this->landscape_shape==1)
@@ -485,6 +486,7 @@ void paisagem::apply_boundary(int i) //const
 							NB[j]->drop_Neighbour(this->popIndividuos[i]);
 						delete this->popIndividuos[i];
 						this->popIndividuos.erase(this->popIndividuos.begin()+i);
+						return 1;
 			}			   
 		}		
 		break;
@@ -500,6 +502,8 @@ void paisagem::apply_boundary(int i) //const
 			ind->set_y(ind->get_y()-this->tamanho);
 		break;
 	}
+
+	return 0;
 	
 	/* TBI
 	case 2: reflexiva
