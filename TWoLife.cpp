@@ -249,8 +249,7 @@ extern "C" void TWoLife (double * raio, int * N, double * angulo_visada, double 
                         outputSIM << (int)floresta->tempo_do_mundo << " " << floresta->get_individuos(i)->get_id() << " " << floresta->get_individuos(i)->get_x() << " " << floresta->get_individuos(i)->get_y() << " " << floresta->get_individuos(i)->NBHood_size() << endl;
                     }
                 }
-                floresta->realiza_acao(lowerInd);
-                //floresta->doActionNB(lowerInd);
+                floresta->doActionSKLOGL(lowerInd);
                 //cout << floresta->get_individuos(lowerInd)->get_id() << endl;
             }
             break;

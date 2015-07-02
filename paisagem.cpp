@@ -264,13 +264,14 @@ int paisagem::updateSKLOGL()
 {
     if(this->popIndividuos.size()>0)
     {
+		    vector <individuo *> NB = this->popIndividuos[8]->get_NBHood();
         // Este for loop pode ser paralelizado, pois o que acontece com cada individuo eh independente
         #ifdef PARALLEL
         #pragma omp parallel for
         #endif
         for(unsigned int i=0; i<this->popIndividuos.size(); i++)
         {
-            this->atualiza_vizinhos(this->popIndividuos[i]);
+            //this->atualiza_vizinhos(this->popIndividuos[i]);
             this->atualiza_habitat(this->popIndividuos[i]);//retorna o tipo de habitat
         }
         // Este loop não é parelelizado, APESAR de ser independente, para garantir que as funcoes
@@ -324,7 +325,7 @@ void paisagem::realiza_acao(int lower) //TODO : criar matriz de distancias como 
 
     case 2: 
         this->popIndividuos[lower]->anda();
-		this->apply_boundary(popIndividuos[lower]);
+		this->apply_boundary(lower);
 		break;
     }
 }
@@ -332,9 +333,64 @@ void paisagem::realiza_acao(int lower) //TODO : criar matriz de distancias como 
 void paisagem::doActionRW(int lower)
 {
     this->popIndividuos[lower]->anda();
-    this->apply_boundary(popIndividuos[lower]);
+    this->apply_boundary(lower);
 }
 
+void paisagem::doActionSKLOGL(int lower) 
+{
+	int acao = this->popIndividuos[lower]->sorteia_acao();
+	vector<individuo *> NB ;
+	vector<individuo *> blank ;
+
+    switch(acao) //0 eh morte, 1 eh nascer, 2 eh andar
+    {
+    case 0:
+	    // remove este individuo da vizinhanca dos outros individuos
+	NB = this->popIndividuos[lower]->get_NBHood();
+	for (unsigned int i = 0; i<NB.size(); i++)
+		NB[i]->drop_Neighbour(this->popIndividuos[lower]);
+        delete this->popIndividuos[lower];
+        this->popIndividuos.erase(this->popIndividuos.begin()+lower);
+        break;
+
+    case 1:
+        individuo* chosen;
+        //Novo metodo para fazer copia do individuo:
+        chosen = new individuo(*this->popIndividuos[lower]);
+        this->popIndividuos.push_back(chosen);
+	// Adiciona o novo individuo na vizinhanca do pai. o construtor de copia jah copia a lisViz do pai 
+		// para o novo individuo, soh precisamos lembrar de incluir um na lisViz do outro
+	NB = this->popIndividuos[lower]->get_NBHood();
+	for (unsigned int i = 0; i<NB.size(); i++)
+		NB[i]->include_Neighbour(chosen);
+	this->popIndividuos[lower]->include_Neighbour(chosen);
+	chosen->include_Neighbour(this->popIndividuos[lower]);
+        break;
+
+	case 2: 
+		// remove este individuo da vizinhanca antiga
+		NB = this->popIndividuos[lower]->get_NBHood();
+		for (unsigned int i = 0; i<NB.size(); i++)
+			NB[i]->drop_Neighbour(this->popIndividuos[lower]);
+		this->popIndividuos[lower]->set_vizinhos(blank);
+		this->popIndividuos[lower]->anda();
+		if (this->apply_boundary(lower) == 0) { // nessa linha, o individuo pode morrer (cair fora do mundo)
+			// adiciona este individuo na vizinhanca nova e vice-versa
+			for(int i=0; i<(popIndividuos.size());i++)
+			{
+				double d=this->calcDist(this->popIndividuos[lower],this->popIndividuos[i]);
+				if(d<=this->popIndividuos[lower]->get_raio() && lower != i)
+				{
+					this->popIndividuos[lower]->include_Neighbour(this->popIndividuos[i]);
+					this->popIndividuos[i]->include_Neighbour(this->popIndividuos[lower]);
+				}
+
+			}
+		}
+
+	break;
+    }
+}
 /*
  Sempre adicione const aos argumentos de métodos quando o método não
  deve alterá-los. Previne vários erros e pode otimizar compilação
@@ -394,44 +450,43 @@ void paisagem::atualiza_vizinhos(individuo * const ag1) const //acessando os viz
 //TODO: conferir se a combinacao x , y da condicao esta gerando o efeito desejado
 //TBI: condicao periodica do codigo antigo feito com Garcia. Verificar se estah correta
 // (veja p. ex. um unico individuo apenas se movimentando)
-
-void paisagem::apply_boundary(individuo * const ind) //const
+// alterado para usar o indice do individuo (int i) ao inves de passar o individuo em si
+// como parametro para evitar um problema intermitente de acesso invalido de memoria
+// ~~ andrechalom 23/06/15
+// função retorna 0 caso o individuo ainda exista, ou 1 caso ele tenha morrido
+int paisagem::apply_boundary(int i) //const
 {
+	vector<individuo *> NB ;
+	individuo * ind = this->popIndividuos[i];
 	double rad = (double)ind->get_raio();
 	switch(this->boundary_condition)
 	{
-			
 		case 0:
 		if(this->landscape_shape==0)
 		{
 			if(rad*rad < (double)ind->get_x()*(double)ind->get_x()+(double)ind->get_y()*(double)ind->get_y())
 			{
-				for(unsigned int i=0; i<popIndividuos.size();i++)
-				{
-					if(this->popIndividuos[i]->get_id()==(int)ind->get_id())
-					{
+						NB = this->popIndividuos[i]->get_NBHood();
+						for (unsigned int j = 0; j<NB.size(); j++)
+							NB[j]->drop_Neighbour(this->popIndividuos[i]);
 						delete this->popIndividuos[i];
 						this->popIndividuos.erase(this->popIndividuos.begin()+i);
-					}
-				}
+						return 1;
 			}
 		}
-		
-		if(this->landscape_shape==1)
+		else if(this->landscape_shape==1)
 		{
 			if((double)ind->get_x()>=this->numb_cells*this->cell_size/2 || //>= porque na paisagem quadrado as bordas mais distantes de 0 iniciariam um proximo pixel que estaria fora da paisagem. Ou teriamos que assumir que esses pixels mais extremos tenha uma área maior, o que daria um trabalho adicional para implementar uma situação irreal.
 			   (double)ind->get_x()<(this->numb_cells*this->cell_size/2)*(-1)||
 			   (double)ind->get_y()>this->numb_cells*this->cell_size/2 ||
 			   (double)ind->get_y()<=(this->numb_cells*this->cell_size/-2))
 			{
-				for(unsigned int i=0; i<popIndividuos.size();i++)
-				{
-					if(this->popIndividuos[i]->get_id()==(int)ind->get_id()) //DUVIDA: porque tem int?
-					{
+						NB = this->popIndividuos[i]->get_NBHood();
+						for (unsigned int j = 0; j<NB.size(); j++)
+							NB[j]->drop_Neighbour(this->popIndividuos[i]);
 						delete this->popIndividuos[i];
 						this->popIndividuos.erase(this->popIndividuos.begin()+i);
-					}
-				}
+						return 1;
 			}			   
 		}		
 		break;
@@ -447,6 +502,8 @@ void paisagem::apply_boundary(individuo * const ind) //const
 			ind->set_y(ind->get_y()-this->tamanho);
 		break;
 	}
+
+	return 0;
 	
 	/* TBI
 	case 2: reflexiva
@@ -481,7 +538,6 @@ double paisagem::calcDensity(const individuo* ind1) const
 {
 	double density;
     density = ind1->NBHood_size()/(M_PI*ind1->get_raio()*ind1->get_raio());
-	
 	// Functions for local density calculation 
 	
 	/* 1. Circular area defining a region in which denso-dependence occurs: landscape boundary effects.

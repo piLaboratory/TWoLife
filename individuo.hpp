@@ -93,7 +93,17 @@ public:
     /**        **/
     const vector<individuo*> get_NBHood() const {return this->lisViz;}
     /**        **/
-    void include_Neighbour(individuo * const agent){this->lisViz.push_back(agent);}
+    void include_Neighbour(individuo * const agent){
+	    for (unsigned int i = 0; i<this->lisViz.size(); i++)
+		    if (agent == this->lisViz[i])
+			    return; // already included
+		    this->lisViz.push_back(agent);
+    }
+    void drop_Neighbour(individuo * const agent){
+	    for (unsigned int i = 0; i<this->lisViz.size(); i++)
+		    if (agent == this->lisViz[i])
+			    this->lisViz.erase(this->lisViz.begin() + i);
+    }
     /** Atualiza o tipo de hábitat no qual o indivíduo está. Deve ser chamada a cada passo de tempo pela \ref paisagem. */
     void set_habitat (const int tipo){this->tipo_habitat=tipo;}
 	/** Atualiza a posi√ß√£o X do invid√≠duo */

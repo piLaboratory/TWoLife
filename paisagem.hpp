@@ -57,7 +57,7 @@ private:
     void atualiza_vizinhos(individuo * const ind) const;//contabilizador de vizinhos
     void atualiza_habitat(individuo * const i) const;//vai informar o individuo em que tipo de habitat ele esta
     //int define_tempo();
-	void apply_boundary(individuo * const ind); //const; // metodo para aplicação da condicao de contorno
+	int apply_boundary(int i); //const; // metodo para aplicação da condicao de contorno
     int shortTime(); // Select the individual who will make the action. This individual is the one with the shortest time ("tempo_eventp")
     //void deathLocalDD(int lower);
     //void birthLocalDD(int lower);
@@ -117,6 +117,7 @@ public:
     int updateSKLOGL();
 	void realiza_acao(int lower);//vai pegar os tempos de cada individuo e informa qual foi o escolhido e manda ele fazer
     void doActionRW(int lower);
+    void doActionSKLOGL(int lower);
     //void doActionNB(int lowerIndi);
 	/** Retorna o número total de indivíduos na paisagem */
     const int conta_individuos() const{return popIndividuos.size();}
