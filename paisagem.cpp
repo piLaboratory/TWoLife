@@ -264,7 +264,7 @@ int paisagem::updateSKLOGL()
 {
     if(this->popIndividuos.size()>0)
     {
-		    vector <individuo *> NB = this->popIndividuos[8]->get_NBHood();
+		    //vector <individuo *> NB = this->popIndividuos[8]->get_NBHood();
         // Este for loop pode ser paralelizado, pois o que acontece com cada individuo eh independente
         #ifdef PARALLEL
         #pragma omp parallel for
@@ -456,7 +456,7 @@ void paisagem::atualiza_vizinhos(individuo * const ag1) const //acessando os viz
 // função retorna 0 caso o individuo ainda exista, ou 1 caso ele tenha morrido
 int paisagem::apply_boundary(int i) //const
 {
-	vector<individuo *> NB ;
+	//vector<individuo *> NB ;
 	individuo * ind = this->popIndividuos[i];
 	double rad = (double)ind->get_raio();
 	switch(this->boundary_condition)
@@ -466,9 +466,9 @@ int paisagem::apply_boundary(int i) //const
 		{
 			if(rad*rad < (double)ind->get_x()*(double)ind->get_x()+(double)ind->get_y()*(double)ind->get_y())
 			{
-						NB = this->popIndividuos[i]->get_NBHood();
+						/*NB = this->popIndividuos[i]->get_NBHood();
 						for (unsigned int j = 0; j<NB.size(); j++)
-							NB[j]->drop_Neighbour(this->popIndividuos[i]);
+							NB[j]->drop_Neighbour(this->popIndividuos[i]);*/
 						delete this->popIndividuos[i];
 						this->popIndividuos.erase(this->popIndividuos.begin()+i);
 						return 1;
@@ -481,9 +481,9 @@ int paisagem::apply_boundary(int i) //const
 			   (double)ind->get_y()>this->numb_cells*this->cell_size/2 ||
 			   (double)ind->get_y()<=(this->numb_cells*this->cell_size/-2))
 			{
-						NB = this->popIndividuos[i]->get_NBHood();
+						/*NB = this->popIndividuos[i]->get_NBHood();
 						for (unsigned int j = 0; j<NB.size(); j++)
-							NB[j]->drop_Neighbour(this->popIndividuos[i]);
+							NB[j]->drop_Neighbour(this->popIndividuos[i]);*/
 						delete this->popIndividuos[i];
 						this->popIndividuos.erase(this->popIndividuos.begin()+i);
 						return 1;
