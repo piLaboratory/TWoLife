@@ -25,13 +25,33 @@ paisagem::paisagem(double raio, int N, double angulo_visada, double passo, doubl
 		}
 		
 	// Calculo do raio dependendo do tipo de densidade. 0 = global, 1 = local (raio), 2 = kernel.
-	if(density_type==0)
+	/*       if(density_type==0)
 	{
 		raio = this->tamanho/sqrt(M_PI);
-	}
+	} */
+     
 	/* Coloca os indivíduos na paisagem por meio da função populating() */	
 	this->populating(raio,N,angulo_visada,passo,move,taxa_basal,taxa_morte,incl_b,incl_d,death_mat,density_type);
-	
+    if(density_type==1)
+    {
+        double rad = raio;
+        for(int i=0; i<(popIndividuos.size()-1);i++)
+        {
+            //individuo* ag1=this->popIndividuos[i];
+            for(int j=i+1;j<popIndividuos.size();j++)
+            {
+                //individuo* ag2=this->popIndividuos[j];
+                double d=this->calcDist(this->popIndividuos[i],this->popIndividuos[j]);
+                if(d<=rad)
+                {
+                    this->popIndividuos[i]->include_Neighbour(this->popIndividuos[j]);
+                    this->popIndividuos[j]->include_Neighbour(this->popIndividuos[i]);
+                    //cout << this->popIndividuos[i]->get_id() << " " << this->popIndividuos[j]->get_id() << endl;
+                }
+                
+            }
+        }
+    }
 }
 		
 void paisagem::populating(double raio, int N, double angulo_visada, double passo, double move, double taxa_basal,
@@ -110,42 +130,179 @@ void paisagem::populating(double raio, int N, double angulo_visada, double passo
 	}	
 }
 
-int paisagem::update()
+//////////////////////////////   UPDATES   /////////////////////////////////////////////////////
+
+int paisagem::updateEXP()
 {
     if(this->popIndividuos.size()>0)
-    {    
-	// Este for loop pode ser paralelizado, pois o que acontece com cada individuo eh independente
-	#ifdef PARALLEL
-	#pragma omp parallel for
-	#endif
+    {
+        // Este loop não é parelelizado, APESAR de ser independente, para garantir que as funcoes
+        // aleatorias sao chamadas sempre na mesma ordem (garante reprodutibilidade)
         for(unsigned int i=0; i<this->popIndividuos.size(); i++)
         {
-            this->atualiza_vizinhos(this->popIndividuos[i]);//atualiza os vizinhos
+            this->popIndividuos[i]->updateEXPi();   //e atualiza o individuo i da populacao
+        }
+        // time for next event and simulation time update
+        int lowInd = this->shortTime();
+        return lowInd;
+    }
+}
+
+int paisagem::updateLOG()
+{
+    if(this->popIndividuos.size()>0)
+    {
+        double dsty = this->popIndividuos.size()/(this->numb_cells*this->numb_cells*this->cell_size*this->cell_size);
+        // Este loop não é parelelizado, APESAR de ser independente, para garantir que as funcoes
+        // aleatorias sao chamadas sempre na mesma ordem (garante reprodutibilidade)
+        for(unsigned int i=0; i<this->popIndividuos.size(); i++)
+        {
+            this->popIndividuos[i]->updateLOGi(dsty);   //e atualiza o individuo i da populacao
+        }
+        // time for next event and simulation time update
+        int lowInd = this->shortTime();
+        return lowInd;
+    }
+}
+
+int paisagem::updateLOGL()
+{
+    if(this->popIndividuos.size()>0)
+    {
+        double dsty = this->popIndividuos.size()/(M_PI*this->popIndividuos[0]->get_raio()*this->popIndividuos[0]->get_raio());
+        // Este loop não é parelelizado, APESAR de ser independente, para garantir que as funcoes
+        // aleatorias sao chamadas sempre na mesma ordem (garante reprodutibilidade)
+        for(unsigned int i=0; i<this->popIndividuos.size(); i++)
+        {
+            this->popIndividuos[i]->updateLOGi(dsty);   //e atualiza o individuo i da populacao
+        }
+        // time for next event and simulation time update
+        int lowInd = this->shortTime();
+        return lowInd;
+    }
+}
+
+
+int paisagem::updateRW()
+{
+    if(this->popIndividuos.size()>0)
+    {
+        // Este for loop pode ser paralelizado, pois o que acontece com cada individuo eh independente
+        #ifdef PARALLEL
+        #pragma omp parallel for
+        #endif
+        for(unsigned int i=0; i<this->popIndividuos.size(); i++)
+        {
             this->atualiza_habitat(this->popIndividuos[i]);//retorna o tipo de habitat
         }
-		// Este loop não é parelelizado, APESAR de ser independente, para garantir que as funcoes
-		// aleatorias sao chamadas sempre na mesma ordem (garante reprodutibilidade)
+        
+        // Este loop não é parelelizado, APESAR de ser independente, para garantir que as funcoes
+        // aleatorias sao chamadas sempre na mesma ordem (garante reprodutibilidade)
         for(unsigned int i=0; i<this->popIndividuos.size(); i++)
         {
-			double dsty=this->calcDensity(popIndividuos[i]);
-            this->popIndividuos[i]->update(dsty);   //e atualiza o individuo i da populacao
+            this->popIndividuos[i]->updateRWi();   //e atualiza o individuo i da populacao
         }
-		
-		// time for next event and simulation time update
-		int menor=0;
-		double menor_tempo = this->popIndividuos[0]->get_tempo();
-		
-		for(unsigned int i=1; i<this->popIndividuos.size(); i++)
-		{
-			if(this->popIndividuos[i]->get_tempo()<menor_tempo)
-			{
-				menor = i;
-				menor_tempo = this->popIndividuos[i]->get_tempo();
-			}
-		}
-		this->tempo_do_mundo = this->tempo_do_mundo+menor_tempo;
-		return menor;
-	}
+        // time for next event and simulation time update
+        int lowInd = this->shortTime();
+        return lowInd;
+    }
+}
+
+int paisagem::updateSKEXP()
+{
+    if(this->popIndividuos.size()>0)
+    {
+        // Este for loop pode ser paralelizado, pois o que acontece com cada individuo eh independente
+        #ifdef PARALLEL
+        #pragma omp parallel for
+        #endif
+        for(unsigned int i=0; i<this->popIndividuos.size(); i++)
+        {
+            this->atualiza_habitat(this->popIndividuos[i]);//retorna o tipo de habitat
+        }
+        
+        // Este loop não é parelelizado, APESAR de ser independente, para garantir que as funcoes
+        // aleatorias sao chamadas sempre na mesma ordem (garante reprodutibilidade)
+        for(unsigned int i=0; i<this->popIndividuos.size(); i++)
+        {
+            this->popIndividuos[i]->updateSKEXPi();   //e atualiza o individuo i da populacao
+        }
+        // time for next event and simulation time update
+        int lowInd = this->shortTime();
+        return lowInd;
+    }
+}
+
+int paisagem::updateSKLOGG()
+{
+    if(this->popIndividuos.size()>0)
+    {
+        // Este for loop pode ser paralelizado, pois o que acontece com cada individuo eh independente
+        #ifdef PARALLEL
+        #pragma omp parallel for
+        #endif
+        for(unsigned int i=0; i<this->popIndividuos.size(); i++)
+        {
+            this->atualiza_habitat(this->popIndividuos[i]);//retorna o tipo de habitat
+        }
+        
+        double dsty = this->popIndividuos.size()/(this->numb_cells*this->numb_cells*this->cell_size*this->cell_size);
+        // Este loop não é parelelizado, APESAR de ser independente, para garantir que as funcoes
+        // aleatorias sao chamadas sempre na mesma ordem (garante reprodutibilidade)
+        for(unsigned int i=0; i<this->popIndividuos.size(); i++)
+        {
+            this->popIndividuos[i]->updateSKLOGi(dsty);   //e atualiza o individuo i da populacao
+        }
+        // time for next event and simulation time update
+        int lowInd = this->shortTime();
+        return lowInd;
+    }
+}
+
+
+int paisagem::updateSKLOGL()
+{
+    if(this->popIndividuos.size()>0)
+    {
+		    //vector <individuo *> NB = this->popIndividuos[8]->get_NBHood();
+        // Este for loop pode ser paralelizado, pois o que acontece com cada individuo eh independente
+        #ifdef PARALLEL
+        #pragma omp parallel for
+        #endif
+        for(unsigned int i=0; i<this->popIndividuos.size(); i++)
+        {
+            //this->atualiza_vizinhos(this->popIndividuos[i]);
+            this->atualiza_habitat(this->popIndividuos[i]);//retorna o tipo de habitat
+        }
+        // Este loop não é parelelizado, APESAR de ser independente, para garantir que as funcoes
+        // aleatorias sao chamadas sempre na mesma ordem (garante reprodutibilidade)
+        for(unsigned int i=0; i<this->popIndividuos.size(); i++)
+        {
+            double dsty=this->calcDensity(this->popIndividuos[i]);
+            this->popIndividuos[i]->updateSKLOGi(dsty);   //e atualiza o individuo i da populacao
+        }
+        
+        // time for next event and simulation time update
+        int lowInd = this->shortTime();
+        return lowInd;
+    }
+}
+
+int paisagem::shortTime()
+{
+    int menor=0;
+    double menor_tempo = this->popIndividuos[0]->get_tempo();
+    
+    for(unsigned int i=1; i<this->popIndividuos.size(); i++)
+    {
+        if(this->popIndividuos[i]->get_tempo()<menor_tempo)
+        {
+            menor = i;
+            menor_tempo = this->popIndividuos[i]->get_tempo();
+        }
+    }
+    this->tempo_do_mundo = this->tempo_do_mundo+menor_tempo;
+    return menor;
 }
 
 void paisagem::realiza_acao(int lower) //TODO : criar matriz de distancias como atributo do mundo e atualiza-la apenas quanto ao individuos afetado nesta funcao)
@@ -168,10 +325,103 @@ void paisagem::realiza_acao(int lower) //TODO : criar matriz de distancias como 
 
     case 2: 
         this->popIndividuos[lower]->anda();
-		this->apply_boundary(popIndividuos[lower]);
+		this->apply_boundary(lower);
 		break;
     }
 }
+
+void paisagem::doActionRW(int lower)
+{
+    this->popIndividuos[lower]->anda();
+    this->apply_boundary(lower);
+}
+
+void paisagem::doActionSKLOGL(int lower) 
+{
+	int acao = this->popIndividuos[lower]->sorteia_acao();
+	vector<individuo *> NB ;
+	vector<individuo *> blank ;
+
+    switch(acao) //0 eh morte, 1 eh nascer, 2 eh andar
+    {
+    case 0:
+	    // remove este individuo da vizinhanca dos outros individuos
+	NB = this->popIndividuos[lower]->get_NBHood();
+	for (unsigned int i = 0; i<NB.size(); i++)
+		NB[i]->drop_Neighbour(this->popIndividuos[lower]);
+        delete this->popIndividuos[lower];
+        this->popIndividuos.erase(this->popIndividuos.begin()+lower);
+        break;
+
+    case 1:
+        individuo* chosen;
+        //Novo metodo para fazer copia do individuo:
+        chosen = new individuo(*this->popIndividuos[lower]);
+        this->popIndividuos.push_back(chosen);
+	// Adiciona o novo individuo na vizinhanca do pai. o construtor de copia jah copia a lisViz do pai 
+		// para o novo individuo, soh precisamos lembrar de incluir um na lisViz do outro
+	NB = this->popIndividuos[lower]->get_NBHood();
+	for (unsigned int i = 0; i<NB.size(); i++)
+		NB[i]->include_Neighbour(chosen);
+	this->popIndividuos[lower]->include_Neighbour(chosen);
+	chosen->include_Neighbour(this->popIndividuos[lower]);
+        break;
+
+	case 2: 
+		// remove este individuo da vizinhanca antiga
+		NB = this->popIndividuos[lower]->get_NBHood();
+		for (unsigned int i = 0; i<NB.size(); i++)
+			NB[i]->drop_Neighbour(this->popIndividuos[lower]);
+		this->popIndividuos[lower]->set_vizinhos(blank);
+		this->popIndividuos[lower]->anda();
+		if (this->apply_boundary(lower) == 0) { // nessa linha, o individuo pode morrer (cair fora do mundo)
+			// adiciona este individuo na vizinhanca nova e vice-versa
+			for(int i=0; i<(popIndividuos.size());i++)
+			{
+				double d=this->calcDist(this->popIndividuos[lower],this->popIndividuos[i]);
+				if(d<=this->popIndividuos[lower]->get_raio() && lower != i)
+				{
+					this->popIndividuos[lower]->include_Neighbour(this->popIndividuos[i]);
+					this->popIndividuos[i]->include_Neighbour(this->popIndividuos[lower]);
+				}
+
+			}
+		}
+
+	break;
+    }
+}
+/*
+ Sempre adicione const aos argumentos de métodos quando o método não
+ deve alterá-los. Previne vários erros e pode otimizar compilação
+ */
+
+void paisagem::atualiza_vizinhos(individuo * const ag1) const //acessando os vizinhos dos agentes
+{
+    vector <individuo*> listViz;
+    if(ag1->get_densType()==0) //dens_type poderia voltar como propriedade da paisagem. Facilitariam as coisas. Como muitas propriedades e métodos deste código, elas podem ser interpretadas das duas formas (como do individuo ou como da paisagem). O que está dando confusão é que estamos fazendo um IBM, mas para algumas situações estamos querendo simular dinâmicas cujas variáveis de interesse são propriedades populacionais e não do indivíduo. Se aceito, limar o método get_densType() do individuo.h.
+    {
+        for(unsigned int j=0; j<popIndividuos.size(); j++)
+        {
+            individuo* ag2=this->popIndividuos[j];
+            if(ag1==ag2) continue;
+            listViz.push_back(ag2);
+        }
+    }
+    else
+    {
+        double rad = (double)ag1->get_raio();
+        for(unsigned int j=0; j<popIndividuos.size(); j++)
+        {
+            individuo* ag2=this->popIndividuos[j];
+            if(ag1==ag2) continue;
+            double d=this->calcDist(ag1,ag2);
+            if(d<=rad) {listViz.push_back(ag2);}		
+        }
+    }
+    ag1->set_vizinhos(listViz);
+}
+
 
 //para quando tiver especies, a definir...
 //int paisagem::conta_especies()
@@ -200,43 +450,43 @@ void paisagem::realiza_acao(int lower) //TODO : criar matriz de distancias como 
 //TODO: conferir se a combinacao x , y da condicao esta gerando o efeito desejado
 //TBI: condicao periodica do codigo antigo feito com Garcia. Verificar se estah correta
 // (veja p. ex. um unico individuo apenas se movimentando)
-void paisagem::apply_boundary(individuo * const ind) //const
+// alterado para usar o indice do individuo (int i) ao inves de passar o individuo em si
+// como parametro para evitar um problema intermitente de acesso invalido de memoria
+// ~~ andrechalom 23/06/15
+// função retorna 0 caso o individuo ainda exista, ou 1 caso ele tenha morrido
+int paisagem::apply_boundary(int i) //const
 {
+	//vector<individuo *> NB ;
+	individuo * ind = this->popIndividuos[i];
 	double rad = (double)ind->get_raio();
 	switch(this->boundary_condition)
 	{
-			
 		case 0:
 		if(this->landscape_shape==0)
 		{
 			if(rad*rad < (double)ind->get_x()*(double)ind->get_x()+(double)ind->get_y()*(double)ind->get_y())
 			{
-				for(unsigned int i=0; i<popIndividuos.size();i++)
-				{
-					if(this->popIndividuos[i]->get_id()==(int)ind->get_id())
-					{
+						/*NB = this->popIndividuos[i]->get_NBHood();
+						for (unsigned int j = 0; j<NB.size(); j++)
+							NB[j]->drop_Neighbour(this->popIndividuos[i]);*/
 						delete this->popIndividuos[i];
 						this->popIndividuos.erase(this->popIndividuos.begin()+i);
-					}
-				}
+						return 1;
 			}
 		}
-		
-		if(this->landscape_shape==1)
+		else if(this->landscape_shape==1)
 		{
 			if((double)ind->get_x()>=this->numb_cells*this->cell_size/2 || //>= porque na paisagem quadrado as bordas mais distantes de 0 iniciariam um proximo pixel que estaria fora da paisagem. Ou teriamos que assumir que esses pixels mais extremos tenha uma área maior, o que daria um trabalho adicional para implementar uma situação irreal.
 			   (double)ind->get_x()<(this->numb_cells*this->cell_size/2)*(-1)||
 			   (double)ind->get_y()>this->numb_cells*this->cell_size/2 ||
 			   (double)ind->get_y()<=(this->numb_cells*this->cell_size/-2))
 			{
-				for(unsigned int i=0; i<popIndividuos.size();i++)
-				{
-					if(this->popIndividuos[i]->get_id()==(int)ind->get_id()) //DUVIDA: porque tem int?
-					{
+						/*NB = this->popIndividuos[i]->get_NBHood();
+						for (unsigned int j = 0; j<NB.size(); j++)
+							NB[j]->drop_Neighbour(this->popIndividuos[i]);*/
 						delete this->popIndividuos[i];
 						this->popIndividuos.erase(this->popIndividuos.begin()+i);
-					}
-				}
+						return 1;
 			}			   
 		}		
 		break;
@@ -252,6 +502,8 @@ void paisagem::apply_boundary(individuo * const ind) //const
 			ind->set_y(ind->get_y()-this->tamanho);
 		break;
 	}
+
+	return 0;
 	
 	/* TBI
 	case 2: reflexiva
@@ -285,8 +537,7 @@ double paisagem::calcDist(const individuo* a1, const individuo* a2) const //Viro
 double paisagem::calcDensity(const individuo* ind1) const 
 {
 	double density;
-	density=ind1->NBHood_size()/(M_PI*(ind1->get_raio()*ind1->get_raio()));
-	
+    density = ind1->NBHood_size()/(M_PI*ind1->get_raio()*ind1->get_raio());
 	// Functions for local density calculation 
 	
 	/* 1. Circular area defining a region in which denso-dependence occurs: landscape boundary effects.
@@ -295,10 +546,11 @@ double paisagem::calcDensity(const individuo* ind1) const
 	 the area of the circle.			
 	 */
 	
-	// Condition giving the boundary effects cases
+	
 	if(ind1->get_densType()==1)
 	{
-		if(ind1->get_x()*ind1->get_x()>((this->tamanho/2)-ind1->get_raio())*((this->tamanho/2)-ind1->get_raio()) ||
+		// Condition giving the boundary effects cases
+        if(ind1->get_x()*ind1->get_x()>((this->tamanho/2)-ind1->get_raio())*((this->tamanho/2)-ind1->get_raio()) ||
 		   ind1->get_y()*ind1->get_y()>((this->tamanho/2)-ind1->get_raio())*((this->tamanho/2)-ind1->get_raio()))
 		{
 			// temporary objects
@@ -392,39 +644,6 @@ double paisagem::calcDensity(const individuo* ind1) const
 	 
 	 */
 	return density;	
-}
-
-
-/*
-  Sempre adicione const aos argumentos de métodos quando o método não
-  deve alterá-los. Previne vários erros e pode otimizar compilação
-*/
-
-void paisagem::atualiza_vizinhos(individuo * const ag1) const //acessando os vizinhos dos agentes
-{  
-	vector <individuo*> listViz;
-	if(ag1->get_densType()==0) //dens_type poderia voltar como propriedade da paisagem. Facilitariam as coisas. Como muitas propriedades e métodos deste código, elas podem ser interpretadas das duas formas (como do individuo ou como da paisagem). O que está dando confusão é que estamos fazendo um IBM, mas para algumas situações estamos querendo simular dinâmicas cujas variáveis de interesse são propriedades populacionais e não do indivíduo. Se aceito, limar o método get_densType() do individuo.h.
-	{		
-		for(unsigned int j=0; j<popIndividuos.size(); j++)
-		{
-			individuo* ag2=this->popIndividuos[j];
-			if(ag1==ag2) continue;			   
-			listViz.push_back(ag2);
-		}
-	}
-	else
-	{
-		double rad = (double)ag1->get_raio();
-		for(unsigned int j=0; j<popIndividuos.size(); j++)
-		{
-			individuo* ag2=this->popIndividuos[j];
-			if(ag1==ag2) continue;   
-			double d=this->calcDist(ag1,ag2);
-			if(d<=rad) {listViz.push_back(ag2);}		
-		}
-	}
-	ag1->set_vizinhos(listViz);
-		
 }
 
 void paisagem::atualiza_habitat(individuo * const ind) const

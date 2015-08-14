@@ -83,11 +83,13 @@ params=data.frame(b0=b0s,d0=d0s,movem.rate=m0s,incl.birth=incl.bs,incl.death=inc
 # dim(params)
 ## Create a directory for the output files, here named TWotests
 land <- Landscape(cover=1,type="b",cell.size=100)
-combs=1:51
+combs=21:51
+reps=c(rep(50,9),rep(20,8),rep(50,19),rep(20,15))
+length(reps)
 for (i in combs)
 {
-  multiRun(PATH=paste("./TWoTests/Comb-",CODE[i],sep=""),
-                nrep=20,
+  multiRun(PATH=paste("./Tests/Comb-",CODE[i],sep=""),
+                nrep=reps[i],
                 b0=params$b0[i],
                 d0=params$d0[i],
                 m0=params$movem.rate[i],

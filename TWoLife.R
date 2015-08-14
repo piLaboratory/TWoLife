@@ -3,7 +3,7 @@
 # Os passos abaixo foram adaptados de http://users.stat.umn.edu/~geyer/rc/
 
 Sys.setenv("PKG_CPPFLAGS" = "-fopenmp -DPARALLEL") # liga biblioteca de paralelismo
-system("rm TWoLife.{so,o}") #limpa sources velhos
+system("rm TWoLife.so TWoLife.o") #limpa sources velhos
 system ("R CMD SHLIB TWoLife.cpp") ## compila no R
 dyn.load("TWoLife.so") ## carrega os source resultantes como biblioteca dinamica no R
 
@@ -11,7 +11,8 @@ dyn.load("TWoLife.so") ## carrega os source resultantes como biblioteca dinamica
 # numb.cells represents both the lenght AND width of the landscape, so numb.cells=100 creates a 100x100 landscape
 # Land.shape can be 0 = XXX or 1 = XXX.
 # Bound.condition can be 0 = XXX or 1 = XXX. 
-Landscape <- function (numb.cells = 100, cell.size = 1, land.shape = 1, type=c("random","blob"), bound.condition=0, cover=1) {
+Landscape <- function (numb.cells = 100, cell.size = 1, land.shape = 1, type=c("random","blob","fahrig"), 
+                       bound.condition=0, cover=1,FRAG=NULL) {
 	type=match.arg(type)
 	if(cover < 0 || cover > 1) {
 		stop("Error creating landscape. Cover must be between 0 and 1")
@@ -54,6 +55,42 @@ Landscape <- function (numb.cells = 100, cell.size = 1, land.shape = 1, type=c("
 				if(j == numb.cells) { j=1}
 			}
 		}
+    if(type=="fahrig")
+    {
+      scape=matrix(rep(0, numb.cells*numb.cells),numb.cells,numb.cells)
+      while(sum(scape)<round(numb.cells*numb.cells*cover))
+      {
+        chosen.cell=sample(1:numb.cells,2,replace=T)
+        neigh.cells=matrix(c(chosen.cell[1],chosen.cell[2]+1,chosen.cell[1]-1,chosen.cell[2],chosen.cell[1],
+                             chosen.cell[2]-1,chosen.cell[1]+1,chosen.cell[2]),4,2,byrow=T)
+        out.land=which(neigh.cells==numb.cells+1 | neigh.cells==0,arr.ind=T)[,1]
+        n.neigh=1:4
+        if(scape[chosen.cell[1],chosen.cell[2]]==0) 
+        {
+          rnd=runif(1,0,1)
+          is.habitat=0
+          if(length(out.land)>0)
+          {
+            for(i in n.neigh[-out.land])
+            {
+              is.habitat=is.habitat+scape[neigh.cells[i,1],neigh.cells[i,2]]
+            }
+          }
+          else
+          {
+            for(i in n.neigh)
+            {
+              is.habitat=is.habitat+scape[neigh.cells[i,1],neigh.cells[i,2]]
+            }
+          }
+          if(rnd<FRAG | is.habitat>0) 
+          {
+            scape[chosen.cell[1],chosen.cell[2]]=1
+          }
+        }  
+      }
+      scape=as.numeric(scape)
+    }
 	}
 	land <- list(numb.cells = numb.cells, cell.size=cell.size, land.shape=land.shape, type=type, bound.condition=bound.condition, cover=cover, scape=scape)
 	class(land) <- "landscape"
@@ -102,36 +139,28 @@ TWoLife <- function (
               as.integer(landscape$bound.condition), #16
               as.integer(landscape$scape), #17
               as.double(tempo), #18
-              as.integer(0), # 19
-              as.double(rep(0, 5000)), # 20
-              as.double(rep(0,5000)), # 21 
               as.integer(out.code)
               ## verificar se precisa definir o tamanho e se isto nao dará problemas (dois ultimos argumentos)
-				  )
-	n <- saida.C[[19]]
-	x <- saida.C[[20]]
-	y <- saida.C[[21]]
-	x <- x[1:n]; y <- y[1:n]  
-	return(data.frame(x=x,y=y))
+              )
 }
 
 # ## Um teste rapido
 #  land <- Landscape(cover=1,type="b",cell.size=100)
 # # ## Uma rodada: coordenadas dos sobreviventes apos t=20
 # teste <- TWoLife(raio=1560,
-# 				 N=10,
+# 				 N=43,
 # 				 AngVis=360,
-# 				 passo=10,
-# 				 move=0,
-# 				 taxa.basal=0.2,
-# 				 taxa.morte=0, 
-# 				 incl.birth=1529.076,
+# 				 passo=88.808,
+# 				 move=1.50,
+# 				 taxa.basal=0.0379,
+# 				 taxa.morte=0.0365, 
+# 				 incl.birth=0,
 # 				 incl.death=0,
-# 				 density.type=1,
+# 				 density.type=0,
 # 				 death.mat=1,
 # 				 landscape=land,
-# 				 tempo=30,
-#          ini.config=1,
+# 				 tempo=2287,
+#          ini.config=0,
 #          out.code=234)
 
 

@@ -106,7 +106,7 @@ setwd(oldpath)
 ####################
 plot.Nt=function(dataSim=sim1,growth,sum.incl=0,land.area=10^8,name="N(t)",radius=0)
 {
-  plot(dataSim[,1,1],dataSim[,2,1],type="n",xlab="t",ylab="N (population size)",ylim=c(0,max(dataSim[,2,])+10),
+  plot(dataSim[,1,1],dataSim[,2,1],type="n",xlab="t",ylab="N (population size)",ylim=c(0,max(c(max(dataSim[,2,])+10),growth*land.area/sum.incl)),
        cex=1.5, main = name)
   for(i in 1:dim(dataSim)[3])
   {

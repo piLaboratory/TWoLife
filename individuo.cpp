@@ -66,7 +66,7 @@ individuo::individuo(double x, double y, int especie, double taxa_morte,
  * Faz uma cópia do indivíduo pai. Recebe um ponteiro dereferenciado (nomeado rhs) e usa isto para
  * Criar novo individuo com os mesmos valores de atributo do pai, exceto
  *  - id (veja \ref individuo::get_id)
- *  - vizinhos (veja \ref individuo::set_vizinhos)
+ *  - vizinhos (veja \ref individuo::set_vizinhos) &&&&&&&& mudou já que os individuos nascem no mesmo local do pai
  *  - tempo para evento (veja \ref individuo::get_tempo) 
  * Usa notacao :atributo(valor) ao inves de atribuicão. 
  * Funcao chamada por paisagem::realiza_acao() quando a ação é um nascimentto
@@ -88,7 +88,8 @@ individuo::individuo(const individuo& rhs)
 	  incl_death(rhs.incl_death),
 	  const_d_matrix(rhs.const_d_matrix),
 	  dens_type(rhs.dens_type),
-	  birth_death_eq(rhs.birth_death_eq)
+	  birth_death_eq(rhs.birth_death_eq),
+      lisViz(rhs.lisViz)
 	  
 { //precisamos dessa chave e da que fecha ela?
 	
@@ -101,30 +102,91 @@ individuo::individuo(const individuo& rhs)
  * - Sorteia o tempo de acordo com as novas taxas
  * As taxas de morte e movimentação no momento fixas. Mas tambem serão funções da densidade de vizinhos (\ref TBI).
  */
-void individuo::update(double dens)
+
+//////////////////////////////   UPDATES   /////////////////////////////////////////////////////
+
+void individuo::updateEXPi()
 {
-  double densi = dens; // densidade inclui n de vizinhos + o individuo
-  if(this->tipo_habitat==0) 
-	{
-		this->birth = 0;
-		// ToDo: Implementar aqui modelo mais geral para mortalidade na matriz. Aqui a denso dependencia é igual à do habitat, só muda a mortalidade basal que é maior que no habitat.
-		this->death = this->const_d_matrix*this->taxa_morte+this->incl_death*densi; 
-	}
-  else 
-	{
-		this->birth = this->taxa_basal-this->incl_birth*densi;
-		this->death = this->taxa_morte+this->incl_death*densi;
-	}
-  if(this->birth<0){this->birth=0;} 
-	
-  this->sorteiaTempo();
+    this->birth = this->taxa_basal;
+    this->death = this->taxa_morte;
+    this->sampleTimeEXP();
 }
 
+void individuo::updateLOGi(double dens)
+{
+    double densi = dens; // densidade inclui n de vizinhos + o individuo
+    this->birth = this->taxa_basal-this->incl_birth*densi;
+    this->death = this->taxa_morte+this->incl_death*densi;
+    if(this->birth<0){this->birth=0;}
+    
+    this->sorteiaTempo();
+}
+
+void individuo::updateRWi()
+{
+    /*
+    if(this->tipo_habitat==0)
+    {
+        this->move = ?????????????;   GENERALIZAR MOVIMENTAÇÃO PELA MATRIZ
+    }
+    else
+    */
+    this->sampleTimeRW();
+}
+
+void individuo::updateSKEXPi()
+{
+    if(this->tipo_habitat==0)
+    {
+        this->birth = 0;
+        // ToDo: Implementar aqui modelo mais geral para mortalidade na matriz. Aqui a denso dependencia é igual à do habitat, só muda a mortalidade basal que é maior que no habitat.
+        this->death = this->const_d_matrix*this->taxa_morte;
+    }
+    else
+    {
+        this->birth = this->taxa_basal;
+        this->death = this->taxa_morte;
+    }
+    this->sorteiaTempo();
+}
+
+void individuo::updateSKLOGi(double dens)
+{
+    double densi = dens; // densidade inclui n de vizinhos + o individuo
+    if(this->tipo_habitat==0)
+    {
+        this->birth = 0;
+        // ToDo: Implementar aqui modelo mais geral para mortalidade na matriz. Aqui a denso dependencia é igual à do habitat, só muda a mortalidade basal que é maior que no habitat.
+        this->death = this->const_d_matrix*this->taxa_morte+this->incl_death*densi;
+    }
+    else
+    {
+        this->birth = this->taxa_basal-this->incl_birth*densi;
+        this->death = this->taxa_morte+this->incl_death*densi;
+    }
+    if(this->birth<0){this->birth=0;}
+    
+    this->sorteiaTempo();
+}
+
+//////////////////////  SAMPLING TIME METHODS  /////////////////////////////////////////
 
 void individuo::sorteiaTempo()
 {
-  this->tempo_evento = rexp(1.0/(this->move+this->birth+this->death));
+    this->tempo_evento = rexp(1.0/(this->move+this->birth+this->death));
 }
+
+void individuo::sampleTimeEXP()
+{
+    this->tempo_evento = rexp(1.0/(this->taxa_basal+this->taxa_morte));
+}
+
+void individuo::sampleTimeRW()
+{
+    this->tempo_evento = rexp(1.0/(this->move));
+}
+
+////////////////
 
 
 int individuo::sorteia_acao()

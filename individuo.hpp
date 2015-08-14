@@ -43,6 +43,8 @@ private:
 	const int dens_type; //forma como a densidade √© calculada (0 = GLOBAL, 1 = LOCAL)
 	//metodos privados
     void sorteiaTempo(); //tempo para ocorrer um evento
+    void sampleTimeEXP();
+    void sampleTimeRW();
 	
 public:
 	/** Construtor da classe individuo. Deve ser chamado pela paisagem para posicionar os 
@@ -88,7 +90,21 @@ public:
 	const unsigned long get_id() const {return this->id;}
 	/** Atualiza a lista de vizinhos deste indivíduo. Deve ser chamada a cada passo de tempo pela \ref paisagem */
     void set_vizinhos (/** Lista dos vizinhos */ const vector<individuo*> lis){this->lisViz=lis;}
-	/** Atualiza o tipo de hábitat no qual o indivíduo está. Deve ser chamada a cada passo de tempo pela \ref paisagem. */
+    /**        **/
+    const vector<individuo*> get_NBHood() const {return this->lisViz;}
+    /**        **/
+    void include_Neighbour(individuo * const agent){
+	    for (unsigned int i = 0; i<this->lisViz.size(); i++)
+		    if (agent == this->lisViz[i])
+			    return; // already included
+		    this->lisViz.push_back(agent);
+    }
+    void drop_Neighbour(individuo * const agent){
+	    for (unsigned int i = 0; i<this->lisViz.size(); i++)
+		    if (agent == this->lisViz[i])
+			    this->lisViz.erase(this->lisViz.begin() + i);
+    }
+    /** Atualiza o tipo de hábitat no qual o indivíduo está. Deve ser chamada a cada passo de tempo pela \ref paisagem. */
     void set_habitat (const int tipo){this->tipo_habitat=tipo;}
 	/** Atualiza a posi√ß√£o X do invid√≠duo */
     void set_x(/** Nova posi√ß√£o */double i){this->x =i;}
@@ -117,7 +133,11 @@ public:
 	/** Atualiza a taxa de nascimento e/ou de morte baseado na densidade de indiv√≠duos dentro do raio de percep√ß√£o e sorteia o tempo
 	 * do pr√≥ximo evento baseado nas taxas de nascimento, morte e movimenta√ß√£o 
 	 * \sa \ref individuo::get_tempo */
-    void update(double dens);
+    void updateEXPi();
+    void updateLOGi(double dens);
+    void updateRWi();
+    void updateSKEXPi();
+    void updateSKLOGi(double dens);
 	/** Faz com que o indiv√≠duo ande um passo, do tamanho passo. A orienta√ß√£o na qual o indiv√≠duo vai andar √© a orienta√ß√£o atual
 	 * (definida no construtor como orientacao) mais um √¢ngulo aleat√≥rio dentro do √¢ngulo de visada (angulo_visada). A defini√ß√£o de um 
 	 * √¢ngulo de visada de 360 graus equivale a uma caminhada aleat√≥ria. */
