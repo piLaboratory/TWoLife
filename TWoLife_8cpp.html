@@ -3,15 +3,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<meta name="generator" content="Doxygen 1.8.7"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
 <title>TWoLife: Referência ao ficheiro TWoLife.cpp</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
-  $(document).ready(function() { searchBox.OnSelectItem(0); });
+  $(document).ready(function() { init_search(); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
@@ -21,7 +22,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td style="padding-left: 0.5em;">
+  <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">TWoLife
    &#160;<span id="projectnumber">0.1</span>
    </div>
@@ -32,7 +33,7 @@
 </table>
 </div>
 <!-- end header part -->
-<!-- Gerado por Doxygen 1.8.7 -->
+<!-- Gerado por Doxygen 1.8.11 -->
 <script type="text/javascript">
 var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
 </script>
@@ -62,7 +63,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>Lista&#160;de&#160;ficheiros</span></a></li>
-      <li><a href="globals.html"><span>Ficheiros&#160;membro</span></a></li>
+      <li><a href="globals.html"><span>Membros&#160;dos&#160;Ficheiros</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -70,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tudo</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Ficheiros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Funções</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variáveis</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Páginas</a></div>
+</div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -91,19 +92,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
 <p>Arquivo usado na integração R/C.  
 <a href="#details">Mais...</a></p>
 <div class="textblock"><code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;fstream&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
 <code>#include &lt;cstdlib&gt;</code><br />
 <code>#include &lt;R.h&gt;</code><br />
 <code>#include &lt;Rmath.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="paisagem_8cpp_source.html">paisagem.cpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="individuo_8cpp_source.html">individuo.cpp</a>&quot;</code><br />
+<code>#include &lt;sstream&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
 </div>
 <p><a href="TWoLife_8cpp_source.html">Ir para o código fonte deste ficheiro.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Funções</h2></td></tr>
-<tr class="memitem:a2047a01d48761e194a51ea4518a3418b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TWoLife_8cpp.html#a2047a01d48761e194a51ea4518a3418b">TWoLife</a> (double *raio, int *N, double *angulo_visada, double *passo, double *move, double *taxa_basal, double *taxa_morte, double *incl_b, double *incl_d, int *numb_cells, double *cell_size, int *land_shape, int *density_type, double *death_mat, int *bound_condition, int *scape, double *tempo, int *nPop, double *x, double *y)</td></tr>
-<tr class="separator:a2047a01d48761e194a51ea4518a3418b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73e4dae41bdacc4f73d4cc36e0bf3026"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TWoLife_8cpp.html#a73e4dae41bdacc4f73d4cc36e0bf3026">TWoLife</a> (double *raio, int *N, double *angulo_visada, double *passo, double *move, double *taxa_basal, double *taxa_morte, double *incl_b, double *incl_d, int *numb_cells, double *cell_size, int *land_shape, int *density_type, double *death_mat, int *inipos, int *bound_condition, int *scape, double *tempo, int *nPop, double *x, double *y, int *outCode)</td></tr>
+<tr class="separator:a73e4dae41bdacc4f73d4cc36e0bf3026"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descrição detalhada</h2>
 <div class="textblock"><p>Arquivo usado na integração R/C. </p>
@@ -111,7 +115,7 @@ Funções</h2></td></tr>
 
 <p>Definido no ficheiro <a class="el" href="TWoLife_8cpp_source.html">TWoLife.cpp</a>.</p>
 </div><h2 class="groupheader">Documentação das funções</h2>
-<a class="anchor" id="a2047a01d48761e194a51ea4518a3418b"></a>
+<a class="anchor" id="a73e4dae41bdacc4f73d4cc36e0bf3026"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -203,6 +207,12 @@ Funções</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>inipos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
           <td class="paramname"><em>bound_condition</em>, </td>
         </tr>
         <tr>
@@ -233,7 +243,13 @@ Funções</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">double *&#160;</td>
-          <td class="paramname"><em>y</em>&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>outCode</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -246,16 +262,16 @@ Funções</h2></td></tr>
 <p>NOTE que funções em C++ precisam ser indicadas como extern "C" para poderem ser acessadas facilmente pela interface do R!</p>
 <p>Veja a descrição da classe <a class="el" href="classpaisagem.html">paisagem</a> para o significado dos parâmetros </p>
 
-<p>Definido na linha <a class="el" href="TWoLife_8cpp_source.html#l00024">24</a> do ficheiro <a class="el" href="TWoLife_8cpp_source.html">TWoLife.cpp</a>.</p>
+<p>Definido na linha <a class="el" href="TWoLife_8cpp_source.html#l00027">27</a> do ficheiro <a class="el" href="TWoLife_8cpp_source.html">TWoLife.cpp</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Gerado em Sexta, 1 de Agosto de 2014 18:27:51 para TWoLife por &#160;<a href="http://www.doxygen.org/index.html">
+Gerado em Quarta, 1 de Junho de 2016 23:23:40 para TWoLife por &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.7
+</a> 1.8.11
 </small></address>
 </body>
 </html>

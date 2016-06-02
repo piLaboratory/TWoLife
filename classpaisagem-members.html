@@ -3,15 +3,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<meta name="generator" content="Doxygen 1.8.7"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
 <title>TWoLife: Lista dos membros</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
-  $(document).ready(function() { searchBox.OnSelectItem(0); });
+  $(document).ready(function() { init_search(); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
@@ -21,7 +22,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td style="padding-left: 0.5em;">
+  <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">TWoLife
    &#160;<span id="projectnumber">0.1</span>
    </div>
@@ -32,7 +33,7 @@
 </table>
 </div>
 <!-- end header part -->
-<!-- Gerado por Doxygen 1.8.7 -->
+<!-- Gerado por Doxygen 1.8.11 -->
 <script type="text/javascript">
 var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
 </script>
@@ -72,7 +73,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tudo</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Ficheiros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Funções</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variáveis</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Páginas</a></div>
+</div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -94,30 +95,32 @@ var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
   <tr><td class="entry"><a class="el" href="classpaisagem.html#aeda3c2bb553a38e0f3d871615fdab4b3">atualiza_habitat</a>(individuo *const i) const </td><td class="entry"><a class="el" href="classpaisagem.html">paisagem</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classpaisagem.html#ab248af64c4b065d58555bd45320646ef">atualiza_vizinhos</a>(individuo *const ind) const </td><td class="entry"><a class="el" href="classpaisagem.html">paisagem</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
   <tr><td class="entry"><a class="el" href="classpaisagem.html#a2673fec3b0cc0763a820dafcfda718ad">boundary_condition</a></td><td class="entry"><a class="el" href="classpaisagem.html">paisagem</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classpaisagem.html#a2d15cca4b93d2d893288ba34ad9338d4">calcDist</a>(const individuo *a1, const individuo *a2) const </td><td class="entry"><a class="el" href="classpaisagem.html">paisagem</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classpaisagem.html#ac82da642a5b5a2abbac6f88496b0a3f6">cell_size</a></td><td class="entry"><a class="el" href="classpaisagem.html">paisagem</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classpaisagem.html#a2246c314bc68b45f9d96f47dc29c067d">conta_especies</a>() const </td><td class="entry"><a class="el" href="classpaisagem.html">paisagem</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classpaisagem.html#a7554d7a55e6f76da4ba731938eadfb59">conta_individuos</a>() const </td><td class="entry"><a class="el" href="classpaisagem.html">paisagem</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classpaisagem.html#a5cc255b1efad7ad79714fa0fc16951e3">get_individuos</a>(int i) const </td><td class="entry"><a class="el" href="classpaisagem.html">paisagem</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classpaisagem.html#a637e0502de96bcd635a04e60c595709e">get_tamanho</a>() const </td><td class="entry"><a class="el" href="classpaisagem.html">paisagem</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classpaisagem.html#a49a6ab78f075b1678bba10529ecbafcc">calcDensity</a>(const individuo *ind1) const </td><td class="entry"><a class="el" href="classpaisagem.html">paisagem</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classpaisagem.html#a2d15cca4b93d2d893288ba34ad9338d4">calcDist</a>(const individuo *a1, const individuo *a2) const </td><td class="entry"><a class="el" href="classpaisagem.html">paisagem</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classpaisagem.html#ac82da642a5b5a2abbac6f88496b0a3f6">cell_size</a></td><td class="entry"><a class="el" href="classpaisagem.html">paisagem</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classpaisagem.html#a2246c314bc68b45f9d96f47dc29c067d">conta_especies</a>() const </td><td class="entry"><a class="el" href="classpaisagem.html">paisagem</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classpaisagem.html#a7554d7a55e6f76da4ba731938eadfb59">conta_individuos</a>() const </td><td class="entry"><a class="el" href="classpaisagem.html">paisagem</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classpaisagem.html#a5cc255b1efad7ad79714fa0fc16951e3">get_individuos</a>(int i) const </td><td class="entry"><a class="el" href="classpaisagem.html">paisagem</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classpaisagem.html#a637e0502de96bcd635a04e60c595709e">get_tamanho</a>() const </td><td class="entry"><a class="el" href="classpaisagem.html">paisagem</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classpaisagem.html#a435312cc40318e7e93ec3b9c5a9b366c">initialPos</a></td><td class="entry"><a class="el" href="classpaisagem.html">paisagem</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classpaisagem.html#a63dc79b80f3f0956341c212c20d0e48c">landscape</a></td><td class="entry"><a class="el" href="classpaisagem.html">paisagem</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
   <tr><td class="entry"><a class="el" href="classpaisagem.html#a9bda65cd2351740891ca6dfa1591d3c7">landscape_shape</a></td><td class="entry"><a class="el" href="classpaisagem.html">paisagem</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classpaisagem.html#abc8d616726e81f3cb3bcc411a2b4c099">N</a></td><td class="entry"><a class="el" href="classpaisagem.html">paisagem</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
   <tr><td class="entry"><a class="el" href="classpaisagem.html#acce5293db8f614d452aa6c1633de64fb">nascido</a>(individuo *const ind) const </td><td class="entry"><a class="el" href="classpaisagem.html">paisagem</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classpaisagem.html#a47cd91f2f9e82c24b365465872d4cf15">numb_cells</a></td><td class="entry"><a class="el" href="classpaisagem.html">paisagem</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classpaisagem.html#a5e3c243e8ef8e2fd8d22f0796a6e822f">paisagem</a>(const double raio, const int N, const double angulo_visada, const double passo, const double move, const double taxa_basal, const double taxa_morte, const double incl_b, const double incl_d, const int numb_cells, const double cell_size, const int land_shape, const int density_type, const double death_mat, const int bound_condition, int scape[])</td><td class="entry"><a class="el" href="classpaisagem.html">paisagem</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classpaisagem.html#aef89d86e50177f7c22eac431996c29b1">paisagem</a>(const double raio, const int N, const double angulo_visada, const double passo, const double move, const double taxa_basal, const double taxa_morte, const double incl_b, const double incl_d, const int numb_cells, const double cell_size, const int land_shape, const int density_type, const double death_mat, const int inipos, const int bound_condition, int scape[])</td><td class="entry"><a class="el" href="classpaisagem.html">paisagem</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classpaisagem.html#a1b36f3981f5f3ae753c0f0a60578ce26">popIndividuos</a></td><td class="entry"><a class="el" href="classpaisagem.html">paisagem</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
   <tr><td class="entry"><a class="el" href="classpaisagem.html#ad7dbebaf216655b651e6515474540d92">populating</a>(const double raio, const int N, const double angulo_visada, const double passo, const double move, const double taxa_basal, const double taxa_morte, const double incl_b, const double incl_d, const double death_m, const int dens_type)</td><td class="entry"><a class="el" href="classpaisagem.html">paisagem</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classpaisagem.html#a12d996076784af7dcd19fae84116c695">realiza_acao</a>()</td><td class="entry"><a class="el" href="classpaisagem.html">paisagem</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classpaisagem.html#a2efdae30e8e01fd1f41bcad274b6e5fb">realiza_acao</a>(int lower)</td><td class="entry"><a class="el" href="classpaisagem.html">paisagem</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classpaisagem.html#a0fcf61a6fbca80bc071340061bd00a16">tamanho</a></td><td class="entry"><a class="el" href="classpaisagem.html">paisagem</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classpaisagem.html#af7064eff22bf68db82ad58120cfed49d">tempo_do_mundo</a></td><td class="entry"><a class="el" href="classpaisagem.html">paisagem</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classpaisagem.html#a121c9da3d35c7412f4959ed5516e5e99">update</a>()</td><td class="entry"><a class="el" href="classpaisagem.html">paisagem</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classpaisagem.html#a5627ed64801019ccf2c28b70f8c48957">update</a>()</td><td class="entry"><a class="el" href="classpaisagem.html">paisagem</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Gerado em Sexta, 1 de Agosto de 2014 18:27:51 para TWoLife por &#160;<a href="http://www.doxygen.org/index.html">
+Gerado em Quarta, 1 de Junho de 2016 23:23:40 para TWoLife por &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.7
+</a> 1.8.11
 </small></address>
 </body>
 </html>
