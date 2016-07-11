@@ -114,8 +114,8 @@ void individuo::update(double dens)
 	{
 		this->birth = this->taxa_basal-this->incl_birth*densi;
 		this->death = this->taxa_morte+this->incl_death*densi;
+		if(this->birth<0){this->birth=0;}
 	}
-  if(this->birth<0){this->birth=0;} 
 	
   this->sorteiaTempo();
 }
