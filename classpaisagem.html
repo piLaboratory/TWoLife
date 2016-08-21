@@ -3,15 +3,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<meta name="generator" content="Doxygen 1.8.7"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
 <title>TWoLife: Referência à classe paisagem</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
-  $(document).ready(function() { searchBox.OnSelectItem(0); });
+  $(document).ready(function() { init_search(); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
@@ -21,7 +22,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td style="padding-left: 0.5em;">
+  <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">TWoLife
    &#160;<span id="projectnumber">0.1</span>
    </div>
@@ -32,7 +33,7 @@
 </table>
 </div>
 <!-- end header part -->
-<!-- Gerado por Doxygen 1.8.7 -->
+<!-- Gerado por Doxygen 1.8.11 -->
 <script type="text/javascript">
 var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
 </script>
@@ -72,7 +73,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tudo</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Ficheiros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Funções</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variáveis</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Páginas</a></div>
+</div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -101,10 +102,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Membros públicos</h2></td></tr>
-<tr class="memitem:a5e3c243e8ef8e2fd8d22f0796a6e822f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpaisagem.html#a5e3c243e8ef8e2fd8d22f0796a6e822f">paisagem</a> (const double raio, const int <a class="el" href="classpaisagem.html#abc8d616726e81f3cb3bcc411a2b4c099">N</a>, const double angulo_visada, const double passo, const double move, const double taxa_basal, const double taxa_morte, const double incl_b, const double incl_d, const int <a class="el" href="classpaisagem.html#a47cd91f2f9e82c24b365465872d4cf15">numb_cells</a>, const double <a class="el" href="classpaisagem.html#ac82da642a5b5a2abbac6f88496b0a3f6">cell_size</a>, const int land_shape, const int density_type, const double death_mat, const int bound_condition, int scape[])</td></tr>
-<tr class="separator:a5e3c243e8ef8e2fd8d22f0796a6e822f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a121c9da3d35c7412f4959ed5516e5e99"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpaisagem.html#a121c9da3d35c7412f4959ed5516e5e99">update</a> ()</td></tr>
-<tr class="separator:a121c9da3d35c7412f4959ed5516e5e99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef89d86e50177f7c22eac431996c29b1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpaisagem.html#aef89d86e50177f7c22eac431996c29b1">paisagem</a> (const double raio, const int <a class="el" href="classpaisagem.html#abc8d616726e81f3cb3bcc411a2b4c099">N</a>, const double angulo_visada, const double passo, const double move, const double taxa_basal, const double taxa_morte, const double incl_b, const double incl_d, const int <a class="el" href="classpaisagem.html#a47cd91f2f9e82c24b365465872d4cf15">numb_cells</a>, const double <a class="el" href="classpaisagem.html#ac82da642a5b5a2abbac6f88496b0a3f6">cell_size</a>, const int land_shape, const int density_type, const double death_mat, const int inipos, const int bound_condition, int scape[])</td></tr>
+<tr class="separator:aef89d86e50177f7c22eac431996c29b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5627ed64801019ccf2c28b70f8c48957"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpaisagem.html#a5627ed64801019ccf2c28b70f8c48957">update</a> ()</td></tr>
+<tr class="separator:a5627ed64801019ccf2c28b70f8c48957"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2efdae30e8e01fd1f41bcad274b6e5fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpaisagem.html#a2efdae30e8e01fd1f41bcad274b6e5fb">realiza_acao</a> (int lower)</td></tr>
+<tr class="separator:a2efdae30e8e01fd1f41bcad274b6e5fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7554d7a55e6f76da4ba731938eadfb59"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpaisagem.html#a7554d7a55e6f76da4ba731938eadfb59">conta_individuos</a> () const </td></tr>
 <tr class="separator:a7554d7a55e6f76da4ba731938eadfb59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5cc255b1efad7ad79714fa0fc16951e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classindividuo.html">individuo</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpaisagem.html#a5cc255b1efad7ad79714fa0fc16951e3">get_individuos</a> (int i) const </td></tr>
@@ -115,6 +118,8 @@ Membros públicos</h2></td></tr>
 <tr class="separator:a637e0502de96bcd635a04e60c595709e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d15cca4b93d2d893288ba34ad9338d4"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpaisagem.html#a2d15cca4b93d2d893288ba34ad9338d4">calcDist</a> (const <a class="el" href="classindividuo.html">individuo</a> *a1, const <a class="el" href="classindividuo.html">individuo</a> *a2) const </td></tr>
 <tr class="separator:a2d15cca4b93d2d893288ba34ad9338d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49a6ab78f075b1678bba10529ecbafcc"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpaisagem.html#a49a6ab78f075b1678bba10529ecbafcc">calcDensity</a> (const <a class="el" href="classindividuo.html">individuo</a> *ind1) const </td></tr>
+<tr class="separator:a49a6ab78f075b1678bba10529ecbafcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acce5293db8f614d452aa6c1633de64fb"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpaisagem.html#acce5293db8f614d452aa6c1633de64fb">nascido</a> (<a class="el" href="classindividuo.html">individuo</a> *const ind) const </td></tr>
 <tr class="separator:acce5293db8f614d452aa6c1633de64fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -131,8 +136,6 @@ Membros privados</h2></td></tr>
 <tr class="separator:ab248af64c4b065d58555bd45320646ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeda3c2bb553a38e0f3d871615fdab4b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpaisagem.html#aeda3c2bb553a38e0f3d871615fdab4b3">atualiza_habitat</a> (<a class="el" href="classindividuo.html">individuo</a> *const i) const </td></tr>
 <tr class="separator:aeda3c2bb553a38e0f3d871615fdab4b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12d996076784af7dcd19fae84116c695"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpaisagem.html#a12d996076784af7dcd19fae84116c695">realiza_acao</a> ()</td></tr>
-<tr class="separator:a12d996076784af7dcd19fae84116c695"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a0d0a8af00b621ae073170d415d9a28"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpaisagem.html#a6a0d0a8af00b621ae073170d415d9a28">apply_boundary</a> (<a class="el" href="classindividuo.html">individuo</a> *const ind)</td></tr>
 <tr class="separator:a6a0d0a8af00b621ae073170d415d9a28"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -154,14 +157,16 @@ Atributos Privados</h2></td></tr>
 <tr class="separator:a2673fec3b0cc0763a820dafcfda718ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a63dc79b80f3f0956341c212c20d0e48c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpaisagem.html#a63dc79b80f3f0956341c212c20d0e48c">landscape</a> [<a class="el" href="paisagem_8hpp.html#a4bf6a1e750d841477978a43a04c4f062">dim</a>][<a class="el" href="paisagem_8hpp.html#a4bf6a1e750d841477978a43a04c4f062">dim</a>]</td></tr>
 <tr class="separator:a63dc79b80f3f0956341c212c20d0e48c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a435312cc40318e7e93ec3b9c5a9b366c"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpaisagem.html#a435312cc40318e7e93ec3b9c5a9b366c">initialPos</a></td></tr>
+<tr class="separator:a435312cc40318e7e93ec3b9c5a9b366c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descrição detalhada</h2>
 <div class="textblock"><p>A classe paisagem implementa o mundo onde os agentes estão. </p>
-<p>Esta classe é responsável pela criação dos indivíduos, por manter o relógio do mundo, e por estabelecer a comunicação entre os indivíduos </p><dl class="section see"><dt>Veja também</dt><dd><a class="el" href="classpaisagem.html#a121c9da3d35c7412f4959ed5516e5e99">paisagem::update</a> </dd></dl>
+<p>Esta classe é responsável pela criação dos indivíduos, por manter o relógio do mundo, e por estabelecer a comunicação entre os indivíduos </p><dl class="section see"><dt>Veja também</dt><dd><a class="el" href="classpaisagem.html#a5627ed64801019ccf2c28b70f8c48957">paisagem::update</a> </dd></dl>
 
-<p>Definido na linha <a class="el" href="paisagem_8hpp_source.html#l00016">16</a> do ficheiro <a class="el" href="paisagem_8hpp_source.html">paisagem.hpp</a>.</p>
+<p>Definido na linha <a class="el" href="paisagem_8hpp_source.html#l00017">17</a> do ficheiro <a class="el" href="paisagem_8hpp_source.html">paisagem.hpp</a>.</p>
 </div><h2 class="groupheader">Documentação dos Construtores &amp; Destrutor</h2>
-<a class="anchor" id="a5e3c243e8ef8e2fd8d22f0796a6e822f"></a>
+<a class="anchor" id="aef89d86e50177f7c22eac431996c29b1"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -253,6 +258,12 @@ Atributos Privados</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>inipos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
           <td class="paramname"><em>bound_condition</em>, </td>
         </tr>
         <tr>
@@ -285,6 +296,7 @@ Atributos Privados</h2></td></tr>
     <tr><td class="paramname">land_shape</td><td>Forma da paisagem </td></tr>
     <tr><td class="paramname">density_type</td><td>Tipo de densidade ("g" = GLOBAL, "l" = LOCAL) </td></tr>
     <tr><td class="paramname">death_mat</td><td>Constante de acrescimo na taxa basal de morte na matriz em relação à essa taxa basal no habitat </td></tr>
+    <tr><td class="paramname">inipos</td><td>How individuals are initially set into the landscpae * </td></tr>
     <tr><td class="paramname">bound_condition</td><td>Condição de contorno </td></tr>
     <tr><td class="paramname">scape</td><td>Vetor de cobertura de habitat na paisagem </td></tr>
   </table>
@@ -318,7 +330,7 @@ Atributos Privados</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definido na linha <a class="el" href="paisagem_8cpp_source.html#l00151">151</a> do ficheiro <a class="el" href="paisagem_8cpp_source.html">paisagem.cpp</a>.</p>
+<p>Definido na linha <a class="el" href="paisagem_8cpp_source.html#l00203">203</a> do ficheiro <a class="el" href="paisagem_8cpp_source.html">paisagem.cpp</a>.</p>
 
 </div>
 </div>
@@ -344,7 +356,7 @@ Atributos Privados</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definido na linha <a class="el" href="paisagem_8cpp_source.html#l00264">264</a> do ficheiro <a class="el" href="paisagem_8cpp_source.html">paisagem.cpp</a>.</p>
+<p>Definido na linha <a class="el" href="paisagem_8cpp_source.html#l00430">430</a> do ficheiro <a class="el" href="paisagem_8cpp_source.html">paisagem.cpp</a>.</p>
 
 </div>
 </div>
@@ -370,7 +382,25 @@ Atributos Privados</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definido na linha <a class="el" href="paisagem_8cpp_source.html#l00237">237</a> do ficheiro <a class="el" href="paisagem_8cpp_source.html">paisagem.cpp</a>.</p>
+<p>Definido na linha <a class="el" href="paisagem_8cpp_source.html#l00403">403</a> do ficheiro <a class="el" href="paisagem_8cpp_source.html">paisagem.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a49a6ab78f075b1678bba10529ecbafcc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double paisagem::calcDensity </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classindividuo.html">individuo</a> *&#160;</td>
+          <td class="paramname"><em>ind1</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definido na linha <a class="el" href="paisagem_8cpp_source.html#l00285">285</a> do ficheiro <a class="el" href="paisagem_8cpp_source.html">paisagem.cpp</a>.</p>
 
 </div>
 </div>
@@ -398,7 +428,7 @@ Atributos Privados</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definido na linha <a class="el" href="paisagem_8cpp_source.html#l00210">210</a> do ficheiro <a class="el" href="paisagem_8cpp_source.html">paisagem.cpp</a>.</p>
+<p>Definido na linha <a class="el" href="paisagem_8cpp_source.html#l00262">262</a> do ficheiro <a class="el" href="paisagem_8cpp_source.html">paisagem.cpp</a>.</p>
 
 </div>
 </div>
@@ -440,7 +470,7 @@ Atributos Privados</h2></td></tr>
 </div><div class="memdoc">
 <p>Retorna o número total de indivíduos na paisagem </p>
 
-<p>Definido na linha <a class="el" href="paisagem_8hpp_source.html#l00106">106</a> do ficheiro <a class="el" href="paisagem_8hpp_source.html">paisagem.hpp</a>.</p>
+<p>Definido na linha <a class="el" href="paisagem_8hpp_source.html#l00112">112</a> do ficheiro <a class="el" href="paisagem_8hpp_source.html">paisagem.hpp</a>.</p>
 
 </div>
 </div>
@@ -467,7 +497,7 @@ Atributos Privados</h2></td></tr>
 </div><div class="memdoc">
 <p>Retorna um vetor contendo todos os indivíduos na paisagem </p>
 
-<p>Definido na linha <a class="el" href="paisagem_8hpp_source.html#l00108">108</a> do ficheiro <a class="el" href="paisagem_8hpp_source.html">paisagem.hpp</a>.</p>
+<p>Definido na linha <a class="el" href="paisagem_8hpp_source.html#l00114">114</a> do ficheiro <a class="el" href="paisagem_8hpp_source.html">paisagem.hpp</a>.</p>
 
 </div>
 </div>
@@ -493,7 +523,7 @@ Atributos Privados</h2></td></tr>
 </div><div class="memdoc">
 <p>Retorna o tamanho da paisagem (definido no construtor) </p>
 
-<p>Definido na linha <a class="el" href="paisagem_8hpp_source.html#l00112">112</a> do ficheiro <a class="el" href="paisagem_8hpp_source.html">paisagem.hpp</a>.</p>
+<p>Definido na linha <a class="el" href="paisagem_8hpp_source.html#l00118">118</a> do ficheiro <a class="el" href="paisagem_8hpp_source.html">paisagem.hpp</a>.</p>
 
 </div>
 </div>
@@ -520,7 +550,7 @@ Atributos Privados</h2></td></tr>
 </div><div class="memdoc">
 <p>Retorna false se o indivíduo estava no ambiente no passod de tempo 0, e true se ele nasceu durante a simulação. Usado para pintar os indivíduos nascidos de um cor diferente dos individuos originais </p>
 
-<p>Definido na linha <a class="el" href="paisagem_8hpp_source.html#l00118">118</a> do ficheiro <a class="el" href="paisagem_8hpp_source.html">paisagem.hpp</a>.</p>
+<p>Definido na linha <a class="el" href="paisagem_8hpp_source.html#l00126">126</a> do ficheiro <a class="el" href="paisagem_8hpp_source.html">paisagem.hpp</a>.</p>
 
 </div>
 </div>
@@ -620,55 +650,48 @@ Atributos Privados</h2></td></tr>
     <tr><td class="paramname">incl_b</td><td>Inclinação da denso-dependência na natalidade </td></tr>
     <tr><td class="paramname">incl_d</td><td>Inclinação da denso-dependência na mortalidade </td></tr>
     <tr><td class="paramname">death_m</td><td>Constante de acrescimo na taxa basal de morte na matriz em relação à essa taxa basal no habitat </td></tr>
-    <tr><td class="paramname">dens_type</td><td>Tipo de densidade ("g" = GLOBAL, "l" = LOCAL) </td></tr>
+    <tr><td class="paramname">dens_type</td><td>Tipo de densidade (0 = GLOBAL, 1 = LOCAL) </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definido na linha <a class="el" href="paisagem_8cpp_source.html#l00036">36</a> do ficheiro <a class="el" href="paisagem_8cpp_source.html">paisagem.cpp</a>.</p>
+<p>Definido na linha <a class="el" href="paisagem_8cpp_source.html#l00037">37</a> do ficheiro <a class="el" href="paisagem_8cpp_source.html">paisagem.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a12d996076784af7dcd19fae84116c695"></a>
+<a class="anchor" id="a2efdae30e8e01fd1f41bcad274b6e5fb"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void paisagem::realiza_acao </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>lower</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Definido na linha <a class="el" href="paisagem_8cpp_source.html#l00109">109</a> do ficheiro <a class="el" href="paisagem_8cpp_source.html">paisagem.cpp</a>.</p>
+<p>Definido na linha <a class="el" href="paisagem_8cpp_source.html#l00151">151</a> do ficheiro <a class="el" href="paisagem_8cpp_source.html">paisagem.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a121c9da3d35c7412f4959ed5516e5e99"></a>
+<a class="anchor" id="a5627ed64801019ccf2c28b70f8c48957"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void paisagem::update </td>
+          <td class="memname">int paisagem::update </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Atualiza as variáveis de todos os indivíduos (ver <a class="el" href="classindividuo.html#af0f42fea861cc82bec2981620f0a1749">individuo::set_vizinhos</a>, <a class="el" href="classindividuo.html#ad0569613107a4e3ed3730d6834205dd9">individuo::set_habitat</a> e <a class="el" href="classindividuo.html#a5a11304ccae3090501d7b1e5eaf733a6" title="Método de atualização dos indivíduos Esta função é a camada de atualização dos indivíduos A cada exec...">individuo::update</a>) e escolhe uma ação para ser executada. Executa a ação e atualiza o tempo do mundo de acordo </p><dl class="section see"><dt>Veja também</dt><dd><a class="el" href="index.html#Introdução">Introdução</a> </dd></dl>
+<p>Atualiza as variáveis de todos os indivíduos (ver <a class="el" href="classindividuo.html#af0f42fea861cc82bec2981620f0a1749">individuo::set_vizinhos</a>, <a class="el" href="classindividuo.html#ad0569613107a4e3ed3730d6834205dd9">individuo::set_habitat</a> e <a class="el" href="classindividuo.html#ad675dff08da51768321256c4916db891" title="Método de atualização dos indivíduos Esta função é a camada de atualização dos indivíduos A cada exec...">individuo::update</a>) e escolhe uma ação para ser executada. Executa a ação e atualiza o tempo do mundo de acordo </p><dl class="section see"><dt>Veja também</dt><dd><a class="el" href="index.html#Introdução">Introdução</a> </dd></dl>
 
-<p>Definido na linha <a class="el" href="paisagem_8cpp_source.html#l00064">64</a> do ficheiro <a class="el" href="paisagem_8cpp_source.html">paisagem.cpp</a>.</p>
+<p>Definido na linha <a class="el" href="paisagem_8cpp_source.html#l00113">113</a> do ficheiro <a class="el" href="paisagem_8cpp_source.html">paisagem.cpp</a>.</p>
 
 </div>
 </div>
@@ -691,7 +714,7 @@ Atributos Privados</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definido na linha <a class="el" href="paisagem_8hpp_source.html#l00027">27</a> do ficheiro <a class="el" href="paisagem_8hpp_source.html">paisagem.hpp</a>.</p>
+<p>Definido na linha <a class="el" href="paisagem_8hpp_source.html#l00028">28</a> do ficheiro <a class="el" href="paisagem_8hpp_source.html">paisagem.hpp</a>.</p>
 
 </div>
 </div>
@@ -713,7 +736,29 @@ Atributos Privados</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definido na linha <a class="el" href="paisagem_8hpp_source.html#l00025">25</a> do ficheiro <a class="el" href="paisagem_8hpp_source.html">paisagem.hpp</a>.</p>
+<p>Definido na linha <a class="el" href="paisagem_8hpp_source.html#l00026">26</a> do ficheiro <a class="el" href="paisagem_8hpp_source.html">paisagem.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a435312cc40318e7e93ec3b9c5a9b366c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int paisagem::initialPos</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definido na linha <a class="el" href="paisagem_8hpp_source.html#l00030">30</a> do ficheiro <a class="el" href="paisagem_8hpp_source.html">paisagem.hpp</a>.</p>
 
 </div>
 </div>
@@ -735,7 +780,7 @@ Atributos Privados</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definido na linha <a class="el" href="paisagem_8hpp_source.html#l00028">28</a> do ficheiro <a class="el" href="paisagem_8hpp_source.html">paisagem.hpp</a>.</p>
+<p>Definido na linha <a class="el" href="paisagem_8hpp_source.html#l00029">29</a> do ficheiro <a class="el" href="paisagem_8hpp_source.html">paisagem.hpp</a>.</p>
 
 </div>
 </div>
@@ -757,7 +802,7 @@ Atributos Privados</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definido na linha <a class="el" href="paisagem_8hpp_source.html#l00026">26</a> do ficheiro <a class="el" href="paisagem_8hpp_source.html">paisagem.hpp</a>.</p>
+<p>Definido na linha <a class="el" href="paisagem_8hpp_source.html#l00027">27</a> do ficheiro <a class="el" href="paisagem_8hpp_source.html">paisagem.hpp</a>.</p>
 
 </div>
 </div>
@@ -779,7 +824,7 @@ Atributos Privados</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definido na linha <a class="el" href="paisagem_8hpp_source.html#l00022">22</a> do ficheiro <a class="el" href="paisagem_8hpp_source.html">paisagem.hpp</a>.</p>
+<p>Definido na linha <a class="el" href="paisagem_8hpp_source.html#l00023">23</a> do ficheiro <a class="el" href="paisagem_8hpp_source.html">paisagem.hpp</a>.</p>
 
 </div>
 </div>
@@ -801,7 +846,7 @@ Atributos Privados</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definido na linha <a class="el" href="paisagem_8hpp_source.html#l00024">24</a> do ficheiro <a class="el" href="paisagem_8hpp_source.html">paisagem.hpp</a>.</p>
+<p>Definido na linha <a class="el" href="paisagem_8hpp_source.html#l00025">25</a> do ficheiro <a class="el" href="paisagem_8hpp_source.html">paisagem.hpp</a>.</p>
 
 </div>
 </div>
@@ -823,7 +868,7 @@ Atributos Privados</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definido na linha <a class="el" href="paisagem_8hpp_source.html#l00023">23</a> do ficheiro <a class="el" href="paisagem_8hpp_source.html">paisagem.hpp</a>.</p>
+<p>Definido na linha <a class="el" href="paisagem_8hpp_source.html#l00024">24</a> do ficheiro <a class="el" href="paisagem_8hpp_source.html">paisagem.hpp</a>.</p>
 
 </div>
 </div>
@@ -845,7 +890,7 @@ Atributos Privados</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definido na linha <a class="el" href="paisagem_8hpp_source.html#l00021">21</a> do ficheiro <a class="el" href="paisagem_8hpp_source.html">paisagem.hpp</a>.</p>
+<p>Definido na linha <a class="el" href="paisagem_8hpp_source.html#l00022">22</a> do ficheiro <a class="el" href="paisagem_8hpp_source.html">paisagem.hpp</a>.</p>
 
 </div>
 </div>
@@ -860,7 +905,7 @@ Atributos Privados</h2></td></tr>
 </div><div class="memdoc">
 <p>Contador de quanto tempo já transcorreu no mundo simulado </p>
 
-<p>Definido na linha <a class="el" href="paisagem_8hpp_source.html#l00064">64</a> do ficheiro <a class="el" href="paisagem_8hpp_source.html">paisagem.hpp</a>.</p>
+<p>Definido na linha <a class="el" href="paisagem_8hpp_source.html#l00067">67</a> do ficheiro <a class="el" href="paisagem_8hpp_source.html">paisagem.hpp</a>.</p>
 
 </div>
 </div>
@@ -871,9 +916,9 @@ Atributos Privados</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Gerado em Sexta, 1 de Agosto de 2014 18:27:51 para TWoLife por &#160;<a href="http://www.doxygen.org/index.html">
+Gerado em Quarta, 1 de Junho de 2016 23:23:40 para TWoLife por &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.7
+</a> 1.8.11
 </small></address>
 </body>
 </html>

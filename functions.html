@@ -3,15 +3,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<meta name="generator" content="Doxygen 1.8.7"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
 <title>TWoLife: Componentes membro</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
-  $(document).ready(function() { searchBox.OnSelectItem(0); });
+  $(document).ready(function() { init_search(); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
@@ -21,7 +22,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td style="padding-left: 0.5em;">
+  <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">TWoLife
    &#160;<span id="projectnumber">0.1</span>
    </div>
@@ -32,7 +33,7 @@
 </table>
 </div>
 <!-- end header part -->
-<!-- Gerado por Doxygen 1.8.7 -->
+<!-- Gerado por Doxygen 1.8.11 -->
 <script type="text/javascript">
 var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
 </script>
@@ -103,7 +104,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tudo</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Ficheiros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Funções</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variáveis</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Páginas</a></div>
+</div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -148,6 +149,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
 
 
 <h3><a class="anchor" id="index_c"></a>- c -</h3><ul>
+<li>calcDensity()
+: <a class="el" href="classpaisagem.html#a49a6ab78f075b1678bba10529ecbafcc">paisagem</a>
+</li>
 <li>calcDist()
 : <a class="el" href="classpaisagem.html#a2d15cca4b93d2d893288ba34ad9338d4">paisagem</a>
 </li>
@@ -227,6 +231,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
 <li>individuo()
 : <a class="el" href="classindividuo.html#aeb8bddd8e876e92be22ccbda4c144401">individuo</a>
 </li>
+<li>initialPos
+: <a class="el" href="classpaisagem.html#a435312cc40318e7e93ec3b9c5a9b366c">paisagem</a>
+</li>
 </ul>
 
 
@@ -260,6 +267,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
 <li>nascido()
 : <a class="el" href="classpaisagem.html#acce5293db8f614d452aa6c1633de64fb">paisagem</a>
 </li>
+<li>NBHood_size()
+: <a class="el" href="classindividuo.html#a949dad06d9f56816de20abd6f2f4c2fb">individuo</a>
+</li>
 <li>numb_cells
 : <a class="el" href="classpaisagem.html#a47cd91f2f9e82c24b365465872d4cf15">paisagem</a>
 </li>
@@ -275,7 +285,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
 
 <h3><a class="anchor" id="index_p"></a>- p -</h3><ul>
 <li>paisagem()
-: <a class="el" href="classpaisagem.html#a5e3c243e8ef8e2fd8d22f0796a6e822f">paisagem</a>
+: <a class="el" href="classpaisagem.html#aef89d86e50177f7c22eac431996c29b1">paisagem</a>
 </li>
 <li>passo
 : <a class="el" href="classindividuo.html#a7c21d08b52fa543ead994489b414974f">individuo</a>
@@ -294,7 +304,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
 : <a class="el" href="classindividuo.html#a0a25771dbaa69b26961c6b1c679d3a31">individuo</a>
 </li>
 <li>realiza_acao()
-: <a class="el" href="classpaisagem.html#a12d996076784af7dcd19fae84116c695">paisagem</a>
+: <a class="el" href="classpaisagem.html#a2efdae30e8e01fd1f41bcad274b6e5fb">paisagem</a>
+</li>
+<li>reset_id()
+: <a class="el" href="classindividuo.html#ac6f279a037f4f825f4d05178cf709140">individuo</a>
 </li>
 </ul>
 
@@ -348,8 +361,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
 
 <h3><a class="anchor" id="index_u"></a>- u -</h3><ul>
 <li>update()
-: <a class="el" href="classindividuo.html#a5a11304ccae3090501d7b1e5eaf733a6">individuo</a>
-, <a class="el" href="classpaisagem.html#a121c9da3d35c7412f4959ed5516e5e99">paisagem</a>
+: <a class="el" href="classindividuo.html#ad675dff08da51768321256c4916db891">individuo</a>
+, <a class="el" href="classpaisagem.html#a5627ed64801019ccf2c28b70f8c48957">paisagem</a>
 </li>
 </ul>
 
@@ -376,9 +389,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Gerado em Sexta, 1 de Agosto de 2014 18:27:51 para TWoLife por &#160;<a href="http://www.doxygen.org/index.html">
+Gerado em Quarta, 1 de Junho de 2016 23:23:40 para TWoLife por &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.7
+</a> 1.8.11
 </small></address>
 </body>
 </html>
