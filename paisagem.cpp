@@ -443,3 +443,27 @@ void paisagem::atualiza_habitat(individuo * const ind) const
 	ind->set_habitat(this->landscape[hx][hy]);
 }
 
+void paisagem::atualiza_patch(individuo * const ind) const
+{
+	int hx,hy;
+	hx= (double)ind->get_x()/this->cell_size+this->numb_cells/2;
+	hy= ((double)ind->get_y()/this->cell_size)*(-1)+this->numb_cells/2;
+	if(this->patches[hx][hy] != ind->get_patch())
+		ind->set_patch(this->patches[hx][hy]);
+}
+
+void paisagem::find_patches(int x, int y, int current_label)
+{
+  if (x < 0 || x == this->numb_cells) return; // out of bounds
+  if (y < 0 || y == this->numb_cells) return; // out of bounds
+  if (this->patches[x][y] || !this->landscape[x][y]) return; // already labeled or not marked with 1 in m
+
+  // mark the current cell
+  this->patches[x][y] = current_label;
+
+  // recursively mark the neighbors
+  find_patches(x + 1, y, current_label);
+  find_patches(x, y + 1, current_label);
+  find_patches(x - 1, y, current_label);
+  find_patches(x, y - 1, current_label);
+}
