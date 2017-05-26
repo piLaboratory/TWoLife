@@ -31,6 +31,12 @@ paisagem::paisagem(double raio, int N, double angulo_visada, double passo, doubl
 			if (!this->patches[k][l] && this->landscape[k][l]) find_patches(k, l, ++component);
 	this->numb_patches = component;
 		
+	this->patch_area = new int[this->numb_patches+1];
+	
+	for(int i = 0; i < this->numb_cells; i++)
+		for(int j = 0; j < this->numb_cells; j++)
+			this->patch_area[patches[i][j]] += 1;
+		
 	// Calculo do raio dependendo do tipo de densidade. 0 = global, 1 = local (raio), 2 = kernel.
 	if(density_type==0)
 	{
