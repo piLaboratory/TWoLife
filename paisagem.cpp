@@ -461,8 +461,7 @@ void paisagem::atualiza_patch(individuo * const ind) const
 	int hx,hy;
 	hx= (double)ind->get_x()/this->cell_size+this->numb_cells/2;
 	hy= ((double)ind->get_y()/this->cell_size)*(-1)+this->numb_cells/2;
-	if(this->patches[hx][hy] != ind->get_patch())
-		ind->set_patch(this->patches[hx][hy]);
+	ind->set_patch(this->patches[hx][hy]);
 }
 
 void paisagem::find_patches(int x, int y, int current_label)
