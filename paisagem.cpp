@@ -32,6 +32,9 @@ paisagem::paisagem(double raio, int N, double angulo_visada, double passo, doubl
 	this->numb_patches = component;
 		
 	this->patch_area = new int[this->numb_patches+1];
+		
+	for (unsigned int j = 0; j<numb_patches+1; j++)
+		this->patch_area[j] = 0;
 	
 	for(int i = 0; i < this->numb_cells; i++)
 		for(int j = 0; j < this->numb_cells; j++)
