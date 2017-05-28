@@ -57,16 +57,13 @@ extern "C" void TWoLife (double * raio, int * N, double * angulo_visada, double 
 	
 	while (floresta->tempo_do_mundo < tempo[0] && floresta->conta_individuos() > 0)
 	{
+		int ind_neo = floresta->sorteia_individuo();
+		int acao = floresta->sorteia_acao(ind_neo);
+		floresta->realiza_acao(acao, ind_neo);
+		floresta->atualiza_tempo(ind_neo);
 		double t_ant = floresta->tempo_do_mundo;
-		int lowerInd=floresta->update();
-		if(t_ant < (int)floresta->tempo_do_mundo)
-		{
-			for(unsigned int i=0; i<floresta->conta_individuos();i++)
-			{
-				outputSIM << (int)floresta->tempo_do_mundo << " " << floresta->get_individuos(i)->get_id() << " " << floresta->get_individuos(i)->get_x() << " " << floresta->get_individuos(i)->get_y() << endl;
-			}
-		}
-		floresta->realiza_acao(lowerInd);		
+		floresta->update();
+		outputSIM << floresta->tempo_do_mundo << " " << floresta->get_individuos(ind_neo)->get_id() << " " << floresta->get_individuos(ind_neo)->get_x() << " " << floresta->get_individuos(ind_neo)->get_y() << endl;
 	}
 	if(floresta->conta_individuos()==0){outputSIM << floresta->tempo_do_mundo << " " << "NA" << " " << "NA" << " " << "NA" << endl;}
 	outputSIM.close(); //end of output file
