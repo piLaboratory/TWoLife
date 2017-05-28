@@ -111,7 +111,10 @@ public:
 
 	/** Atualiza as variáveis de todos os indivíduos (ver individuo::set_vizinhos, individuo::set_habitat e individuo::update) e escolhe uma ação para ser executada. Executa a ação e atualiza o tempo do mundo de acordo \sa \ref Introdução */
     int update();//atualizador
-	void realiza_acao(int lower);//vai pegar os tempos de cada individuo e informa qual foi o escolhido e manda ele fazer
+	int sorteia_individuo();
+	int sorteia_acao(const int lower){return this->popIndividuos[lower]->sorteia_acao();}
+	void realiza_acao(int acao, int lower);//vai pegar os tempos de cada individuo e informa qual foi o escolhido e manda ele fazer
+	void atualiza_tempo(const int lower){this->tempo_do_mundo = this->tempo_do_mundo + this->popIndividuos[lower]->get_tempo();}
 	/** Retorna o número total de indivíduos na paisagem */
     const int conta_individuos() const{return popIndividuos.size();}
 	/** Retorna um vetor contendo todos os indivíduos na paisagem */
