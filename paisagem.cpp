@@ -149,27 +149,28 @@ int paisagem::update()
             this->popIndividuos[i]->update(dsty);   //e atualiza o individuo i da populacao
         }
 		
-		// time for next event and simulation time update
-		int menor=0;
-		double menor_tempo = this->popIndividuos[0]->get_tempo();
-		
-		for(unsigned int i=1; i<this->popIndividuos.size(); i++)
-		{
-			if(this->popIndividuos[i]->get_tempo()<menor_tempo)
-			{
-				menor = i;
-				menor_tempo = this->popIndividuos[i]->get_tempo();
-			}
-		}
-		this->tempo_do_mundo = this->tempo_do_mundo+menor_tempo;
-		return menor;
 	}
 }
 
-void paisagem::realiza_acao(int lower) //TODO : criar matriz de distancias como atributo do mundo e atualiza-la apenas quanto ao individuos afetado nesta funcao)
+int paisagem::sorteia_individuo()
 {
-	int acao = this->popIndividuos[lower]->sorteia_acao();
+	// time for next event and simulation time update
+	int menor=0;
+	double menor_tempo = this->popIndividuos[0]->get_tempo();
+	
+	for(unsigned int i=1; i<this->popIndividuos.size(); i++)
+	{
+		if(this->popIndividuos[i]->get_tempo()<menor_tempo)
+		{
+			menor = i;
+			menor_tempo = this->popIndividuos[i]->get_tempo();
+		}
+	}
+	return menor;
+}
 
+void paisagem::realiza_acao(int acao, int lower) //TODO : criar matriz de distancias como atributo do mundo e atualiza-la apenas quanto ao individuos afetado nesta funcao)
+{
     switch(acao) //0 eh morte, 1 eh nascer, 2 eh andar
     {
     case 0:
