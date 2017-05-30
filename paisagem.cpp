@@ -52,7 +52,7 @@ paisagem::paisagem(double raio, int N, double angulo_visada, double passo, doubl
 	
 	for(unsigned int i=0; i<this->popIndividuos.size(); i++)
 	{
-		this->atualiza_vizinhos(i);//atualiza os vizinhos
+		this->atualiza_vizinhos(this->popIndividuos[i]);//atualiza os vizinhos
 		this->atualiza_habitat(this->popIndividuos[i]);//retorna o tipo de habitat
         }
 
