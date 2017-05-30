@@ -50,6 +50,19 @@ paisagem::paisagem(double raio, int N, double angulo_visada, double passo, doubl
 	/* Coloca os indivíduos na paisagem por meio da função populating() */	
 	this->populating(raio,N,angulo_visada,passo,move,taxa_basal,taxa_morte,incl_b,incl_d,death_mat,density_type);
 	
+	for(unsigned int i=0; i<this->popIndividuos.size(); i++)
+	{
+		this->atualiza_vizinhos(i);//atualiza os vizinhos
+		this->atualiza_habitat(this->popIndividuos[i]);//retorna o tipo de habitat
+        }
+
+
+	for(unsigned int i=0; i<this->popIndividuos.size(); i++)
+	{
+		double dsty=this->calcDensity(popIndividuos[i]);
+		this->popIndividuos[i]->update(dsty);   //e atualiza o individuo i da populacao
+	}
+	
 }
 		
 void paisagem::populating(double raio, int N, double angulo_visada, double passo, double move, double taxa_basal,
