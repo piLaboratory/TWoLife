@@ -3,7 +3,8 @@
 # Os passos abaixo foram adaptados de http://users.stat.umn.edu/~geyer/rc/
 
 Sys.setenv("PKG_CPPFLAGS" = "-fopenmp -DPARALLEL") # liga biblioteca de paralelismo
-system("rm TWoLife.{so,o}") #limpa sources velhos
+system("rm TWoLife.so") #limpa sources velhos
+system("rm TWoLife.o") #limpa sources velhos
 system ("R CMD SHLIB TWoLife.cpp") ## compila no R
 dyn.load("TWoLife.so") ## carrega os source resultantes como biblioteca dinamica no R
 
@@ -114,12 +115,12 @@ TWoLife <- function (
 	x <- x[1:n]; y <- y[1:n]  
 	return(data.frame(x=x,y=y))
 }
-
+npop<-10
  ## Um teste rapido
-  land <- Landscape(cover=1,type="b",cell.size=100)
+  land <- Landscape(cover=1,type="b",cell.size=100, boun.condition=1)
  # ## Uma rodada: coordenadas dos sobreviventes apos t=20
  teste <- TWoLife(raio=1560,
- 				 N=10,
+ 				 N=npop,
  				 AngVis=360,
  				 passo=10,
  				 move=0,
@@ -149,6 +150,85 @@ TWoLife <- function (
  TWoPlot(teste, land)
 plot(teste, xlim=c(-100,100), ylim=c(-100,100))
 print(dim(teste))
+
+dados = file("output-00234.txt", "r")
+dpaisagem = readLines(dados, n=9)
+npatches = strtoi(unlist(strsplit(dpaisagem [4], " "))[3])
+
+
+patches <-matrix( rep(0, 3*npop), nrow = npop, ncol = 3 )
+colonizacao <- rep(0, npatches+1)
+extincao <- rep(0, npatches+1)
+patchPop <- rep(0, npatches+1)
+nascimentos <- rep(0, npatches+1)
+mortes <- rep(0, npatches+1)
+
+for(i in 1:npop)
+{
+	lin = readLines(dados, n=1)
+	lin<-strsplit(lin, " ")
+	line <- unlist(lin)
+	patches[i,1]<-strtoi(line[3]) + 1
+	patches[i,2] <- 0
+	patches[i,3] <- strtoi(line[2])
+	patchPop[strtoi(line[3])+1] <- patchPop[strtoi(line[3])+1]+1 
+}
+maxID = npop
+
+lin = readLines(dados, n=1)
+while(lin != "EOF")
+{
+	lin<-strsplit(lin, " ")
+	line <- unlist(lin)
+	acao <-strtoi(line[2]) 
+	p <- strtoi(line[4])+1 #lembrando que no R os indices não começam do 0
+	ID <- strtoi(line[3])
+	if(acao == 0)
+	{
+		patchPop[p] <- patchPop[p] - 1
+		ind <- match(ID, patches[,3])
+		if(length(patches[,3])>2)
+			patches<-patches[-ind,]
+		else
+		{
+				patches<-patches[-ind,]	
+				patches<-matrix(patches, nrow=1, ncol=3)
+		}
+
+		if(patchPop[p] == 0)
+		{
+			extincao[p] <- extincao[p] + 1
+			mortes[p] <- mortes[p] + 1
+		}
+	}
+	
+	if(acao == 1)
+	{
+		maxID<-maxID+1
+		patchPop[p] <- patchPop[p] + 1
+		nascimentos[p] <- nascimentos[p] + 1
+		patches<-rbind(patches, c(p, 0, maxID))
+	}
+	if(acao == 2)
+	{
+		ind <- match(ID, patches[,3])
+		if( p!=patches[ind, 1]  )
+		{	
+			patches[ind,2] <- patches[ind,1]
+			patches[ind,1] <- p
+
+			patchPop[patches[ind,1]] <- patchPop[patches[ind,1]] + 1
+			patchPop[patches[ind,2]] <- patchPop[patches[ind,2]] - 1
+
+			if(patchPop[patches[ind, 2]]==0)
+				extincao[patches[ind, 2]] <- extincao[patches[ind, 2]] + 1
+			if(patchPop[p]==1)
+				colonizacao[p] <- colonizacao[p] + 1
+		}
+	}
+	lin = readLines(dados, n=1)
+}
+
 ## Tamanho de populacao apos t=6 de 100 repeticoes
 #pop.size<- numeric()
 #for (i in 1:20) 
