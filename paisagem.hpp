@@ -135,6 +135,8 @@ public:
     void find_patches(int x, int y, int current_label);
 	
     int get_numb_patches(){return numb_patches;}
+	
+    double get_patch_area(int i) const {return this->patch_area[i];}
 
 };
 
