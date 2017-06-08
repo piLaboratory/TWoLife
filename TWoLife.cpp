@@ -50,11 +50,27 @@ extern "C" void TWoLife (double * raio, int * N, double * angulo_visada, double 
 	
 	ofstream outputSIM; // ofstream for the output file
 	outputSIM.open(fileNAME.c_str());
+
+	outputSIM << "Lado: " << floresta->get_tamanho() << endl;
+	outputSIM << "Tamanho pixel: " << cell_size[0] << endl;
+	outputSIM << "Pixels lado: " << numb_cells[0] << endl;
+	outputSIM << "N fragmentos: " << floresta->get_numb_patches() << endl;
+	outputSIM << "Area fragmentos: ";
+	double sum = 0;
+	//outputSIM << floresta->get_patch_area(0) << " "; //Imprimir area matriz?
+	for (int i = 1; i < floresta->get_numb_patches(); i++)
+	{
+		sum += floresta->get_patch_area(i);
+		outputSIM << floresta->get_patch_area(i) << " ";		
+	}
+	outputSIM << "\nProporção de habitat: " << sum/(floresta->get_tamanho()*floresta->get_tamanho())<< "\n\n\n\n";
+
+	
+
 	for(unsigned int i=0; i<floresta->conta_individuos();i++)
 	{
-		outputSIM << floresta->tempo_do_mundo << " " << floresta->get_individuos(i)->get_id() << " " << floresta->get_individuos(i)->get_x() << " " << floresta->get_individuos(i)->get_y() << endl;
+		outputSIM << floresta->tempo_do_mundo << " " << floresta->get_individuos(i)->get_id() << " "  << floresta->get_individuos(i)->get_patch() << " " << floresta->get_individuos(i)->get_x() << " " << floresta->get_individuos(i)->get_y() << endl;
 	}
-	
 	while (floresta->tempo_do_mundo < tempo[0] && floresta->conta_individuos() > 0)
 	{
 		int ind_neo = floresta->sorteia_individuo();
