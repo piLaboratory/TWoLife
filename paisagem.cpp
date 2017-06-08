@@ -54,6 +54,7 @@ paisagem::paisagem(double raio, int N, double angulo_visada, double passo, doubl
 	{
 		this->atualiza_vizinhos(this->popIndividuos[i]);//atualiza os vizinhos
 		this->atualiza_habitat(this->popIndividuos[i]);//retorna o tipo de habitat
+		this->atualiza_patch(this->popIndividuos[i]);
         }
 
 
@@ -153,6 +154,7 @@ int paisagem::update()
         {
             this->atualiza_vizinhos(this->popIndividuos[i]);//atualiza os vizinhos
             this->atualiza_habitat(this->popIndividuos[i]);//retorna o tipo de habitat
+            this->atualiza_patch(this->popIndividuos[i]);
         }
 		// Este loop não é parelelizado, APESAR de ser independente, para garantir que as funcoes
 		// aleatorias sao chamadas sempre na mesma ordem (garante reprodutibilidade)
@@ -274,13 +276,13 @@ void paisagem::apply_boundary(individuo * const ind) //const
 		break;
 	
 		case 1:
-		if(ind->get_x()<0)
+		if(ind->get_x()<(this->numb_cells*this->cell_size/2)*(-1))
 			ind->set_x(this->tamanho+ind->get_x());
-		if(ind->get_x()>this->tamanho)
+		if(ind->get_x()>=this->numb_cells*this->cell_size/2)
 			ind->set_x(ind->get_x()-this->tamanho);
-		if(ind->get_y()<0)
+		if(ind->get_y()<(this->numb_cells*this->cell_size/2)*(-1))
 			ind->set_y(this->tamanho+ind->get_y());
-		if(ind->get_y()>this->tamanho)
+		if(ind->get_y()>=this->numb_cells*this->cell_size/2 )
 			ind->set_y(ind->get_y()-this->tamanho);
 		break;
 	}
