@@ -155,10 +155,13 @@ dados = file("output-00234.txt", "r")
 dpaisagem = readLines(dados, n=9)
 npatches = strtoi(unlist(strsplit(dpaisagem [4], " "))[3])
 
-
+IDlist<-rep(0, npop)
 patches <-matrix( rep(0, 3*npop), nrow = npop, ncol = 3 )
-colonizacao <- rep(0, npatches+1)
-extincao <- rep(0, npatches+1)
+colonizacao <- rep(0, npatches+1) #Conta sempre que um individuo chega num fragmento vazio
+extincao <- rep(0, npatches+1)#Conta sempre que um fragmento fica vazio (Note que é de se esperar que as entradas de colonizacao e de extincao difiram apenas de +-1)
+migracao1 <- rep(0, npatches+1) #Conta sempre que um individuo entra num fragmento, estando ele vazio ou nao. (Note que o individuo pode ficar entrando e saindo do fragmento e sempre será contado)
+migracao2 <- rep(0, npatches+1)# Conta apenas quando o individuo vem de um fragmento diferente, ou seja, nao conta quando o individuo vai para a matriz e volta
+
 patchPop <- rep(0, npatches+1)
 nascimentos <- rep(0, npatches+1)
 mortes <- rep(0, npatches+1)
@@ -169,9 +172,10 @@ for(i in 1:npop)
 	lin<-strsplit(lin, " ")
 	line <- unlist(lin)
 	patches[i,1]<-strtoi(line[3]) + 1
-	patches[i,2] <- 0
-	patches[i,3] <- strtoi(line[2])
-	patchPop[strtoi(line[3])+1] <- patchPop[strtoi(line[3])+1]+1 
+	patches[i,2] <- -1
+	patches[i,3] <- -1
+	IDlist[i] <- strtoi(line[2])
+	patchPop[strtoi(line[3])+1] <- patchPop[strtoi(line[3])+1]+1
 }
 maxID = npop
 
@@ -185,21 +189,24 @@ while(lin != "EOF")
 	ID <- strtoi(line[3])
 	if(acao == 0)
 	{
+		mortes[p] <- mortes[p] + 1
 		patchPop[p] <- patchPop[p] - 1
-		ind <- match(ID, patches[,3])
-		if(length(patches[,3])>2)
+		ind <- match(ID, IDlist)
+		if(length(IDlist)>2)
+		{
 			patches<-patches[-ind,]
+			IDlist<-IDlist[-ind]
+		}
 		else
 		{
 				patches<-patches[-ind,]	
 				patches<-matrix(patches, nrow=1, ncol=3)
+				IDlist<-IDlist[-ind]
 		}
 
 		if(patchPop[p] == 0)
-		{
 			extincao[p] <- extincao[p] + 1
-			mortes[p] <- mortes[p] + 1
-		}
+		
 	}
 	
 	if(acao == 1)
@@ -207,13 +214,15 @@ while(lin != "EOF")
 		maxID<-maxID+1
 		patchPop[p] <- patchPop[p] + 1
 		nascimentos[p] <- nascimentos[p] + 1
-		patches<-rbind(patches, c(p, 0, maxID))
+		patches<-rbind(patches, c(p, -1, -1))
+		IDlist<- c(IDlist, maxID)
 	}
 	if(acao == 2)
 	{
-		ind <- match(ID, patches[,3])
+		ind <- match(ID, IDlist)
 		if( p!=patches[ind, 1]  )
 		{	
+			patches[ind,3]<- patches[ind,2]
 			patches[ind,2] <- patches[ind,1]
 			patches[ind,1] <- p
 
@@ -222,8 +231,15 @@ while(lin != "EOF")
 
 			if(patchPop[patches[ind, 2]]==0)
 				extincao[patches[ind, 2]] <- extincao[patches[ind, 2]] + 1
+
 			if(patchPop[p]==1)
 				colonizacao[p] <- colonizacao[p] + 1
+
+			migracao1[p] <- migracao1[p] + 1
+
+			if(patches[ind,2]>1 || patches[ind,2]!=1 || patches[ind,3]!=patches[ind,1]  )
+				migracao2[p] <- migracao2[p] + 1
+
 		}
 	}
 	lin = readLines(dados, n=1)
