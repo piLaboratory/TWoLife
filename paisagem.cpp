@@ -184,8 +184,9 @@ int paisagem::sorteia_individuo()
 	return menor;
 }
 
-void paisagem::realiza_acao(int acao, int lower) //TODO : criar matriz de distancias como atributo do mundo e atualiza-la apenas quanto ao individuos afetado nesta funcao)
+bool paisagem::realiza_acao(int acao, int lower) //TODO : criar matriz de distancias como atributo do mundo e atualiza-la apenas quanto ao individuos afetado nesta funcao)
 {
+	bool emigrou = false;
     switch(acao) //0 eh morte, 1 eh nascer, 2 eh andar
     {
     case 0:
@@ -202,9 +203,10 @@ void paisagem::realiza_acao(int acao, int lower) //TODO : criar matriz de distan
 
     case 2: 
         this->popIndividuos[lower]->anda();
-		this->apply_boundary(popIndividuos[lower]);
+	emigrou = this->apply_boundary(popIndividuos[lower]);
 		break;
     }
+	return emigrou;
 }
 
 //para quando tiver especies, a definir...
@@ -234,8 +236,9 @@ void paisagem::realiza_acao(int acao, int lower) //TODO : criar matriz de distan
 //TODO: conferir se a combinacao x , y da condicao esta gerando o efeito desejado
 //TBI: condicao periodica do codigo antigo feito com Garcia. Verificar se estah correta
 // (veja p. ex. um unico individuo apenas se movimentando)
-void paisagem::apply_boundary(individuo * const ind) //const
+bool paisagem::apply_boundary(individuo * const ind) //const
 {
+	bool emigrou = false;
 	double rad = (double)ind->get_raio();
 	switch(this->boundary_condition)
 	{
@@ -253,6 +256,7 @@ void paisagem::apply_boundary(individuo * const ind) //const
 						this->popIndividuos.erase(this->popIndividuos.begin()+i);
 					}
 				}
+				emigrou = true;
 			}
 		}
 		
@@ -271,6 +275,7 @@ void paisagem::apply_boundary(individuo * const ind) //const
 						this->popIndividuos.erase(this->popIndividuos.begin()+i);
 					}
 				}
+				emigrou = true;
 			}			   
 		}		
 		break;
@@ -286,7 +291,7 @@ void paisagem::apply_boundary(individuo * const ind) //const
 			ind->set_y(ind->get_y()-this->tamanho);
 		break;
 	}
-	
+	return emigrou;
 	/* TBI
 	case 2: reflexiva
 	*/
