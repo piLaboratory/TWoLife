@@ -93,9 +93,9 @@ public:
     void set_habitat (const int tipo){this->tipo_habitat=tipo;}
     /** Atualiza o fragmento do indivíduo */
     void set_patch (const int label){this->patch_label=label;}
-	/** Atualiza a posi√ß√£o X do invid√≠duo */
+	/** Atualiza a posição X do indivíduo */
     void set_x(/** Nova posi√ß√£o */double i){this->x =i;}
-	/** Atualiza a posi√ß√£o Y do invid√≠duo */
+	/** Atualiza a posição Y do indivíduo */
     void set_y(/** Nova posi√ß√£o */double i){this->y =i;}
 	/** Retorna a posi√ß√£o X do indiv√≠duo */
     inline const double get_x() const {return this->x;}
