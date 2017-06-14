@@ -76,12 +76,25 @@ extern "C" void TWoLife (double * raio, int * N, double * angulo_visada, double 
 		int ind_neo = floresta->sorteia_individuo();
 		int acao = floresta->sorteia_acao(ind_neo);
 		floresta->atualiza_tempo(ind_neo);
-		if(acao==0)
-			outputSIM << floresta->tempo_do_mundo << " " << acao << " " << floresta->get_individuos(ind_neo)->get_id() << " "  << floresta->get_individuos(ind_neo)->get_patch() << " " << floresta->get_individuos(ind_neo)->get_x() << " " << floresta->get_individuos(ind_neo)->get_y() << endl;
-		floresta->realiza_acao(acao, ind_neo);
+
+		int ID_neo = floresta->get_individuos(ind_neo)->get_id();
+		double x_neo = floresta->get_individuos(ind_neo)->get_x();
+		double y_neo = floresta->get_individuos(ind_neo)->get_y();
+		int patch_neo = floresta->get_individuos(ind_neo)->get_patch();
+		
+		bool emigrou = floresta->realiza_acao(acao, ind_neo);
 		floresta->update();
-		if(acao!=0)
-			outputSIM << floresta->tempo_do_mundo << " " << acao << " " << floresta->get_individuos(ind_neo)->get_id() << " "  << floresta->get_individuos(ind_neo)->get_patch() << " " << floresta->get_individuos(ind_neo)->get_x() << " " << floresta->get_individuos(ind_neo)->get_y() << endl;
+
+		if(acao==2 && !emigrou)
+		{
+			x_neo = floresta->get_individuos(ind_neo)->get_x();
+			y_neo = floresta->get_individuos(ind_neo)->get_y();
+			patch_neo = floresta->get_individuos(ind_neo)->get_patch();
+		}
+		else if(acao==2 && emigrou)
+			acao = 3;
+
+		outputSIM << floresta->tempo_do_mundo << " " << acao << " " << ID_neo << " "  << patch_neo << " " << x_neo << " " << y_neo << endl;
 	}
 	outputSIM<< "EOF\n";
 	outputSIM.close(); //end of output file
