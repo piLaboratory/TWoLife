@@ -117,7 +117,7 @@ TWoLife <- function (
 }
 npop<-10
  ## Um teste rapido
-  land <- Landscape(cover=1,type="b",cell.size=100, bound.condition=1)#Nao usar bound.condition=0 pq essa parte da apply_boundary terá de ser adaptada
+  land <- Landscape(cover=1,type="b",cell.size=100, bound.condition=1)
  # ## Uma rodada: coordenadas dos sobreviventes apos t=20
  teste <- TWoLife(raio=1560,
  				 N=npop,
