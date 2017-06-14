@@ -94,10 +94,10 @@ public:
     /** Atualiza o fragmento do indivíduo */
     void set_patch (const int label){this->patch_label=label;}
 	/** Atualiza a posição X do indivíduo */
-    void set_x(/** Nova posi√ß√£o */double i){this->x =i;}
+    void set_x(/** Nova posição */double i){this->x =i;}
 	/** Atualiza a posição Y do indivíduo */
-    void set_y(/** Nova posi√ß√£o */double i){this->y =i;}
-	/** Retorna a posi√ß√£o X do indiv√≠duo */
+    void set_y(/** Nova posição */double i){this->y =i;}
+	/** Retorna a posição X do indivíduo */
     inline const double get_x() const {return this->x;}
 	/** Retorna a posição Y do indivíduo */
     inline const double get_y() const {return this->y;}
