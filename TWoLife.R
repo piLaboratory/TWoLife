@@ -151,7 +151,9 @@ npop<-10
 plot(teste, xlim=c(-100,100), ylim=c(-100,100))
 print(dim(teste))
 
-dados = file("output-00234.txt", "r")
+projetoFelipe<-function(arquivo, npop){
+
+dados = file(arquivo, "r")
 dpaisagem = readLines(dados, n=9)
 npatches = strtoi(unlist(strsplit(dpaisagem [4], " "))[3])
 
@@ -161,6 +163,7 @@ colonizacao <- rep(0, npatches+1) #Conta sempre que um individuo chega num fragm
 extincao <- rep(0, npatches+1)#Conta sempre que um fragmento fica vazio (Note que é de se esperar que as entradas de colonizacao e de extincao difiram apenas de +-1)
 migracao1 <- rep(0, npatches+1) #Conta sempre que um individuo entra num fragmento, estando ele vazio ou nao. (Note que o individuo pode ficar entrando e saindo do fragmento e sempre será contado)
 migracao2 <- rep(0, npatches+1)# Conta apenas quando o individuo vem de um fragmento diferente, ou seja, nao conta quando o individuo vai para a matriz e volta
+emigracao <- rep(0, npatches+1)#Conta sempre que um individuo sai da paisagem
 
 patchPop <- rep(0, npatches+1)
 nascimentos <- rep(0, npatches+1)
@@ -242,8 +245,72 @@ while(lin != "EOF")
 
 		}
 	}
+
+	if(acao == 3)
+	{
+		emigracao[p] <- emigracao[p] + 1
+		patchPop[p] <- patchPop[p] - 1
+		ind <- match(ID, IDlist)
+		if(length(IDlist)>2)
+		{
+			patches<-patches[-ind,]
+			IDlist<-IDlist[-ind]
+		}
+		else
+		{
+				patches<-patches[-ind,]	
+				patches<-matrix(patches, nrow=1, ncol=3)
+				IDlist<-IDlist[-ind]
+		}
+
+		if(patchPop[p] == 0)
+			extincao[p] <- extincao[p] + 1
+		
+	}
+
 	lin = readLines(dados, n=1)
 }
+
+arqm<-paste0("mortes-", arquivo)
+arqn<-paste0("nascimentos-", arquivo)
+arqe<-paste0("extincao-", arquivo)
+arqc<-paste0("colonizacao-", arquivo)
+arqm1<-paste0("migracao1-", arquivo)
+arqm2<-paste0("migracao2-", arquivo)
+arqem<-paste0("emigracao-", arquivo)
+
+file.create(arqm)
+file.create(arqn)
+file.create(arqe)
+file.create(arqc)
+file.create(arqm1)
+file.create(arqm2)
+file.create(arqem)
+
+
+for (i in 0:npatches) 
+{
+
+	cat(paste(i,mortes[i+1]), file = arqm, append = TRUE, sep = "\n")
+	cat(paste(i,nascimentos[i+1]), file = arqn, append = TRUE, sep = "\n")
+	cat(paste(i,extincao[i+1]), file = arqe, append = TRUE, sep = "\n")
+	cat(paste(i,colonizacao[i+1]), file = arqc, append = TRUE, sep = "\n")
+	cat(paste(i,migracao1[i+1]), file = arqm1, append = TRUE, sep = "\n")
+	cat(paste(i,migracao2[i+1]), file = arqm2, append = TRUE, sep = "\n")
+	cat(paste(i,emigracao[i+1]), file = arqem, append = TRUE, sep = "\n")
+}
+
+cat("EOF", file = arqm, append = TRUE, sep = "\n")
+cat("EOF", file = arqn, append = TRUE, sep = "\n")
+cat("EOF", file = arqe, append = TRUE, sep = "\n")
+cat("EOF", file = arqc, append = TRUE, sep = "\n")
+cat("EOF", file = arqm1, append = TRUE, sep = "\n")
+cat("EOF", file = arqm2, append = TRUE, sep = "\n")
+cat("EOF", file = arqem, append = TRUE, sep = "\n")
+
+}
+
+projetoFelipe("output-00234.txt", npop)
 
 ## Tamanho de populacao apos t=6 de 100 repeticoes
 #pop.size<- numeric()
