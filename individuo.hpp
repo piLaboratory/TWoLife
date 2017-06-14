@@ -33,6 +33,7 @@ private:
     vector<individuo*> lisViz;//vetor de vizinhanca    ----//CAMADA PERCEPTIVA
     const double taxa_basal;//taxa intrínseca de nascimento quando no habitat e na ausencia de outros individuos na vizinhanca local
     int tipo_habitat;//CAMADA PERCEPTIVA
+    int patch_label; //Identificdor do fragmento no qual está o indivíduo ([0]) e nos quais passou ([1] e [2]) . 0 = matriz; 1, 2, ... = fragmentos de habitat
     const int semente;//semente para gerar os numeros aleatorios
 	
 	double death;// taxa de morte
@@ -90,6 +91,8 @@ public:
     void set_vizinhos (/** Lista dos vizinhos */ const vector<individuo*> lis){this->lisViz=lis;}
 	/** Atualiza o tipo de hábitat no qual o indivíduo está. Deve ser chamada a cada passo de tempo pela \ref paisagem. */
     void set_habitat (const int tipo){this->tipo_habitat=tipo;}
+    /** Atualiza o fragmento do indivíduo */
+    void set_patch (const int label){this->patch_label=label;}
 	/** Atualiza a posi√ß√£o X do invid√≠duo */
     void set_x(/** Nova posi√ß√£o */double i){this->x =i;}
 	/** Atualiza a posi√ß√£o Y do invid√≠duo */
@@ -104,6 +107,8 @@ public:
     const int get_densType() const {return this->dens_type;}
 	/** Returns the number of individuals inside the neighbourhood of the individual (it includes the focal individual) */
     const int NBHood_size() const {return this->lisViz.size()+1;}
+	/** Retorna o fragmento do indivíduo, sendo 0 o fragmento atual, 1 o último antes do atual, 2 o penúltimo antes do atual */
+    const int get_patch() const {return this->patch_label;}
 
     // outros metodos publicos
 	/** Retorna o tempo sorteado para o próximo evento acontecer com este indivíduo.

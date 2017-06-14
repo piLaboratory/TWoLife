@@ -27,6 +27,9 @@ private:
 	const int landscape_shape; // paramâmetro do modelo relacionado à forma da paisagem (por enquanto, 1 = "quadrada" ou  0 = "circular")
 	const int boundary_condition; // tipo de condição de contorno (0 = absortiva, 1 = periódica, 2 = reflexiva)
 	int landscape[dim][dim];//[linha][coluna] temporariamente substituido or valor fixo
+	int patches[dim][dim]; //Matriz com a determinação do fragmento a que cada pixel pertence. 0 para matriz; i>=1 para fragmentos
+	int numb_patches; //Número de fragmentos encontrados. Desconsidera-se a matriz.
+	int* patch_area;
 	const int initialPos;
 	
 	//metodos privados
@@ -55,9 +58,10 @@ private:
 					);
 					
     void atualiza_vizinhos(individuo * const ind) const;//contabilizador de vizinhos
-    void atualiza_habitat(individuo * const i) const;//vai informar o individuo em que tipo de habitat ele esta
+    void atualiza_habitat(individuo * const ind) const;//vai informar o individuo em que tipo de habitat ele esta
+    void atualiza_patch(individuo * const ind) const;//vai informar o individuo em que fragmento ele está
     //int define_tempo();
-	void apply_boundary(individuo * const ind); //const; // metodo para aplicação da condicao de contorno
+	bool apply_boundary(individuo * const ind); //const; // metodo para aplicação da condicao de contorno
     		
 
 public:
@@ -107,7 +111,10 @@ public:
 
 	/** Atualiza as variáveis de todos os indivíduos (ver individuo::set_vizinhos, individuo::set_habitat e individuo::update) e escolhe uma ação para ser executada. Executa a ação e atualiza o tempo do mundo de acordo \sa \ref Introdução */
     int update();//atualizador
-	void realiza_acao(int lower);//vai pegar os tempos de cada individuo e informa qual foi o escolhido e manda ele fazer
+	int sorteia_individuo();
+	int sorteia_acao(const int lower){return this->popIndividuos[lower]->sorteia_acao();}
+	bool realiza_acao(int acao, int lower);//vai pegar os tempos de cada individuo e informa qual foi o escolhido e manda ele fazer
+	void atualiza_tempo(const int lower){this->tempo_do_mundo = this->tempo_do_mundo + this->popIndividuos[lower]->get_tempo();}
 	/** Retorna o número total de indivíduos na paisagem */
     const int conta_individuos() const{return popIndividuos.size();}
 	/** Retorna um vetor contendo todos os indivíduos na paisagem */
@@ -124,6 +131,12 @@ public:
     /** Retorna false se o indivíduo estava no ambiente no passod de tempo 0, e true se ele nasceu durante a simulação.
 	 * Usado para pintar os indivíduos nascidos de um cor diferente dos individuos originais */
     const bool nascido(individuo * const ind) const {return ind->get_id() > this->N;}
+	
+    void find_patches(int x, int y, int current_label);
+	
+    int get_numb_patches(){return numb_patches;}
+	
+    double get_patch_area(int i) const {return this->patch_area[i];}
 
 };
 

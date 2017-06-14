@@ -24,6 +24,24 @@ paisagem::paisagem(double raio, int N, double angulo_visada, double passo, doubl
 			}
 		}
 		
+	//Atribui valores à matriz patches, que determina o fragmento a que cada pixel pertence
+	int component = 0;
+	for (int k = 0; k < this->numb_cells; ++k) 
+		for (int l = 0; l < this->numb_cells; ++l) 
+			if (!this->patches[k][l] && this->landscape[k][l]) find_patches(k, l, ++component);
+	this->numb_patches = component;
+		
+	this->patch_area = new int[this->numb_patches+1];
+		
+	for (unsigned int j = 0; j<numb_patches+1; j++)
+		this->patch_area[j] = 0;
+	
+	for(int i = 0; i < this->numb_cells; i++)
+		for(int j = 0; j < this->numb_cells; j++)
+			this->patch_area[patches[i][j]] += 1;
+	for (unsigned int j = 0; j<numb_patches+1; j++)
+		this->patch_area[j] = this->patch_area[j]*this->cell_size*this->cell_size;
+		
 	// Calculo do raio dependendo do tipo de densidade. 0 = global, 1 = local (raio), 2 = kernel.
 	if(density_type==0)
 	{
@@ -31,6 +49,20 @@ paisagem::paisagem(double raio, int N, double angulo_visada, double passo, doubl
 	}
 	/* Coloca os indivíduos na paisagem por meio da função populating() */	
 	this->populating(raio,N,angulo_visada,passo,move,taxa_basal,taxa_morte,incl_b,incl_d,death_mat,density_type);
+	
+	for(unsigned int i=0; i<this->popIndividuos.size(); i++)
+	{
+		this->atualiza_vizinhos(this->popIndividuos[i]);//atualiza os vizinhos
+		this->atualiza_habitat(this->popIndividuos[i]);//retorna o tipo de habitat
+		this->atualiza_patch(this->popIndividuos[i]);
+        }
+
+
+	for(unsigned int i=0; i<this->popIndividuos.size(); i++)
+	{
+		double dsty=this->calcDensity(popIndividuos[i]);
+		this->popIndividuos[i]->update(dsty);   //e atualiza o individuo i da populacao
+	}
 	
 }
 		
@@ -122,6 +154,7 @@ int paisagem::update()
         {
             this->atualiza_vizinhos(this->popIndividuos[i]);//atualiza os vizinhos
             this->atualiza_habitat(this->popIndividuos[i]);//retorna o tipo de habitat
+            this->atualiza_patch(this->popIndividuos[i]);
         }
 		// Este loop não é parelelizado, APESAR de ser independente, para garantir que as funcoes
 		// aleatorias sao chamadas sempre na mesma ordem (garante reprodutibilidade)
@@ -131,27 +164,29 @@ int paisagem::update()
             this->popIndividuos[i]->update(dsty);   //e atualiza o individuo i da populacao
         }
 		
-		// time for next event and simulation time update
-		int menor=0;
-		double menor_tempo = this->popIndividuos[0]->get_tempo();
-		
-		for(unsigned int i=1; i<this->popIndividuos.size(); i++)
-		{
-			if(this->popIndividuos[i]->get_tempo()<menor_tempo)
-			{
-				menor = i;
-				menor_tempo = this->popIndividuos[i]->get_tempo();
-			}
-		}
-		this->tempo_do_mundo = this->tempo_do_mundo+menor_tempo;
-		return menor;
 	}
 }
 
-void paisagem::realiza_acao(int lower) //TODO : criar matriz de distancias como atributo do mundo e atualiza-la apenas quanto ao individuos afetado nesta funcao)
+int paisagem::sorteia_individuo()
 {
-	int acao = this->popIndividuos[lower]->sorteia_acao();
+	// time for next event and simulation time update
+	int menor=0;
+	double menor_tempo = this->popIndividuos[0]->get_tempo();
+	
+	for(unsigned int i=1; i<this->popIndividuos.size(); i++)
+	{
+		if(this->popIndividuos[i]->get_tempo()<menor_tempo)
+		{
+			menor = i;
+			menor_tempo = this->popIndividuos[i]->get_tempo();
+		}
+	}
+	return menor;
+}
 
+bool paisagem::realiza_acao(int acao, int lower) //TODO : criar matriz de distancias como atributo do mundo e atualiza-la apenas quanto ao individuos afetado nesta funcao)
+{
+	bool emigrou = false;
     switch(acao) //0 eh morte, 1 eh nascer, 2 eh andar
     {
     case 0:
@@ -168,9 +203,10 @@ void paisagem::realiza_acao(int lower) //TODO : criar matriz de distancias como 
 
     case 2: 
         this->popIndividuos[lower]->anda();
-		this->apply_boundary(popIndividuos[lower]);
+	emigrou = this->apply_boundary(popIndividuos[lower]);
 		break;
     }
+	return emigrou;
 }
 
 //para quando tiver especies, a definir...
@@ -200,8 +236,9 @@ void paisagem::realiza_acao(int lower) //TODO : criar matriz de distancias como 
 //TODO: conferir se a combinacao x , y da condicao esta gerando o efeito desejado
 //TBI: condicao periodica do codigo antigo feito com Garcia. Verificar se estah correta
 // (veja p. ex. um unico individuo apenas se movimentando)
-void paisagem::apply_boundary(individuo * const ind) //const
+bool paisagem::apply_boundary(individuo * const ind) //const
 {
+	bool emigrou = false;
 	double rad = (double)ind->get_raio();
 	switch(this->boundary_condition)
 	{
@@ -219,6 +256,7 @@ void paisagem::apply_boundary(individuo * const ind) //const
 						this->popIndividuos.erase(this->popIndividuos.begin()+i);
 					}
 				}
+				emigrou = true;
 			}
 		}
 		
@@ -237,22 +275,23 @@ void paisagem::apply_boundary(individuo * const ind) //const
 						this->popIndividuos.erase(this->popIndividuos.begin()+i);
 					}
 				}
+				emigrou = true;
 			}			   
 		}		
 		break;
 	
 		case 1:
-		if(ind->get_x()<0)
+		if(ind->get_x()<(this->numb_cells*this->cell_size/2)*(-1))
 			ind->set_x(this->tamanho+ind->get_x());
-		if(ind->get_x()>this->tamanho)
+		if(ind->get_x()>=this->numb_cells*this->cell_size/2)
 			ind->set_x(ind->get_x()-this->tamanho);
-		if(ind->get_y()<0)
+		if(ind->get_y()<(this->numb_cells*this->cell_size/2)*(-1))
 			ind->set_y(this->tamanho+ind->get_y());
-		if(ind->get_y()>this->tamanho)
+		if(ind->get_y()>=this->numb_cells*this->cell_size/2 )
 			ind->set_y(ind->get_y()-this->tamanho);
 		break;
 	}
-	
+	return emigrou;
 	/* TBI
 	case 2: reflexiva
 	*/
@@ -443,3 +482,26 @@ void paisagem::atualiza_habitat(individuo * const ind) const
 	ind->set_habitat(this->landscape[hx][hy]);
 }
 
+void paisagem::atualiza_patch(individuo * const ind) const
+{
+	int hx,hy;
+	hx= (double)ind->get_x()/this->cell_size+this->numb_cells/2;
+	hy= ((double)ind->get_y()/this->cell_size)*(-1)+this->numb_cells/2;
+	ind->set_patch(this->patches[hx][hy]);
+}
+
+void paisagem::find_patches(int x, int y, int current_label)
+{
+  if (x < 0 || x == this->numb_cells) return; // out of bounds
+  if (y < 0 || y == this->numb_cells) return; // out of bounds
+  if (this->patches[x][y] || !this->landscape[x][y]) return; // already labeled or not marked with 1 in m
+
+  // mark the current cell
+  this->patches[x][y] = current_label;
+
+  // recursively mark the neighbors
+  find_patches(x + 1, y, current_label);
+  find_patches(x, y + 1, current_label);
+  find_patches(x - 1, y, current_label);
+  find_patches(x, y - 1, current_label);
+}

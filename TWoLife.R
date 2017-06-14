@@ -3,7 +3,8 @@
 # Os passos abaixo foram adaptados de http://users.stat.umn.edu/~geyer/rc/
 
 Sys.setenv("PKG_CPPFLAGS" = "-fopenmp -DPARALLEL") # liga biblioteca de paralelismo
-system("rm TWoLife.{so,o}") #limpa sources velhos
+system("rm TWoLife.so") #limpa sources velhos
+system("rm TWoLife.o") #limpa sources velhos
 system ("R CMD SHLIB TWoLife.cpp") ## compila no R
 dyn.load("TWoLife.so") ## carrega os source resultantes como biblioteca dinamica no R
 
@@ -114,12 +115,12 @@ TWoLife <- function (
 	x <- x[1:n]; y <- y[1:n]  
 	return(data.frame(x=x,y=y))
 }
-
+npop<-10
  ## Um teste rapido
-  land <- Landscape(cover=1,type="b",cell.size=100)
+  land <- Landscape(cover=1,type="b",cell.size=100, bound.condition=1)#Nao usar bound.condition=0 pq essa parte da apply_boundary terá de ser adaptada
  # ## Uma rodada: coordenadas dos sobreviventes apos t=20
  teste <- TWoLife(raio=1560,
- 				 N=10,
+ 				 N=npop,
  				 AngVis=360,
  				 passo=10,
  				 move=0,
@@ -149,6 +150,168 @@ TWoLife <- function (
  TWoPlot(teste, land)
 plot(teste, xlim=c(-100,100), ylim=c(-100,100))
 print(dim(teste))
+
+projetoFelipe<-function(arquivo, npop){
+
+dados = file(arquivo, "r")
+dpaisagem = readLines(dados, n=9)
+npatches = strtoi(unlist(strsplit(dpaisagem [4], " "))[3])
+
+IDlist<-rep(0, npop)
+patches <-matrix( rep(0, 3*npop), nrow = npop, ncol = 3 )
+colonizacao <- rep(0, npatches+1) #Conta sempre que um individuo chega num fragmento vazio
+extincao <- rep(0, npatches+1)#Conta sempre que um fragmento fica vazio (Note que é de se esperar que as entradas de colonizacao e de extincao difiram apenas de +-1)
+migracao1 <- rep(0, npatches+1) #Conta sempre que um individuo entra num fragmento, estando ele vazio ou nao. (Note que o individuo pode ficar entrando e saindo do fragmento e sempre será contado)
+migracao2 <- rep(0, npatches+1)# Conta apenas quando o individuo vem de um fragmento diferente, ou seja, nao conta quando o individuo vai para a matriz e volta
+emigracao <- rep(0, npatches+1)#Conta sempre que um individuo sai da paisagem
+
+patchPop <- rep(0, npatches+1)
+nascimentos <- rep(0, npatches+1)
+mortes <- rep(0, npatches+1)
+
+for(i in 1:npop)
+{
+	lin = readLines(dados, n=1)
+	lin<-strsplit(lin, " ")
+	line <- unlist(lin)
+	patches[i,1]<-strtoi(line[3]) + 1
+	patches[i,2] <- -1
+	patches[i,3] <- -1
+	IDlist[i] <- strtoi(line[2])
+	patchPop[strtoi(line[3])+1] <- patchPop[strtoi(line[3])+1]+1
+}
+maxID = npop
+
+lin = readLines(dados, n=1)
+while(lin != "EOF")
+{
+	lin<-strsplit(lin, " ")
+	line <- unlist(lin)
+	acao <-strtoi(line[2]) 
+	p <- strtoi(line[4])+1 #lembrando que no R os indices não começam do 0
+	ID <- strtoi(line[3])
+	if(acao == 0)
+	{
+		mortes[p] <- mortes[p] + 1
+		patchPop[p] <- patchPop[p] - 1
+		ind <- match(ID, IDlist)
+		if(length(IDlist)>2)
+		{
+			patches<-patches[-ind,]
+			IDlist<-IDlist[-ind]
+		}
+		else
+		{
+				patches<-patches[-ind,]	
+				patches<-matrix(patches, nrow=1, ncol=3)
+				IDlist<-IDlist[-ind]
+		}
+
+		if(patchPop[p] == 0)
+			extincao[p] <- extincao[p] + 1
+		
+	}
+	
+	if(acao == 1)
+	{
+		maxID<-maxID+1
+		patchPop[p] <- patchPop[p] + 1
+		nascimentos[p] <- nascimentos[p] + 1
+		patches<-rbind(patches, c(p, -1, -1))
+		IDlist<- c(IDlist, maxID)
+	}
+	if(acao == 2)
+	{
+		ind <- match(ID, IDlist)
+		if( p!=patches[ind, 1]  )
+		{	
+			patches[ind,3]<- patches[ind,2]
+			patches[ind,2] <- patches[ind,1]
+			patches[ind,1] <- p
+
+			patchPop[patches[ind,1]] <- patchPop[patches[ind,1]] + 1
+			patchPop[patches[ind,2]] <- patchPop[patches[ind,2]] - 1
+
+			if(patchPop[patches[ind, 2]]==0)
+				extincao[patches[ind, 2]] <- extincao[patches[ind, 2]] + 1
+
+			if(patchPop[p]==1)
+				colonizacao[p] <- colonizacao[p] + 1
+
+			migracao1[p] <- migracao1[p] + 1
+
+			if(patches[ind,2]>1 || patches[ind,2]!=1 || patches[ind,3]!=patches[ind,1]  )
+				migracao2[p] <- migracao2[p] + 1
+
+		}
+	}
+
+	if(acao == 3)
+	{
+		emigracao[p] <- emigracao[p] + 1
+		patchPop[p] <- patchPop[p] - 1
+		ind <- match(ID, IDlist)
+		if(length(IDlist)>2)
+		{
+			patches<-patches[-ind,]
+			IDlist<-IDlist[-ind]
+		}
+		else
+		{
+				patches<-patches[-ind,]	
+				patches<-matrix(patches, nrow=1, ncol=3)
+				IDlist<-IDlist[-ind]
+		}
+
+		if(patchPop[p] == 0)
+			extincao[p] <- extincao[p] + 1
+		
+	}
+
+	lin = readLines(dados, n=1)
+}
+
+arqm<-paste0("mortes-", arquivo)
+arqn<-paste0("nascimentos-", arquivo)
+arqe<-paste0("extincao-", arquivo)
+arqc<-paste0("colonizacao-", arquivo)
+arqm1<-paste0("migracao1-", arquivo)
+arqm2<-paste0("migracao2-", arquivo)
+arqem<-paste0("emigracao-", arquivo)
+
+file.create(arqm)
+file.create(arqn)
+file.create(arqe)
+file.create(arqc)
+file.create(arqm1)
+file.create(arqm2)
+file.create(arqem)
+
+
+for (i in 0:npatches) 
+{
+
+	cat(paste(i,mortes[i+1]), file = arqm, append = TRUE, sep = "\n")
+	cat(paste(i,nascimentos[i+1]), file = arqn, append = TRUE, sep = "\n")
+	cat(paste(i,extincao[i+1]), file = arqe, append = TRUE, sep = "\n")
+	cat(paste(i,colonizacao[i+1]), file = arqc, append = TRUE, sep = "\n")
+	cat(paste(i,migracao1[i+1]), file = arqm1, append = TRUE, sep = "\n")
+	cat(paste(i,migracao2[i+1]), file = arqm2, append = TRUE, sep = "\n")
+	cat(paste(i,emigracao[i+1]), file = arqem, append = TRUE, sep = "\n")
+}
+
+cat("EOF", file = arqm, append = TRUE, sep = "\n")
+cat("EOF", file = arqn, append = TRUE, sep = "\n")
+cat("EOF", file = arqe, append = TRUE, sep = "\n")
+cat("EOF", file = arqc, append = TRUE, sep = "\n")
+cat("EOF", file = arqm1, append = TRUE, sep = "\n")
+cat("EOF", file = arqm2, append = TRUE, sep = "\n")
+cat("EOF", file = arqem, append = TRUE, sep = "\n")
+
+}
+
+projetoFelipe("output-00234.txt", npop)
+
 ## Tamanho de populacao apos t=6 de 100 repeticoes
 #pop.size<- numeric()
 #for (i in 1:20) 
