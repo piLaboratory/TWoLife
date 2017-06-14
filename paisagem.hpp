@@ -61,7 +61,7 @@ private:
     void atualiza_habitat(individuo * const ind) const;//vai informar o individuo em que tipo de habitat ele esta
     void atualiza_patch(individuo * const ind) const;//vai informar o individuo em que fragmento ele está
     //int define_tempo();
-	void apply_boundary(individuo * const ind); //const; // metodo para aplicação da condicao de contorno
+	bool apply_boundary(individuo * const ind); //const; // metodo para aplicação da condicao de contorno
     		
 
 public:
@@ -113,7 +113,7 @@ public:
     int update();//atualizador
 	int sorteia_individuo();
 	int sorteia_acao(const int lower){return this->popIndividuos[lower]->sorteia_acao();}
-	void realiza_acao(int acao, int lower);//vai pegar os tempos de cada individuo e informa qual foi o escolhido e manda ele fazer
+	bool realiza_acao(int acao, int lower);//vai pegar os tempos de cada individuo e informa qual foi o escolhido e manda ele fazer
 	void atualiza_tempo(const int lower){this->tempo_do_mundo = this->tempo_do_mundo + this->popIndividuos[lower]->get_tempo();}
 	/** Retorna o número total de indivíduos na paisagem */
     const int conta_individuos() const{return popIndividuos.size();}
