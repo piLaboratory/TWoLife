@@ -234,7 +234,7 @@ bool paisagem::realiza_acao(int acao, int lower) //TODO : criar matriz de distan
 
 // metodo para condicao de contorno, argumento é um ponteiro para um individuo
 //TODO: conferir se a combinacao x , y da condicao esta gerando o efeito desejado
-//TBI: condicao periodica do codigo antigo feito com Garcia. Verificar se estah correta
+//TBI: condicao periodica do codigo antigo feito com Garcia. Verificar se estah correta FE:Verifiquei e tinha um problema
 // (veja p. ex. um unico individuo apenas se movimentando)
 bool paisagem::apply_boundary(individuo * const ind) //const
 {
