@@ -8,10 +8,10 @@ system("rm TWoLife.o") #limpa sources velhos
 system ("R CMD SHLIB TWoLife.cpp") ## compila no R
 dyn.load("TWoLife.so") ## carrega os source resultantes como biblioteca dinamica no R
 
-# Generates the landscape with specified conditions. 
+# Generates the landscape with specified conditions.
 # numb.cells represents both the lenght AND width of the landscape, so numb.cells=100 creates a 100x100 landscape
 # Land.shape can be 0 = XXX or 1 = XXX.
-# Bound.condition can be 0 = XXX or 1 = XXX. 
+# Bound.condition can be 0 = XXX or 1 = XXX.
 Landscape <- function (numb.cells = 100, cell.size = 1, land.shape = 1, type=c("random","blob"), bound.condition=0, cover=1) {
 	type=match.arg(type)
 	if(cover < 0 || cover > 1) {
@@ -62,29 +62,29 @@ Landscape <- function (numb.cells = 100, cell.size = 1, land.shape = 1, type=c("
 }
 
 TWoLife <- function (
-					 raio=0.1, 
-					 N=80, 
-					 AngVis=360, 
-					 passo=5, 
-					 move=0.5, 
-					 taxa.basal=0.6, 
-					 taxa.morte=0.1, 
-					 incl.birth=0.5/0.01, 
-					 incl.death=0, 
+					 raio=0.1,
+					 N=80,
+					 AngVis=360,
+					 passo=5,
+					 move=0.5,
+					 taxa.basal=0.6,
+					 taxa.morte=0.1,
+					 incl.birth=0.5/0.01,
+					 incl.death=0,
 					 density.type=0,
-					 death.mat=7, 
+					 death.mat=7,
 					 landscape,
 					 tempo=20,
            ini.config=0,
-           out.code=1) 
+           out.code=1)
 {
 	if(class(landscape) != "landscape") {
 		stop("Error in function TWoLife: you must provide a valid landscape. See ?Landscape")
 	}
   if(raio>landscape$numb.cells*landscape$cell.size/2)
   {stop("Error in function TWoLife: the radius must be lower than or equal to the half of landscape side (radius <= numb.cells*cell.size/2)")}
-	
-  saida.C <- .C("TWoLife", 
+
+  saida.C <- .C("TWoLife",
               as.double(raio),# 1
               as.integer(N),# 2
               as.double(AngVis),# 3
@@ -105,53 +105,56 @@ TWoLife <- function (
               as.double(tempo), #18
               as.integer(0), # 19
               as.double(rep(0, 5000)), # 20
-              as.double(rep(0,5000)), # 21 
+              as.double(rep(0,5000)), # 21
               as.integer(out.code)
               ## verificar se precisa definir o tamanho e se isto nao dará problemas (dois ultimos argumentos)
 				  )
 	n <- saida.C[[19]]
 	x <- saida.C[[20]]
 	y <- saida.C[[21]]
-	x <- x[1:n]; y <- y[1:n]  
+	x <- x[1:n]; y <- y[1:n]
 	return(data.frame(x=x,y=y))
 }
-npop<-10
- ## Um teste rapido
-  land <- Landscape(cover=1,type="b",cell.size=100, bound.condition=1)
- # ## Uma rodada: coordenadas dos sobreviventes apos t=20
- teste <- TWoLife(raio=1560,
- 				 N=npop,
- 				 AngVis=360,
- 				 passo=10,
- 				 move=0,
- 				 taxa.basal=0.2,
- 				 taxa.morte=0, 
- 				 incl.birth=1529.076,
- 				 incl.death=0,
- 				 density.type=1,
- 				 death.mat=1,
- 				 landscape=land,
- 				 tempo=30,
-          ini.config=1,
-          out.code=234)
+
+# ## Um teste rapido
+#  land <- Landscape(cover=1,type="b",cell.size=100, bound.condition=1)
+# # ## Uma rodada: coordenadas dos sobreviventes apos t=20
+# teste <- TWoLife(raio=1560,
+# 				 N=10,
+# 				 AngVis=360,
+# 				 passo=10,
+# 				 move=0,
+# 				 taxa.basal=0.2,
+# 				 taxa.morte=0,
+# 				 incl.birth=1529.076,
+# 				 incl.death=0,
+# 				 density.type=1,
+# 				 death.mat=1,
+# 				 landscape=land,
+# 				 tempo=30,
+#          ini.config=1,
+#          out.code=234)
 
 
- TWoPlot <- function(pop, land, col1="gray20", col2="gray70") {
- 	n = land$numb.cells
- 	s <- seq(-n*land$cell.size/2, n*land$cell.size/2, length=n) # creates the x- and y- sequences for image
- 	if (sum(land$scape) == n*n) { 
- 		color = col1
- 	} else {
- 		color = c(col2, col1)
- 	}
- 	image(s, s, matrix(land$scape,ncol=n), col=color)
- 	points(pop, pch=4, col=2)
- }
- TWoPlot(teste, land)
-plot(teste, xlim=c(-100,100), ylim=c(-100,100))
-print(dim(teste))
+# TWoPlot <- function(pop, land, col1="gray20", col2="gray70") {
+# 	n = land$numb.cells
+# 	s <- seq(-n*land$cell.size/2, n*land$cell.size/2, length=n) # creates the x- and y- sequences for image
+# 	if (sum(land$scape) == n*n) {
+# 		color = col1
+# 	} else {
+# 		color = c(col2, col1)
+# 	}
+# 	image(s, s, matrix(land$scape,ncol=n), col=color)
+# 	points(pop, pch=4, col=2)
+# }
+# TWoPlot(teste, land)
+#plot(teste, xlim=c(-100,100), ylim=c(-100,100))
+#print(dim(teste))
 
-projetoFelipe<-function(arquivo, npop){
+projetoFelipe<-function()
+{#Lembrar de citar Mandai em qualquer produto deste trabalho
+
+analises<-function(arquivo, npop){
 
 dados = file(arquivo, "r")
 dpaisagem = readLines(dados, n=9)
@@ -187,7 +190,7 @@ while(lin != "EOF")
 {
 	lin<-strsplit(lin, " ")
 	line <- unlist(lin)
-	acao <-strtoi(line[2]) 
+	acao <-strtoi(line[2])
 	p <- strtoi(line[4])+1 #lembrando que no R os indices não começam do 0
 	ID <- strtoi(line[3])
 	if(acao == 0)
@@ -202,16 +205,16 @@ while(lin != "EOF")
 		}
 		else
 		{
-				patches<-patches[-ind,]	
+				patches<-patches[-ind,]
 				patches<-matrix(patches, nrow=1, ncol=3)
 				IDlist<-IDlist[-ind]
 		}
 
 		if(patchPop[p] == 0)
 			extincao[p] <- extincao[p] + 1
-		
+
 	}
-	
+
 	if(acao == 1)
 	{
 		maxID<-maxID+1
@@ -224,7 +227,7 @@ while(lin != "EOF")
 	{
 		ind <- match(ID, IDlist)
 		if( p!=patches[ind, 1]  )
-		{	
+		{
 			patches[ind,3]<- patches[ind,2]
 			patches[ind,2] <- patches[ind,1]
 			patches[ind,1] <- p
@@ -258,14 +261,14 @@ while(lin != "EOF")
 		}
 		else
 		{
-				patches<-patches[-ind,]	
+				patches<-patches[-ind,]
 				patches<-matrix(patches, nrow=1, ncol=3)
 				IDlist<-IDlist[-ind]
 		}
 
 		if(patchPop[p] == 0)
 			extincao[p] <- extincao[p] + 1
-		
+
 	}
 
 	lin = readLines(dados, n=1)
@@ -288,7 +291,7 @@ file.create(arqm2)
 file.create(arqem)
 
 
-for (i in 0:npatches) 
+for (i in 0:npatches)
 {
 
 	cat(paste(i,mortes[i+1]), file = arqm, append = TRUE, sep = "\n")
@@ -310,22 +313,113 @@ cat("EOF", file = arqem, append = TRUE, sep = "\n")
 
 }
 
-projetoFelipe("output-00234.txt", npop)
+library("pse")
+
+#oneRun <- function(r, p, t.b, t.m, i.b)
+oneRun <- function(long, fec, K, ND)
+{
+	#Diretório que receberá os outputs para esta combinação de parâmetros
+	dir <- paste("long", long, "fec", fec, "K", K, "ND", ND, sep = "")
+	dir.create(dir)
+	setwd(dir)
+	#Arquivo metadata com os valores dos parâmetros
+	file.create("METADATA.txt")
+	cat(date(), file = "METADATA.txt", append = TRUE, sep = "\n")
+	cat("", file = "METADATA.txt", append = TRUE, sep = "\n")
+	cat(paste("Longevity:", long), file = "METADATA.txt", append = TRUE, sep = "\n")
+	cat(paste("Fecundity:", fec), file = "METADATA.txt", append = TRUE, sep = "\n")
+	cat(paste("Support capacity:", K), file = "METADATA.txt", append = TRUE, sep = "\n")
+	cat(paste("Natal Dispersal:", ND), file = "METADATA.txt", append = TRUE, sep = "\n")
+	cat("EOF", file = "METADATA.txt", append = TRUE, sep = "\n")
+
+
+	HabProp <- seq(80, 100, 5)
+	label <- 1:5
+	Replica <- 1:5
+	for(i in HabProp)
+	{
+		for(j in label)
+		{
+			for(k in Replica)
+			{
+				#land <- readLandscape(i, j)
+				#L 	<- LEMBRAR DE FAZER L RECEBER O LADO DA PAISAGEM
+				o.c <- i*100 + j*10 + k
+				land <- Landscape(cover=i/100, type="b",cell.size=100, bound.condition=1)
+				L <- 10000
+
+				print(o.c)
+				r   <- L/sqrt(pi*K)
+				p   <- 2*r
+				t.b <- fec
+				t.m <- 1/long
+				i.b <- 1529.076
+				m   <- 4*ND^2/(pi*long*p^2)
+
+				TWoLife(raio=r, N=20, AngVis=360, passo=p, move=m, taxa.basal=t.b, taxa.morte=t.m, incl.birth=i.b, incl.death=0, density.type=1, death.mat=7, landscape = land, tempo=1, ini.config=1, out.code=o.c)
+				print("fim")
+			}
+		}
+	}
+	files <- list.files(pattern="out*", full.names=F, recursive=FALSE)
+	for(i in files)
+	{
+		analises(i, 20)
+	}
+	setwd("..")
+}
+
+modelRun <- function (my.pars) {
+    return(mapply(oneRun, my.pars[,1], my.pars[,2], my.pars[,3], my.pars[,4]))
+}
+
+factors <- c("long", "fec", "K", "ND")
+q <- c("qlnorm", "qlnorm", "qlnorm", "qlnorm")
+q.arg <- list( list(meanlog=1.89, sdlog=0.21), list(meanlog=1.26, sdlog=0.44), list(meanlog=3.24, sdlog=0.86), list(meanlog=1.310, sdlog=1.920)  )
+COR <- matrix(c(1, -0.11, 0.3, -0.254, -0.11, 1, 0, -0.18, 0.3, 0, 1, -0.79, -0.254, -0.18, -0.79, 1), nrow = 4, ncol = 4)
+eps <- 0.0005
+maxIt <- 100 #PI: não sei escolher
+opts <- list(COR, eps, maxIt)
+
+myLHS <- LHS(modelRun, factors, N=50, q=q, q.arg=q.arg, opts = opts, nboot=50)
+
+
+#TWoLife <- function (raio=0.1, N=80, AngVis=360, passo=5, move=0.5, taxa.basal=0.6, taxa.morte=0.1, incl.birth=0.5/0.01, incl.death=0, density.type=0, death.mat=7, landscape, tempo=20, ini.config=0, out.code=1)
+#Nao entraram
+#N
+#AngVis
+#ini.config (lembrar de igualar a 1)
+#density.type (lembrar de igualar a 1)
+#landscape (how the hell eu vou enfiar isso no mapply) ideia: fazer vetor de paisagens
+#out.code (como enfiar um contador no mapply?)
+#nboot e maxIt não sei escolher
+
+#analises("output-00234.txt", npop)
+
+#TODO:
+#ler paisagens
+#colocar correlações OK
+#arrumar analises OK
+#definir valores das variáveis constantes (e opções tipo nboot e maxIt)
+
+}
+
+projetoFelipe()
 
 ## Tamanho de populacao apos t=6 de 100 repeticoes
 #pop.size<- numeric()
-#for (i in 1:20) 
+#for (i in 1:20)
 #  {
-#    pop.size[i] = 
+#    pop.size[i] =
 #      nrow(
 #          TWoLife(raio=0.1, N=80, AngVis=360, passo=5, move=0.1, taxa.basal=0.6,
-#                    taxa.morte=0.1, 
-#                    incl.birth=0.5/0.01, incl.death=0, numb.cells=200, cell.size=1, land.shape=1, 
+#                    taxa.morte=0.1,
+#                    incl.birth=0.5/0.01, incl.death=0, numb.cells=200, cell.size=1, land.shape=1,
 #                    density.type=0, death.mat=7,bound.condition=0, cover=1, tempo=6))
 #  }
 
-## esperado: capacidade de suporte 
-# Support <- function(taxa.basal=0.6, taxa.morte=0.1, incl.birth=0.5/0.01, 
+## esperado: capacidade de suporte
+# Support <- function(taxa.basal=0.6, taxa.morte=0.1, incl.birth=0.5/0.01,
 # 					incl.death=0, numb.cells=200, cell.size=2) {
 # 	densi.max = (taxa.basal-taxa.morte)/(incl.birth+incl.death)
 # 	return ((numb.cells*cell.size)^2 * densi.max)
