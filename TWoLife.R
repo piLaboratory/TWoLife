@@ -319,9 +319,14 @@ library("pse")
 oneRun <- function(long, fec, K, ND)
 {
 	#Diretório que receberá os outputs para esta combinação de parâmetros
-	dir <- paste("long", long, "fec", fec, "K", K, "ND", ND, sep = "")
+	ite <- file("iteration.txt", "r")
+	linha <- readLines(ite, n=1)
+	nite <- strtoi(unlist(strsplit(linha, " "))[2])
+	dir <- paste("LHS-", nite, sep = "")
 	dir.create(dir)
+	cat(paste("run ", nite+1, sep = ""), file = "iteration.txt", append = FALSE, sep = "\n")
 	setwd(dir)
+
 	#Arquivo metadata com os valores dos parâmetros
 	file.create("METADATA.txt")
 	cat(date(), file = "METADATA.txt", append = TRUE, sep = "\n")
@@ -333,7 +338,7 @@ oneRun <- function(long, fec, K, ND)
 	cat("EOF", file = "METADATA.txt", append = TRUE, sep = "\n")
 
 
-	HabProp <- seq(80, 100, 5)
+	HabProp <- seq(5, 100, 5)
 	label <- 1:5
 	Replica <- 1:5
 	for(i in HabProp)
@@ -342,22 +347,19 @@ oneRun <- function(long, fec, K, ND)
 		{
 			for(k in Replica)
 			{
-				#land <- readLandscape(i, j)
+				#land <- readLandscape(i, j) será implementado assim que eu tiver acesso às paisagens da Elaine
 				#L 	<- LEMBRAR DE FAZER L RECEBER O LADO DA PAISAGEM
-				o.c <- i*100 + j*10 + k
-				land <- Landscape(cover=i/100, type="b",cell.size=100, bound.condition=1)
+				o.c <- i*100 + j*10 + k #Identificador do output
+				land <- Landscape(cover=i/100, type="b",cell.size=100, bound.condition=1) #Testando com essa função enquanto não tenho acesso às paisagens da Elaine
 				L <- 10000
 
-				print(o.c)
 				r   <- L/sqrt(pi*K)
 				p   <- 2*r
 				t.b <- fec
 				t.m <- 1/long
-				i.b <- 1529.076
 				m   <- 4*ND^2/(pi*long*p^2)
 
-				TWoLife(raio=r, N=20, AngVis=360, passo=p, move=m, taxa.basal=t.b, taxa.morte=t.m, incl.birth=i.b, incl.death=0, density.type=1, death.mat=7, landscape = land, tempo=1, ini.config=1, out.code=o.c)
-				print("fim")
+				TWoLife(raio=r, N=20, AngVis=360, passo=p, move=m, taxa.basal=t.b, taxa.morte=t.m, incl.birth=1529.076, incl.death=0, density.type=1, death.mat=7, landscape = land, tempo=1, ini.config=1, out.code=o.c)
 			}
 		}
 	}
@@ -381,7 +383,10 @@ eps <- 0.0005
 maxIt <- 100 #PI: não sei escolher
 opts <- list(COR, eps, maxIt)
 
-myLHS <- LHS(modelRun, factors, N=50, q=q, q.arg=q.arg, opts = opts, nboot=50)
+file.create("iteration.txt")
+cat("run 1", file = "iteration.txt", append = TRUE, sep = "\n")
+
+myLHS <- LHS(modelRun, factors, N=50, q=q, q.arg=q.arg, opts = opts, nboot=0)
 
 
 #TWoLife <- function (raio=0.1, N=80, AngVis=360, passo=5, move=0.5, taxa.basal=0.6, taxa.morte=0.1, incl.birth=0.5/0.01, incl.death=0, density.type=0, death.mat=7, landscape, tempo=20, ini.config=0, out.code=1)
