@@ -40,26 +40,26 @@ private:
 	/** Número de fragmentos da paisagem, desconsiderando-se a matriz. */
 	int numb_patches;
 	/** Ponteiro para o vetor contendo a área de cada fragmento */
-	int* patch_area;
+	double* patch_area;
 	/** Posição dos indivíduos no início da simulação (0 = origem; 1 = aleatória com distribuição uniforme na paisagem; 2 = aleatória com distribuição normal na paisagem)*/
 	const int initialPos;
-	
+
 	//metodos privados
 	void populating(
 					/** Raio no qual os indivíduos percebem vizinhos. Deve ser menor que o tamanho do mundo */
-					const double raio, 
+					const double raio,
 					/** Número de indivíduos no começo da simulação */
-					const int N, 
+					const int N,
 					/** Ângulo de visada dos indivíduos da população */
 					const double angulo_visada,
 					/** Passo de caminhada dos indivíduos da população */
-					const double passo, 
+					const double passo,
 					/** Taxa de movimentação dos individuos da população */
-					const double move, 
+					const double move,
 					/** Taxa de nascimento de um indivíduo no habitat favorável e sem vizinhos */
-					const double taxa_basal, 
+					const double taxa_basal,
 					/** Taxa de mortalidade dos indivíduos */
-					const double taxa_morte,					
+					const double taxa_morte,
 					/** Inclinação da curva de denso-depedência para natalidade */
 					const double incl_b,
 					/** Inclinação da curva de denso-depedência para mortalidade */
@@ -69,7 +69,7 @@ private:
 					/** Tipo de densidade (0 = GLOBAL, 1 = LOCAL) */
 					const int dens_type
 					);
-					
+
 	/** Atualiza a lista de vizinhos de um indivíduo */
     void atualiza_vizinhos(individuo * const ind) const;
     /** Informa o indivíduo o tipo de habitat (matriz ou habitat) correspondente à sua atual posição, atualizando \ref individuo::tipo_habitat */
@@ -78,29 +78,29 @@ private:
     void atualiza_patch(individuo * const ind) const;
     /** Aplica a condição de contorno após a movimentação */
 	bool apply_boundary(individuo * const ind); //const; // metodo para aplicação da condicao de contorno
-    		
+
 
 public:
 	//vector <individuo*> popIndividuos;
-	
+
 	/** Contador de quanto tempo já transcorreu no mundo simulado */
     double tempo_do_mundo;
-    
+
 	//metodos publicos
 	/** Construtor da classe paisagem */
     paisagem(
 			/** Raio no qual os indivíduos percebem vizinhos. Deve ser menor que o tamanho do mundo */
-			const double raio, 
+			const double raio,
 			/** Número de indivíduos no começo da simulação */
-			const int N, 
+			const int N,
 			/** Ângulo de visada dos indivíduos */
 			const double angulo_visada,
             /** Passo de caminhada dos indivíduos */
-			const double passo, 
+			const double passo,
 			/** Taxa de movimentação dos indivíduos */
-			const double move, 
+			const double move,
 			/** Taxa de nascimento de um indivíduo no habitat favorável e sem vizinhos */
-			const double taxa_basal, 
+			const double taxa_basal,
 			/** Taxa de morte dos indivíduos */
 			const double taxa_morte,
 			/** Inclinação da curva de denso-depedência para natalidade */
@@ -110,19 +110,19 @@ public:
 			/** Número de pixels do lado da paisagem */
 			const int numb_cells,
 			/** Tamanho do lada de cada pixel da imagem usada para a classificação da paisagem */
-			const double cell_size,			 
+			const double cell_size,
 			/** Forma da paisagem  (0 = circular, 1 = quadrada)*/
 			const int land_shape,
 			/** Tipo de densidade ("g" = GLOBAL, "l" = LOCAL) */
 			const int density_type,
-			/** Constante que indica quantas vezes a mortalidade basal na matriz é maior que no habitat */ 
+			/** Constante que indica quantas vezes a mortalidade basal na matriz é maior que no habitat */
 			const double death_mat,
 			/** Posição dos indivíduos no início da simulação (0 = origem; 1 = aleatória com distribuição uniforme na paisagem; 2 = aleatória com distribuição normal na paisagem)*/
 			const int inipos,
 			/** Condição de contorno (0 = absortiva, 1 = periódica, 2 = reflexiva)*/
 			const int bound_condition,
 			/** Vetor de cobertura de habitat na paisagem */
-			int scape[]			
+			int scape[]
 			); //construtor
 
 	/** Atualiza as  */
