@@ -1,7 +1,7 @@
 library("pse")
 
 #Cálculo dos parâmetros
-L <- 0.03 #Em km
+L <- 0.03*512 #Em km
 mulamb0 <- 1.26
 sigmalamb0 <- 0.44
 mut <- 1.89

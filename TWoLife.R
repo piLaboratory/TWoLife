@@ -304,7 +304,7 @@ for(i in HabProp)
 			class(land) <- "landscape"
 			o.c <- i*100 + j*10 + k #Identificador do output
 			#Lembrar de ajustar o tempo pra chegar no equilibrio
-			TWoLife(raio=R, N=100, AngVis=360, passo=s, move=delta, taxa.basal=lamb0, taxa.morte=mu0, incl.birth=b, incl.death=m, density.type=1, death.mat=dm, landscape = land, tempo=50, ini.config=1, out.code=o.c)
+			TWoLife(raio=R, N=300, AngVis=360, passo=s, move=delta, taxa.basal=lamb0, taxa.morte=mu0, incl.birth=b, incl.death=m, density.type=1, death.mat=dm, landscape = land, tempo=50, ini.config=1, out.code=o.c)
 
 		}
 	}
@@ -312,7 +312,7 @@ for(i in HabProp)
 files <- list.files(pattern="out*", full.names=F, recursive=FALSE)
 for(i in files)
 {
-	analises(i, 20)
+	analises(i, 300)
 }
 setwd("..")
 
