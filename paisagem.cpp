@@ -142,7 +142,7 @@ void paisagem::populating(double raio, int N, double angulo_visada, double passo
 	}
 }
 
-int paisagem::update()
+void paisagem::update()
 {
     if(this->popIndividuos.size()>0)
     {

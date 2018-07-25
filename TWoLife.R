@@ -3,7 +3,8 @@
 # Os passos abaixo foram adaptados de http://users.stat.umn.edu/~geyer/rc/
 
 Sys.setenv("PKG_CPPFLAGS" = "-fopenmp -DPARALLEL") # liga biblioteca de paralelismo
-system("rm TWoLife.{so,o}") #limpa sources velhos
+system("rm TWoLife.so") #limpa sources velhos
+system("rm TWoLife.o") #limpa sources velhos
 system ("R CMD SHLIB TWoLife.cpp") ## compila no R
 dyn.load("TWoLife.so") ## carrega os source resultantes como biblioteca dinamica no R
 

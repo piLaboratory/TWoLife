@@ -59,8 +59,7 @@ extern "C" void TWoLife (double * raio, int * N, double * angulo_visada, double 
 	double sum = 0;
 	//outputSIM << floresta->get_patch_area(0) << " "; //Imprimir area matriz?
 	for (int i = 1; i <= floresta->get_numb_patches(); i++)
-	{//Corrigi um erro na linha de cima. Estava só meno ao invés de menor ou igual. Não estava imprimindo a
-		//área do último fragmento. Não testei pra ver se estava tudo ok
+	{
 		sum += floresta->get_patch_area(i);
 		outputSIM << floresta->get_patch_area(i) << " ";		
 	}

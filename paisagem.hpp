@@ -126,7 +126,7 @@ public:
 			); //construtor
 
 	/** Atualiza as  */
-    int update();//atualizador
+    void update();//atualizador
     /** Seleciona o individuo com menor tempo até o proximo evento para realizar uma ação */
 	int sorteia_individuo();
 	/** Após a seleção do indivíduo que realizará a ação, sorteia uma das três ações possíveis de acordo com suas respectivas taxas e retorna a ação sorteada para a paisagem
