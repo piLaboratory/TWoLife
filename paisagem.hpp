@@ -8,7 +8,7 @@
 ///** Dimensão maxima do mapa, usada para rotinas de fragmentação TBI */
 #define dim 10000 /*Em algum momento pode ser alterado para um argumento do
 		    construtor. No momento não é prioritário. */
-
+//Isto aqui não está aparecendo no doxygen
 using namespace std;
 
 /** \brief A classe paisagem implementa o mundo onde os agentes estão.
@@ -19,95 +19,123 @@ class paisagem
 private:
 
     //propriedades privadas
-    const double tamanho; //tamanho do lado do mundo
-	const unsigned long N; // numero de inds no comeco da simulacao
-	vector <individuo*> popIndividuos;//vetor dos individuos da populacao
-    const int numb_cells; // em quantos pedacos cada dimensao do mundo esta dividida (para fragmentacao)
-    const double cell_size;// tamanho do lada de uma célula ou tamanho do pixel da imagem usada para a classificação da paisagem
-	const int landscape_shape; // paramâmetro do modelo relacionado à forma da paisagem (por enquanto, 1 = "quadrada" ou  0 = "circular")
-	const int boundary_condition; // tipo de condição de contorno (0 = absortiva, 1 = periódica, 2 = reflexiva)
+    /** Tamanho do lado da paisagem */
+    const double tamanho;
+    /** Número de indivíduos no começo da simulação */
+	const unsigned long N;
+	/** Vetor dos indivíduos da populacao */
+	vector <individuo*> popIndividuos;
+	/** Número de pixels do lado da paisagem */
+    const int numb_cells;
+    /** Tamanho do lada de cada pixel da imagem usada para a classificação da paisagem */
+    const double cell_size;
+    /** Forma da paisagem  (0 = circular, 1 = quadrada)*/
+	const int landscape_shape;
+	/** Tipo de condição de contorno (0 = absortiva, 1 = periódica, 2 = reflexiva) */
+	const int boundary_condition;
+	/** Matriz de pixels da paisagem, assume os valores 0 quando o pixel está na matriz e 1 quando está no habitat */
 	int landscape[dim][dim];//[linha][coluna] temporariamente substituido or valor fixo
+	/** Matriz com a determinação do fragmento a que cada pixel pertence (0 para matriz; 1, 2, 3, ... para fragmentos */
+	int patches[dim][dim];
+	/** Número de fragmentos da paisagem, desconsiderando-se a matriz. */
+	int numb_patches;
+	/** Ponteiro para o vetor contendo a área de cada fragmento */
+	double* patch_area;
+	/** Posição dos indivíduos no início da simulação (0 = origem; 1 = aleatória com distribuição uniforme na paisagem; 2 = aleatória com distribuição normal na paisagem)*/
 	const int initialPos;
-	
+
 	//metodos privados
 	void populating(
-					const double raio, 
-					/** Numero de individuos que começam a simulação espalhados no ambiente */
-					const int N, 
-					/** Ângulo de visada dos individuos */
+					/** Raio no qual os indivíduos percebem vizinhos. Deve ser menor que o tamanho do mundo */
+					const double raio,
+					/** Número de indivíduos no começo da simulação */
+					const int N,
+					/** Ângulo de visada dos indivíduos da população */
 					const double angulo_visada,
-					/** Passo de caminhada dos individuos */
-					const double passo, 
-					/** Taxa de movimentação dos individuos */
-					const double move, 
-					/** Taxa de nascimento de um individuo no habitat favoravel e sem vizinhos */
-					const double taxa_basal, 
-					/** Taxa de morte dos individuos */
-					const double taxa_morte,					
-					/** Inclinação da denso-dependência na natalidade */
+					/** Passo de caminhada dos indivíduos da população */
+					const double passo,
+					/** Taxa de movimentação dos individuos da população */
+					const double move,
+					/** Taxa de nascimento de um indivíduo no habitat favorável e sem vizinhos */
+					const double taxa_basal,
+					/** Taxa de mortalidade dos indivíduos */
+					const double taxa_morte,
+					/** Inclinação da curva de denso-depedência para natalidade */
 					const double incl_b,
-					/** Inclinação da denso-dependência na mortalidade */
+					/** Inclinação da curva de denso-depedência para mortalidade */
 					const double incl_d,
-					/** Constante de acrescimo na taxa basal de morte na matriz em relação à essa taxa basal no habitat */ 
+					/** Constante que indica quantas vezes a mortalidade basal na matriz é maior que no habitat */
 					const double death_m,
 					/** Tipo de densidade (0 = GLOBAL, 1 = LOCAL) */
 					const int dens_type
 					);
-					
-    void atualiza_vizinhos(individuo * const ind) const;//contabilizador de vizinhos
-    void atualiza_habitat(individuo * const i) const;//vai informar o individuo em que tipo de habitat ele esta
-    //int define_tempo();
-	void apply_boundary(individuo * const ind); //const; // metodo para aplicação da condicao de contorno
-    		
+
+	/** Atualiza a lista de vizinhos de um indivíduo */
+    void atualiza_vizinhos(individuo * const ind) const;
+    /** Informa o indivíduo o tipo de habitat (matriz ou habitat) correspondente à sua atual posição, atualizando \ref individuo::tipo_habitat */
+    void atualiza_habitat(individuo * const ind) const;
+    /** Informa o indivíduo o fragmento correspondente à sua atual posição, atualizando \ref individuo::patch_label */
+    void atualiza_patch(individuo * const ind) const;
+    /** Aplica a condição de contorno após a movimentação */
+	bool apply_boundary(individuo * const ind); //const; // metodo para aplicação da condicao de contorno
+
 
 public:
 	//vector <individuo*> popIndividuos;
-	
+
 	/** Contador de quanto tempo já transcorreu no mundo simulado */
     double tempo_do_mundo;
-    
+
 	//metodos publicos
 	/** Construtor da classe paisagem */
     paisagem(
-			/** Raio no qual os individuos percebem vizinhos. Deve ser menor que o tamanho do mundo */
-			const double raio, 
-			/** Numero de individuos que começam a simulação espalhados no ambiente */
-			const int N, 
-			/** Ângulo de visada dos individuos */
+			/** Raio no qual os indivíduos percebem vizinhos. Deve ser menor que o tamanho do mundo */
+			const double raio,
+			/** Número de indivíduos no começo da simulação */
+			const int N,
+			/** Ângulo de visada dos indivíduos */
 			const double angulo_visada,
-            /** Passo de caminhada dos individuos */
-			const double passo, 
-			/** Taxa de movimentação dos individuos */
-			const double move, 
-			/** Taxa de nascimento de um individuo no habitat favoravel e sem vizinhos */
-			const double taxa_basal, 
-			/** Taxa de morte dos individuos */
+            /** Passo de caminhada dos indivíduos */
+			const double passo,
+			/** Taxa de movimentação dos indivíduos */
+			const double move,
+			/** Taxa de nascimento de um indivíduo no habitat favorável e sem vizinhos */
+			const double taxa_basal,
+			/** Taxa de morte dos indivíduos */
 			const double taxa_morte,
-			/** Inclinação da denso-dependência na natalidade */
+			/** Inclinação da curva de denso-depedência para natalidade */
 			const double incl_b,
-			/** Inclinação da denso-dependência na mortalidade */
+			/** Inclinação da curva de denso-depedência para mortalidade */
 			const double incl_d,
-			/** Número de células de cada lado da grade que representa a paisagem */
+			/** Número de pixels do lado da paisagem */
 			const int numb_cells,
-			/** Tamanho do lado da célula (ou tamanho do pixel) */
-			const double cell_size,			 
-			/** Forma da paisagem */
+			/** Tamanho do lada de cada pixel da imagem usada para a classificação da paisagem */
+			const double cell_size,
+			/** Forma da paisagem  (0 = circular, 1 = quadrada)*/
 			const int land_shape,
 			/** Tipo de densidade ("g" = GLOBAL, "l" = LOCAL) */
 			const int density_type,
-			/** Constante de acrescimo na taxa basal de morte na matriz em relação à essa taxa basal no habitat */ 
+			/** Constante que indica quantas vezes a mortalidade basal na matriz é maior que no habitat */
 			const double death_mat,
-			/** How individuals are initially set into the landscpae **/
+			/** Posição dos indivíduos no início da simulação (0 = origem; 1 = aleatória com distribuição uniforme na paisagem; 2 = aleatória com distribuição normal na paisagem)*/
 			const int inipos,
-			/** Condição de contorno */
+			/** Condição de contorno (0 = absortiva, 1 = periódica, 2 = reflexiva)*/
 			const int bound_condition,
 			/** Vetor de cobertura de habitat na paisagem */
-			int scape[]			
+			int scape[]
 			); //construtor
 
-	/** Atualiza as variáveis de todos os indivíduos (ver individuo::set_vizinhos, individuo::set_habitat e individuo::update) e escolhe uma ação para ser executada. Executa a ação e atualiza o tempo do mundo de acordo \sa \ref Introdução */
-    int update();//atualizador
-	void realiza_acao(int lower);//vai pegar os tempos de cada individuo e informa qual foi o escolhido e manda ele fazer
+	/** Atualiza as  */
+    void update();//atualizador
+    /** Seleciona o individuo com menor tempo até o proximo evento para realizar uma ação */
+	int sorteia_individuo();
+	/** Após a seleção do indivíduo que realizará a ação, sorteia uma das três ações possíveis de acordo com suas respectivas taxas e retorna a ação sorteada para a paisagem
+	 * (0 = morte, 1 = nascimento, 2 = movimentação) */
+	int sorteia_acao(const int lower){return this->popIndividuos[lower]->sorteia_acao();}
+	/** Realiza a ação sorteado do indivíduo selecionado. Além disso informa se o indivíduo sai da paisagem por emigração */
+	bool realiza_acao(int acao, int lower);//vai pegar os tempos de cada individuo e informa qual foi o escolhido e manda ele fazer */
+	/** Atualiza o contador de tempo, somando o tempo para o evento do indivíduo selecionado */
+	void atualiza_tempo(const int lower){this->tempo_do_mundo = this->tempo_do_mundo + this->popIndividuos[lower]->get_tempo();}
 	/** Retorna o número total de indivíduos na paisagem */
     const int conta_individuos() const{return popIndividuos.size();}
 	/** Retorna um vetor contendo todos os indivíduos na paisagem */
@@ -116,14 +144,20 @@ public:
     const int conta_especies() const;
 	/** Retorna o tamanho da paisagem (definido no construtor) */
     const double get_tamanho() const {return this->tamanho;}
-	
+	/** Calcula a distância entre dois indivíduos */
 	double calcDist(const individuo* a1, const individuo* a2) const;
-	
+	/** Calcula a densidade de vizinhos de um indivíduo */
 	double calcDensity(const individuo* ind1) const;
 
-    /** Retorna false se o indivíduo estava no ambiente no passod de tempo 0, e true se ele nasceu durante a simulação.
+    /** Retorna false se o indivíduo estava no ambiente no passo de tempo 0, e true se ele nasceu durante a simulação.
 	 * Usado para pintar os indivíduos nascidos de um cor diferente dos individuos originais */
     const bool nascido(individuo * const ind) const {return ind->get_id() > this->N;}
+	/** Função recursiva utilizada para encontrar os freagmentos da paisagem */
+    void find_patches(int x, int y, int current_label);
+	/** Retorna o número de fragmentos da paisagem */
+    int get_numb_patches(){return numb_patches;}
+	/** Retorna a área de um dado fragmento da paisagem */
+    double get_patch_area(int i) const {return this->patch_area[i];}
 
 };
 
