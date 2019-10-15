@@ -3,153 +3,211 @@
 #include <vector>
 
 using namespace std;
-
-/** \brief A classe individuo representa um agente da simulação.
- *
- *  Esta classe contém informações referentes a cada indivíduo, incluindo sua localização e estado, uma lista contendo ponteiros para os vizinhos próximos, tamanho do passo de movimentação, etc. Esta classe NÃO contém métodos que sejam de responsabilidade do ambiente, como o método de atualizar os vizinhos */
+/*
+ The individual class represents an agent of the simulation
+ 
+ This class conatins informations pertinent to an individual, including it's location, state, a vector containing pointers to close neighbours, lenght distance of a dispersal event, rate of dispersal, etc. This class DOES NOT contain methods of landscape/paisagem responsability, mutch like the update of the neighbour vector of each individual.
+ */
 class individuo
 {
 private:
-    //propriedades privadas
-	/** Identificador único de cada indivíduo */
+    
+    // Private properties
+
+	// Unique individual identifier
     const unsigned long id;
-	/** Identificador máximo já usado */
+	// Current maximum individual identifier
     static unsigned long MAXID;
-	/** Posição X da localização do indivíduo */
+	// The X coordinate of the individual
     double x;
-	/** Posição Y da localização do indivíduo */
+	// The Y coordinate of the individual
 	double y;
-	/** Espécie a qual o indivíduo pertence. Cada espécie será representada por um número único, TBI*/
+    // The species identifier number of the individual (TBI)
     const int especie;
-    /** Taxa de natalidade final, após a consideração de todos os efeitos */
+    // Final/current birth rate of the individual (all effects considered)
     double birth;
-    /** Taxa intrínseca de mortalidade quando no habitat e na ausência de outros indivíduos na vizinhança local */
+    // Final/current death rate of the individual (all effects considered)
     const double taxa_morte;
-    /** Taxa de movimentação */
+    // Dispersal rate of the individual
     const double move; 
-    /** Tamanho do passo dado a cada movimentação */
+    //The Lenght distance of a dispersal event
     const double passo;
-    /** Ângulo de orientação sorteado para a movimentação */
+    // Angle that an individual is curently facing
     double orientacao;
-    /** Ângulo de visada */
+    // Angle used for orientation when dispersing
     const double ang_visada;
-    /** Tempo sorteado para o próximo evento acontecer com este indivíduo */
+    // Drafted time require for the individual to execute an action
     double tempo_evento;
-    /** Densidade máxima suportada pelo indivíduo*/
+    // Maximum density the individual is capable of bearing
     double densi_max;
-    /** Raio de percepção da densidade */
+    //Radius of density dependant influence
     double raio;
-    /** Vetor de vizinhanca */
+    // Vector for storing the neightbours of the individual
     vector<individuo*> lisViz;//vetor de vizinhanca    ----//CAMADA PERCEPTIVA
-    /** Taxa intrínseca de natalidade quando no habitat e na ausência de outros indivíduos na vizinhança local */
+    // The basal birth rate (The rate at which the individuals give birth on a habitat patch without neigbours)
     const double taxa_basal;
-    /** Identificdor do tipo de habitat do pixel correspondente à atual posição do indivíduo (0 = matriz; 1 = habitat) */
+    // The basal death rate (The rate at which the individuals die on a habitat patch without neigbours)
+    const double taxa_morte;
+    // Identfier of the Type of habitat the individual is currently on (0 = matriz; 1 = habitat)
     int tipo_habitat;//CAMADA PERCEPTIVA
-    /** Identificdor do fragmento correspondente à atual posição do indivíduo (0 = matriz; 1, 2, ... = fragmentos de habitat) */
+    // Identfier of the patch of habitat the individual is currently on  (0= matrix, 1= patch1, 2= patch2... n= patchn, n+1=pathn+1)
     int patch_label;
-    /** Semente para gerar os numeros aleatorios */
+    // Seed for generating random numers for the individual
     const int semente;
-	/** Taxa de mortalidade final, após a consideração de todos os efeitos */
+    // Final/current death rate of the individual (all effects considered)
 	double death;
-	/** Taxa de natalidade e mortalidade quando N = K ou dens = dens_max */
+	// Birth and death rates when they are at equilibrium (populational K)
 	double birth_death_eq;
-	/** Inclinação da curva de denso-depedência para natalidade */
+	// The slope of the birth density dependance function
 	const double incl_birth;
-	/** Inclinação da curva de denso-depedência para mortalidade */
+	// The slope of the death density dependance function
 	const double incl_death;
-	/** Constante que indica quantas vezes a mortalidade basal na matriz eh maior que no habitat */
-	const double const_d_matrix;// Pensar em como considerar diferentes mortalidades (constantes) em diferentes tipos de matriz 
-	/** Forma como a densidade é calculada (0 = GLOBAL, 1 = LOCAL)*/
+	// Constant that indicates how many times higher the death rate should be on non-habitat pixels
+    const double const_d_matrix;// Pensar em como considerar diferentes mortalidades (constantes) em diferentes tipos de matriz
+	// Density type (0 = global, 1 = local/within a individual radius)
 	const int dens_type;
-	//metodos privados
-	/** Gera um número aleatório, segundo distribuição exponencial, correspondente ao tempo para a ocorrência do próximo evento, levando em consideração as taxas de mortalidade, natalidade e movimentação */
+    
+    // The genetical optimum environmental value for a individual (where its mortality rate is the lowest)
+    const double env_optimum;
+    // The genetical optimum environmental value for a individual (where its mortality rate is the lowest)
+    const double phenotype_mean
+    // The standard deviation of environmental usage by a individual, how generalist it is
+    const double width_sd;
+    // The randomly selected displacement value (This is used to dislocate the fitness distribution of the individual)
+    const double rdn_noise;
+    
+    
+	// Private Methods
+    // Fucntion that generates random numbers, following a exponential distribution, corresponding to the time needed to execute the next action, taking in account the birth, death and dispersal rates.
     void sorteiaTempo();
 	
 public:
-	/** Construtor da classe individuo. Deve ser chamado pela paisagem para posicionar os 
-	 * indivíduos que já estão na paisagem no início da simulação. */
+    /*
+     Constructor of the individual/individuo class
+     Must be called by the landscape/paisagem class to position individuals at the star of the simualtion
+    */
+    
     individuo(
-			/** Posição X da localização do indivíduo */
-			double x, 
-			/** Posição Y da localização do indivíduo */
+			// The X coordinate of the individual
+			double x,
+			// The y coordinate of the individual
 			double y, 
-			/** Espécie a qual o indivíduo pertence. Cada espécie é representada por um número único. \ref TBI */
+			// The species identifier number of the individual (TBI)
 			const int especie, 
-			/** Taxa intrínseca de mortalidade quando no habitat e na ausência de outros indivíduos na vizinhança local */
+			// The basal death rate (The rate at which the individuals die on a habitat patch without neigbours)
 			const double taxa_morte,
-			/** Ângulo de orientação sorteado para a movimentação, veja \ref individuo::anda */
+            // Angle that an individual is curently facing
 			double orientacao, 
-			/** Ângulo de visada, veja \ref individuo::anda */
+			// Angle used for orientation when dispersing
 			const double angulo_visada,
-			/** Tamanho do passo dado a cada movimentação, veja \ref individuo::anda */
+			//The Lenght distance of a dispersal event
             const double passo,
-			/** Taxa de movimentação */
+			// Dispersal rate of the individuals
 			const double move,
-			/** Raio de percepção da densidade */
+			// Radius of density dependant influence
 			const double raio, 
-			/** Taxa intrínseca de natalidade quando no habitat e na ausência de outros indivíduos na vizinhança local */
+			// The basal birth rate (The rate at which the individuals give birth on a habitat patch without neigbours)
             const double taxa_basal,
-			/** Semente para gerar os numeros aleatorios */
+			// Seed for generating random numers for the individual
 			const int semente,
-			/** Inclinação da curva de denso-depedência para natalidade */
+			// The slope of the birth density dependance function
 			const double incl_birth,
-			/** Inclinação da curva de denso-depedência para mortalidade */
+			// The slope of the death density dependance function
 			const double incl_death,
-			/** Constante que indica quantas vezes a mortalidade basal na matriz é maior que no habitat */
+			// Constant that indicates how many times higher the death rate should be on non-habitat pixels
 			const double death_mat,
-			/** Forma como a densidade é calculada (0 = GLOBAL, 1 = LOCAL)*/
+			// Density type (0 = global, 1 = local/within a individual radius)
 			const int dens_type);
-	/** Construtor de cópia, usado para gerar novos indivíduos por reprodução assexuada.
-	 *  Todos os dados do individuo pai serão copiados, com a exceção de:
-	 *  - id (veja \ref individuo::get_id)
-	 *  - vizinhos (veja \ref individuo::set_vizinhos)
-	 *  - tempo para evento (veja \ref individuo::get_tempo) 
-	 *  */
+    
+    /* Copy constructor, used for generating new individuals by assexual reproduction
+     All the characteristics of the parent individual will be copyed, exept:
+        - id (veja \ref individuo::get_id/ will be set to new value)
+        -list of Neighbours (veja \ref individuo::set_vizinhos/ will be updated)
+        - time until nex event (veja \ref individuo::get_tempo/ will be drafted)
+     Paran const individuo& rhs - Parent individual
+    */
     individuo(/** Indivíduo pai */ const individuo& rhs); 
 
-    /** Reinicia o contador de indivíduos */
-    static void reset_id() {MAXID = 0;}
-	/** Retorna o identificador único deste indivíduo */
-	const unsigned long get_id() const {return this->id;}
-	/** Atualiza a lista de vizinhos deste indivíduo. Deve ser chamada a cada passo de tempo pela \ref paisagem */
-    void set_vizinhos (/** Lista dos vizinhos */ const vector<individuo*> lis){this->lisViz=lis;}
-	/** Atualiza o tipo de hábitat no qual o indivíduo está. Deve ser chamada a cada passo de tempo pela \ref paisagem. */
-    void set_habitat (const int tipo){this->tipo_habitat=tipo;}
-    /** Atualiza o fragmento do indivíduo */
-    void set_patch (const int label){this->patch_label=label;}
-	/** Atualiza a posição X do indivíduo */
-    void set_x(/** Nova posição */double i){this->x =i;}
-	/** Atualiza a posição Y do indivíduo */
-    void set_y(/** Nova posição */double i){this->y =i;}
-	/** Retorna a posição X do indivíduo */
-    inline const double get_x() const {return this->x;}
-	/** Retorna a posição Y do indivíduo */
-    inline const double get_y() const {return this->y;}
-	/** Retorna o raio de percepção do indivíduo */
-    const double get_raio() const {return this->raio;}
-	/** Retorna o tipo de densidade que afeta o indivíduo */
-    const int get_densType() const {return this->dens_type;}
-	/** Returns the number of individuals inside the neighbourhood of the individual (it includes the focal individual) */
-    const int NBHood_size() const {return this->lisViz.size()+1;}
-	/** Retorna o fragmento no qual o indivíduo está */
-    const int get_patch() const {return this->patch_label;}
+    // Function that sets the maximum id to 0
+    static void reset_id();
+    
+    // Function that returns the ID of an individual
+    const unsigned long get_id() const;
+    
+    /*
+     Function that passes the imputed vector of neighbours of an individual (individuals within a radius distance) to the individuals.
+     Must be called at each time step by the landscape
+     Paran const vector<individuo*> lis - The list of individuals within aradius dinstace of the focal individual
+    */
+    void set_vizinhos (/** Lista dos vizinhos */ const vector<individuo*> lis);
+    
+    /*
+     Function that updates the habitat type of the pixeld the individual is currently on
+     Mut be called at each time step by the landscape (0= matrix 1= habitat)
+     Paran const int tipo - Pixel adress on the landscape matrix
+     */
+    void set_habitat (const int tipo);
+    
+    /*
+     Function that updates the fragment identfier of the pixel the individual is currently on
+     Paran const int label - Pixel adress on the patch id matrix
+     
+     */
+    void set_patch (const int label);
+    
+    /*
+     Function that updates the X coordinate of the individual
+     Paran double i - The new x Coordinate
+    */
+    void set_x(/** Nova posição */double i);
+    
+	/*
+     Function that updates the y coordinate of the individual
+     Paran double i - The new y Coordinate
+    */
+    void set_y(/** Nova posição */double i);
+    
+    // Function that returns the x coordinate of the individual
+    inline const double get_x() const;
+    
+	// Function that returns the y coordinate of the individual
+    inline const double get_y() const;
+    
+	// Function that returns the density dependance radius of the individual
+    const double get_raio() const;
+    
+    // Function that returns the density type afecting the individual (0= global, 1=local)
+    const int get_densType() const;
+    
+    // Function that returns the number of individuals within the readius of the focal individuals for density calculations (it also includes the focal individual)
+    const int NBHood_size() const;
+    
+    // Function that retuns the fragment identfier of the pixel the individual is currently on 0= matrix, 1= patch1, 2= patch2... n= patchn, n+1=pathn+1)
+    const int get_patch() const;
 
-    // outros metodos publicos
+    // Other Public Methods
+    
 	/** Retorna o tempo sorteado para o próximo evento acontecer com este indivíduo.
 	 * \sa 
 	 * \ref individuo::update
 	 * \ref paisagem::update */
-    const double get_tempo(){return this->tempo_evento;}
-	/** Sorteia uma das três ações possíveis de acordo com suas respectivas taxas e retorna a ação sorteada para a paisagem
-	 * (0 = morte, 1 = nascimento, 2 = movimentação) */
+    // Function that Returns the drafted time for executing an action by the individual based on its birth, death and dispersal rates
+    const double get_tempo();
+    
+    // Function that drafts one of the three possible actions (0 = death, 1 = birth, 2 = dispersal) (acounting for their respective taxes) and returns the drafted action to the landscape
     int sorteia_acao();
-	/** Atualiza a taxa de natalidade e/ou de mortalidade baseado na densidade de indivíduos dentro do raio de percepção e sorteia o tempo
-	 * do próximo evento baseado nas taxas de natalidade, de mortalidade e de movimentação 
-	 * \sa \ref individuo::get_tempo */
+    
+      //\sa \ref individuo::get_tempo
+    /*
+     Function that updates both death and birth rates of individuals based on the number of individuals within the area of their density dependance radius
+     It them calls a function to draft the time needed for execution of that individual based on its birth, death and dispersal rates
+     Paran double dens - The number of individuals pondered by the area of the density dependance radius
+     */
     void update(double dens);
-	/** Faz com que o indivíduo ande um passo, de tamanho passo. A orientação na qual o indivíduo vai andar é a orientação atual
-	 * (definida no construtor como orientacao) mais um ângulo aleatório dentro do ângulo de visada (angulo_visada). A definição de um 
-	 * ângulo de visada de 360 graus equivale a uma caminhada aleatória */
+    
+    /* Function that dislocates the XY corrdinates of an individual by a "passo" lenght distance and oriented by the angle the individuals is currently facing added of a random component (angulo_vizada) (if angulo_vizada== 360 -> Random Walk)
+     Paran bool aleatorio = true -
+    */
     void anda(/** Passe aleatorio = true para forçar uma caminhada aleatória */ bool aleatorio = true);
 };
 //Falta mexer no doxygen dos construtores e da update
