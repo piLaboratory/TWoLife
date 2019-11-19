@@ -117,24 +117,38 @@ It them calls a function to draft the time needed for execution of that individu
 void individuo::update(double dens)
 {
   double densi = dens; // Density of  neighbour individuals (includes focal one)
-  if(this->tipo_habitat==0) // Checks if the individual is currently on the matrix
-	{
-		this->birth = 0; // Sets birth rate to 0
+  
+    if (HEG == false) {
+        if(this->tipo_habitat==0) // Checks if the individual is currently on the matrix
+          {
+              this->birth = 0; // Sets birth rate to 0
+              
+              // ToDo: Implementar aqui modelo mais geral para mortalidade na matriz. Aqui a denso dependencia é igual à do habitat, só muda a mortalidade basal que é maior que no habitat.
+              this->death = this->const_d_matrix*this->taxa_morte+this->incl_death*densi; // Sets the higer mortality rate atributed to nonhabita patches
+          }
+        else
+          {
+              this->birth = this->taxa_basal-this->incl_birth*densi; // Computes the actual birth rate on habitat patch (that is influenced by the density of neighbours)
+              this->death = this->taxa_morte+this->incl_death*densi; // Computes the actual death rate on habitat patch (that is influenced by the density of neighbours)
+              if(this->birth<0) //Checks if the birth rate is lower than possible
+              {
+                  this->birth=0; // Lets to the lowest possible value to Birth
+                  
+              }
+          }
+    }
+    else{
         
-		// ToDo: Implementar aqui modelo mais geral para mortalidade na matriz. Aqui a denso dependencia é igual à do habitat, só muda a mortalidade basal que é maior que no habitat.
-		this->death = this->const_d_matrix*this->taxa_morte+this->incl_death*densi; // Sets the higer mortality rate atributed to nonhabita patches
-	}
-  else 
-	{
-		this->birth = this->taxa_basal-this->incl_birth*densi; // Computes the actual birth rate on habitat patch (that is influenced by the density of neighbours)
-		this->death = this->taxa_morte+this->incl_death*densi; // Computes the actual death rate on habitat patch (that is influenced by the density of neighbours)
-		if(this->birth<0) //Checks if the birth rate is lower than possible
-        {
-            this->birth=0; // Lets to the lowest possible value to Birth
-            
-        }
-	}
-	
+        this->birth = this->taxa_basal-this->incl_birth*densi; // Computes the actual birth rate on habitat patch (that is influenced by the density of neighbours)
+                     this->death = this->taxa_morte-((dnorm(this->tipo_habitat, this->phenotype_mean, this->width_sd)/dnorm(this->phenotype_mean,this->phenotype_mean,this-> width_sd))*taxa_morte); // Computes the actual death rate on habitat patch (that is influenced by the suitability of its current habitat)
+                     
+                     if(this->birth<0) //Checks if the birth rate is lower than possible
+                     {
+                         this->birth=0; // Lets to the lowest possible value to Birth
+                         
+                     }
+    }
+    
   this->sorteiaTempo(); // Calls the function to draft the time needed to execute the next action
 }
 
@@ -282,4 +296,11 @@ const double individuo::get_tempo()
 {
     return this->tempo_evento; // Returns the drafted time for executing an action by the individual
     
+}
+
+//Function that returns the value of the probability density function for the normal distribution
+double individuo::dnorm(double x ,double mean=0, double sd=1){
+                
+    return (1/(sd*sqrt(2*M_PI))*(exp(-1*(pow(x-mean, 2)/(2*pow(sd, 2))))));
+                
 }

@@ -558,6 +558,7 @@ int paisagem::get_numb_patches()
     
 }
 
+
 //TBI
 //para quando tiver especies, a definir...
 //int paisagem::conta_especies()

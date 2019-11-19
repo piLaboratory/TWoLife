@@ -210,6 +210,14 @@ public:
     */
     void anda(/** Passe aleatorio = true para forçar uma caminhada aleatória */ bool aleatorio = true);
 };
+
+/* Function that returns the value of the probability density function for the normal distribution
+   Paran double x - Quantile of interest
+   Paran double mean - Mean value of the distribution
+   Paran double sd - Standad deviation of the distribution
+  */
+  double dnorm(double x ,double mean=0, double sd=1);
+
 //Falta mexer no doxygen dos construtores e da update
 
 #endif // INDIVIDUO_H
