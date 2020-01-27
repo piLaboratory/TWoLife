@@ -213,7 +213,9 @@ bool paisagem::realiza_acao(int acao, int lower) //TODO : criar matriz de distan
         break;
 
     case 2:
-        this->popIndividuos[lower]->anda(); // Calls a function that changes the X and Y coordinates of the individuals
+            
+        this->walk(lower);
+            
 	emigrou = this->apply_boundary(popIndividuos[lower]); //Apply the boundary condition if the individual disperses out of the landscape boundary Changes the boolean value to pisitive if a individual went ou of the landscape boundaries
 		break;
     }
@@ -557,6 +559,37 @@ int paisagem::get_numb_patches()
     return this->patch_area[i];
     
 }
+               
+double paisagem::walk(int lower){
+                
+    if(selection=TRUE)
+    {
+        double possibilitities[this->popIndividuos[lower]->points][3];
+                    
+        for (int i=0; i<this->popIndividuos[lower]->points; i++)
+        {
+                        
+            choice=runif(0.0,360.0);
+            dist=runif(0.0,this->popIndividuos[lower]->passo);
+                        
+            possibilitities[i][0]=this->popIndividuos[lower]->x+cos(choice)*dist;
+            possibilitities[i][1]=this->popIndividuos[lower]->y+sin(choice)*dist;
+                        
+            possibilitities[i][2]<-dnorm(landscape[possibilitities[i][0]][possibilitities[i][1]], this->popIndividuos[lower]->phenotype_mean, this->popIndividuos[lower]->width_sd);
+        }
+            this->popIndividuos[lower]->habitat_selection(possibilitities);
+                    
+                    
+    }
+                
+    else
+    {
+        this->popIndividuos[lower]->anda(); // Calls a function that changes the X and Y coordinates of the individuals
+    }
+}
+                
+
+                
 
 
 //TBI

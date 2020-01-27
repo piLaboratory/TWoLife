@@ -35,8 +35,9 @@ private:
 	//The boundary condition type affects how individuals interact with the edges of the landscape (0= absortive, 1= periodical (pacman),2= reflexive)
 	const int boundary_condition;
     // Matrix containing the evironmental values of the landscape pixels (0= matrix, 1= habitat)
-	int landscape[dim][dim];//[row][col] temporarely substitute for a fixed "dim"
-    // Matrix determining the pixels of a patch (0= matrix, 1= patch1, 2= patch2... n= patchn, n+1=pathn+1)
+	
+    // Landscape moved to Public
+    
 	int patches[dim][dim];
 	// number of non_matrix patches
 	int numb_patches;
@@ -101,6 +102,9 @@ public:
 
     // The world counter used for storing how much time has already passed
     double tempo_do_mundo;
+    
+    int landscape[dim][dim];//[row][col] temporarely substitute for a fixed "dim"
+    // Matrix determining the pixels of a patch (0= matrix, 1= patch1, 2= patch2... n= patchn, n+1=pathn+1) Previously on Private
 
 	//Public methods
 	// Constructor of the landscape/paisagem class
@@ -213,7 +217,10 @@ public:
     Paran int i - The patch number
      */
     double get_patch_area(int i) const ;
-
+    
+    // Function that decides upon, and calls other functions to perform, the desired method of dispersion (Random walk or habitat selection). In the habitat selection case this function also samples x Points within the individuals "passo" radius and the indivuduals relative fitness on that location.
+    // const int lower - The postion of the individual with the lowest drafted time
+    double paisagem::walk(int lower);
 };
 
 #endif // PAISAGEM_H

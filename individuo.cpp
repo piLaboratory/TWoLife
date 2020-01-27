@@ -98,6 +98,11 @@ individuo::individuo(const individuo& rhs)
 	  const_d_matrix(rhs.const_d_matrix), // Sets the inputed Constant that indicates how many times higher the death rate should be on non-habitat pixelsequal to the parent
 	  dens_type(rhs.dens_type), // Sets the inputed density type equal to the parent
 	  birth_death_eq(rhs.birth_death_eq) // Sets  birth death equilibrium point equal to the parent
+      env_optimum(rhs.env_optimum),
+      phenotype_mean(rhs.phenotype_mean),
+      width_sd(rhs.width_sd),
+      rdn_noise(rhs.rdn_noise)
+
 { //precisamos dessa chave e da que fecha ela?
 	
 }
@@ -132,7 +137,7 @@ void individuo::update(double dens)
               this->death = this->taxa_morte+this->incl_death*densi; // Computes the actual death rate on habitat patch (that is influenced by the density of neighbours)
               if(this->birth<0) //Checks if the birth rate is lower than possible
               {
-                  this->birth=0; // Lets to the lowest possible value to Birth
+                  this->birth=0; // Sets to the lowest possible value to Birth
                   
               }
           }
@@ -140,7 +145,7 @@ void individuo::update(double dens)
     else{
         
         this->birth = this->taxa_basal-this->incl_birth*densi; // Computes the actual birth rate on habitat patch (that is influenced by the density of neighbours)
-                     this->death = this->taxa_morte-((dnorm(this->tipo_habitat, this->phenotype_mean, this->width_sd)/dnorm(this->phenotype_mean,this->phenotype_mean,this-> width_sd))*taxa_morte); // Computes the actual death rate on habitat patch (that is influenced by the suitability of its current habitat)
+        this->death = this->const_d_matrix-((dnorm(this->tipo_habitat, this->phenotype_mean, this->width_sd)/dnorm(this->phenotype_mean,this->phenotype_mean,this-> width_sd))*(this->const_d_matrix-this->taxa_morte)); // Computes the actual death rate on habitat patch (that is influenced by the suitability of its current habitat)
                      
                      if(this->birth<0) //Checks if the birth rate is lower than possible
                      {
@@ -187,17 +192,85 @@ int individuo::sorteia_acao()
 void individuo::anda(bool aleatorio)
 {
     
-	if (aleatorio) // checks if random walk (defalt) is selected {
-		this->orientacao = runif(-180.0,180.0);//random way point to draft any direction
-	} else {
-		this->orientacao+= runif(-ang_visada/2.0, ang_visada/2.0);//random way point within specified angle distance
-	}
-    double oriRad=this->orientacao*M_PI/180.0; // Tranforms to radians to calculate the new XY coordinates
+    //if (Habitat_Selection == False ) {
+        
+        if (aleatorio) // checks if random walk (defalt) is selected
+        {
+            this->orientacao = runif(-180.0,180.0);//random way point to draft any direction
+        } else {
+            this->orientacao+= runif(-ang_visada/2.0, ang_visada/2.0);//random way point within specified angle distance
+        }
+        double oriRad=this->orientacao*M_PI/180.0; // Tranforms to radians to calculate the new XY coordinates
 
-    double dx= cos(oriRad)*this->passo; // Calculates the new x coordinate
-    double dy= sin(oriRad)*this->passo; // Calculates the new y coordinate
-    this->x+=dx; // Sets new x coordinate
-    this->y+=dy; // Sets new y coordinate
+        double dx= cos(oriRad)*this->passo; // Calculates the new x coordinate
+        double dy= sin(oriRad)*this->passo; // Calculates the new y coordinate
+        this->x+=dx; // Sets new x coordinate
+        this->y+=dy; // Sets new y coordinate
+
+    /*}
+    else
+    {
+        
+        double possibilitities[this->points][2];
+        double scores[this->points];
+        double cumsum=0, choice=0, dist;
+        
+        for (int i=0; i<this<-points; i++) {
+            
+            choice=runif(0.0,360.0);
+            dist=runif(0.0,this->passo);
+            
+            possibilitities[i][0]=this->x+cos(choice)*dist;
+            possibilitities[i][1]=this->y+sin(choice)*dist;
+            
+            scores[i]<-dnorm(landscape[possibilitities[i][0]][possibilitities[i][1]], this->phenotype_mean, this->width_sd);
+            cumsum+=exp(scores[i]);
+        }
+        
+        choice= runif(0.0,1.0);
+        
+        for (int i=0; i<this<-points; i++) {
+            
+            scores[i]= exp(scores[i])/cumsum;
+            if (scores[i]>choice) {
+                
+                choice= i;
+                break;
+            }
+            
+        }
+        
+        this->x=possibilitities[i][0]; // Sets new x coordinate
+        this->y=possibilitities[i][1]; // Sets new y coordinate
+    }*/
+}
+
+void individuo::habitat_selection(double &possibilitities[][])
+{
+  double scores[this->points];
+  double cumsum=0, choice=0;
+  
+  for (int i=0; i<this<-points; i++) {
+      
+      scores[i]<-dnorm(possibilitities[i][2], this->phenotype_mean, this->width_sd);
+      cumsum+=exp(scores[i]);
+  }
+  
+  choice= runif(0.0,1.0);
+  
+  for (int i=0; i<this<-points; i++) {
+      
+      scores[i]= exp(scores[i])/cumsum;
+      if (scores[i]>choice) {
+          
+          choice= i;
+          break;
+      }
+      
+  }
+  
+  this->x=possibilitities[choice][0]; // Sets new x coordinate
+  this->y=possibilitities[choice][1]; // Sets new y coordinate
 }
 
 // Function that resets the maximum ID
@@ -304,3 +377,5 @@ double individuo::dnorm(double x ,double mean=0, double sd=1){
     return (1/(sd*sqrt(2*M_PI))*(exp(-1*(pow(x-mean, 2)/(2*pow(sd, 2))))));
                 
 }
+
+

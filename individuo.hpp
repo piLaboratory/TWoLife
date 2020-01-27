@@ -69,7 +69,7 @@ private:
     
     // The genetical optimum environmental value for a individual (where its mortality rate is the lowest)
     const double env_optimum;
-    // The genetical optimum environmental value for a individual (where its mortality rate is the lowest)
+    // The phenotipical optimum environmental value for a individual (where its mortality rate is the lowest)
     const double phenotype_mean
     // The standard deviation of environmental usage by a individual, how generalist it is
     const double width_sd;
@@ -217,6 +217,11 @@ public:
    Paran double sd - Standad deviation of the distribution
   */
   double dnorm(double x ,double mean=0, double sd=1);
+
+/* Function that dislocates the XY corrdinates of an individual due to the selection of an sampled location within its "passo" radius distance.
+   Paran double possibilitities[][] - array containing the sampled possible migration locations (x: first collum, y: second collum, fitness score:third collum)
+*/
+  void habitat_selection(double &possibilitities[][]);
 
 //Falta mexer no doxygen dos construtores e da update
 
