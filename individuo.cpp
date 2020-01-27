@@ -27,7 +27,7 @@ individuo::individuo(double x, double y, int especie, double taxa_morte,
                      double passo, double move, double raio,
                      double taxa_basal, int semente, //retirar int semente 
 					 double incl_b, double incl_d,
-					 double death_mat, int dens_type):
+					 double death_mat, int dens_type, double phenotype_mean, double width_sd):
 // This is run before the function
 	id(++MAXID), // Updates the MAXID and uses ut to construct the individual
 	x(x), // Sets the desire/drafted/inputed x Coordinate
@@ -44,7 +44,13 @@ individuo::individuo(double x, double y, int especie, double taxa_morte,
 	incl_birth(incl_b), //Sets the inputed birth density dependant inclination
 	incl_death(incl_d), //Sets the inputed death density dependant inclination
 	const_d_matrix(death_mat), //Sets the inputed Constant that indicates how many times higher the death rate should be on non-habitat pixels
-	dens_type(dens_type) //Sets the inputed density type
+	dens_type(dens_type), //Sets the inputed density type
+    phenotype_mean(phenotype_mean),
+    width_sd(width_sd),
+    rdn_noise(runif(-1.0,1.0)),
+    env_optimum(rdn_noise+phenotype_mean)
+
+
 {
     // Checks if there is an impossible parametervalue
 	if (taxa_morte < 0) throw myex;
@@ -98,10 +104,11 @@ individuo::individuo(const individuo& rhs)
 	  const_d_matrix(rhs.const_d_matrix), // Sets the inputed Constant that indicates how many times higher the death rate should be on non-habitat pixelsequal to the parent
 	  dens_type(rhs.dens_type), // Sets the inputed density type equal to the parent
 	  birth_death_eq(rhs.birth_death_eq) // Sets  birth death equilibrium point equal to the parent
-      env_optimum(rhs.env_optimum),
-      phenotype_mean(rhs.phenotype_mean),
+      phenotype_mean(rhs.phenotype_mean+runif(-1.0,1.0)),
       width_sd(rhs.width_sd),
-      rdn_noise(rhs.rdn_noise)
+      rdn_noise(runif(-1.0,1.0)),
+      env_optimum(rdn_noise+phenotype_mean)
+
 
 { //precisamos dessa chave e da que fecha ela?
 	
@@ -295,7 +302,7 @@ void individuo::set_vizinhos (const vector<individuo*> lis)
 }
 
 // Function that updates the habitat type of the pixeld the individual is currently on
-void individuo::set_habitat (const int tipo)
+void individuo::set_habitat (const double tipo)
 {
     this->tipo_habitat=tipo; //Sets the habitat type of the individual to the current one
     

@@ -49,7 +49,7 @@ private:
     // The basal death rate (The rate at which the individuals die on a habitat patch without neigbours)
     const double taxa_morte;
     // Identfier of the Type of habitat the individual is currently on (0 = matriz; 1 = habitat)
-    int tipo_habitat;//CAMADA PERCEPTIVA
+    double tipo_habitat;//CAMADA PERCEPTIVA
     // Identfier of the patch of habitat the individual is currently on  (0= matrix, 1= patch1, 2= patch2... n= patchn, n+1=pathn+1)
     int patch_label;
     // Seed for generating random numers for the individual
@@ -117,7 +117,9 @@ public:
 			// Constant that indicates how many times higher the death rate should be on non-habitat pixels
 			const double death_mat,
 			// Density type (0 = global, 1 = local/within a individual radius)
-			const int dens_type);
+			const int dens_type,
+            double phenotype_mean,
+            double width_sd);
     
     /* Copy constructor, used for generating new individuals by assexual reproduction
      All the characteristics of the parent individual will be copyed, exept:

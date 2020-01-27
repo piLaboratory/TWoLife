@@ -71,7 +71,9 @@ private:
 					// Constant that indicates how many times higher the death rate should be on non-habitat pixels
 					const double death_m,
 					// Density type (0 = global, 1 = local/within a individual radius)
-					const int dens_type
+					const int dens_type,
+                    double phenotype_mean,
+                    double width_sd
 					);
 
     /*
@@ -142,7 +144,7 @@ public:
 			//The boundary condition type affects how individuals interact with the edges of the landscape (0= absortive, 1= periodical (pacman),2= reflexive)
 			const int bound_condition,
 			// Vector containing the evironmental values of the landscape pixels (0= matrix, 1= habitat)
-			int scape[]
+			double scape[]
 			);
 
 	// Function that calls other functions of the individual/individuo class to update the vector of individuals of the landscapepaisagem object (atualiza_vizinhos,  atualiza_habitat, atualiza_patch, update())

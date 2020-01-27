@@ -21,7 +21,7 @@
 using namespace std;
 
 // Function Declarations
-extern "C" void TWoLife (double * raio, int * N, double * angulo_visada, double * passo, double * move, double * taxa_basal, double * taxa_morte, double * incl_b, double * incl_d, int * numb_cells, double * cell_size, int * land_shape, int * density_type, double * death_mat, int * inipos, int * bound_condition, int * scape,double * tempo, int * nPop, double * x, double * y, int * outCode);
+extern "C" void TWoLife (double * raio, int * N, double * angulo_visada, double * passo, double * move, double * taxa_basal, double * taxa_morte, double * incl_b, double * incl_d, int * numb_cells, double * cell_size, int * land_shape, int * density_type, double * death_mat, int * inipos, int * bound_condition, double * scape,double * tempo, int * nPop, double * x, double * y, int * outCode,  double * phenotype_mean, double * width_sd);
 
 /*
  Function to be called by R
@@ -53,7 +53,7 @@ extern "C" void TWoLife (double * raio, int * N, double * angulo_visada, double 
 
 
 // Function Definition to be called by R
-extern "C" void TWoLife (double * raio, int * N, double * angulo_visada, double * passo, double * move, double * taxa_basal, double * taxa_morte, double * incl_b, double * incl_d, int * numb_cells, double * cell_size, int * land_shape, int * density_type, double * death_mat, int * inipos, int * bound_condition, int * scape,double * tempo, int * nPop, double * x, double * y, int * outCode)
+extern "C" void TWoLife (double * raio, int * N, double * angulo_visada, double * passo, double * move, double * taxa_basal, double * taxa_morte, double * incl_b, double * incl_d, int * numb_cells, double * cell_size, int * land_shape, int * density_type, double * death_mat, int * inipos, int * bound_condition, double * scape,double * tempo, int * nPop, double * x, double * y, int * outCode,  double * phenotype_mean, double * width_sd)
 {
     
 	GetRNGstate(); //Sets the random seed based on the R (For stand-alone one could use "srand(time(0));")
@@ -61,7 +61,7 @@ extern "C" void TWoLife (double * raio, int * N, double * angulo_visada, double 
     // Creates an object of the paisagem/landscape class using the R inputed values as parameters
     // This consequently creates a vector o objects of the individuo/individual class as an atribute of the paisagem/landscape
     // The conditions are completely set for the first time step of the simulation
-	paisagem* floresta = new paisagem(raio[0], N[0], angulo_visada[0], passo[0], move[0], taxa_basal[0], taxa_morte[0], incl_b[0], incl_d[0], numb_cells[0], cell_size[0], land_shape[0], density_type[0], death_mat[0], inipos[0], bound_condition[0], scape);
+	paisagem* floresta = new paisagem(raio[0], N[0], angulo_visada[0], passo[0], move[0], taxa_basal[0], taxa_morte[0], incl_b[0], incl_d[0], numb_cells[0], cell_size[0], land_shape[0], density_type[0], death_mat[0], inipos[0], bound_condition[0], scape, phenotype_mean, width_sd);
     
     
     // This sequence creates an attribute containing the output file name. The template is output-00000.txt.

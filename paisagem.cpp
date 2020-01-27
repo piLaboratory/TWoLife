@@ -4,7 +4,7 @@
 #include <Rmath.h>
 
 // Class Constructor
-paisagem::paisagem(double raio, int N, double angulo_visada, double passo, double move, double taxa_basal, double taxa_morte, double incl_b, double incl_d, int numb_cells, double cell_size, int land_shape, int density_type, double death_mat, int inipos, int bound_condition, int scape[]):
+paisagem::paisagem(double raio, int N, double angulo_visada, double passo, double move, double taxa_basal, double taxa_morte, double incl_b, double incl_d, int numb_cells, double cell_size, int land_shape, int density_type, double death_mat, int inipos, int bound_condition, double scape[], double phenotype_mean, double width_sd):
     // This section is similar to regular atribution and is run before brackets
 	tamanho(numb_cells*cell_size),
 	N(N),
@@ -49,7 +49,8 @@ paisagem::paisagem(double raio, int N, double angulo_visada, double passo, doubl
     }
     
     // Inserts N individuals in the landscape through the populating() function
-	this->populating(raio,N,angulo_visada,passo,move,taxa_basal,taxa_morte,incl_b,incl_d,death_mat,density_type);
+    this->populating(raio,N,angulo_visada,passo,move,taxa_basal,taxa_morte,incl_b,incl_d,death_mat,density_ty, pephenotype_mean,
+                     width_sd);
 
 	for(unsigned int i=0; i<this->popIndividuos.size(); i++)// Passes through each individuals
 	{
@@ -69,7 +70,7 @@ paisagem::paisagem(double raio, int N, double angulo_visada, double passo, doubl
 
 // Function responsible for calling the constructor of the individual/individuo class to create N individuals at the start of the simulation
 void paisagem::populating(double raio, int N, double angulo_visada, double passo, double move, double taxa_basal, double taxa_morte, double incl_b, double incl_d, double death_m,
-						  int dens_type)
+						  int dens_type, double phenotype_mean[N], double width_sd[N] )
 {
 	individuo::reset_id(); // Restars the id counter of the individuals
 
@@ -92,7 +93,9 @@ void paisagem::populating(double raio, int N, double angulo_visada, double passo
 														incl_b,//The slope of the birth density dependece function
 														incl_d,//The slope of the death density dependece function
 														death_m,// Constant that indicates how many times higher the death rate should be on non-habitat pixels
-														dens_type//Density type (0 = global, 1 = local/within a individual radius)
+														dens_type,//Density type (0 = global, 1 = local/within a individual radius)
+                                                        phenotype_mean[i],
+                                                        width_sd[i]
                                                         ));
 		}
 	}
@@ -115,7 +118,9 @@ void paisagem::populating(double raio, int N, double angulo_visada, double passo
 														incl_b,//The slope of the birth density dependece function
 														incl_d,//The slope of the death density dependece function
 														death_m,// Constant that indicates how many times higher the death rate should be on non-habitat pixels
-														dens_type//Density type (0 = global, 1 = local/within a individual radius)
+														dens_type,//Density type (0 = global, 1 = local/within a individual radius)
+                                                        phenotype_mean[i],
+                                                        width_sd[i]
                                                         ));
 		}
     }
@@ -138,7 +143,9 @@ void paisagem::populating(double raio, int N, double angulo_visada, double passo
 														incl_b,//The slope of the birth density dependece function
 														incl_d,//The slope of the death density dependece function
 														death_m,// Constant that indicates how many times higher the death rate should be on non-habitat pixels
-														dens_type//Density type (0 = global, 1 = local/within a individual radius)
+														dens_type,//Density type (0 = global, 1 = local/within a individual radius)
+                                                        phenotype_mean[i],
+                                                        width_sd[i]
                                                         ));
 		}
 	}
