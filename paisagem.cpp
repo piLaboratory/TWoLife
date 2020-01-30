@@ -4,7 +4,7 @@
 #include <Rmath.h>
 
 // Class Constructor
-paisagem::paisagem(double raio, int N, double angulo_visada, double passo, double move, double taxa_basal, double taxa_morte, double incl_b, double incl_d, int numb_cells, double cell_size, int land_shape, int density_type, double death_mat, int inipos, int bound_condition, double scape[], double phenotype_mean, double width_sd):
+paisagem::paisagem(double raio, int N, double angulo_visada, double passo, double move, double taxa_basal, double taxa_morte, double incl_b, double incl_d, int numb_cells, double cell_size, int land_shape, int density_type, double death_mat, int inipos, int bound_condition, double scape[], double genotype_mean[], double width_sd[], bool Null):
     // This section is similar to regular atribution and is run before brackets
 	tamanho(numb_cells*cell_size),
 	N(N),
@@ -49,9 +49,9 @@ paisagem::paisagem(double raio, int N, double angulo_visada, double passo, doubl
     }
     
     // Inserts N individuals in the landscape through the populating() function
-    this->populating(raio,N,angulo_visada,passo,move,taxa_basal,taxa_morte,incl_b,incl_d,death_mat,density_ty, pephenotype_mean,
-                     width_sd);
-
+    this->populating(raio,N,angulo_visada,passo,move,taxa_basal,taxa_morte,incl_b,incl_d,death_mat,density_ty, genotype_mean,
+                     width_sd, Null);
+	
 	for(unsigned int i=0; i<this->popIndividuos.size(); i++)// Passes through each individuals
 	{
 		this->atualiza_vizinhos(this->popIndividuos[i]); // Calls a function of the individual/individuo class to update the neighbours of a individual (the individuals within a radius distance of the focal individual)
@@ -69,15 +69,33 @@ paisagem::paisagem(double raio, int N, double angulo_visada, double passo, doubl
 }
 
 // Function responsible for calling the constructor of the individual/individuo class to create N individuals at the start of the simulation
-void paisagem::populating(double raio, int N, double angulo_visada, double passo, double move, double taxa_basal, double taxa_morte, double incl_b, double incl_d, double death_m,
-						  int dens_type, double phenotype_mean[N], double width_sd[N] )
+void paisagem::populating(double raio, int N, double angulo_visada, double passo, double move, double taxa_basal, double taxa_morte, double incl_b, double incl_d, double death_m, int dens_type, double genotype_mean[], double width_sd[], bool Null)
 {
 	individuo::reset_id(); // Restars the id counter of the individuals
+    
+    if (Null==FALSE) {
+        vector<double> genotype(1), width(1);
+    }
+    else{
+        
+        for (int i=0; i<N; i++) {
+            genotype.push_back(genotype_mean[i]);
+            width.push_back(genotype_mean[i]);
+        }
+        
+    }
+    
 
 	if(this->initialPos==0) // Checks if the initialPos is set to 0 (origin)
 	{
 		for(int i=0; i<this->N; i++) // Goess through the amount of initial individuals selected
 		{
+            if (Null==FALSE) {
+                genotype= genotype_mean[i];	
+                width= genotype_mean[i];
+            }
+
+            
 			this->popIndividuos.push_back(new individuo(//As popAgents is a pointer of vectors, when adding variable addresses we use "new". This way should be faster, as we can acsess only the adress instead of keep storing the values
 														0,// X Coordinate
 														0,// Y Coordinate
@@ -94,8 +112,8 @@ void paisagem::populating(double raio, int N, double angulo_visada, double passo
 														incl_d,//The slope of the death density dependece function
 														death_m,// Constant that indicates how many times higher the death rate should be on non-habitat pixels
 														dens_type,//Density type (0 = global, 1 = local/within a individual radius)
-                                                        phenotype_mean[i],
-                                                        width_sd[i]
+                                                        genotype,
+                                                        width
                                                         ));
 		}
 	}
@@ -103,6 +121,11 @@ void paisagem::populating(double raio, int N, double angulo_visada, double passo
 	{
 		for(int i=0; i<this->N; i++) // Goess through the amount of initial individuals selected
 		{
+            if (Null==FALSE) {
+                genotype= genotype_mean[i];
+                width= genotype_mean[i];
+            }
+            
 			this->popIndividuos.push_back(new individuo(
 														runif(this->tamanho/(-2),this->tamanho/2), // X Coordinate
 														runif(this->tamanho/(-2),this->tamanho/2), // Y Coordinate
@@ -119,8 +142,8 @@ void paisagem::populating(double raio, int N, double angulo_visada, double passo
 														incl_d,//The slope of the death density dependece function
 														death_m,// Constant that indicates how many times higher the death rate should be on non-habitat pixels
 														dens_type,//Density type (0 = global, 1 = local/within a individual radius)
-                                                        phenotype_mean[i],
-                                                        width_sd[i]
+                                                        genotype_mean,
+                                                        width_sd
                                                         ));
 		}
     }
@@ -128,6 +151,11 @@ void paisagem::populating(double raio, int N, double angulo_visada, double passo
 	{
 		for(int i=0; i<this->N; i++) // Goess through the amount of initial individuals selected
 		{
+            if (Null==FALSE) {
+                genotype= genotype_mean[i];
+                width= genotype_mean[i];
+            }
+            
 			this->popIndividuos.push_back(new individuo(
 														rnorm(0,sqrt(move)*passo),// X Coordinate
 														rnorm(0,sqrt(move)*passo),// Y Coordinate
@@ -144,8 +172,8 @@ void paisagem::populating(double raio, int N, double angulo_visada, double passo
 														incl_d,//The slope of the death density dependece function
 														death_m,// Constant that indicates how many times higher the death rate should be on non-habitat pixels
 														dens_type,//Density type (0 = global, 1 = local/within a individual radius)
-                                                        phenotype_mean[i],
-                                                        width_sd[i]
+                                                        genotype_mean,
+                                                        width_sd
                                                         ));
 		}
 	}
@@ -582,7 +610,7 @@ double paisagem::walk(int lower){
             possibilitities[i][0]=this->popIndividuos[lower]->x+cos(choice)*dist;
             possibilitities[i][1]=this->popIndividuos[lower]->y+sin(choice)*dist;
                         
-            possibilitities[i][2]<-dnorm(landscape[possibilitities[i][0]][possibilitities[i][1]], this->popIndividuos[lower]->phenotype_mean, this->popIndividuos[lower]->width_sd);
+            possibilitities[i][2]<-dnorm(landscape[possibilitities[i][0]][possibilitities[i][1]], this->popIndividuos[lower]->genotype_mean, this->popIndividuos[lower]->width_sd);
         }
             this->popIndividuos[lower]->habitat_selection(possibilitities);
                     

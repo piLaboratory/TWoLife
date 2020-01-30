@@ -68,11 +68,11 @@ private:
 	const int dens_type;
     
     // The genetical optimum environmental value for a individual (where its mortality rate is the lowest)
-    const double env_optimum;
+    const vector <double> env_optimum;
     // The phenotipical optimum environmental value for a individual (where its mortality rate is the lowest)
-    const double phenotype_mean
+    const vector <double> genotype_mean;
     // The standard deviation of environmental usage by a individual, how generalist it is
-    const double width_sd;
+    const vector <double> width_sd;
     // The randomly selected displacement value (This is used to dislocate the fitness distribution of the individual)
     const double rdn_noise;
     
@@ -118,8 +118,8 @@ public:
 			const double death_mat,
 			// Density type (0 = global, 1 = local/within a individual radius)
 			const int dens_type,
-            double phenotype_mean,
-            double width_sd);
+            vector <double> genotype_mean,
+            vector <double> width_sd);
     
     /* Copy constructor, used for generating new individuals by assexual reproduction
      All the characteristics of the parent individual will be copyed, exept:
@@ -224,6 +224,8 @@ public:
    Paran double possibilitities[][] - array containing the sampled possible migration locations (x: first collum, y: second collum, fitness score:third collum)
 */
   void habitat_selection(double &possibilitities[][]);
+
+  double dnorm_sum( double x ,vector <double> mean, vector<double> sd);
 
 //Falta mexer no doxygen dos construtores e da update
 

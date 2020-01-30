@@ -27,7 +27,7 @@ individuo::individuo(double x, double y, int especie, double taxa_morte,
                      double passo, double move, double raio,
                      double taxa_basal, int semente, //retirar int semente 
 					 double incl_b, double incl_d,
-					 double death_mat, int dens_type, double phenotype_mean, double width_sd):
+					 double death_mat, int dens_type, vector <double> genotype_mean, vector <double> width_sd):
 // This is run before the function
 	id(++MAXID), // Updates the MAXID and uses ut to construct the individual
 	x(x), // Sets the desire/drafted/inputed x Coordinate
@@ -45,11 +45,6 @@ individuo::individuo(double x, double y, int especie, double taxa_morte,
 	incl_death(incl_d), //Sets the inputed death density dependant inclination
 	const_d_matrix(death_mat), //Sets the inputed Constant that indicates how many times higher the death rate should be on non-habitat pixels
 	dens_type(dens_type), //Sets the inputed density type
-    phenotype_mean(phenotype_mean),
-    width_sd(width_sd),
-    rdn_noise(runif(-1.0,1.0)),
-    env_optimum(rdn_noise+phenotype_mean)
-
 
 {
     // Checks if there is an impossible parametervalue
@@ -65,7 +60,18 @@ individuo::individuo(double x, double y, int especie, double taxa_morte,
 		this->densi_max = (taxa_basal-taxa_morte)/(incl_b+incl_d); // Sets the maximum density
 		this->birth_death_eq = taxa_morte+incl_d*((taxa_basal-taxa_morte)/(incl_b+incl_d)); // Sets the point where rates are equal
 	}
+    
+    this->genotype_mean= genotype_mean;
+    this->width_sd= width_sd;
+    this->rdn_noise= runif(-1.0,1.0);
+    
+    for (int i=0; i<this->genotype_mean.size(); i++) {
+        
+        this->env_optimum.push_back(this->rdn_noise+this->genotype_mean[i]);
+    }
+    
 }
+
 
 
 /** \brief função para reprodução assexuada de um indivíduo
@@ -104,13 +110,31 @@ individuo::individuo(const individuo& rhs)
 	  const_d_matrix(rhs.const_d_matrix), // Sets the inputed Constant that indicates how many times higher the death rate should be on non-habitat pixelsequal to the parent
 	  dens_type(rhs.dens_type), // Sets the inputed density type equal to the parent
 	  birth_death_eq(rhs.birth_death_eq) // Sets  birth death equilibrium point equal to the parent
-      phenotype_mean(rhs.phenotype_mean+runif(-1.0,1.0)),
-      width_sd(rhs.width_sd),
-      rdn_noise(runif(-1.0,1.0)),
-      env_optimum(rdn_noise+phenotype_mean)
 
-
-{ //precisamos dessa chave e da que fecha ela?
+{
+    if (rhs.genotype_mean.size()==1)
+    {
+        
+        this->genotype_mean.push_back(rhs.genotype_mean[0] + runif(-1.0,1.0));
+        this->width_sd= rhs.width_sd;
+        this->rdn_noise= runif(-1.0,1.0);
+        this->env_optimum.push_back(this->rdn_noise+this->genotype_mean[0]);
+        
+    }
+    else
+    {
+        this->genotype_mean= rhs.genotype_mean;
+        this->width_sd= rhs.widt_sd;
+        this->rdn_noise= runif(-1.0,1.0);
+        
+        for (int i=0; i<this->genotype_mean.size(); i++) {
+            
+            this->env_optimum.push_back(this->rdn_noise+this->genotype_mean[i]);
+        }
+        
+    }
+    
+    
 	
 }
 
@@ -142,24 +166,22 @@ void individuo::update(double dens)
           {
               this->birth = this->taxa_basal-this->incl_birth*densi; // Computes the actual birth rate on habitat patch (that is influenced by the density of neighbours)
               this->death = this->taxa_morte+this->incl_death*densi; // Computes the actual death rate on habitat patch (that is influenced by the density of neighbours)
-              if(this->birth<0) //Checks if the birth rate is lower than possible
-              {
-                  this->birth=0; // Sets to the lowest possible value to Birth
-                  
-              }
           }
     }
     else{
         
         this->birth = this->taxa_basal-this->incl_birth*densi; // Computes the actual birth rate on habitat patch (that is influenced by the density of neighbours)
-        this->death = this->const_d_matrix-((dnorm(this->tipo_habitat, this->phenotype_mean, this->width_sd)/dnorm(this->phenotype_mean,this->phenotype_mean,this-> width_sd))*(this->const_d_matrix-this->taxa_morte)); // Computes the actual death rate on habitat patch (that is influenced by the suitability of its current habitat)
-                     
-                     if(this->birth<0) //Checks if the birth rate is lower than possible
-                     {
-                         this->birth=0; // Lets to the lowest possible value to Birth
-                         
-                     }
+        this->death = this->const_d_matrix-((dnorm_sum(this->tipo_habitat, this->genotype_mean, this->width_sd)/dnorm_sum(this->genotype_mean,this->genotype_mean,this-> width_sd))*(this->const_d_matrix-this->taxa_morte)); // Computes the actual death rate on habitat patch (that is influenced by the suitability of its current habitat)
+        
     }
+    
+    if(this->birth<0) //Checks if the birth rate is lower than possible
+    {
+        this->birth=0; // Sets to the lowest possible value to Birth
+        
+    }
+    
+    
     
   this->sorteiaTempo(); // Calls the function to draft the time needed to execute the next action
 }
@@ -230,7 +252,7 @@ void individuo::anda(bool aleatorio)
             possibilitities[i][0]=this->x+cos(choice)*dist;
             possibilitities[i][1]=this->y+sin(choice)*dist;
             
-            scores[i]<-dnorm(landscape[possibilitities[i][0]][possibilitities[i][1]], this->phenotype_mean, this->width_sd);
+            scores[i]<-dnorm(landscape[possibilitities[i][0]][possibilitities[i][1]], this->genotype_mean, this->width_sd);
             cumsum+=exp(scores[i]);
         }
         
@@ -259,7 +281,7 @@ void individuo::habitat_selection(double &possibilitities[][])
   
   for (int i=0; i<this<-points; i++) {
       
-      scores[i]<-dnorm(possibilitities[i][2], this->phenotype_mean, this->width_sd);
+      scores[i]<-dnorm_sum(possibilitities[i][2], this->genotype_mean, this->width_sd);
       cumsum+=exp(scores[i]);
   }
   
@@ -380,9 +402,19 @@ const double individuo::get_tempo()
 
 //Function that returns the value of the probability density function for the normal distribution
 double individuo::dnorm(double x ,double mean=0, double sd=1){
-                
+    
     return (1/(sd*sqrt(2*M_PI))*(exp(-1*(pow(x-mean, 2)/(2*pow(sd, 2))))));
                 
 }
 
-
+double individuo::dnorm_sum( double x ,vector <double> mean, vector<double> sd){
+    
+    double probcumsum=0;
+    
+    for (int i=0; i<mean.size(); i++) {
+        probcumsum= probcumsum+ dnorm(x, mean[i],sd[i]);
+        
+    }
+    return probcumsum/mean.size();
+    
+}
