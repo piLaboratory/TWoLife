@@ -80,7 +80,7 @@ void paisagem::populating(double raio, int N, double angulo_visada, double passo
         
         for (int i=0; i<N; i++) {
             genotype.push_back(genotype_mean[i]);
-            width.push_back(width_sd[][i]);
+            width.push_back(width_sd[i]);
         }
         
     }
@@ -92,7 +92,7 @@ void paisagem::populating(double raio, int N, double angulo_visada, double passo
 		{
             if (Null==FALSE) {
                 genotype= genotype_mean[i];	
-                width= width_sd[][i];
+                width= width_sd[i];
             }
 
             
@@ -123,7 +123,7 @@ void paisagem::populating(double raio, int N, double angulo_visada, double passo
 		{
             if (Null==FALSE) {
                 genotype= genotype_mean[i];
-                width= width_sd[][i];
+                width= width_sd[i];
             }
             
 			this->popIndividuos.push_back(new individuo(
@@ -153,7 +153,7 @@ void paisagem::populating(double raio, int N, double angulo_visada, double passo
 		{
             if (Null==FALSE) {
                 genotype= genotype_mean[i];
-                width= width_sd[][i];
+                width= width_sd[i];
             }
             
 			this->popIndividuos.push_back(new individuo(
