@@ -123,7 +123,15 @@ individuo::individuo(const individuo& rhs)
     }
     else
     {
-        this->genotype_mean= rhs.genotype_mean;
+        
+        this->rdn_noise= runif(-1.0,1.0);
+        
+        for (int i=0; i<genotype_mean.size(); i++) {
+            
+             this->genotype_mean.push_back(this->rdn_noise+genotype_mean[i]);
+        }
+        
+        //this->genotype_mean= rhs.genotype_mean;
         this->width_sd= rhs.widt_sd;
         this->rdn_noise= runif(-1.0,1.0);
         
