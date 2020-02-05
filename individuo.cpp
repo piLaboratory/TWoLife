@@ -252,7 +252,7 @@ void individuo::anda(bool aleatorio)
         double scores[this->points];
         double cumsum=0, choice=0, dist;
         
-        for (int i=0; i<this<-points; i++) {
+        for (int i=0; i<this->points; i++) {
             
             choice=runif(0.0,360.0);
             dist=runif(0.0,this->passo);
@@ -260,13 +260,13 @@ void individuo::anda(bool aleatorio)
             possibilitities[i][0]=this->x+cos(choice)*dist;
             possibilitities[i][1]=this->y+sin(choice)*dist;
             
-            scores[i]<-dnorm(landscape[possibilitities[i][0]][possibilitities[i][1]], this->genotype_mean, this->width_sd);
+            scores[i]->dnorm(landscape[possibilitities[i][0]][possibilitities[i][1]], this->genotype_mean, this->width_sd);
             cumsum+=exp(scores[i]);
         }
         
         choice= runif(0.0,1.0);
         
-        for (int i=0; i<this<-points; i++) {
+        for (int i=0; i<this->points; i++) {
             
             scores[i]= exp(scores[i])/cumsum;
             if (scores[i]>choice) {
@@ -285,20 +285,21 @@ void individuo::anda(bool aleatorio)
 void individuo::habitat_selection(double &possibilitities[][])
 {
   double scores[this->points];
-  double cumsum=0, choice=0;
+  double cumsum=0, choice=0, score=0;
   
-  for (int i=0; i<this<-points; i++) {
+  for (int i=0; i<this->points; i++) {
       
-      scores[i]<-dnorm_sum(possibilitities[i][2], this->genotype_mean, this->width_sd);
-      cumsum+=exp(scores[i]);
+      scores[i] = exp(dnorm_sum(possibilitities[i][2], this->genotype_mean, this->width_sd));
+      cumsum += scores[i];
   }
   
   choice= runif(0.0,1.0);
   
-  for (int i=0; i<this<-points; i++) {
+  for (int i=0; i<this->points; i++) {
       
-      scores[i]= exp(scores[i])/cumsum;
-      if (scores[i]>choice) {
+      score += scores[i]/cumsum;
+      
+      if (score > choice) {
           
           choice= i;
           break;

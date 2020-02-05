@@ -610,7 +610,7 @@ double paisagem::walk(int lower){
             possibilitities[i][0]=this->popIndividuos[lower]->x+cos(choice)*dist;
             possibilitities[i][1]=this->popIndividuos[lower]->y+sin(choice)*dist;
                         
-            possibilitities[i][2]<-dnorm(landscape[possibilitities[i][0]][possibilitities[i][1]], this->popIndividuos[lower]->genotype_mean, this->popIndividuos[lower]->width_sd);
+            possibilitities[i][2]=dnorm(landscape[possibilitities[i][0]][possibilitities[i][1]], this->popIndividuos[lower]->genotype_mean, this->popIndividuos[lower]->width_sd);
         }
             this->popIndividuos[lower]->habitat_selection(possibilitities);
                     
