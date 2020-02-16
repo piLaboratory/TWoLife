@@ -1,0 +1,2118 @@
+group;species;dry.mass.g;body.temp.C;mortality.year;ref
+Bird;Accipiter cooperii;1.10E+002;40;0.213;1,2
+Bird;Accipiter cooperii;1.32E+002;40;0.244;1,2
+Bird;Accipiter cooperii;1.32E+002;40;0.345;1,2
+Bird;Accipiter gentilis;2.56E+002;40;0.133;1,2
+Bird;Accipiter gentilis;2.56E+002;40;0.133;1,2
+Bird;Accipiter gentilis;2.56E+002;40;0.196;1,2
+Bird;Accipiter gentilis;2.84E+002;40;0.196;1,2
+Bird;Accipiter gentilis;2.84E+002;40;0.199;1,2
+Bird;Accipiter nisus;5.05E+001;40;0.201;3
+Bird;Accipiter nisus;5.94E+001;40;0.169;1,2
+Bird;Accipiter n. nisus;5.94E+001;40;0.164;1,2
+Bird;Accipiter striatus;4.35E+001;40;0.262;1,2
+Bird;Acridotheres cristatellus;2.83E+001;40;0.228;1,2
+Bird;Aechmophorus accidentalis;3.69E+002;40;0.394;1,2
+Bird;Aechmophorus occidentalis;3.69E+002;40;0.182;1,2
+Bird;Aegolius acadicus;2.07E+001;40;0.35;1,2
+Bird;Aegolius acadicus;2.07E+001;40;0.355;1,2
+Bird;Aegolius acadicus;2.07E+001;40;0.37;1,2
+Bird;Aegolius funereus;3.35E+001;40;0.233;1,2
+Bird;Aegolius funereus;3.35E+001;40;0.794;1,2
+Bird;Aeronautes sexatilis;8.03E+000;40;0.459;1,2
+Bird;Aethia cristatella;6.60E+001;40;0.34;1,2
+Bird;Aethia pusilla;2.10E+001;40;0.602;1,2
+Bird;Agelaius phoeniceus;1.59E+001;40;0.161;1,2
+Bird;Aimophila aestivalis;4.91E+000;40;0.909;1,2
+Bird;Aimophila quinquestriata;4.76E+000;40;0.667;1,2
+Bird;Aimophila ruficeps;4.68E+000;40;0.847;1,2
+Bird;Aix sponsa;6.20E+001;40;0.112;1,2
+Bird;Aix sponsa;6.20E+001;40;0.144;1,2
+Bird;Alca torda;1.80E+002;40;0.407;1,2
+Bird;Alca torda;1.80E+002;40;0.42;1,2
+Bird;Ammodramus caudacutus;4.45E+000;40;0.435;1,2
+Bird;Ammodramus caudacutus;5.18E+000;40;0.256;1,2
+Bird;Ammodramus maritimus;5.58E+000;40;0.286;1,2
+Bird;Ammodramus maritimus;5.81E+000;40;0.289;1,2
+Bird;Ammodramus maritimus;6.05E+000;40;0.286;1,2
+Bird;Ammodramus savannarum;4.25E+000;40;0.877;1,2
+Bird;Amphispiza bilineata;3.38E+000;40;0.435;1,2
+Bird;Anas acuta;2.59E+002;40;0.119;1,2
+Bird;Anas acuta;2.59E+002;40;0.123;1,2
+Bird;Anas americana;1.80E+002;40;0.119;1,2
+Bird;Anas americana;1.98E+002;40;0.286;1,2
+Bird;Anas clypeata;1.59E+002;40;0.153;1,2
+Bird;Anas crecca;7.95E+001;40;0.123;1,2
+Bird;Anas crecca;9.10E+001;40;0.125;1,2
+Bird;Anas cyanoptera;1.02E+002;40;0.198;1,2
+Bird;Anas discors;9.08E+001;40;0.113;1,2
+Bird;Anas discors;1.02E+002;40;0.146;1,2
+Bird;Anas fulvigula;2.42E+002;40;0.196;1,2
+Bird;Anas fulvigula;2.58E+002;40;0.19;1,2
+Bird;Anas laysanensis;1.07E+002;40;0.216;1,2
+Bird;Anas penelope;2.05E+002;40;0.299;1,2
+Bird;Anas platyrhynchos;2.71E+002;40;0.087;1,2
+Bird;Anas platyrhynchos;2.71E+002;40;0.108;1,2
+Bird;Anas platyrhynchos;2.71E+002;40;0.123;1,2
+Bird;Anas rubripes;3.50E+002;40;0.096;1,2
+Bird;Anas strepera;2.48E+002;40;0.13;1,2
+Bird;Anas strepera;2.48E+002;40;0.143;1,2
+Bird;Anhinga anhinga;3.09E+002;40;0.215;1,2
+Bird;Anous minutus;2.98E+001;40;0.116;1,2
+Bird;Anous stolidus;4.95E+001;40;0.101;1,2
+Bird;Anous tenuirostris;2.78E+001;40;0.158;1,2
+Bird;Anser albifrons;6.14E+002;40;0.113;1,2
+Bird;Anser albifrons;6.14E+002;40;0.125;1,2
+Bird;Anser albifrons;6.76E+002;40;0.113;1,2
+Bird;Anser brachyrhynchus;6.61E+002;40;0.115;1,2
+Bird;Anser caerulescens;6.58E+002;40;0.095;1,2
+Bird;Anser caerulescens;6.58E+002;40;0.103;1,2
+Bird;Anser caerulescens;6.58E+002;40;0.13;1,2
+Bird;Anser canagica;6.86E+002;40;0.286;1,2
+Bird;Anser canagica;6.86E+002;40;0.413;1,2
+Bird;Anser rossii;4.20E+002;40;0.118;1,2
+Bird;Anser rossii;4.20E+002;40;0.129;1,2
+Bird;Anthus rubescens;5.21E+000;40;0.515;1,2
+Bird;Anthus spinoletta;5.98E+000;40;0.515;1,2
+Bird;Aphelocoma coerulescens;2.01E+001;40;0.161;1,2
+Bird;Aphelocoma ultramarina;3.10E+001;40;0.133;1,2
+Bird;Aphelocoma ultramarina;3.10E+001;40;0.144;1,2
+Bird;Aphelocoma ultramarina;3.10E+001;40;0.237;1,2
+Bird;Aquila audax;8.75E+002;40;0.442;1,2
+Bird;Aquila chrysaetos;8.69E+002;40;0.148;1,2
+Bird;Aquila chrysaetos;1.05E+003;40;0.066;1,2
+Bird;Aquila chrysaetos;1.05E+003;40;0.098;1,2
+Bird;Aquila chrysaetos;1.05E+003;40;0.246;1,2
+Bird;Aquila pomarina;3.43E+002;40;0.097;1,2
+Bird;Aquila wahlbergi;1.60E+002;40;0.216;1,2
+Bird;Archilochus colubris;7.88E-001;40;0.286;1,2
+Bird;Archilochus colubris;8.25E-001;40;0.413;1,2
+Bird;Ardea herodias;5.98E+002;40;0.108;1,2
+Bird;Arenaria interpres;2.88E+001;40;0.178;1,2
+Bird;Asio flammeus;8.66E+001;40;0.198;1,2
+Bird;Asio otus;6.55E+001;40;0.091;1,2
+Bird;Athene cunicularia;3.88E+001;40;0.296;1,2
+Bird;Auriparis flaviceps;1.70E+000;40;0.467;1,2
+Bird;Aythya affinis;2.13E+002;40;0.139;1,2
+Bird;Aythya americana;2.05E+002;40;0.118;1,2
+Bird;Aythya collaris;1.83E+002;40;0.124;1,2
+Bird;Aythya collaris;1.83E+002;40;0.157;1,2
+Bird;Aythya marila;2.33E+002;40;0.139;1,2
+Bird;Aythya valisineria;1.86E+002;40;0.113;1,2
+Bird;Bartramia longicauda;3.76E+001;40;0.505;1,2
+Bird;Bombycilla cedrorum;7.96E+000;40;0.37;1,2
+Bird;Bombycilla garrulus;1.41E+001;40;0.45;1,2
+Bird;Bonasa umbellus;1.33E+002;40;0.303;1,2
+Bird;Bonasa umbellus;1.44E+002;40;0.34;1,2
+Bird;Botaurus lentiginosus;1.77E+002;40;0.311;1,2
+Bird;Botaurus lentiginosus;1.77E+002;40;0.323;1,2
+Bird;Branta bernicla;3.25E+002;40;0.153;1,2
+Bird;Branta bernicla hrota;3.08E+002;40;0.117;1,2
+Bird;Branta bernicla nigricans;3.43E+002;40;0.098;1,2
+Bird;Branta canadensis;8.29E+002;40;0.108;1,2
+Bird;Branta canadensis;9.54E+002;40;0.104;1,2
+Bird;Bubo virginianus;3.86E+002;40;0.123;1,2
+Bird;Bubo virginianus;3.86E+002;40;0.147;1,2
+Bird;Bubulcus ibis;8.45E+001;40;0.11;1,2
+Bird;Bubulcus ibis;8.45E+001;40;0.149;1,2
+Bird;Bucephala albeola;8.35E+001;40;0.222;1,2
+Bird;Bucephala albeola;1.18E+002;40;0.171;1,2
+Bird;Bucephala albeola;1.18E+002;40;0.204;1,2
+Bird;Bucephala clangula;2.00E+002;40;0.213;1,2
+Bird;Bucephala clangula;2.25E+002;40;0.178;1,2
+Bird;Bucephala clangula;2.50E+002;40;0.233;1,2
+Bird;Bucephala islandica;2.73E+002;40;0.166;1,2
+Bird;Bulweria bulwerii;2.48E+001;40;0.115;1,2
+Bird;Butastur indicus indicus;9.93E+001;40;0.303;1,2
+Bird;Buteo buteo;2.19E+002;40;0.101;1,2
+Bird;Buteo buteo buteo;2.19E+002;40;0.1;1,2
+Bird;Buteo jamaicensis;2.82E+002;40;0.118;1,2
+Bird;Buteo jamaicensis;2.82E+002;40;0.118;1,2
+Bird;Buteo jamaicensis;2.82E+002;40;0.128;1,2
+Bird;Buteo lagopus;2.39E+002;40;0.141;1,2
+Bird;Buteo lagopus;2.39E+002;40;0.235;1,2
+Bird;Buteo lagopus;2.66E+002;40;0.142;1,2
+Bird;Buteo lineatus;1.40E+002;40;0.127;1,2
+Bird;Buteo lineatus;1.40E+002;40;0.127;1,2
+Bird;Buteo regalis;2.86E+002;40;0.127;1,2
+Bird;Buteo regalis;2.86E+002;40;0.16;1,2
+Bird;Buteo swainsoni;2.47E+002;40;0.159;1,2
+Bird;Buteo swainsoni;2.47E+002;40;0.16;1,2
+Bird;Buteogallus anthracinus;2.49E+002;40;0.189;1,2
+Bird;Butorides striatus;5.30E+001;40;0.327;1,2
+Bird;Calamospiza melanocorys;9.40E+000;40;0.667;1,2
+Bird;Calcarius lapponicus;6.83E+000;40;0.526;1,2
+Bird;Calcarius pictus;6.25E-001;40;0.526;1,2
+Bird;Calcarius pictus;6.08E+000;40;0.667;1,2
+Bird;Calidris alba;1.43E+001;40;0.195;1,2
+Bird;Calidris alba;1.43E+001;40;0.495;1,2
+Bird;Calidris alpina;2.30E+001;40;0.206;1,2
+Bird;Calidris alpina;2.30E+001;40;0.276;1,2
+Bird;Calidris canutus;3.43E+001;40;0.251;1,2
+Bird;Calidris canutus;3.43E+001;40;0.42;1,2
+Bird;Calidris fuscicollis;8.68E+000;40;0.37;1,2
+Bird;Calidris mauri;5.83E+000;40;0.279;1,2
+Bird;Calidris melanotos;2.04E+001;40;0.442;1,2
+Bird;Calidris minutilla;5.80E+000;40;0.159;1,2
+Bird;Calidris minutilla;5.80E+000;40;0.159;1,2
+Bird;Calidris minutilla;5.80E+000;40;0.226;1,2
+Bird;Calidris ptilocnemis;1.99E+001;40;0.355;1,2
+Bird;Calidris pusilla;7.83E+000;40;0.213;1,2
+Bird;Callipepla californica;4.33E+001;40;0.376;1,2
+Bird;Callipepla gambelii;4.25E+001;40;0.35;1,2
+Bird;Calothorax lucifer;8.25E-001;40;0.667;1,2
+Bird;Calypte anna;1.00E+000;40;0.435;1,2
+Bird;Calypte anna;1.05E+000;40;0.413;1,2
+Bird;Camptostoma imberbe;1.85E+000;40;0.549;1,2
+Bird;Campylorhynchus brunneicapillus;9.73E+000;40;0.413;1,2
+Bird;Caprimulgus vociferus;1.32E+001;40;0.667;1,2
+Bird;Cardellina rubrifrons;2.45E+000;40;0.909;1,2
+Bird;Cardinalis cardinalis;1.10E+001;40;0.161;1,2
+Bird;Cardinalis sinuatus;9.18E+000;40;0.45;1,2
+Bird;Carduelis flammea;3.25E+000;40;0.45;1,2
+Bird;Carduelis hornemanni;3.18E+000;40;0.575;1,2
+Bird;Carduelis pinus;3.65E+000;40;0.273;1,2
+Bird;Carduelis psaltria;2.38E+000;40;0.459;1,2
+Bird;Carduelis tristis;3.23E+000;40;0.233;1,2
+Bird;Carduelis tristis;3.23E+000;40;0.276;1,2
+Bird;Carpodacus cassinii;6.63E+000;40;0.37;1,2
+Bird;Carpodacus mexicanus;5.35E+000;40;0.22;1,2
+Bird;Carpodacus mexicanus;5.35E+000;40;2.941;1,2
+Bird;Carpodacus purpureus;6.23E+000;40;0.216;1,2
+Bird;Cathartes aura;3.67E+003;40;0.151;1,2
+Bird;Catharus fuscescens;7.80E+000;40;0.254;1,2
+Bird;Catharus guttatus;7.75E+000;40;0.296;1,2
+Bird;Catharus minimus;8.20E+000;40;0.355;1,2
+Bird;Catharus ustulatus;7.70E+000;40;0.254;1,2
+Bird;Catoptrophorus semipalmatus;5.38E+001;40;0.289;1,2
+Bird;Cepphus columba;1.22E+002;40;0.182;1,2
+Bird;Cepphus columba;1.22E+002;40;0.216;1,2
+Bird;Cepphus columba;1.22E+002;40;0.276;1,2
+Bird;Cepphus grylle;1.01E+002;40;0.211;1,2
+Bird;Cerorhinca monocerata;1.30E+002;40;0.35;1,2
+Bird;Cerorhinca monocerata;1.30E+002;40;0.42;1,2
+Bird;Certhia familiaris;2.25E+000;40;0.575;1,2
+Bird;Chaertura vaux;4.28E+000;40;0.515;1,2
+Bird;Chaetura pelagica;5.90E+000;40;0.182;1,2
+Bird;Charadrius alexandrinus;1.04E+001;40;0.169;1,2
+Bird;Charadrius alexandrinus;1.04E+001;40;0.233;1,2
+Bird;Charadrius alexandrinus;1.04E+001;40;0.37;1,2
+Bird;Charadrius melodus;1.38E+001;40;0.182;1,2
+Bird;Charadrius melodus;1.38E+001;40;0.233;1,2
+Bird;Charadrius semipalmatus;1.17E+001;40;0.314;1,2
+Bird;Charadrius vociferus;2.41E+001;40;0.235;1,2
+Bird;Chlidonias niger;1.63E+001;40;0.147;1,2
+Bird;Chlidonias niger;1.63E+001;40;0.307;1,2
+Bird;Chondestes grammacus;7.25E+000;40;0.331;1,2
+Bird;Chordeiles minor;1.54E+001;40;0.286;1,2
+Bird;Ciconia ciconia;8.68E+002;40;0.076;1,2
+Bird;Ciconia nigra;7.50E+002;40;0.141;1,2
+Bird;Cinclus mexicanus;1.53E+001;40;0.515;1,2
+Bird;Circaetus cinereus;5.12E+002;40;0.382;1,2
+Bird;Circaetus gallicus;4.26E+002;40;0.147;1,2
+Bird;Circaetus gallicus;4.26E+002;40;0.149;1,2
+Bird;Circus aeruginosus;1.57E+002;40;0.152;1,2
+Bird;Circus aeruginosus;1.57E+002;40;0.155;1,2
+Bird;Circus aeruginosus approximans;1.57E+002;40;0.139;1,2
+Bird;Circus cyaneus;1.09E+002;40;0.155;1,2
+Bird;Circus cyaneus;1.09E+002;40;0.159;1,2
+Bird;Circus macroarus;9.71E+001;40;0.189;1,2
+Bird;Circus pygargus;7.89E+001;40;0.156;1,2
+Bird;Circus pygargus;7.89E+001;40;0.159;1,2
+Bird;Clangula hyemalis;2.04E+002;40;0.163;1,2
+Bird;Clangula hyemalis;2.33E+002;40;0.166;1,2
+Bird;Coccyzus americanus;1.60E+001;40;0.526;1,2
+Bird;Coccyzus erythrophthalmus;1.28E+001;40;0.526;1,2
+Bird;Colaptes auratus;3.30E+001;40;0.204;1,2
+Bird;Colaptes auratus ssp.;3.30E+001;40;0.279;1,2
+Bird;Colaptes auratus ssp.;3.30E+001;40;0.34;1,2
+Bird;Colaptes auratus ssp.;3.30E+001;40;0.388;1,2
+Bird;Colinus virginianus;4.45E+001;40;0.407;1,2
+Bird;Columba fasciata;8.56E+001;40;0.137;1,2
+Bird;Columba fasciata;8.56E+001;40;0.164;1,2
+Bird;Columba leucocephala;6.18E+001;40;0.177;1,2
+Bird;Columba leucocephala;6.18E+001;40;0.209;1,2
+Bird;Columba leucocephala;6.18E+001;40;0.311;1,2
+Bird;Columba livia;8.86E+001;40;0.435;1,2
+Bird;Columbina inca;1.19E+001;40;0.331;1,2
+Bird;Columbina passerina;7.53E+000;40;0.36;1,2
+Bird;Columbina passerina;7.53E+000;40;0.427;1,2
+Bird;Contopus borealis;8.03E+000;40;0.365;1,2
+Bird;Contopus borealis;8.03E+000;40;0.442;1,2
+Bird;Contopus sordidulus;3.20E+000;40;0.427;1,2
+Bird;Contopus virens;3.53E+000;40;0.365;1,2
+Bird;Coragyps atratus;5.20E+002;40;0.099;1,2
+Bird;Corvus brachyrhynchos;1.12E+002;40;0.174;1,2
+Bird;Corvus brachyrhynchos;1.12E+002;40;0.185;1,2
+Bird;Corvus caurinus;9.79E+001;40;0.199;1,2
+Bird;Corvus corax;3.00E+002;40;0.192;1,2
+Bird;Corvus cryptoleucus;1.34E+002;40;0.204;1,2
+Bird;Corvus ossifragus;7.13E+001;40;0.175;1,2
+Bird;Cyanocitta cristata;2.17E+001;40;0.139;1,2
+Bird;Cyanocitta cristata;2.17E+001;40;0.156;1,2
+Bird;Cyanocitta stelleri;3.20E+001;40;0.158;1,2
+Bird;Cyanocitta stelleri;3.20E+001;40;0.233;1,2
+Bird;Cyanocorax yncas;1.96E+001;40;0.239;1,2
+Bird;Cygnus buccinator;2.71E+003;40;0.105;1,2
+Bird;Cygnus buccinator;2.85E+003;40;0.106;1,2
+Bird;Cygnus c. columbianus;1.55E+003;40;0.129;1,2
+Bird;Cygnus columbianus;1.43E+003;40;0.009;3
+Bird;Cygnus columbianus;1.55E+003;40;0.157;1,2
+Bird;Cygnus columbianus;1.60E+003;40;0.036;3
+Bird;Cygnus columbianus;1.66E+003;40;0.12;1,2
+Bird;Cygnus olor;2.42E+003;40;0.192;1,2
+Bird;Cygnus olor;2.68E+003;40;0.12;1,2
+Bird;Cygnus olor;2.95E+003;40;0.094;1,2
+Bird;Cypseloides niger;1.14E+001;40;0.435;1,2
+Bird;Daption capense;1.07E+002;40;0.127;1,2
+Bird;Dendragapus canadensis;1.14E+002;40;0.495;1,2
+Bird;Dendragapus canadensis;1.23E+002;40;0.196;1,2
+Bird;Dendragapus obscurus;2.23E+002;40;0.233;1,2
+Bird;Dendragapus obscurus;2.97E+002;40;0.235;1,2
+Bird;Dendragapus obscurus;3.00E+002;40;0.182;1,2
+Bird;Dendrocygna autumnalis;2.12E+002;40;0.314;1,2
+Bird;Dendrocygna bicolor;1.78E+002;40;0.4;1,2
+Bird;Dendroica caerulescens;2.45E+000;40;0.323;1,2
+Bird;Dendroica caerulescens;2.54E+000;40;0.265;1,2
+Bird;Dendroica castanea;3.14E+000;40;0.794;1,2
+Bird;Dendroica coronata sp.;3.03E+000;40;0.394;1,2
+Bird;Dendroica coronata sp.;3.14E+000;40;0.376;1,2
+Bird;Dendroica discolor;2.00E+000;40;0.249;1,2
+Bird;Dendroica dominica;2.35E+000;40;0.515;1,2
+Bird;Dendroica fusca;2.50E+000;40;0.314;1,2
+Bird;Dendroica kirtlandii;3.43E+000;40;0.286;1,2
+Bird;Dendroica kirtlandii;3.45E+000;40;0.323;1,2
+Bird;Dendroica magnolia;2.18E+000;40;0.376;1,2
+Bird;Dendroica palmarum hypochrysea;2.58E+000;40;0.45;1,2
+Bird;Dendroica palmarum palmarum;2.58E+000;40;0.394;1,2
+Bird;Dendroica pensylvanica;2.40E+000;40;0.376;1,2
+Bird;Dendroica petechia;2.45E+000;40;0.289;1,2
+Bird;Dendroica pinus;2.98E+000;40;0.382;1,2
+Bird;Dendroica striata;3.25E+000;40;0.617;1,2
+Bird;Dendroica striata;3.25E+000;40;0.794;1,2
+Bird;Dendroica tigrina;2.75E+000;40;0.617;1,2
+Bird;Dendroica townsendi;2.21E+000;40;0.746;1,2
+Bird;Dendroica virens;2.20E+000;40;0.442;1,2
+Bird;Diomedea amsterdamensis;1.57E+003;40;0.063;1,2
+Bird;Diomedea chlororhynchos;6.15E+002;40;0.068;1,2
+Bird;Diomedea chrysostoma;8.77E+002;40;0.084;1,2
+Bird;Diomedea epomophora;2.05E+003;40;0.043;1,2
+Bird;Diomedea exulans;1.91E+003;40;0.063;1,2
+Bird;Diomedea immutabilis;7.67E+002;40;0.047;1,2
+Bird;Diomedea immutablis;7.67E+002;40;0.067;1,2
+Bird;Diomedea irrorata;8.49E+002;40;0.063;1,2
+Bird;Diomedea melanophris;8.91E+002;40;0.074;1,2
+Bird;Diomedea nigripes;7.87E+002;40;0.091;1,2
+Bird;Diomedea nigripes;7.87E+002;40;0.093;1,2
+Bird;Diomedia exulans;1.91E+003;40;0.02;3
+Bird;Dolichonyx oryzivorus;1.05E+001;40;0.286;1,2
+Bird;Dolichonyx oryzivorus;1.05E+001;40;0.318;1,2
+Bird;Dryocopus pileatus;6.65E+001;40;0.259;1,2
+Bird;Dryocopus pileatus;7.18E+001;40;0.259;1,2
+Bird;Dryocopus pileatus;7.18E+001;40;0.286;1,2
+Bird;Dumetella carolinensis;9.23E+000;40;0.235;1,2
+Bird;Egretta caerulea;8.49E+001;40;0.183;1,2
+Bird;Egretta rufescens;1.13E+002;40;0.207;1,2
+Bird;Egretta thula;9.28E+001;40;0.144;1,2
+Bird;Egretta thula;9.28E+001;40;0.226;1,2
+Bird;Elanus caeruleus axillanis;8.33E+001;40;0.435;1,2
+Bird;Empidonax difficilis;2.50E+000;40;0.435;1,2
+Bird;Empidonax flaviventris;2.90E+000;40;0.685;1,2
+Bird;Empidonax fulvifrons;1.98E+000;40;1.429;1,2
+Bird;Empidonax minimus;2.58E+000;40;0.323;1,2
+Bird;Empidonax minimus;2.58E+000;40;0.442;1,2
+Bird;Empidonax oberholseri;2.60E+000;40;0.286;1,2
+Bird;Empidonax oberholseri;2.60E+000;40;0.314;1,2
+Bird;Empidonax oberholseri;2.60E+000;40;0.323;1,2
+Bird;Empidonax oberholseri;2.60E+000;40;0.435;1,2
+Bird;Empidonax traillii;3.35E+000;40;0.37;1,2
+Bird;Empidonax virescens;3.23E+000;40;0.235;1,2
+Bird;Eremophila alpestris;7.84E+000;40;0.323;1,2
+Bird;Eremophila alpestris;7.84E+000;40;0.327;1,2
+Bird;Eremophila alpestris;7.98E+000;40;0.365;1,2
+Bird;Eudocimus albus;2.25E+002;40;0.156;1,2
+Bird;Eudyptula minor;2.76E+002;40;0.195;3
+Bird;Euphagus carolinus;1.49E+001;40;0.292;1,2
+Bird;Euphagus cyanocephalus;1.57E+001;40;0.233;1,2
+Bird;Falco berigora;1.37E+002;40;0.244;1,2
+Bird;Falco columbarius;4.76E+001;40;0.331;1,2
+Bird;Falco eleonorae;9.75E+001;40;0.435;1,2
+Bird;Falco mexicanus;1.39E+002;40;0.282;1,2
+Bird;Falco mexicanus;2.16E+002;40;0.242;1,2
+Bird;Falco naumanni;3.81E+001;40;0.42;1,2
+Bird;Falco peregrinus;1.95E+002;40;0.207;1,2
+Bird;Falco rupicoloides;6.50E+001;40;0.4;1,2
+Bird;Falco sparverius;3.00E+001;40;0.22;1,2
+Bird;Falco subbuteo longipennis;6.33E+001;40;0.244;1,2
+Bird;Falco subbuteo subbuteo;6.00E+001;40;0.237;1,2
+Bird;Falco tinnunculus;5.04E+001;40;0.159;1,2
+Bird;Falco vespertinus vespertinus;4.14E+001;40;0.207;1,2
+Bird;Ficedula hypoleuca;3.00E+000;40;0.748;3
+Bird;Ficedula hypoleuca;3.00E+000;40;0.656;3
+Bird;Fratercula arctica;9.53E+001;40;0.127;1,2
+Bird;Fratercula arctica;9.53E+001;40;0.193;1,2
+Bird;Fratercula cirrhata;1.95E+002;40;0.435;1,2
+Bird;Fregata ariel;1.89E+002;40;0.149;1,2
+Bird;Fregata ariel;2.02E+002;40;0.108;1,2
+Bird;Fregata minor;2.64E+002;40;0.074;1,2
+Bird;Fregata minor;2.96E+002;40;0.084;1,2
+Bird;Fulica americana;1.40E+002;40;0.113;1,2
+Bird;Fulica americana;1.61E+002;40;0.13;1,2
+Bird;Fulmarus glacialis;1.36E+002;40;0.052;1,2
+Bird;Fulmarus glacialis;1.36E+002;40;0.355;1,2
+Bird;Gallinago gallinago;3.05E+001;40;0.276;1,2
+Bird;Gallinula chloropus;7.56E+001;40;0.244;1,2
+Bird;Gavia arctica;8.39E+002;40;0.09;1,2
+Bird;Gavia immer;1.03E+003;40;0.127;1,2
+Bird;Gavia immer;1.03E+003;40;0.331;1,2
+Bird;Gavia stellata;3.88E+002;40;0.11;1,2
+Bird;Geococcyx californianus;9.40E+001;40;0.704;1,2
+Bird;Geothlypis trichas;2.48E+000;40;0.259;1,2
+Bird;Grus americana;1.46E+003;40;0.084;1,2
+Bird;Grus americana;1.46E+003;40;0.355;1,2
+Bird;Grus canadensis;7.92E+002;40;0.118;1,2
+Bird;Grus canadensis;7.92E+002;40;0.131;1,2
+Bird;Grus canadensis;7.92E+002;40;0.139;1,2
+Bird;Guiraca caerulea;7.33E+000;40;0.442;1,2
+Bird;Gygis alba;2.78E+001;40;0.142;1,2
+Bird;Gymnogyps californianus;2.53E+003;40;0.056;1,2
+Bird;Gymnorhinus cyanocephalus;2.58E+001;40;0.233;1,2
+Bird;Gymnorhinus cyanocephalus;2.58E+001;40;0.292;1,2
+Bird;Gyps coprotheres;2.04E+003;40;0.227;1,2
+Bird;Haematopus bachmani;1.62E+002;40;0.159;1,2
+Bird;Haematopus bachmani;1.62E+002;40;0.42;1,2
+Bird;Haematopus ostralegus;1.32E+002;40;0.07;1,2
+Bird;Haematopus palliatus;1.58E+002;40;0.149;1,2
+Bird;Haematopus palliatus;1.58E+002;40;0.182;1,2
+Bird;Haliaeetus albicilla;1.20E+003;40;0.12;1,2
+Bird;Haliaeetus leucocephalus;1.19E+003;40;0.246;1,2
+Bird;Haliastur sphenarus;2.00E+002;40;0.235;1,2
+Bird;Helmitheros vermivorus;3.25E+000;40;0.365;1,2
+Bird;Hieraaetus morphnoides;2.10E+002;40;0.249;1,2
+Bird;Himantopus mexicanus knudsensi;4.15E+001;40;0.505;1,2
+Bird;Himatione sanguinea;6.28E+000;40;0.407;1,2
+Bird;Hirundo fulva;5.10E+000;40;0.276;1,2
+Bird;Hirundo fulva;5.10E+000;40;0.549;1,2
+Bird;Hirundo pyrrhonota;5.40E+000;40;0.233;1,2
+Bird;Hirundo pyrrhonota;5.40E+000;40;0.256;1,2
+Bird;Hirundo pyrrhonota;5.40E+000;40;0.286;1,2
+Bird;Hirundo rustica;3.95E+000;40;0.318;1,2
+Bird;Hydrobates pelagicus;6.30E+000;40;0.127;1,2
+Bird;Icteria virens;6.33E+000;40;0.289;1,2
+Bird;Icterus cucullatus;6.08E+000;40;0.435;1,2
+Bird;Icterus galbula ssp.;8.40E+000;40;0.394;1,2
+Bird;Icterus galbula ssp.;8.58E+000;40;0.22;1,2
+Bird;Icterus parisorum;9.35E+000;40;0.407;1,2
+Bird;Icterus pectoralis;1.11E+001;40;0.22;1,2
+Bird;Icterus spurius;4.90E+000;40;0.267;1,2
+Bird;Icterus spurius;4.90E+000;40;0.276;1,2
+Bird;Ictinia mississippiensis;6.95E+001;40;0.323;1,2
+Bird;Junco hyemalis ssp.;4.90E+000;40;0.237;1,2
+Bird;Junco hyemalis ssp.;4.90E+000;40;0.239;1,2
+Bird;Junco hyemalis ssp.;4.90E+000;40;0.262;1,2
+Bird;Junco hyemalis ssp.;4.90E+000;40;0.394;1,2
+Bird;Junco phaeonotus ssp.;5.10E+000;40;0.394;1,2
+Bird;Lagopus leucurus;8.78E+001;40;0.213;1,2
+Bird;Lagopus leucurus;8.98E+001;40;0.169;1,2
+Bird;Lamprolaima rhami;1.53E+000;40;0.323;1,2
+Bird;Lanius excubitor;1.64E+001;40;0.82;1,2
+Bird;Lanius ludovicianus;1.19E+001;40;0.204;1,2
+Bird;Lanius ludovicianus;1.19E+001;40;0.427;1,2
+Bird;Larus argentatus;2.84E+002;40;0.084;1,2
+Bird;Larus argentatus;2.84E+002;40;0.09;1,2
+Bird;Larus argentatus;2.84E+002;40;0.092;1,2
+Bird;Larus argentatus;2.84E+002;40;0.133;1,2
+Bird;Larus atricilla;8.13E+001;40;0.168;1,2
+Bird;Larus californicus;1.52E+002;40;0.192;1,2
+Bird;Larus canus;1.01E+002;40;0.139;1,2
+Bird;Larus canus;1.01E+002;40;0.098;3
+Bird;Larus delawarensis;1.30E+002;40;0.079;1,2
+Bird;Larus delawarensis;1.30E+002;40;0.101;1,2
+Bird;Larus glaucescens;2.53E+002;40;0.079;1,2
+Bird;Larus glaucescens;2.53E+002;40;0.111;1,2
+Bird;Larus glaucescens;2.53E+002;40;0.114;1,2
+Bird;Larus marinus;4.15E+002;40;0.108;1,2
+Bird;Larus occidentalis;2.53E+002;40;0.091;1,2
+Bird;Larus occidentalis;2.53E+002;40;0.101;1,2
+Bird;Larus pipixcan;7.00E+001;40;0.273;1,2
+Bird;Larus pipixcan;7.00E+001;40;0.286;1,2
+Bird;Laterallus jamicensis;8.48E+000;40;1.163;1,2
+Bird;Leptotila verreauxi;3.83E+001;40;0.299;1,2
+Bird;Leucosticte arctoa atrata;6.63E+000;40;0.459;1,2
+Bird;Leucosticte arctoa ssp.;6.73E+000;40;0.394;1,2
+Bird;Limnodromus griseus;2.83E+001;40;0.192;1,2
+Bird;Limnodromus griseus;2.83E+001;40;0.34;1,2
+Bird;Limnodromus scolopaceus;2.61E+001;40;0.311;1,2
+Bird;Limnothlypis swainsonii;4.73E+000;40;0.331;1,2
+Bird;Limosa fedoa;9.26E+001;40;0.299;1,2
+Bird;Limosa lapponica;8.45E+001;40;0.685;1,2
+Bird;Lophodytes cucullatus;1.35E+002;40;0.226;1,2
+Bird;Lophodytes cucullatus;1.53E+002;40;0.249;1,2
+Bird;Lophoictinia isura;1.25E+002;40;0.149;1,2
+Bird;Loxia curvirostra;1.02E+001;40;0.633;1,2
+Bird;Melanerpes aurifrons;2.14E+001;40;0.459;1,2
+Bird;Melanerpes carolinus;1.68E+001;40;0.211;1,2
+Bird;Melanerpes erythrocephalus;1.79E+001;40;0.259;1,2
+Bird;Melanerpes formicivorus;1.95E+001;40;0.169;1,2
+Bird;Melanerpes formicivorus;2.07E+001;40;0.159;1,2
+Bird;Melanerpes uropygialis;1.74E+001;40;0.331;1,2
+Bird;Melanitta deglandi;3.00E+002;40;0.218;1,2
+Bird;Melanitta fusca;4.39E+002;40;0.163;1,2
+Bird;Melanitta fusca;4.39E+002;40;0.213;1,2
+Bird;Meleagris gallopavo;1.06E+003;40;0.196;1,2
+Bird;Meleagris gallopavo;1.45E+003;40;0.204;1,2
+Bird;Melospiza georgiana;4.25E+000;40;0.549;1,2
+Bird;Melospiza lincolnii;4.35E+000;40;0.34;1,2
+Bird;Melospiza melodia;5.19E+000;40;0.226;1,2
+Bird;Mergus merganser;3.08E+002;40;0.19;1,2
+Bird;Mergus serrator;2.55E+002;40;0.485;1,2
+Bird;Merops bullockoides;8.70E+000;40;0.37;1,2
+Bird;Micrathene whitneyi;1.03E+001;40;0.538;1,2
+Bird;Micropalama himantopus;1.43E+001;40;0.282;1,2
+Bird;Milvus migrans;2.07E+002;40;0.107;1,2
+Bird;Milvus migrans;2.07E+002;40;0.11;1,2
+Bird;Milvus milvus;2.70E+002;40;0.097;1,2
+Bird;Milvus milvus;2.70E+002;40;0.098;1,2
+Bird;Mimus polyglottos;1.21E+001;40;0.127;1,2
+Bird;Mniotilta varia;2.65E+000;40;0.226;1,2
+Bird;Molothrus aeneus;1.67E+001;40;0.746;1,2
+Bird;Molothrus ater;1.10E+001;40;0.15;1,2
+Bird;Molothrus ater;1.23E+001;40;0.161;1,2
+Bird;Morus bassanus;7.50E+002;40;0.125;1,2
+Bird;Mycteria americana;5.94E+002;40;0.4;1,2
+Bird;Myiarchus cinerascens;6.80E+000;40;0.286;1,2
+Bird;Myiarchus cinerascens;6.80E+000;40;0.538;1,2
+Bird;Myiarchus crinitus;8.38E+000;40;0.183;1,2
+Bird;Myiarchus tyrannulus;1.10E+001;40;0.259;1,2
+Bird;Myiarchus tyrannulus;1.10E+001;40;0.323;1,2
+Bird;Myioborus pictus;1.98E+000;40;0.394;1,2
+Bird;Myioborus pictus;1.98E+000;40;0.617;1,2
+Bird;Nucifraga columbiana;3.38E+001;40;0.146;1,2
+Bird;Numenius arquata;2.01E+002;40;0.08;1,2
+Bird;Numenius phaeopus;1.01E+002;40;0.233;1,2
+Bird;Numenius tahitiensis;1.08E+002;40;0.216;1,2
+Bird;Nyctea scandiaca;5.11E+002;40;0.273;1,2
+Bird;Nyctea scandiaca;5.70E+002;40;0.237;1,2
+Bird;Nycticorax nycticorax;2.21E+002;40;0.12;1,2
+Bird;Nycticorax nycticorax;2.21E+002;40;0.12;1,2
+Bird;Nycticorax violaceus;1.71E+002;40;0.413;1,2
+Bird;Oceanodroma furcata;1.38E+001;40;0.286;1,2
+Bird;Oceanodroma furcata;1.38E+001;40;0.435;1,2
+Bird;Oceanodroma homochroa;9.23E+000;40;0.323;1,2
+Bird;Oceanodroma leucorhoa;9.95E+000;40;0.081;1,2
+Bird;Oceanodroma leucorhoa;9.95E+000;40;0.087;1,2
+Bird;Oceanodroma leucorhoa;9.95E+000;40;0.105;1,2
+Bird;Oceanodroma tristrami;2.10E+001;40;0.262;1,2
+Bird;Oporonis tolmiei;2.60E+000;40;0.649;1,2
+Bird;Oporornis agilis;3.80E+000;40;0.617;1,2
+Bird;Oporornis formosus;3.58E+000;40;0.435;1,2
+Bird;Oporornis philadelphia;3.25E+000;40;0.327;1,2
+Bird;Oporornis tolmiei;2.60E+000;40;0.649;1,2
+Bird;Otus asio;4.51E+001;40;0.179;1,2
+Bird;Otus flammeolus;1.39E+001;40;0.318;1,2
+Bird;Otus kennicottii;4.23E+001;40;0.198;1,2
+Bird;Oxyura jamaicensis;1.48E+002;40;0.187;1,2
+Bird;Pagodroma nivea;6.70E+001;40;0.127;1,2
+Bird;Pagophila eburnea;1.54E+002;40;0.149;1,2
+Bird;Pagophila eburnea;1.54E+002;40;0.323;1,2
+Bird;Pandion haliaetus;3.71E+002;40;0.115;1,2
+Bird;Parabuteo unicinctus;2.16E+002;40;0.233;1,2
+Bird;Parabuteo unicinctus;2.16E+002;40;0.256;1,2
+Bird;Parabuteo unicinctus;2.21E+002;40;0.202;1,2
+Bird;Parula americana;2.15E+000;40;0.538;1,2
+Bird;Parus atricapillus;2.70E+000;40;0.206;1,2
+Bird;Parus atricapillus;2.75E+000;40;0.361;3
+Bird;Parus bicolor ssp.;5.40E+000;40;0.192;1,2
+Bird;Parus bicolor ssp.;5.40E+000;40;0.549;1,2
+Bird;Parus carolinensis;2.54E+000;40;0.235;1,2
+Bird;Parus cinctus;3.10E+000;40;0.37;1,2
+Bird;Parus gambeli;2.88E+000;40;0.254;1,2
+Bird;Parus hudsonicus;2.45E+000;40;0.562;1,2
+Bird;Parus inornatus;4.38E+000;40;0.323;
+Bird;Parus major;4.75E+000;40;0.756;3
+Bird;Parus major;4.75E+000;40;0.989;3
+Bird;Parus rufescens;2.43E+000;40;0.331;1,2
+Bird;Parus sclateri;2.75E+000;40;0.526;1,2
+Bird;Parus wollweberi;2.60E+000;40;0.394;1,2
+Bird;Passer domesticus;6.93E+000;40;0.192;1,2
+Bird;Passer montanus;5.50E+000;40;0.667;1,2
+Bird;Passerculus sandwichensis;4.28E+000;40;0.427;1,2
+Bird;Passerella iliaca;8.08E+000;40;0.265;1,2
+Bird;Passerina amoena;3.88E+000;40;0.289;1,2
+Bird;Passerina amoena;4.00E+000;40;0.538;1,2
+Bird;Passerina ciris;3.75E+000;40;0.244;1,2
+Bird;Passerina cyanea;3.53E+000;40;0.233;1,2
+Bird;Passerina cyanea;3.73E+000;40;0.233;1,2
+Bird;Passerina cyanea;3.75E+000;40;0.429;3
+Bird;Passerina cyanea;3.75E+000;40;0.454;3
+Bird;Pelecanus erythrorhynchos;1.75E+003;40;0.096;1,2
+Bird;Pelecanus erythrorhynchos;1.75E+003;40;0.159;1,2
+Bird;Pelecanus occidentalis;8.60E+002;40;0.129;1,2
+Bird;Perdix perdix;9.74E+001;40;0.508;1,2
+Bird;Perisoreus canadensis;1.83E+001;40;0.132;1,2
+Bird;Perisoreus canadensis;1.83E+001;40;0.159;1,2
+Bird;Perisoreus canadensis;1.83E+001;40;0.182;1,2
+Bird;Pernis apivorus;1.90E+002;40;0.087;1,2
+Bird;Phalacrocorax auritas;4.19E+002;40;0.142;1,2
+Bird;Phalacrocorax carbo;5.27E+002;40;0.141;1,2
+Bird;Phalacrocorax carbo;5.27E+002;40;0.178;1,2
+Bird;Phalacrocorax pelagicus;4.67E+002;40;0.142;1,2
+Bird;Phalacrocorax penicillatus;5.26E+002;40;0.273;1,2
+Bird;Phalaenoptilus nuttallii;1.29E+001;40;0.909;1,2
+Bird;Phalaropus tricolor;1.50E+001;40;0.256;1,2
+Bird;Pheucticus ludovicianus;1.14E+001;40;0.355;1,2
+Bird;Pheucticus melanocephalus;1.05E+001;40;0.282;1,2
+Bird;Phoenicopterus ruber;7.59E+002;40;0.076;1,2
+Bird;Phoenicopterus ruber;7.59E+002;40;0.193;1,2
+Bird;Phylloscopus borealis;2.65E+000;40;0.877;1,2
+Bird;Pica nuttalli;3.60E+001;40;0.259;1,2
+Bird;Pica nuttalli;3.98E+001;40;0.256;1,2
+Bird;Pica pica;4.44E+001;40;0.442;1,2
+Bird;Pica pica;4.44E+001;40;0.526;1,2
+Bird;Picoides borealis;1.09E+001;40;0.185;1,2
+Bird;Picoides borealis;1.09E+001;40;0.213;1,2
+Bird;Picoides pubescens;6.75E+000;40;0.224;1,2
+Bird;Picoides scalaris;7.58E+000;40;0.588;1,2
+Bird;Picoides villosus;1.56E+001;40;0.161;1,2
+Bird;Pinicola enucleator;1.41E+001;40;0.265;1,2
+Bird;Pipilo aberti;1.15E+001;40;0.299;1,2
+Bird;Pipilo chlorurus;7.35E+000;40;0.336;1,2
+Bird;Pipilo erythrophthalmus;1.04E+001;40;0.207;1,2
+Bird;Pipilo erythrophthalmus ssp.;1.04E+001;40;0.239;1,2
+Bird;Pipilo fuscus;1.11E+001;40;0.199;1,2
+Bird;Piranga ludoviciana;7.03E+000;40;0.327;1,2
+Bird;Piranga olivicea;7.15E+000;40;0.254;1,2
+Bird;Piranga rubra;7.05E+000;40;0.355;1,2
+Bird;Piranga rubra;7.05E+000;40;0.435;1,2
+Bird;Platalea leucorodia;4.73E+002;40;0.09;1,2
+Bird;Plectrophenax hyperboreus;1.36E+001;40;0.549;1,2
+Bird;Plectrophenax nivalis;1.06E+001;40;0.292;1,2
+Bird;Plegadis chihi;1.55E+002;40;0.175;1,2
+Bird;Pluvialis dominica;3.63E+001;40;0.549;1,2
+Bird;Pluvialis squatarola;5.50E+001;40;0.125;1,2
+Bird;Pluvialis squatarola;5.50E+001;40;0.201;1,2
+Bird;Podiceps auritus;1.13E+002;40;0.505;1,2
+Bird;Podiceps grisegena;2.56E+002;40;0.549;1,2
+Bird;Podiceps nigricollis;7.30E+001;40;0.505;1,2
+Bird;Polioptila caerulea;1.50E+000;40;0.633;1,2
+Bird;Polyborus plancus;2.23E+002;40;0.289;1,2
+Bird;Polysticta stelleri;1.93E+002;40;0.207;1,2
+Bird;Polysticta stelleri;2.11E+002;40;0.178;1,2
+Bird;Pooecetes gramineus;6.43E+000;40;0.327;1,2
+Bird;Pooecetes gramineus;6.43E+000;40;0.376;1,2
+Bird;Procellaria parkinsoni;1.69E+002;40;0.149;1,2
+Bird;Procelsterna cerulea;1.33E+001;40;0.182;1,2
+Bird;Procelsterna cerulea;1.33E+001;40;0.233;1,2
+Bird;Progne subis;1.24E+001;40;0.185;1,2
+Bird;Protonotaria citrea;3.75E+000;40;0.538;1,2
+Bird;Pterodroma alba;6.80E+001;40;0.226;1,2
+Bird;Pterodroma hypoleuca;4.40E+001;40;0.239;1,2
+Bird;Pterodroma leucoptera;3.13E+001;40;0.127;1,2
+Bird;Pterodroma macroptera;1.33E+002;40;0.141;1,2
+Bird;Pterodroma phaeopygia;1.09E+002;40;0.37;1,2
+Bird;Ptychoramphus aleuticus;4.70E+001;40;0.251;1,2
+Bird;Ptychoramphus aleuticus;4.70E+001;40;0.435;1,2
+Bird;Ptychoramphus aleuticus;4.70E+001;40;0.459;1,2
+Bird;Puffinus auricularis;8.08E+001;40;0.515;1,2
+Bird;Puffinus gravis;2.12E+002;40;0.365;1,2
+Bird;Puffinus lherminieri;4.20E+001;40;0.133;1,2
+Bird;Puffinus nativitatis;8.90E+001;40;0.237;1,2
+Bird;Puffinus pacificus;9.70E+001;40;0.151;1,2
+Bird;Puffinus pacificus;9.70E+001;40;0.182;1,2
+Bird;Puffinus puffinus;1.13E+002;40;0.084;1,2
+Bird;Puffinus puffinus;1.13E+002;40;0.549;1,2
+Bird;Puffinus tenuirostris;1.36E+002;40;0.084;1,2
+Bird;Puffinus tenuirostris;1.36E+002;40;0.08;3
+Bird;Pycnonotus jocusus;6.85E+000;40;0.667;1,2
+Bird;Pyrocephalus rubinus;3.60E+000;40;0.476;1,2
+Bird;Quiscalus major;4.16E+001;40;0.215;1,2
+Bird;Quiscalus mexicanus;4.78E+001;40;0.204;1,2
+Bird;Quiscalus quiscula;3.18E+001;40;0.121;1,2
+Bird;Rallus longirostris;8.08E+001;40;0.345;1,2
+Bird;Recurvirostra americana;7.90E+001;40;0.286;1,2
+Bird;Regulus calendula;1.66E+000;40;0.467;1,2
+Bird;Regulus satrapa;1.58E+000;40;0.495;1,2
+Bird;Rhynchops niger;7.54E+001;40;0.127;1,2
+Bird;Riparia riparia;3.65E+000;40;0.323;1,2
+Bird;Rissa brevirostris;9.78E+001;40;0.667;1,2
+Bird;Rissa tridactyla;9.83E+001;40;0.135;3
+Bird;Rissa tridactyla;1.02E+002;40;0.37;1,2
+Bird;Rissa tridactyla;1.02E+002;40;0.526;1,2
+Bird;Rissa tridactyla;1.05E+002;40;0.196;3
+Bird;Rostrhamus sociabilis;9.45E+001;40;0.149;1,2
+Bird;Rostrhamus sociabilis;9.45E+001;40;0.37;1,2
+Bird;Sayornis nigricans;4.66E+000;40;0.323;1,2
+Bird;Sayornis nigricans;4.66E+000;40;0.909;1,2
+Bird;Sayornis phoebe;4.95E+000;40;0.282;1,2
+Bird;Scolopax minor;5.48E+001;40;0.226;1,2
+Bird;Scolopax minor;5.48E+001;40;0.276;1,2
+Bird;Seiurus aurocapillus;4.85E+000;40;0.286;1,2
+Bird;Seiurus motacilla;5.08E+000;40;0.323;1,2
+Bird;Seiurus novaeboracensis;4.45E+000;40;0.289;1,2
+Bird;Selasphorus platycercus;8.75E-001;40;0.365;1,2
+Bird;Selasphorus platycercus;8.88E-001;40;0.323;1,2
+Bird;Selasphorus platycercus;9.00E-001;40;0.209;1,2
+Bird;Selasphorus platycercus;9.00E-001;40;0.211;1,2
+Bird;Selasphorus rufus;8.75E-001;40;0.649;1,2
+Bird;Selasphorus sasin;7.88E-001;40;0.667;1,2
+Bird;Selasphorus sasin;8.00E-001;40;0.685;1,2
+Bird;Setophaga ruticilla;2.13E+000;40;0.256;1,2
+Bird;Sialia currucoides;7.40E+000;40;0.549;1,2
+Bird;Sialia mexicanus;7.25E+000;40;0.617;1,2
+Bird;Sialia sialis;7.90E+000;40;0.323;1,2
+Bird;Sitta canadensis;2.45E+000;40;0.345;1,2
+Bird;Sitta carolinensis;5.28E+000;40;0.262;1,2
+Bird;Sitta pusilla;2.55E+000;40;0.45;1,2
+Bird;Sitta pygmaea;2.65E+000;40;0.314;1,2
+Bird;Somateria mollissima;4.79E+002;40;0.119;1,2
+Bird;Somateria mollissima;4.79E+002;40;0.172;1,2
+Bird;Somateria mollissima;5.17E+002;40;0.11;1,2
+Bird;Somateria spectabilis;3.92E+002;40;0.134;1,2
+Bird;Spheniscus magellanicus;1.13E+003;40;0.196;1,2
+Bird;Sphyrapicus varius;1.26E+001;40;0.382;1,2
+Bird;Spiza americana;7.33E+000;40;0.667;1,2
+Bird;Spizella arborea;5.03E+000;40;0.254;1,2
+Bird;Spizella breweri;2.73E+000;40;0.505;1,2
+Bird;Spizella pallida;3.00E+000;40;0.515;1,2
+Bird;Spizella passerina;3.08E+000;40;0.262;1,2
+Bird;Spizella pusilla;3.13E+000;40;0.292;1,2
+Bird;Spizella pusilla;3.13E+000;40;0.331;1,2
+Bird;Sporophila torqueola;2.18E+000;40;0.218;1,2
+Bird;Stelgidopteryx ruficollis;3.80E+000;40;0.442;1,2
+Bird;Stellula calliope;6.63E-001;40;0.435;1,2
+Bird;Stellula calliope;7.00E-001;40;0.427;1,2
+Bird;Stercorarius longicaudus;7.41E+001;40;0.318;1,2
+Bird;Sterna albifrons;1.43E+001;40;0.12;1,2
+Bird;Sterna antillarum;1.08E+001;40;0.105;1,2
+Bird;Sterna caspia;1.64E+002;40;0.096;1,2
+Bird;Sterna dougallii;2.75E+001;40;0.182;1,2
+Bird;Sterna dougallii;2.75E+001;40;0.211;1,2
+Bird;Sterna elegans;6.43E+001;40;0.289;1,2
+Bird;Sterna forsteri;3.95E+001;40;0.213;1,2
+Bird;Sterna forsteri;3.95E+001;40;0.249;1,2
+Bird;Sterna fuscata;4.50E+001;40;0.079;1,2
+Bird;Sterna lunata;3.65E+001;40;0.141;1,2
+Bird;Sterna lunata;3.65E+001;40;0.157;1,2
+Bird;Sterna maxima;1.18E+002;40;0.114;1,2
+Bird;Sterna maxima;1.18E+002;40;0.149;1,2
+Bird;Sterna nilotica;5.83E+001;40;0.159;1,2
+Bird;Sterna nilotica;5.83E+001;40;0.413;1,2
+Bird;Sterna paradisaea;2.75E+001;40;0.074;1,2
+Bird;Sterna sandvicensis;5.20E+001;40;0.158;1,2
+Bird;Streptopelia chinensis;3.98E+001;40;0.336;1,2
+Bird;Strix nebulosa;2.44E+002;40;0.286;1,2
+Bird;Strix nebulosa;2.90E+002;40;0.196;1,2
+Bird;Strix occidentalis;1.52E+002;40;0.149;1,2
+Bird;Strix varia;1.79E+002;40;0.139;1,2
+Bird;Strix varia;2.00E+002;40;0.254;1,2
+Bird;Sturnella magna;2.23E+001;40;0.286;1,2
+Bird;Sturnus vulgaris;2.06E+001;40;0.119;1,2
+Bird;Sula (= Morus) bassanus;7.50E+002;40;0.101;1,2
+Bird;Sula (= Morus) bassanus;7.50E+002;40;0.124;1,2
+Bird;Sula dactylatra;4.38E+002;40;0.1;1,2
+Bird;Sula dactylatra;4.38E+002;40;0.11;1,2
+Bird;Sula leucogaster;3.46E+002;40;0.103;1,2
+Bird;Sula leucogaster;3.46E+002;40;0.158;1,2
+Bird;Sula serrator;5.88E+002;40;0.076;1,2
+Bird;Sula sula;2.51E+002;40;0.11;1,2
+Bird;Sula sula;2.51E+002;40;0.115;1,2
+Bird;Synthliboramphus antiquus;5.15E+001;40;0.526;1,2
+Bird;Synthliboramphus antiquus;5.15E+001;40;0.602;1,2
+Bird;Synthliboramphus hypoleucus;4.18E+001;40;0.169;1,2
+Bird;Synthliboramphus hypoleucus;4.18E+001;40;0.262;1,2
+Bird;Tachybaptus ruficollis;5.03E+001;40;0.196;1,2
+Bird;Tachycineta bicolor;5.03E+000;40;0.233;1,2
+Bird;Tachycineta bicolor;5.03E+000;40;0.289;1,2
+Bird;Tachycineta thalassina;3.60E+000;40;0.382;1,2
+Bird;Telespyza cantans;8.20E+000;40;0.435;1,2
+Bird;Threskiornis aethiopicus;3.75E+002;40;0.12;1,2
+Bird;Thryomanes bewickii;2.48E+000;40;0.323;1,2
+Bird;Thryomanes bewickii;2.48E+000;40;0.34;1,2
+Bird;Thryothorus ludovicianus;4.68E+000;40;0.427;1,2
+Bird;Toxostoma bendirei;1.56E+001;40;0.633;1,2
+Bird;Toxostoma curvirostre;1.99E+001;40;0.237;1,2
+Bird;Toxostoma lecontei;1.55E+001;40;0.459;1,2
+Bird;Toxostoma longirostre;1.75E+001;40;0.355;1,2
+Bird;Toxostoma redivivum;2.11E+001;40;0.376;1,2
+Bird;Toxostoma rufum;1.72E+001;40;0.199;1,2
+Bird;Tringa flavipes;2.03E+001;40;0.549;1,2
+Bird;Tringa macularia;1.01E+001;40;0.213;1,2
+Bird;Troglodytes aedon;2.73E+000;40;0.365;1,2
+Bird;Troglodytes troglodytes;2.23E+000;40;0.649;1,2
+Bird;Turdoides squamiceps;1.85E+001;40;0.297;3
+Bird;Turdoides squamiceps;1.85E+001;40;0.097;3
+Bird;Turdus migratorius;1.93E+001;40;0.183;1,2
+Bird;Tympanuchus cupido;2.21E+002;40;2;1,2
+Bird;Tympanuchus pallidicinctus;1.89E+002;40;0.189;1,2
+Bird;Tympanuchus phasianellus;2.09E+002;40;0.413;1,2
+Bird;Tyrannus tyrannus;1.09E+001;40;0.259;1,2
+Bird;Tyrannus verticalis;9.90E+000;40;0.376;1,2
+Bird;Uria aalge;2.48E+002;40;0.096;1,2
+Bird;Uria lomvia;2.41E+002;40;0.111;1,2
+Bird;Vermivora celata;2.25E+000;40;0.382;1,2
+Bird;Vermivora chrysoptera;2.18E+000;40;0.327;1,2
+Bird;Vermivora luciae;1.65E+000;40;0.45;1,2
+Bird;Vermivora peregrina;2.45E+000;40;0.407;1,2
+Bird;Vermivora pinus;2.10E+000;40;0.327;1,2
+Bird;Vermivora ruficapilla;2.15E+000;40;0.355;1,2
+Bird;Vermivora virginiae;1.95E+000;40;0.649;1,2
+Bird;Vermivora virginiae;1.95E+000;40;0.847;1,2
+Bird;Vireo atricapillus;2.13E+000;40;0.37;1,2
+Bird;Vireo bellii;2.13E+000;40;0.376;1,2
+Bird;Vireo flavifrons;4.50E+000;40;0.427;1,2
+Bird;Vireo gilvus;3.70E+000;40;0.195;1,2
+Bird;Vireo griseus;2.85E+000;40;0.355;1,2
+Bird;Vireo huttoni;2.90E+000;40;0.4;1,2
+Bird;Vireo olivaceus;4.18E+000;40;0.256;1,2
+Bird;Vireo philadelphicus;3.05E+000;40;0.292;1,2
+Bird;Vireo solitarius;4.15E+000;40;0.35;1,2
+Bird;Wilsonia canadensis;2.55E+000;40;0.327;1,2
+Bird;Wilsonia canadensis;2.63E+000;40;0.323;1,2
+Bird;Wilsonia citrina;2.61E+000;40;0.323;1,2
+Bird;Wilsonia pusilla;1.83E+000;40;0.382;1,2
+Bird;Xanthocephalus xanthocephalus;1.99E+001;40;0.235;1,2
+Bird;Zenaida asiatica;3.83E+001;40;0.116;1,2
+Bird;Zenaida macroura;2.98E+001;40;0.131;1,2
+Bird;Zonotrichia albicollis;6.48E+000;40;0.265;1,2
+Bird;Zonotrichia atricapilla;7.45E+000;40;0.244;1,2
+Bird;Zonotrichia leucophrys ssp.;7.35E+000;40;0.192;1,2
+Bird;Zonotrichia querula;9.06E+000;40;0.218;1,2
+Bird;Zosterops japonicus;2.50E+000;40;0.515;1,2
+Fish;Abramis brama;3.98E+002;8;0.165;5
+Fish;Acipenser transmontanus;2.42E+004;10;0.05;5
+Fish;Acipenser transmontanus;4.25E+004;22;0.03;5
+Fish;Acipsnser fulvescens;9.00E+003;8;0.01;5
+Fish;Ammodytes marinus;8.03E+000;11;1.24;5
+Fish;Ammodytes tobianus;3.75E+000;11;1.29;5
+Fish;Aphinius fasciatus;6.25E-001;15;2.6;5
+Fish;Aphinius fasciatus;1.00E+000;15;1.8;5
+Fish;Apsilus dentatus;1.00E+003;27;0.83;5
+Fish;Apsilus dentatus;1.13E+003;27;1.9;5
+Fish;Bajacalifornia burragei;2.45E+000;4;1.039;7
+Fish;Balistes vetula;7.30E+002;27;2.61;5
+Fish;Bathylagus milleri;7.50E+000;5.5;1.217;7
+Fish;Benthosema glaciale;5.60E-001;13;1.521;6
+Fish;Benthosema glaciale;1.40E+000;7;1.75;5
+Fish;Benthosema glaciale;1.43E+000;7;0.74;5
+Fish;Blennius pholis;1.35E+001;17;0.9;5
+Fish;Borostomias panamensis;1.25E+001;5.5;1.097;7
+Fish;Brevoortia tyrannus;3.53E+001;23;1;5
+Fish;Brevoortia tyrannus;2.16E+002;13;0.5;5
+Fish;Callionymus lyra;1.95E+000;12;0.96;5
+Fish;Callionymus lyra;6.75E+000;12;0.86;5
+Fish;Caranx ruber;6.23E+002;27;1.51;5
+Fish;Centengraulis mysticetus;1.40E+001;24;2.4;5
+Fish;Cephalopholis fulva;1.60E+002;27;0.55;5
+Fish;Cetorhinus maximus;3.45E+006;10;0.046;5
+Fish;Chelodactylus macropterus;3.48E+002;14;0.08;5
+Fish;Clupea harengus;1.38E+001;8;0.35;5
+Fish;Clupea harengus;4.00E+001;9;0.36;5
+Fish;Clupea harengus;4.83E+001;12;0.2;5
+Fish;Clupea harengus;5.00E+001;11;0.25;5
+Fish;Clupea harengus;8.75E+001;8;0.16;5
+Fish;Clupea pallassii;5.23E+001;10;0.5;5
+Fish;Clupea pallassii;1.31E+002;12;0.2;5
+Fish;Cololabis aira;4.73E+001;12;1.6;5
+Fish;Coregonus clupeaformis;6.75E+000;5;1.3;5
+Fish;Coregonus clupeaformis;7.08E+002;5;0.15;5
+Fish;Coregonus clupeaformis;1.05E+003;5;1.35;5
+Fish;Coregonus clupeaformis;1.56E+003;5;0.17;5
+Fish;Coryphaennoides acrolepis;4.50E+002;3.2;0.822;9,14
+Fish;Coryphaenoides rupestris;2.39E+002;9.5;0.12;9,13
+Fish;Cottus gobio;1.08E+000;9;1.1;5
+Fish;Cottus gobio;1.08E+000;9;0.8;5
+Fish;Cottus gobio;1.48E+000;9;1.1;5
+Fish;Cottus gobio;1.53E+000;9;0.9;5
+Fish;Cyclothone braueri;1.31E-001;10;4.867;6
+Fish;Cynoglossus macrolepidus;4.25E+001;27;0.49;5
+Fish;Cynolebias adloffi;3.75E-001;22;6.348;4
+Fish;Cynolebias adloffi;6.25E-001;16;3.476;4
+Fish;Cynolebias bellottii;6.50E-001;15;3.862;4
+Fish;Cynolebias bellottii;6.50E-001;20;5.214;4
+Fish;Cynolebias wolterstarfii;1.25E+000;15.5;3.395;4
+Fish;Cynolebias wolterstarfii;1.25E+000;20;5.84;4
+Fish;Cynoscion analis;3.68E+002;18;0.4;5
+Fish;Cynoscion macdonaldi;4.45E+003;27;0.3;5
+Fish;Cynoscion nobilis;6.98E+003;24;0.3;5
+Fish;Dicentrarchus labrax;1.72E+003;10;0.1;5
+Fish;Engraulis anchoita;1.25E+001;16;0.9;5
+Fish;Engraulis anchoita;5.30E+001;16;1.42;5
+Fish;Engraulis encrasicholus;6.00E+000;15;1.8;5
+Fish;Engraulis japonicus;9.00E+000;20;1.63;5
+Fish;Engraulis mordax;5.25E+000;15;1.7;5
+Fish;Engraulis ringens;6.00E+000;16;1.52;5
+Fish;Engraulis ringens;9.25E+000;16;1;5
+Fish;Eopsetta jordani;9.93E+002;9;0.2;5
+Fish;Eopsetta jordani;1.14E+003;9;0.25;5
+Fish;Epinephelus guttatus;4.70E+002;27;0.68;5
+Fish;Epinephelus striatus;3.23E+003;27;0.24;5
+Fish;Esox lucius;8.23E+002;9;0.24;5
+Fish;Esox lucius;2.20E+003;9;0.26;5
+Fish;Gadus minitus;1.49E+001;12;1.1;5
+Fish;Gadus minitus;3.95E+001;12;0.9;5
+Fish;Gadus morhua;7.50E+002;8;0.18;5
+Fish;Gadus morhua;2.04E+003;6;0.44;5
+Fish;Gadus morhua;2.70E+003;5;0.31;5
+Fish;Gadus morhua;2.75E+003;7;0.33;5
+Fish;Gadus morhua;2.93E+003;6;0.2;5
+Fish;Gadus morhua;3.75E+003;6;0.1;5
+Fish;Gadus morhua;4.10E+003;8;0.17;5
+Fish;Gadus morhua;5.00E+003;8;0.2;5
+Fish;Gadus morhua;6.00E+003;5;0.1;5
+Fish;Gasterosteus aculeatus;4.50E-001;10;0.9;5
+Fish;Haemulon album;1.33E+003;27;0.79;5
+Fish;Haemulon plumieri;3.40E+002;27;1.77;5
+Fish;Haplochromis anaphyrmus;2.78E+001;26;1.45;5
+Fish;Haplochromis mloto;1.85E+001;26;0.92;5
+Fish;Hippoglossoides platessoides;1.73E+002;11;0.3;5
+Fish;Hippoglossoides platessoides;3.10E+002;15;0.27;5
+Fish;Hippoglossoides platessoides;4.15E+002;14;0.25;5
+Fish;Hippoglossoides platessoides;5.10E+002;7;0.26;5
+Fish;Hippoglossoides platessoides;5.15E+002;11;0.22;5
+Fish;Hippoglossoides platessoides;5.45E+002;15;0.18;5
+Fish;Hippoglossoides platessoides;7.13E+002;14;0.23;5
+Fish;Hippoglossoides platessoides;9.55E+002;7;0.18;5
+Fish;Hoplostethus atlanticus;5.40E+002;4;0.048;9,12
+Fish;Hypomesus olidus;3.75E+000;16;2.45;5
+Fish;Katsuwonus pelamis;2.53E+003;25;0.65;5
+Fish;Katsuwonus pelamis;8.08E+003;25;1.68;5
+Fish;Lamna nasus;4.18E+004;7;0.18;5
+Fish;Lampanyctus macdonaldi;7.25E-001;10.25;1.014;6
+Fish;Lampanyctus regalis;7.25E-001;6;1.329;7
+Fish;Latimeria chalumnae;2.00E+004;16;0.2;8,9
+Fish;Leiognathus splendens;1.60E+001;28;1.8;5
+Fish;Lethrinops longispinis;3.05E+001;26;1.69;5
+Fish;Lethrinops parvidens;3.30E+001;26;1.2;5
+Fish;Leucichthys artedi;1.75E+001;8;1.1;5
+Fish;Leucichthys artedi;2.38E+001;8;1.2;5
+Fish;Leucichthys artedi;1.50E+002;8;0.35;5
+Fish;Leucichthys sardinella;1.38E+002;5;0.6;5
+Fish;Limanda ferruginea;2.95E+002;10;0.15;5
+Fish;Lithrinus enigmaticus;7.30E+002;27;0.2;5
+Fish;Lutjanus apodus;9.50E+002;27;0.54;5
+Fish;Lutjanus buccanella;4.73E+002;27;1.83;5
+Fish;Lutjanus buccanella;8.00E+002;27;2.24;5
+Fish;Lutjanus purpureus;2.93E+003;27;0.37;5
+Fish;Mallotus villosus;1.50E+001;11;1.3;5
+Fish;Maurolicus muelleri;1.25E-001;13;4.867;6
+Fish;Melanogrammus aeglefinus;5.38E+002;5;0.2;5
+Fish;Merluccius angustimanus;6.38E+001;20;0.84;5
+Fish;Merluccius gayi;1.46E+003;14;0.37;5
+Fish;Merluccius merluccius;1.56E+002;15;0.6;5
+Fish;Merluccius merluccius;3.95E+002;15;0.5;5
+Fish;Merluccius productus;3.18E+002;12;0.56;5
+Fish;Mugil cephalus;6.13E+002;20;0.31;5
+Fish;Mulloidichthys martinicus;9.00E+001;27;1.73;5
+Fish;Mulloidichthys martinicus;1.30E+002;27;1.7;5
+Fish;Mycteroperca venenosa;2.08E+003;27;0.42;5
+Fish;Myctophum punctatum;1.65E+000;15;0.73;5
+Fish;Nemipterus bleekeri;7.50E+001;28;1.12;5
+Fish;Nemipterus delagoe;6.00E+001;28;1.62;5
+Fish;Nemipterus hexodon;5.38E+001;28;0.88;5
+Fish;Nemipterus japonicus;6.38E+001;28;1.88;5
+Fish;Nemipterus marginatus;5.25E+001;28;1.73;5
+Fish;Nemipterus marginatus;5.75E+001;28;1.14;5
+Fish;Nemipterus mesoprion;1.88E+001;28;1.08;5
+Fish;Nemipterus nematophorus;5.00E+001;28;1.63;5
+Fish;Nemipterus nemurus;6.13E+001;28;1.03;5
+Fish;Nemipterus peronii;6.43E+001;28;1.05;5
+Fish;Nemipterus sp.;1.02E+002;28;0.53;5
+Fish;Nemipterus tolu;5.75E+001;28;0.41;5
+Fish;Notothenia neglecta;5.45E+002;16;0.36;5
+Fish;Ocyurus chrysurus;9.00E+002;27;0.62;5
+Fish;Perca fluviatilis;1.09E+002;6;0.29;5
+Fish;Perca fluviatilis;1.58E+002;6;0.16;5
+Fish;Phoxinus phoxinus;2.05E+000;9;1.1;5
+Fish;Platichthys flesus;2.60E+002;8;0.18;5
+Fish;Pleuronectes platessa;2.28E+002;7;0.22;5
+Fish;Pleuronectes platessa;8.58E+002;7;0.12;5
+Fish;Pneumatophorus japonicus;2.03E+002;15;0.9;5
+Fish;Pollachius virens;2.90E+003;6;0.15;5
+Fish;Pollachius virens;4.13E+003;5;0.3;5
+Fish;Pollachius virens;5.03E+003;5;0.3;5
+Fish;Pomatoschistus minutus;1.00E+000;10;3.3;5
+Fish;Poromitra crassiceps;3.53E+000;6.5;0.677;7
+Fish;Pseudopleuronectes americanus;3.45E+002;5;0.4;5
+Fish;Pseudosciaena diacanthus;4.35E+003;27;0.8;5
+Fish;Pseudotolithus elongatus;1.79E+002;26;0.34;5
+Fish;Pseudoupeneus macularus;9.00E+001;27;1.89;5
+Fish;Pungitius pungitius;1.00E-001;10;1.1;5
+Fish;Restrelliger kanagurta;3.85E+001;27;7.8;5
+Fish;Restrelliger kanagurta;4.00E+001;28;4.44;5
+Fish;Restrelliger neglectus;2.10E+001;28;4.2;5
+Fish;Restrelliger neglectus;2.75E+001;28;7.22;5
+Fish;Restrelliger neglectus;5.13E+001;28;4.56;5
+Fish;Salmo trutta;7.50E+001;9;0.94;5
+Fish;Salmo trutta;1.25E+002;5;0.31;5
+Fish;Salvelinus alpinus;1.25E+003;7;0.17;5
+Fish;Sardinella longiceps;1.58E+001;27;0.67;5
+Fish;Sardinella longiceps;1.65E+001;27;1.12;5
+Fish;Sardinops caerrula;5.63E+001;15;0.45;5
+Fish;Sardinops caerrula;8.43E+001;15;0.4;5
+Fish;Sardinops melanosticta;5.23E+001;15;0.5;5
+Fish;Saurida tumbil;5.88E+002;17;0.46;5
+Fish;Sebastes aleutianus;9.38E+003;4.5;0.029;9,10,11
+Fish;Sebastes alutus;2.00E+002;5;0.193;5
+Fish;Sebastes alutus;2.70E+002;6;0.271;5
+Fish;Sebastes alutus;3.40E+002;8;0.227;5
+Fish;Sebastes alutus;1.42E+003;4.5;0.06;9,10,11
+Fish;Sebastes babcocki;1.96E+003;5.5;0.057;9,10,11
+Fish;Sebastes borealis;9.30E+003;4.5;0.038;9,10,11
+Fish;Sebastes brevispinis;1.96E+003;7;0.073;9,10,11
+Fish;Sebastes caurinus;7.78E+002;6.5;0.109;9,10,11
+Fish;Sebastes chlorostictus;5.45E+002;7;0.182;9,10,11
+Fish;Sebastes ciliatus;1.03E+003;6;0.09;9,10,11
+Fish;Sebastes constellatus;4.10E+002;7;0.188;9,10,11
+Fish;Sebastes crameri;7.78E+002;5.5;0.091;9,10,11
+Fish;Sebastes dalli;7.68E+001;7;0.5;9,10,11
+Fish;Sebastes diploproa;1.14E+003;6;0.071;9,10,11
+Fish;Sebastes elongatus;3.43E+002;6;0.143;9,10,11
+Fish;Sebastes entomelas;8.15E+002;5.5;0.1;9,10,11
+Fish;Sebastes flavidus;1.11E+003;6;0.094;9,10,11
+Fish;Sebastes goodei;7.05E+002;6.5;0.222;9,10,11
+Fish;Sebastes helvomaculatus;1.05E+003;6;0.069;9,10,11
+Fish;Sebastes jorani;1.52E+002;6.5;0.194;9,10,11
+Fish;Sebastes levis;2.93E+003;6.5;0.109;9,10,11
+Fish;Sebastes maliger;1.79E+003;7;0.067;9,10,11
+Fish;Sebastes melanops;1.02E+003;6.5;0.12;9,10,11
+Fish;Sebastes miniatus;1.64E+003;6.5;0.14;9,10,11
+Fish;Sebastes mystinus;6.08E+002;6;0.136;9,10,11
+Fish;Sebastes nigrocinctus;5.40E+003;7;0.052;9,10,11
+Fish;Sebastes ovalis;7.05E+002;6.5;0.162;9,10,11
+Fish;Sebastes paucipinis;2.93E+003;6;0.167;9,10,11
+Fish;Sebastes pinniger;1.97E+003;7;0.071;9,10,11
+Fish;Sebastes polyspinis;1.03E+003;5.5;0.105;9,10,11
+Fish;Sebastes reedi;1.28E+003;6.5;0.061;9,10,11
+Fish;Sebastes rosaceus;2.10E+002;7;0.429;9,10,11
+Fish;Sebastes rosenblatti;7.05E+002;6.5;0.12;9,10,11
+Fish;Sebastes ruberrinus;4.20E+003;6;0.051;9,10,11
+Fish;Sebastes rubrivinctus;1.02E+003;6.5;0.333;9,10,11
+Fish;Sebastes rufus;5.45E+002;7;0.113;9,10,11
+Fish;Sebastes saxicola;3.00E+002;6;0.158;9,10,11
+Fish;Sebastes variegatus;2.26E+002;5.5;0.128;9,10,11
+Fish;Sebastes wilsoni;6.10E+001;7;0.25;9,10,11
+Fish;Sebastes zacentrus;5.33E+002;6;0.103;9,10,11
+Fish;Sebastolobus alascanus;2.47E+003;2.8;0.053;9,10,11
+Fish;Sebastolobus altivelis;2.43E+002;2.4;0.13;9,10,11
+Fish;Soela vulgaris;1.21E+002;7;0.25;5
+Fish;Sprattus sprattus;5.10E+000;9;0.7;5
+Fish;Sprattus sprattus;5.75E+000;8;0.53;5
+Fish;Stolothrissa tanganicae;1.50E+000;27;5.2;5
+Fish;Stizostedion canadensis;1.54E+002;5;0.44;5
+Fish;Thunnus alaunga;1.29E+003;26;0.2;5
+Fish;Thunnus alaunga;1.47E+004;25;0.23;5
+Fish;Thunnus albacares;2.48E+004;25;0.77;5
+Fish;Thunnus albacares;3.45E+004;26;0.8;5
+Fish;Thunnus albacares;3.60E+004;25;0.8;5
+Fish;Thunnus albacares;4.98E+004;25;0.9;5
+Fish;Thunnus atlanticus;2.44E+003;26;0.67;5
+Fish;Thunnus germo;9.23E+003;25;0.22;5
+Fish;Thunnus macoyi;4.90E+004;26;0.2;5
+Fish;Tilapia esculenta;1.88E+002;25;1.75;5
+Fish;Tracharus japonicus;2.98E+002;20;0.99;5
+Fish;Trisopterus esmarkii;1.13E+001;9;1.6;5
+Fish;Trisopterus esmarkii;1.20E+001;9;0.6;5
+Invertebrate;Acanthochitona crinita;3.33E-001;13.85;4.44;25
+Invertebrate;Acanthocyclops robustus;1.13E-005;5;19.211;4
+Invertebrate;Acanthocyclops robustus;1.13E-005;10;22.01;4
+Invertebrate;Acanthocyclops robustus;1.13E-005;15;44.242;4
+Invertebrate;Acanthocyclops robustus;1.13E-005;20;56.154;4
+Invertebrate;Acanthocyclops robustus;1.13E-005;25;87.6;4
+Invertebrate;Aega antarctica;5.60E+000;-1.15;0.13;25
+Invertebrate;Amphicteis gunneri;3.65E-001;3.35;1.083;25
+Invertebrate;Ancylus fluviatilis;6.65E-002;11.85;3.9;25
+Invertebrate;Ancylus fluviatilis;1.08E-001;7.85;3.2;25
+Invertebrate;Anodonta grandis;2.88E+001;5.85;0.183;25
+Invertebrate;Anodonta grandis;1.37E+002;8.85;0.218;25
+Invertebrate;Anodonta piscinalis;9.98E+000;12.85;0.265;25
+Invertebrate;Arctica islandica;1.65E+002;6.85;0.35;25
+Invertebrate;Aulacomya ater;3.00E+000;15.35;1.459;25
+Invertebrate;Boreomysis microps;5.75E-003;9.5;3.042;6
+Invertebrate;Bovallia gigantea f;5.93E+000;-0.95;0.889;25
+Invertebrate;Bovallia gigantea f;1.53E+001;-0.95;0.729;25
+Invertebrate;Bovallia gigantea ;1.51E+000;-0.95;1.385;25
+Invertebrate;Bovallia gigantea ;4.75E+000;-0.95;0.801;25
+Invertebrate;Brachycentrus spinae;6.13E-003;10.85;6.205;25
+Invertebrate;Calyptogena magnifica;2.43E-001;17;1.538;22
+Invertebrate;Calyptogena magnifica;6.85E+000;7.8;0.324;24
+Invertebrate;Cardium edule;3.80E+000;11.85;0.86;25
+Invertebrate;Cardium edule;5.65E+000;11.85;0.59;25
+Invertebrate;Cardium edule;9.25E+000;11.85;0.44;25
+Invertebrate;Cardium edule;9.90E+000;9.85;0.727;25
+Invertebrate;Cassidulus mitis;9.50E-001;22.15;0.812;25
+Invertebrate;Chamelea gallina;1.35E+000;24.85;4.687;25
+Invertebrate;Chione cancellata;5.23E+000;25.85;0.553;25
+Invertebrate;Chorismus antarcticus;1.27E+001;-1.15;0.731;25
+Invertebrate;Corbicula fluminea;4.50E-001;21.35;4.39;25
+Invertebrate;Corbicula fluminea;6.38E-001;21.85;1.739;25
+Invertebrate;Cyclops strenuus;3.75E-005;15;18.75;4
+Invertebrate;Cyclops strenuus;3.75E-005;20;24.146;4
+Invertebrate;Cyclops vicinus;3.80E-005;5;15.315;4
+Invertebrate;Cyclops vicinus;3.80E-005;10;15.755;4
+Invertebrate;Cyclops vicinus;3.80E-005;15;42.941;4
+Invertebrate;Daphnia ambigua;7.55E-007;5;24.333;4
+Invertebrate;Daphnia ambigua;7.55E-007;10;35.902;4
+Invertebrate;Daphnia magna;4.43E-005;14;24.971;4
+Invertebrate;Daphnia magna;4.43E-005;19;34.873;4
+Invertebrate;Daphnia magna;4.43E-005;24;51.408;4
+Invertebrate;Daphnia magna;4.43E-005;29;84.884;4
+Invertebrate;Donax incarnatus;9.05E-001;27.85;7.483;25
+Invertebrate;Dosinia hepatica;1.85E+000;19.85;0.568;25
+Invertebrate;Echinosigra phiale;1.82E-001;2.85;0.275;25
+Invertebrate;Echinus acutus var. norvegicus;6.50E+000;7;0.28;23
+Invertebrate;Echinus affinis;8.43E+000;2.85;0.236;25
+Invertebrate;Echinus elegans;1.47E+001;7;0.559;23
+Invertebrate;Egeria radiata;1.94E+002;28.85;2.03;25
+Invertebrate;Ephemerella subvaria;4.15E-002;14.85;6.597;25
+Invertebrate;Epitheca spp.;7.58E-001;16.85;2.95;25
+Invertebrate;Eucyclops serrulatus;1.28E-005;10;23.422;4
+Invertebrate;Eucyclops serrulatus;1.28E-005;15;31.878;4
+Invertebrate;Eucyclops serrulatus;1.28E-005;20;36.079;4
+Invertebrate;Eucyclops serrulatus;1.28E-005;25;105.288;4
+Invertebrate;Euphausia krohni;4.00E-003;13;5.214;6,26
+Invertebrate;Eurhomalea exalbida;2.30E+002;6.45;0.145;25
+Invertebrate;Filinia pejleri;1.25E-008;5;87.6;4
+Invertebrate;Filinia pejleri;1.25E-008;10;128.824;4
+Invertebrate;Filinia pejleri;1.25E-008;15;168.462;4
+Invertebrate;Filinia pejleri;1.25E-008;20;292;4
+Invertebrate;Filinia pejleri;1.25E-008;25;365;4
+Invertebrate;Filinia terminalis;1.25E-008;5;87.6;4
+Invertebrate;Filinia terminalis;1.25E-008;10;128.824;4
+Invertebrate;Filinia terminalis;1.25E-008;15;168.462;4
+Invertebrate;Filinia terminalis;1.25E-008;20;292;4
+Invertebrate;Filinia terminalis;1.25E-008;25;365;4
+Invertebrate;Gammarus fossarum;1.28E-002;12;3.809;4
+Invertebrate;Gammarus fossarum;1.28E-002;16.1;5.475;4
+Invertebrate;Gammarus fossarum;1.28E-002;20.2;7.552;4
+Invertebrate;Gammarus roeseli;1.81E-002;12;3.809;4
+Invertebrate;Gammarus roeseli;1.81E-002;16.1;5.475;4
+Invertebrate;Gammarus roeseli;1.81E-002;20.2;7.552;4
+Invertebrate;Gennadas elegans;1.09E-001;10.5;2.028;6
+Invertebrate;Gnathophausia zoea;9.50E-001;9.5;1.521;6
+Invertebrate;Haliotis iris;3.63E+002;12.15;0.077;25
+Invertebrate;Hiatella arctica;1.45E+001;-0.15;0.28;25
+Invertebrate;Hiatella byssifera;1.13E+001;1.85;0.28;25
+Invertebrate;Holothuria atra;8.80E+002;25.95;0.549;25
+Invertebrate;Hyalella azteca;5.78E-003;15.95;4.716;25
+Invertebrate;Hydrobia acuta;1.21E-002;9.85;3.482;25
+Invertebrate;Keratella cochlearis;1.75E-008;5;79.927;4
+Invertebrate;Keratella cochlearis;1.75E-008;10;98.649;4
+Invertebrate;Keratella cochlearis;1.75E-008;15;142.208;4
+Invertebrate;Keratella cochlearis;1.75E-008;20;240.659;4
+Invertebrate;Keratella cochlearis;1.75E-008;25;326.866;4
+Invertebrate;Laeonereis fragilis;1.13E+000;21.85;6.658;25
+Invertebrate;Laevilacunaria antarctica;1.23E-001;-0.95;1.832;25
+Invertebrate;Laevilacunaria antarctica;1.29E-001;-0.95;1.647;25
+Invertebrate;Lamellibranchia;3.43E+000;7;0.035;15
+Invertebrate;Lamellibranchia;3.43E+000;7;0.06;16
+Invertebrate;Ledella pustulosa;1.18E-002;2.65;0.426;25
+Invertebrate;Lissarca miliaris;3.10E-002;-0.95;0.597;25
+Invertebrate;Lissarca notorcadensis;5.60E-002;-1.15;0.319;25
+Invertebrate;Lissarca notorcadensis;9.53E-002;-1.15;0.297;25
+Invertebrate;Littorina africana;1.15E-001;13.85;2.027;25
+Invertebrate;Lumbrinereis fragilis;8.63E+000;6.85;0.744;25
+Invertebrate;Lymnaea peregra;1.75E+000;9.85;2.526;25
+Invertebrate;Macoma balthica;1.44E-001;8.85;1.139;25
+Invertebrate;Macoma balthica;1.96E-001;8.85;0.463;25
+Invertebrate;Macoma balthica;7.33E-001;12.85;1.29;25
+Invertebrate;Macoma balthica;3.33E+000;9.85;0.57;25
+Invertebrate;Macoma balthica;1.08E+001;5.85;1.067;25
+Invertebrate;Meganyctiphanes norvegica;1.45E-002;13;5.214;6,26
+Invertebrate;Mercenaria mercenaria;3.83E+001;11.85;0.448;25
+Invertebrate;Mesocyclops leuckarti;8.13E-006;10;18.025;4
+Invertebrate;Mesocyclops leuckarti;8.13E-006;15;38.087;4
+Invertebrate;Mesocyclops leuckarti;8.13E-006;20;49.213;4
+Invertebrate;Mesocyclops leuckarti;8.13E-006;25;69.524;4
+Invertebrate;Mesodesma arctatum;1.17E+001;5.35;0.263;25
+Invertebrate;Mesodesma donacium;3.10E+001;16.85;2.5;25
+Invertebrate;Moira atropes;3.33E+001;25.85;0.83;25
+Invertebrate;Mya arenaria;9.05E+000;8.85;0.64;25
+Invertebrate;Mya truncata;6.78E+000;1.85;0.25;25
+Invertebrate;Mya truncata;7.33E+000;-0.15;0.1;25
+Invertebrate;Mya truncata;8.48E+001;1.85;0.14;25
+Invertebrate;Mytilid sp.;9.68E+000;17;0.308;21
+Invertebrate;Nacella concinna;5.95E+000;-0.95;0.196;25
+Invertebrate;Nacella delesserti;3.88E+001;4.85;0.343;25
+Invertebrate;Nematobrachion boopis;6.50E-003;10.25;3.476;6,26
+Invertebrate;Nematoscelis megalops;7.50E-003;13;4.056;6,26
+Invertebrate;Nephtys incisa;2.80E-001;11.65;2.155;25
+Invertebrate;Nereis diversicolor;1.22E+000;8.85;3.79;25
+Invertebrate;Nereis virens;2.68E+000;8.85;1.44;25
+Invertebrate;Notholca caudata;1.75E-008;5;88.664;4
+Invertebrate;Notholca caudata;1.75E-008;10;103.302;4
+Invertebrate;Notholca caudata;1.75E-008;15;190.435;4
+Invertebrate;Notholca caudata;1.75E-008;20;312.857;4
+Invertebrate;Notoacmaea scutum;6.23E+000;11.85;2.05;25
+Invertebrate;Nucella lapillus;2.06E+001;6.85;0.35;25
+Invertebrate;Nucula proxima;1.07E-002;9.85;0.49;25
+Invertebrate;Nucula turgida;4.48E-001;11.85;0.599;25
+Invertebrate;Ophiocten gracilis;2.50E-002;9.5;0.857;9,27
+Invertebrate;Ophiocten gracilis;8.33E-002;2.85;0.811;25
+Invertebrate;Ophiocten hastatum;5.00E-002;9;0.615;22
+Invertebrate;Ophionepthys limicola;8.15E+000;24.85;1.966;25
+Invertebrate;Ophionotus hexactis;1.69E+000;1.35;0.597;25
+Invertebrate;Ophiura ljungmani;2.73E-002;2.85;1.148;25
+Invertebrate;Ophiura ljungmani;2.18E-001;2.85;0.334;25
+Invertebrate;Pachygrapsus gracilis;2.70E+000;27.85;5.4;25
+Invertebrate;Parvicardium exiguum;3.68E-001;15.65;4.088;25
+Invertebrate;Pectinaria hyperboreia;2.39E-001;5.85;2.263;25
+Invertebrate;Pectinaria koreni;3.58E-002;11.85;8.522;25
+Invertebrate;Perna perna;3.98E+000;20.85;4.799;25
+Invertebrate;Perna perna;6.63E+000;20.85;4.618;25
+Invertebrate;Philine gibba;9.53E+000;1.35;0.671;25
+Invertebrate;Pontoporeia femorata;9.05E-002;5.85;4.233;25
+Invertebrate;Prochaetoderma yongei;2.73E-004;3.35;10.429;18
+Invertebrate;Reticulammina labyrinthica;1.13E-002;2.5;7.526;17
+Invertebrate;Scolelepis gaucha;4.38E-003;19.85;11.354;25
+Invertebrate;Scolelepis squamata;2.44E-002;21.85;4.02;25
+Invertebrate;Serolis polita;1.15E+000;-0.85;0.626;25
+Invertebrate;Siliqua patula;9.30E+000;10.3;1.644;4
+Invertebrate;Siliqua patula;1.05E+001;10.3;0.968;4
+Invertebrate;Siliqua patula;1.14E+001;14.4;1.681;4
+Invertebrate;Siliqua patula;1.46E+001;12.2;1.027;4
+Invertebrate;Siliqua patula;1.49E+001;10.3;1.195;4
+Invertebrate;Siliqua patula;1.50E+001;8;0.826;4
+Invertebrate;Siliqua patula;2.38E+001;5;0.306;4
+Invertebrate;Siliqua patula;2.42E+001;5.9;0.413;4
+Invertebrate;Siliqua patula;2.60E+001;5.9;0.448;4
+Invertebrate;Siliqua patula;2.90E+001;4.6;0.396;4
+Invertebrate;Spisula sachalinesis;1.81E+002;13.85;0.609;25
+Invertebrate;Sterechinus antarcticus;1.31E+001;-1.15;0.07;25
+Invertebrate;Strongylocentr. droeb.;5.20E-001;5.85;0.799;25
+Invertebrate;Strongylocentr. franciscanus;4.00E+002;16.05;0.106;25
+Invertebrate;Strongylocentr. franciscanus;6.48E+002;16.05;0.083;25
+Invertebrate;Strongylocentr purpuratus;8.20E-001;14.85;1.227;25
+Invertebrate;Strongylocentr purpuratus;4.50E+000;14.05;0.204;25
+Invertebrate;Strongylocentr purpuratus;5.18E+000;15.25;0.317;25
+Invertebrate;Strongylocentr purpuratus;8.80E+000;8.85;0.119;25
+Invertebrate;Strongylocentrotus pallidus;3.08E+001;0.85;0.082;25
+Invertebrate;Tapes philippimarum;4.73E+000;24.05;2.406;25
+Invertebrate;Tellina fabula;6.15E-002;9.85;1.99;25
+Invertebrate;Tellina fabula;1.53E-001;9.85;1.723;25
+Invertebrate;Tellina martinicensis;1.26E+000;25.85;1.686;25
+Invertebrate;Terebellides stroemi;6.25E-002;-0.15;0.475;25
+Invertebrate;Theora lubrica;2.38E-002;16.85;4.236;25
+Invertebrate;Thysanopoda acutifrons;1.98E-002;10.25;2.704;6,26
+Invertebrate;Tindaria callistiformis;1.44E-003;3.5;0.946;20
+Invertebrate;Turbo sarmaticus;1.63E+002;16.85;0.81;25
+Invertebrate;Tysanoessa longicaudata;1.50E-003;13;7.3;6,26
+Invertebrate;Uca cumulanta;1.57E+000;27.85;10.6;25
+Invertebrate;Uca maracoani;7.85E+000;27.85;5.3;25
+Invertebrate;Uca maracoani;1.43E+001;27.85;5.3;25
+Invertebrate;Uca rapax;6.85E+000;27.85;4.9;25
+Invertebrate;Uca vocator;8.90E+000;27.85;2.8;25
+Invertebrate;Unio tumidis;5.35E+000;12.55;0.352;25
+Invertebrate;Venerupis aurea;5.20E+000;11.85;0.37;25
+Invertebrate;Venerupis aurea;5.45E+000;11.85;0.35;25
+Invertebrate;Venus antiqua;4.05E+001;11.55;0.664;25
+Invertebrate;Vesicomyid sp.;2.38E-003;21;0.228;19
+Invertebrate;Yoldia eightsi;5.20E+000;-0.95;0.13;25
+Invertebrate;Yoldia eightsi;5.48E+000;-0.95;0.114;25
+Invertebrate;Yoldia limatula;4.93E+000;8.85;0.803;25
+Invertebrate;Zygochlamys patagonica;7.53E+001;7.85;1.039;25
+Mammal;Acinonyx jubatus;1.25E+004;38;0.213;1,28
+Mammal;Acinonyx jubatus;1.25E+004;38;0.169;1,28
+Mammal;Acrobates pygmaeus;3.00E+000;38;0.667;1,28
+Mammal;Aepyceros melampus;1.31E+004;38;0.196;1,28
+Mammal;Aepyceros melampus;1.31E+004;38;0.169;1,28
+Mammal;Aepyprymnus rufescens;8.13E+002;38;0.435;1,28
+Mammal;Ailuropoda melanoleuca;3.00E+004;38;0.097;1,28
+Mammal;Ailurus fulgens;8.75E+002;38;0.182;1,28
+Mammal;Alcelaphus buselaphus;4.28E+004;38;0.127;1,28
+Mammal;Alces alces;8.98E+004;38;0.159;1,28
+Mammal;Alces alces;8.98E+004;38;0.093;1,28
+Mammal;Allenopithecus nigroviridis;1.19E+003;38;0.11;1,28
+Mammal;Alopex lagopus;8.63E+002;38;0.256;1,28
+Mammal;Alouatta palliata;1.82E+003;38;0.127;1,28
+Mammal;Alouatta palliata;1.82E+003;38;0.127;1,28
+Mammal;Alouatta palliata;1.82E+003;38;0.101;1,28
+Mammal;Alouatta palliata;1.82E+003;38;0.101;1,28
+Mammal;Alouatta seniculus;1.54E+003;38;0.101;1,28
+Mammal;Ammotragus lervia;2.09E+004;38;0.256;1,28
+Mammal;Antechinus flavipes;1.13E+001;38;3.333;1,28
+Mammal;Antechinus flavipes;1.13E+001;38;1.429;1,28
+Mammal;Antechinus stuartii;6.88E+000;38;3.846;1,28
+Mammal;Antechinus stuartii;6.88E+000;38;0.909;1,28
+Mammal;Antidorcas marsupialis;9.76E+003;38;0.127;1,28
+Mammal;Antilocapra americana;1.15E+004;38;0.256;1,28
+Mammal;Antilocapra americana;1.15E+004;38;0.256;1,28
+Mammal;Antilope cervicapra;9.25E+003;38;0.169;1,28
+Mammal;Antilope cervicapra;9.25E+003;38;0.141;1,28
+Mammal;Aotus trivirgatus;2.25E+002;38;0.213;1,28
+Mammal;Aotus trivirgatus;2.25E+002;38;0.127;1,28
+Mammal;Aplodontia rufa;2.51E+002;38;0.435;1,28
+Mammal;Aplodontia rufa;2.51E+002;38;0.256;1,28
+Mammal;Apodemus sylvaticus;6.25E+000;38;3.333;1,28
+Mammal;Arctictis binturong;2.88E+003;38;0.141;1,28
+Mammal;Arctocebus calabarensis;5.25E+001;38;0.27;1,28
+Mammal;Arctocephalus galapagoensis;6.75E+003;38;0.115;1,28
+Mammal;Arctocephalus gazella;2.44E+004;38;0.196;1,28
+Mammal;Arctocephalus gazella;2.44E+004;38;0.11;1,28
+Mammal;Arctocephalus pusillus;4.46E+004;38;0.141;1,28
+Mammal;Arctogalidia trivirgata;5.63E+002;38;0.213;1,28
+Mammal;Arvicola terrestris;5.00E+001;38;1.111;1,28
+Mammal;Ateles paniscus;1.98E+003;38;0.127;1,28
+Mammal;Babyrousa babyrussa;2.50E+004;38;0.105;1,28
+Mammal;Balaena mysticetus;1.73E+007;38;0.084;1,28
+Mammal;Balaena mysticetus;1.73E+007;38;0.063;1,28
+Mammal;Balaenoptera acutorostrata;2.50E+006;38;0.056;1,28
+Mammal;Balaenoptera acutorostrata;2.50E+006;38;0.053;1,28
+Mammal;Balaenoptera acutorostrata;2.50E+006;38;0.05;1,28
+Mammal;Balaenoptera borealis;5.00E+006;38;0.036;1,28
+Mammal;Balaenoptera borealis;5.00E+006;38;0.034;1,28
+Mammal;Balaenoptera edeni;4.00E+006;38;0.035;1,28
+Mammal;Balaenoptera musculus;3.75E+007;38;0.056;1,28
+Mammal;Balaenoptera musculus;3.75E+007;38;0.05;1,28
+Mammal;Balaenoptera musculus;3.75E+007;38;0.039;1,28
+Mammal;Balaenoptera musculus;3.75E+007;38;0.023;1,28
+Mammal;Balaenoptera physalus;1.13E+007;38;0.022;1,28
+Mammal;Balaenoptera physalus;1.13E+007;38;0.022;1,28
+Mammal;Bassaricyon gabbii;3.13E+002;38;0.105;1,28
+Mammal;Bassariscus astutus;2.82E+002;38;0.159;1,28
+Mammal;Bassariscus sumichrasti;2.25E+002;38;0.11;1,28
+Mammal;Berardius bairdii;2.85E+006;38;0.035;1,28
+Mammal;Bison bison;1.45E+005;38;0.101;1,28
+Mammal;Bison bison;1.45E+005;38;0.076;1,28
+Mammal;Bison bonasus;2.00E+005;38;0.093;1,28
+Mammal;Blarina brevicauda;3.79E+000;38;1.111;1,28
+Mammal;Bos grunniens;2.50E+005;38;0.101;1,28
+Mammal;Bradypus torquatus;9.75E+002;38;0.213;1,28
+Mammal;Burramys parvus;1.04E+001;38;0.667;1,28
+Mammal;Cacajao calvus;1.45E+003;38;0.141;1,28
+Mammal;Cacajao melanocephalus;9.50E+002;38;0.213;1,28
+Mammal;Callithrix jacchus;7.30E+001;38;0.256;1,28
+Mammal;Callithrix jacchus;7.30E+001;38;0.256;1,28
+Mammal;Callorhinus ursinus;2.50E+004;38;0.101;1,28
+Mammal;Callorhinus ursinus;2.50E+004;38;0.084;1,28
+Mammal;Callorhinus ursinus;6.25E+004;38;0.051;3
+Mammal;Camelus dromedarius;2.00E+005;38;0.063;1,28
+Mammal;Canis latrans;3.35E+003;38;0.175;1,28
+Mammal;Canis latrans;3.35E+003;38;0.175;1,28
+Mammal;Canis latrans;3.35E+003;38;0.12;1,28
+Mammal;Canis lupus;4.20E+003;38;0.256;1,28
+Mammal;Canis lupus;4.20E+003;38;0.186;1,28
+Mammal;Canis lupus;4.20E+003;38;0.159;1,28
+Mammal;Canis lupus;7.07E+003;38;0.256;1,28
+Mammal;Canis lupus;7.07E+003;38;0.186;1,28
+Mammal;Canis lupus;7.07E+003;38;0.159;1,28
+Mammal;Canis rufus;5.75E+003;38;0.159;1,28
+Mammal;Capra cylindricornis;2.00E+004;38;0.115;1,28
+Mammal;Capra falconeri;2.38E+004;38;0.213;1,28
+Mammal;Capra falconeri;2.38E+004;38;0.196;1,28
+Mammal;Capreolus capreolus;7.50E+003;38;0.169;1,28
+Mammal;Castor canadensis;3.60E+003;38;0.169;1,28
+Mammal;Castor fiber;6.25E+003;38;0.149;1,28
+Mammal;Cavia porcellus;1.82E+002;38;0.172;1,28
+Mammal;Cebus albifrons;6.57E+002;38;0.063;1,28
+Mammal;Cebus apella;6.25E+002;38;0.063;1,28
+Mammal;Cephalophus monticola;1.56E+003;38;0.213;1,28
+Mammal;Cephalorhynchus commersonii;1.25E+004;38;0.141;1,28
+Mammal;Ceratotherium simum;7.38E+005;38;0.07;1,28
+Mammal;Ceratotherium simum;7.38E+005;38;0.056;1,28
+Mammal;Ceratotherium simum;7.38E+005;38;0.05;1,28
+Mammal;Cercocebus torquatus;1.94E+003;38;0.123;1,28
+Mammal;Cercocebus torquatus;1.94E+003;38;0.084;1,28
+Mammal;Cercopithecus diana;1.04E+003;38;0.072;1,28
+Mammal;Cercopithecus mona;1.16E+003;38;0.084;1,28
+Mammal;Cervus elaphus;1.25E+004;38;0.05;3
+Mammal;Cervus elaphus;1.25E+004;38;0.025;3
+Mammal;Cervus elaphus;2.99E+004;38;0.127;1,28
+Mammal;Cervus elaphus;2.99E+004;38;0.094;1,28
+Mammal;Cervus elaphus;3.91E+004;38;0.127;1,28
+Mammal;Cervus elaphus;3.91E+004;38;0.094;1,28
+Mammal;Cervus elaphus;5.44E+004;38;0.127;1,28
+Mammal;Cervus elaphus;5.44E+004;38;0.094;1,28
+Mammal;Chinchilla lanigera;1.21E+002;38;0.256;1,28
+Mammal;Chinchilla lanigera;1.21E+002;38;0.226;1,28
+Mammal;Chiropotes albinasus;7.25E+002;38;0.149;1,28
+Mammal;Chiropotes satanas;7.50E+002;38;0.141;1,28
+Mammal;Civettictis civetta;3.00E+003;38;0.169;1,28
+Mammal;Coendou prehensilis;1.10E+003;38;0.149;1,28
+Mammal;Colobus polykomos;2.46E+003;38;0.097;1,28
+Mammal;Colobus polykomos;2.46E+003;38;0.083;1,28
+Mammal;Cricetus cricetus;1.25E+002;38;0.667;1,28
+Mammal;Crocidura leucodon;2.46E+000;38;0.909;1,28
+Mammal;Crocidura russula;1.60E+000;38;0.847;1,28
+Mammal;Crocuta crocuta;1.58E+004;38;0.101;1,28
+Mammal;Ctenomys talarum;3.31E+001;38;0.909;1,28
+Mammal;Cystophora cristata;5.00E+004;38;0.074;1,28
+Mammal;Cystophora cristata;5.00E+004;38;0.072;1,28
+Mammal;Cystophora cristata;5.00E+004;38;0.072;1,28
+Mammal;Dactylopsila trivirgata;1.06E+002;38;0.526;1,28
+Mammal;Dama dama;1.21E+004;38;0.101;1,28
+Mammal;Damaliscus korrigum;2.45E+004;38;0.182;3
+Mammal;Damaliscus korrigum;2.45E+004;38;0.166;3
+Mammal;Dasycercus cristicauda;2.50E+001;38;0.435;1,28
+Mammal;Dasyprocta punctata;6.69E+002;38;0.256;1,28
+Mammal;Dasyprocta punctata;6.69E+002;38;0.256;1,28
+Mammal;Dasypus novemcinctus;1.05E+003;38;0.169;1,28
+Mammal;Dasypus novemcinctus;1.05E+003;38;0.169;1,28
+Mammal;Dasyurus viverrinus;2.73E+002;38;0.526;1,28
+Mammal;Delanymys brooksi;1.25E+000;38;1.429;1,28
+Mammal;Delphinapterus leucas;3.50E+005;38;0.147;1,28
+Mammal;Delphinapterus leucas;3.50E+005;38;0.084;1,28
+Mammal;Delphinapterus leucas;3.50E+005;38;0.063;1,28
+Mammal;Delphinus delphis;1.63E+004;38;0.127;1,28
+Mammal;Dendrohyrax arboreus;7.38E+002;38;0.256;1,28
+Mammal;Dendrolagus matschiei;1.74E+003;38;0.323;1,28
+Mammal;Dicerorhinus sumatrensis;3.50E+005;38;0.079;1,28
+Mammal;Dicerorhinus sumatrensis;3.50E+005;38;0.072;1,28
+Mammal;Diceros bicornis;2.95E+005;38;0.063;1,28
+Mammal;Dugong dugon;1.05E+005;38;0.046;1,28
+Mammal;Dugong dugon;1.05E+005;38;0.046;1,28
+Mammal;Dugong dugon;1.05E+005;38;0.036;1,28
+Mammal;Echinops telfairi;4.50E+001;38;2.632;1,28
+Mammal;Elaphurus davidianus;4.38E+004;38;0.141;1,28
+Mammal;Elaphurus davidianus;4.38E+004;38;0.108;1,28
+Mammal;Elephantulus myurus;1.31E+001;38;2.941;1,28
+Mammal;Elephantulus rufescens;9.38E+000;38;0.435;1,28
+Mammal;Elephas maximus;1.25E+006;38;0.063;1,28
+Mammal;Elephas maximus;1.25E+006;38;0.042;1,28
+Mammal;Elephas maximus;1.25E+006;38;0.036;1,28
+Mammal;Elephas maximus;1.25E+006;38;0.032;1,28
+Mammal;Enhydra lutris;7.50E+003;38;0.11;1,28
+Mammal;Enhydra lutris;7.50E+003;38;0.084;1,28
+Mammal;Equus asinus;4.13E+004;38;0.127;1,28
+Mammal;Equus asinus;8.13E+004;38;0.127;1,28
+Mammal;Equus burchelli;5.94E+004;38;0.057;3
+Mammal;Equus caballus;6.25E+004;38;0.04;1,28
+Mammal;Equus grevyi;1.02E+005;38;0.127;1,28
+Mammal;Equus hemionus;5.75E+004;38;0.127;1,28
+Mammal;Equus zebra;7.18E+004;38;0.127;1,28
+Mammal;Equus zebra;7.18E+004;38;0.105;1,28
+Mammal;Erethizon dorsatum;1.77E+003;38;0.149;1,28
+Mammal;Erethizon dorsatum;1.77E+003;38;0.141;1,28
+Mammal;Erignathus barbatus;7.50E+004;38;0.101;1,28
+Mammal;Erignathus barbatus;7.50E+004;38;0.081;1,28
+Mammal;Erignathus barbatus;7.50E+004;38;0.081;1,28
+Mammal;Erinaceus europaeus;2.06E+002;38;0.37;1,28
+Mammal;Erinaceus europaeus;2.06E+002;38;0.323;1,28
+Mammal;Erinaceus europaeus;2.06E+002;38;0.182;1,28
+Mammal;Erythrocebus patas;1.82E+003;38;0.12;1,28
+Mammal;Eschrichtius robustus;7.50E+006;38;0.036;1,28
+Mammal;Eschrichtius robustus;7.50E+006;38;0.033;1,28
+Mammal;Eumetopias jubatus;1.50E+005;38;0.11;1,28
+Mammal;Eumetopias jubatus;1.50E+005;38;0.084;1,28
+Mammal;Felis nigripes;3.25E+002;38;0.213;1,28
+Mammal;Felis silvestris;1.06E+003;38;0.169;1,28
+Mammal;Felis silvestris;1.06E+003;38;0.141;1,28
+Mammal;Felis silvestris;1.16E+003;38;0.169;1,28
+Mammal;Felis silvestris;1.16E+003;38;0.141;1,28
+Mammal;Galea musteloides;1.20E+002;38;2.381;1,28
+Mammal;Gazella dorcas;5.75E+003;38;0.204;1,28
+Mammal;Gazella gazella;5.63E+003;38;0.213;1,28
+Mammal;Georychus capensis;4.53E+001;38;0.909;1,28
+Mammal;Gerbillus pyramidum;1.02E+001;38;0.323;1,28
+Mammal;Giraffa camelopardalis;2.25E+005;38;0.101;1,28
+Mammal;Giraffa camelopardalis;2.25E+005;38;0.097;1,28
+Mammal;Giraffa camelopardalis;2.25E+005;38;0.069;1,28
+Mammal;Gorilla gorilla;3.11E+004;38;0.053;1,28
+Mammal;Gorilla gorilla;3.11E+004;38;0.05;1,28
+Mammal;Gymnobelideus leadbeateri;3.18E+001;38;0.345;1,28
+Mammal;Halichoerus grypus;6.25E+004;38;0.081;1,28
+Mammal;Halichoerus grypus;6.25E+004;38;0.063;1,28
+Mammal;Halichoerus grypus;6.25E+004;38;0.055;1,28
+Mammal;Halichoerus grypus;6.25E+004;38;0.055;1,28
+Mammal;Hemibelideus lemuroides;2.38E+002;38;0.667;1,28
+Mammal;Hemicentetes semispinosus;2.80E+001;38;1.02;1,28
+Mammal;Hemitragus jemlahicus;2.25E+004;38;0.256;1,28
+Mammal;Herpestes ichneumon;7.13E+002;38;0.213;1,28
+Mammal;Heterohyrax brucei;6.56E+002;38;0.182;1,28
+Mammal;Hippopotamus amphibius;3.00E+005;38;0.03;3
+Mammal;Hippopotamus amphibius;3.54E+005;38;0.056;1,28
+Mammal;Hippopotamus amphibius;3.54E+005;38;0.05;1,28
+Mammal;Hippopotamus amphibius;3.54E+005;38;0.046;1,28
+Mammal;Hydropotes inermis;3.38E+003;38;0.213;1,28
+Mammal;Hydrurga leptonyx;9.00E+004;38;0.11;1,28
+Mammal;Hydrurga leptonyx;9.00E+004;38;0.097;1,28
+Mammal;Hydrurga leptonyx;9.00E+004;38;0.097;1,28
+Mammal;Hyemoschus aquaticus;2.71E+003;38;0.196;1,28
+Mammal;Hyemoschus aquaticus;2.71E+003;38;0.182;1,28
+Mammal;Hylobates agilis;1.25E+003;38;0.101;1,28
+Mammal;Hylobates lar;1.25E+003;38;0.101;1,28
+Mammal;Hylobates syndactylus;2.75E+003;38;0.101;1,28
+Mammal;Hylobates syndactylus;2.75E+003;38;0.084;1,28
+Mammal;Hyperoodon ampullatus;6.25E+005;38;0.068;1,28
+Mammal;Isoodon macrourus;4.00E+002;38;3.333;1,28
+Mammal;Isoodon macrourus;4.00E+002;38;0.909;1,28
+Mammal;Kobus ellipsiprymnus;5.25E+004;38;0.137;1,28
+Mammal;Kobus kob;2.94E+004;38;0.206;3
+Mammal;Kobus leche;2.77E+004;38;0.169;1,28
+Mammal;Kobus megaceros;2.19E+004;38;0.256;1,28
+Mammal;Lagenorhynchus acutus;5.00E+004;38;0.115;1,28
+Mammal;Lagenorhynchus acutus;5.00E+004;38;0.093;1,28
+Mammal;Lagostrophus fasciatus;4.25E+002;38;0.667;1,28
+Mammal;Lama guanicoe;2.13E+004;38;0.127;1,28
+Mammal;Lemur catta;5.00E+002;38;0.093;1,28
+Mammal;Leptailurus serval;3.00E+003;38;0.11;1,28
+Mammal;Lepus americanus;4.28E+002;38;0.526;1,28
+Mammal;Lepus europaeus;9.50E+002;38;0.213;1,28
+Mammal;Lepus timidus;6.25E+002;38;0.286;1,28
+Mammal;Liomys adspersus;1.63E+001;38;2;1,28
+Mammal;Litocranius walleri;9.50E+003;38;0.323;1,28
+Mammal;Litocranius walleri;9.50E+003;38;0.213;1,28
+Mammal;Lobodon carcinophagus;5.63E+004;38;0.11;1,28
+Mammal;Lobodon carcinophagus;5.63E+004;38;0.084;1,28
+Mammal;Lobodon carcinophagus;5.63E+004;38;0.07;1,28
+Mammal;Lobodon carcinophagus;5.63E+004;38;0.065;1,28
+Mammal;Loxodonta africana;9.85E+005;38;0.042;1,28
+Mammal;Loxodonta africana;9.85E+005;38;0.036;1,28
+Mammal;Loxodonta africana;1.65E+006;38;0.04;3
+Mammal;Lycaon pictus;5.51E+003;38;0.256;1,28
+Mammal;Lycaon pictus;5.51E+003;38;0.233;1,28
+Mammal;Macaca arctoides;2.50E+003;38;0.084;1,28
+Mammal;Macaca mulatta;1.15E+003;38;0.087;3
+Mammal;Macaca mulatta;2.50E+003;38;0.084;1,28
+Mammal;Macaca nemestrina;2.50E+003;38;0.084;1,28
+Mammal;Macaca radiata;2.50E+003;38;0.127;1,28
+Mammal;Macaca silenus;2.50E+003;38;0.084;1,28
+Mammal;Macaca sinica;1.00E+003;38;0.084;1,28
+Mammal;Macaca sylvanus;1.75E+003;38;0.127;1,28
+Mammal;Macaca sylvanus;1.75E+003;38;0.115;1,28
+Mammal;Macropus agilis;3.75E+003;38;0.256;1,28
+Mammal;Macropus antilopinus;6.81E+003;38;0.159;1,28
+Mammal;Macropus dorsalis;2.81E+003;38;0.169;1,28
+Mammal;Macropus eugenii;1.63E+003;38;0.182;1,28
+Mammal;Macropus fuliginosus;5.50E+003;38;0.127;1,28
+Mammal;Macropus giganteus;6.47E+003;38;0.128;1,28
+Mammal;Macropus giganteus;6.47E+003;38;0.127;1,28
+Mammal;Macropus parma;1.13E+003;38;0.37;1,28
+Mammal;Macropus parma;1.13E+003;38;0.323;1,28
+Mammal;Macropus parryi;3.38E+003;38;0.256;1,28
+Mammal;Macropus robustus;5.32E+003;38;0.137;1,28
+Mammal;Macropus rufogriseus;4.21E+003;38;0.169;1,28
+Mammal;Macropus rufogriseus;4.21E+003;38;0.137;1,28
+Mammal;Macropus rufus;1.16E+004;38;0.127;1,28
+Mammal;Macropus rufus;1.16E+004;38;0.115;1,28
+Mammal;Macropus rufus;1.16E+004;38;0.084;1,28
+Mammal;Marmota marmota;1.31E+003;38;0.169;1,28
+Mammal;Martes martes;3.25E+002;38;0.256;1,28
+Mammal;Martes zibellina;2.95E+002;38;0.28;3
+Mammal;Mazama americana;5.70E+003;38;0.213;1,28
+Mammal;Mazama americana;5.70E+003;38;0.213;1,28
+Mammal;Megaptera novaeangliae;7.50E+006;38;0.033;1,28
+Mammal;Megaptera novaeangliae;7.50E+006;38;0.026;1,28
+Mammal;Mellivora capensis;2.00E+003;38;0.096;1,28
+Mammal;Mephitis mephitis;5.21E+002;38;0.435;1,28
+Mammal;Mesocricetus auratus;2.63E+001;38;0.909;1,28
+Mammal;Mesocricetus auratus;2.63E+001;38;0.256;1,28
+Mammal;Microgale dobsoni;9.75E+000;38;0.467;1,28
+Mammal;Microgale talazaci;1.25E+001;38;0.45;1,28
+Mammal;Micromys minutus;1.50E+000;38;2;1,28
+Mammal;Microtus agrestis;1.00E+001;38;1.852;1,28
+Mammal;Microtus oeconomus;8.06E+000;38;2.174;1,28
+Mammal;Miopithecus talapoin;3.13E+002;38;0.09;1,28
+Mammal;Mirounga angustirostris;6.00E+005;38;0.182;1,28
+Mammal;Mirounga angustirostris;6.00E+005;38;0.182;1,28
+Mammal;Mirounga angustirostris;6.00E+005;38;0.182;1,28
+Mammal;Mirounga leonina;4.00E+005;38;0.141;1,28
+Mammal;Mirounga leonina;4.00E+005;38;0.127;1,28
+Mammal;Mirounga leonina;4.00E+005;38;0.127;1,28
+Mammal;Mirounga leonina;4.00E+005;38;0.11;1,28
+Mammal;Monodon monoceros;2.25E+005;38;0.063;1,28
+Mammal;Mus musculus;4.13E+000;38;0.435;1,28
+Mammal;Mus musculus;5.38E+000;38;0.435;1,28
+Mammal;Muscardinus avellanarius;7.50E+000;38;0.667;1,28
+Mammal;Mustela lutreola;1.10E+002;38;0.256;1,28
+Mammal;Mustela putorius;2.75E+002;38;0.435;1,28
+Mammal;Mustela putorius;2.75E+002;38;0.256;1,28
+Mammal;Mustela vison;2.36E+002;38;0.256;1,28
+Mammal;Myocastor coypus;1.73E+003;38;0.435;1,28
+Mammal;Myopus schisticolor;6.25E+000;38;3.333;1,28
+Mammal;Myosorex varius;2.85E+000;38;3.333;1,28
+Mammal;Napaeozapus insignis;5.58E+000;38;0.667;1,28
+Mammal;Nasua nasua;9.49E+002;38;0.182;1,28
+Mammal;Nasua nasua;9.49E+002;38;0.182;1,28
+Mammal;Neomys anomalus;4.00E+000;38;1.429;1,28
+Mammal;Neomys fodiens;3.75E+000;38;0.909;1,28
+Mammal;Neophocaena phocaenoides;7.50E+003;38;0.11;1,28
+Mammal;Neotoma floridana;6.12E+001;38;0.909;1,28
+Mammal;Ningaui timealeyi;1.43E+000;38;1.429;1,28
+Mammal;Nyctereutes procyonoides;1.50E+003;38;0.233;1,28
+Mammal;Ochotona collaris;3.23E+001;38;0.435;1,28
+Mammal;Ochotona dalli;1.83E+004;38;0.107;3
+Mammal;Ochotona princeps;3.94E+001;38;0.435;1,28
+Mammal;Ochotona princeps;3.94E+001;38;0.37;1,28
+Mammal;Odobenus rosmarus;3.00E+005;38;0.151;1,28
+Mammal;Odobenus rosmarus;3.00E+005;38;0.063;1,28
+Mammal;Odobenus rosmarus;3.00E+005;38;0.063;1,28
+Mammal;Odobenus rosmarus;3.00E+005;38;0.063;1,28
+Mammal;Odocoileus virginianus;1.39E+004;38;0.256;1,28
+Mammal;Odocoileus virginianus;1.39E+004;38;0.256;1,28
+Mammal;Ondatra zibethicus;2.45E+002;38;0.909;1,28
+Mammal;Ondatra zibethicus;2.45E+002;38;0.667;1,28
+Mammal;Orcinus orca;1.38E+006;38;0.05;1,28
+Mammal;Orcinus orca;1.38E+006;38;0.028;1,28
+Mammal;Orcinus orca;1.38E+006;38;0.025;1,28
+Mammal;Oreamnos americanus;1.81E+004;38;0.182;1,28
+Mammal;Oreamnos americanus;1.81E+004;38;0.141;1,28
+Mammal;Oreamnos americanus;1.81E+004;38;0.141;1,28
+Mammal;Ornithorhynchus anatinus;3.71E+002;38;0.149;1,28
+Mammal;Orycteropus afer;1.31E+004;38;0.11;1,28
+Mammal;Oryctolagus cuniculus;3.95E+002;38;0.286;1,28
+Mammal;Oryctolagus cuniculus;3.95E+002;38;0.256;1,28
+Mammal;Oryctolagus cuniculus;3.95E+002;38;0.141;1,28
+Mammal;Oryctolagus cuniculus;5.38E+002;38;0.286;1,28
+Mammal;Oryctolagus cuniculus;5.38E+002;38;0.256;1,28
+Mammal;Oryctolagus cuniculus;5.38E+002;38;0.141;1,28
+Mammal;Otaria byronia;6.13E+004;38;0.127;1,28
+Mammal;Ovibos moschatus;9.21E+004;38;0.105;1,28
+Mammal;Ovis ammon;3.50E+004;38;0.196;1,28
+Mammal;Ovis canadensis;1.87E+004;38;0.105;1,28
+Mammal;Ovis dalli;1.83E+004;38;0.049;3
+Mammal;Paguma hispida;1.63E+004;38;0.032;3
+Mammal;Paguma larvata;1.10E+003;38;0.141;1,28
+Mammal;Pan paniscus;8.50E+003;38;0.127;1,28
+Mammal;Pan troglodytes;9.75E+003;38;0.055;3
+Mammal;Pan troglodytes;1.13E+004;38;0.056;1,28
+Mammal;Pan troglodytes;1.13E+004;38;0.05;1,28
+Mammal;Pan troglodytes;1.13E+004;38;0.049;1,28
+Mammal;Pan troglodytes;1.13E+004;38;0.042;1,28
+Mammal;Panthera leo;3.90E+004;38;0.032;3
+Mammal;Panthera leo;4.04E+004;38;0.169;1,28
+Mammal;Panthera leo;4.04E+004;38;0.169;1,28
+Mammal;Panthera leo;4.04E+004;38;0.087;1,28
+Mammal;Panthera pardus;1.38E+004;38;0.213;1,28
+Mammal;Panthera tigris;5.00E+004;38;0.169;1,28
+Mammal;Panthera tigris;5.00E+004;38;0.097;1,28
+Mammal;Panthera tigris;5.00E+004;38;0.096;1,28
+Mammal;Papio hamadryas;5.31E+003;38;0.068;1,28
+Mammal;Paradoxurus hermaphroditus;7.50E+002;38;0.115;1,28
+Mammal;Parantechinus apicalis;1.72E+001;38;0.909;1,28
+Mammal;Parantechinus bilarni;6.88E+000;38;0.909;1,28
+Mammal;Parascalops breweri;1.28E+001;38;0.667;1,28
+Mammal;Parascalops breweri;1.28E+001;38;0.526;1,28
+Mammal;Pelea capreolus;5.00E+003;38;0.256;1,28
+Mammal;Peponocephala electra;5.15E+004;38;0.053;1,28
+Mammal;Petauroides volans;3.25E+002;38;0.435;1,28
+Mammal;Petaurus australis;1.44E+002;38;0.256;1,28
+Mammal;Petaurus breviceps;3.19E+001;38;0.182;1,28
+Mammal;Phacochoerus aethiopicus;1.78E+004;38;0.169;1,28
+Mammal;Phacochoerus aethiopicus;1.78E+004;38;0.135;1,28
+Mammal;Phascolarctos cinereus;2.56E+003;38;0.196;1,28
+Mammal;Phascolarctos cinereus;2.56E+003;38;0.149;1,28
+Mammal;Phoca caspica;2.15E+004;38;0.072;1,28
+Mammal;Phoca caspica;2.15E+004;38;0.053;1,28
+Mammal;Phoca caspica;2.15E+004;38;0.05;1,28
+Mammal;Phoca caspica;2.15E+004;38;0.05;1,28
+Mammal;Phoca fasciata;2.25E+004;38;0.11;1,28
+Mammal;Phoca fasciata;2.25E+004;38;0.084;1,28
+Mammal;Phoca fasciata;2.25E+004;38;0.081;1,28
+Mammal;Phoca groenlandica;3.00E+004;38;0.087;1,28
+Mammal;Phoca groenlandica;3.00E+004;38;0.084;1,28
+Mammal;Phoca groenlandica;3.00E+004;38;0.084;1,28
+Mammal;Phoca hispida;1.63E+004;38;0.063;3
+Mammal;Phoca hispida;2.50E+004;38;0.063;1,28
+Mammal;Phoca hispida;2.50E+004;38;0.058;1,28
+Mammal;Phoca hispida;2.50E+004;38;0.058;1,28
+Mammal;Phoca hispida;2.50E+004;38;0.055;1,28
+Mammal;Phoca sibirica;2.50E+004;38;0.048;1,28
+Mammal;Phoca sibirica;2.50E+004;38;0.045;1,28
+Mammal;Phoca sibirica;2.50E+004;38;0.045;1,28
+Mammal;Phoca vitulina;2.50E+004;38;0.097;1,28
+Mammal;Phoca vitulina;2.50E+004;38;0.079;1,28
+Mammal;Phoca vitulina;2.50E+004;38;0.074;1,28
+Mammal;Phoca vitulina;2.50E+004;38;0.063;1,28
+Mammal;Phocoena phocoena;1.25E+004;38;0.196;1,28
+Mammal;Phocoenoides dalli;2.50E+004;38;0.149;1,28
+Mammal;Phocoenoides dalli;2.50E+004;38;0.115;1,28
+Mammal;Physeter catodon;1.00E+007;38;0.033;1,28
+Mammal;Pithecia pithecia;3.44E+002;38;0.182;1,28
+Mammal;Pongo pygmaeus;1.25E+004;38;0.072;1,28
+Mammal;Pongo pygmaeus;1.25E+004;38;0.043;1,28
+Mammal;Pontoporia blainvillei;1.00E+004;38;0.159;1,28
+Mammal;Potamochoerus porcus;1.75E+004;38;0.169;1,28
+Mammal;Potamochoerus porcus;1.75E+004;38;0.127;1,28
+Mammal;Potos flavus;4.09E+002;38;0.087;1,28
+Mammal;Potos flavus;4.09E+002;38;0.087;1,28
+Mammal;Priodontes maximus;1.13E+004;38;0.169;1,28
+Mammal;Prionailurus bengalensis;1.25E+003;38;0.169;1,28
+Mammal;Procavia capensis;7.58E+002;38;0.303;1,28
+Mammal;Procavia capensis;7.58E+002;38;0.182;1,28
+Mammal;Procyon cancrivorus;1.74E+003;38;0.182;1,28
+Mammal;Procyon lotor;1.38E+003;38;0.127;1,28
+Mammal;Proechimys semispinosus;9.01E+001;38;1.429;1,28
+Mammal;Pseudocheirus peregrinus;2.25E+002;38;0.526;1,28
+Mammal;Pseudocheirus peregrinus;2.25E+002;38;0.435;1,28
+Mammal;Pseudois nayaur;1.60E+004;38;0.105;1,28
+Mammal;Pseudorca crassidens;3.40E+005;38;0.115;1,28
+Mammal;Rangifer tarandus;2.15E+004;38;0.323;1,28
+Mammal;Rangifer tarandus;2.15E+004;38;0.256;1,28
+Mammal;Rangifer tarandus;2.15E+004;38;0.169;1,28
+Mammal;Rangifer tarandus;2.63E+004;38;0.076;3
+Mammal;Rangifer tarandus;2.63E+004;38;0.076;3
+Mammal;Redunca fulvorufula;7.38E+003;38;0.213;1,28
+Mammal;Rhinoceros unicornis;4.00E+005;38;0.063;1,28
+Mammal;Rhinoceros unicornis;4.00E+005;38;0.056;1,28
+Mammal;Rhinoceros unicornis;4.00E+005;38;0.051;1,28
+Mammal;Rhynchocyon chrysopygus;1.35E+002;38;0.667;1,28
+Mammal;Rupicapra rupicapra;8.50E+003;38;0.219;3
+Mammal;Rupicapra rupicapra;8.75E+003;38;0.127;1,28
+Mammal;Saguinus caffer;1.17E+005;38;0.026;3
+Mammal;Saguinus caffer;1.17E+005;38;0.092;3
+Mammal;Saguinus caffer;1.17E+005;38;0.03;3
+Mammal;Saguinus nigricollis;1.16E+002;38;0.256;1,28
+Mammal;Saiga tatarica;1.00E+004;38;0.256;1,28
+Mammal;Saiga tatarica;1.00E+004;38;0.213;1,28
+Mammal;Saimiri sciureus;1.86E+002;38;0.12;1,28
+Mammal;Scalopus aquaticus;2.28E+001;38;0.909;1,28
+Mammal;Sciurus carolinensis;1.27E+002;38;0.204;1,28
+Mammal;Sciurus carolinensis;1.27E+002;38;0.108;1,28
+Mammal;Sciurus carolinensis;1.27E+002;38;0.107;1,28
+Mammal;Sciurus vulgaris;7.50E+001;38;0.213;1,28
+Mammal;Setonix brachyurus;8.13E+002;38;0.256;1,28
+Mammal;Setonix brachyurus;8.13E+002;38;0.256;1,28
+Mammal;Sicista betulina;2.50E+000;38;0.769;1,28
+Mammal;Sminthopsis crassicaudata;3.75E+000;38;2.381;1,28
+Mammal;Sminthopsis crassicaudata;3.75E+000;38;2;1,28
+Mammal;Sorex alpinus;1.95E+000;38;2.381;1,28
+Mammal;Sorex araneus;2.50E+000;38;1.429;1,28
+Mammal;Sorex fumeus;1.93E+000;38;3.333;1,28
+Mammal;Sorex minutus;1.13E+000;38;1.429;1,28
+Mammal;Sorex vagrans;1.11E+000;38;2.381;1,28
+Mammal;Spilocuscus maculatus;1.60E+003;38;0.233;1,28
+Mammal;Stenella attenuata;2.50E+004;38;0.055;1,28
+Mammal;Stenella coeruleoalba;2.50E+004;38;0.05;1,28
+Mammal;Suncus etruscus;4.50E-001;38;2.381;1,28
+Mammal;Suncus etruscus;4.50E-001;38;1.429;1,28
+Mammal;Suncus murinus;2.17E+001;38;1.111;1,28
+Mammal;Sundamys muelleri;1.06E+002;38;10;1,28
+Mammal;Sus scrofa;2.16E+004;38;0.127;1,28
+Mammal;Sus scrofa;2.16E+004;38;0.12;1,28
+Mammal;Sylvilagus floridanus;2.93E+002;38;0.526;1,28
+Mammal;Sylvilagus floridanus;2.93E+002;38;0.526;1,28
+Mammal;Sylvilagus floridanus;3.03E+002;38;1.225;3
+Mammal;Syncerus caffer;1.17E+005;38;0.026;3
+Mammal;Syncerus caffer;1.45E+005;38;0.141;1,28
+Mammal;Syncerus caffer;1.45E+005;38;0.097;1,28
+Mammal;Syncerus caffer;1.45E+005;38;0.085;1,28
+Mammal;Talpa europaea;2.25E+001;38;0.909;1,28
+Mammal;Talpa europaea;2.25E+001;38;0.667;1,28
+Mammal;Tamias striatus;2.80E+001;38;0.909;1,28
+Mammal;Tamiasciurus hudsonicus;4.75E+001;38;0.437;3
+Mammal;Tapirus indicus;5.00E+004;38;0.084;1,28
+Mammal;Tapirus terrestris;5.19E+004;38;0.084;1,28
+Mammal;Tapirus terrestris;5.19E+004;38;0.072;1,28
+Mammal;Tarsipes rostratus;2.25E+000;38;1.429;1,28
+Mammal;Tarsius bancanus;3.00E+001;38;0.323;1,28
+Mammal;Taxidea taxus;1.78E+003;38;0.182;1,28
+Mammal;Taxidea taxus;1.78E+003;38;0.182;1,28
+Mammal;Taxidea taxus;1.78E+003;38;0.097;1,28
+Mammal;Tayassu pecari;8.06E+003;38;0.192;1,28
+Mammal;Tayassu pecari;8.06E+003;38;0.192;1,28
+Mammal;Tetracerus quadricornis;4.75E+003;38;0.256;1,28
+Mammal;Theropithecus gelada;4.26E+003;38;0.127;1,28
+Mammal;Thomomys talpoides;3.25E+001;38;1.852;1,28
+Mammal;Thryonomys swinderianus;1.02E+003;38;0.617;1,28
+Mammal;Tragelaphus imberbis;2.04E+004;38;0.256;1,28
+Mammal;Tragelaphus imberbis;2.04E+004;38;0.169;1,28
+Mammal;Trichechus inunguis;1.00E+005;38;0.084;1,28
+Mammal;Trichechus manatus;6.25E+004;38;0.084;1,28
+Mammal;Trichosurus caninus;8.75E+002;38;0.213;1,28
+Mammal;Trichosurus caninus;8.75E+002;38;0.149;1,28
+Mammal;Trichosurus caninus;8.75E+002;38;0.149;1,28
+Mammal;Trichosurus vulpecula;6.63E+002;38;0.196;1,28
+Mammal;Trichosurus vulpecula;6.63E+002;38;0.196;1,28
+Mammal;Tupaia glis;3.75E+001;38;0.213;1,28
+Mammal;Tursiops truncatus;4.38E+004;38;0.101;1,28
+Mammal;Tursiops truncatus;4.38E+004;38;0.101;1,28
+Mammal;Tursiops truncatus;4.38E+004;38;0.101;1,28
+Mammal;Ursus arctos;3.49E+004;38;0.101;1,28
+Mammal;Ursus arctos;3.49E+004;38;0.084;1,28
+Mammal;Vicugna vicugna;1.19E+004;38;0.127;1,28
+Mammal;Vombatus ursinus;6.50E+003;38;0.526;1,28
+Mammal;Vombatus ursinus;6.50E+003;38;0.097;1,28
+Mammal;Vulpes cana;2.50E+002;38;0.256;1,28
+Mammal;Vulpes chama;7.39E+002;38;0.256;1,28
+Mammal;Vulpes pallida;7.00E+002;38;0.256;1,28
+Mammal;Vulpes vulpes;1.03E+003;38;0.37;1,28
+Mammal;Vulpes vulpes;1.03E+003;38;0.213;1,28
+Mammal;Vulpes vulpes;1.49E+003;38;0.37;1,28
+Mammal;Vulpes vulpes;1.49E+003;38;0.213;1,28
+Mammal;Vulpes vulpes;1.50E+003;38;0.37;1,28
+Mammal;Vulpes vulpes;1.50E+003;38;0.213;1,28
+Mammal;Wallabia bicolor;3.75E+003;38;0.213;1,28
+Mammal;Wallabia bicolor;3.75E+003;38;0.169;1,28
+Mammal;Zalophus californianus;6.25E+004;38;0.149;1,28
+Multicellular plant;Acacia victoriae;4.00E+002;19;0.028;29
+Multicellular plant;Acacia victoriae;4.00E+002;19;0.201;29
+Multicellular plant;Acacia victoriae;4.60E+002;19;0.135;29
+Multicellular plant;Acacia victoriae;5.10E+002;19;0.073;29
+Multicellular plant;Acacia victoriae;5.40E+002;19;0.128;29
+Multicellular plant;Accer saccharum;2.10E+006;11;0.003;29
+Multicellular plant;Aesculu soctandra;1.80E+006;11;0.001;29
+Multicellular plant;Alchornea costaricensis;5.10E+005;28;0.03;29
+Multicellular plant;Allium tricoccum;1.10E+000;4;0.131;29
+Multicellular plant;Allium tricoccum;1.30E+000;4;0.091;29
+Multicellular plant;Allium tricoccum;1.40E+000;4;0.336;29
+Multicellular plant;Allium tricoccum;1.50E+000;4;0.219;29
+Multicellular plant;Alseis blackiana;4.10E+005;28;0.006;29
+Multicellular plant;Amphibolis antarctica;3.30E-001;19;0.584;29
+Multicellular plant;Amphibolis griffithii;6.70E-001;19;1.095;29
+Multicellular plant;Antarctic phytoplanktonic;2.10E-011;1;2.482;29
+Multicellular plant;Antarctic phytoplanktonic;5.10E-010;1;0.438;29
+Multicellular plant;Arisae matriphyllum;1.20E-001;8;2.555;29
+Multicellular plant;Arisae matriphyllum;1.20E-001;8;4.745;29
+Multicellular plant;Arisae matriphyllum;2.20E-001;8;1.606;29
+Multicellular plant;Arisae matriphyllum;2.20E-001;;0.329;29
+Multicellular plant;Arisae matriphyllum;2.40E-001;8;0.402;29
+Multicellular plant;Arisae matriphyllum;2.50E-001;8;2.957;29
+Multicellular plant;Arisae matriphyllum;3.40E-001;8;0.584;29
+Multicellular plant;Arisae matriphyllum;3.40E-001;8;0.803;29
+Multicellular plant;Arisae matriphyllum;3.70E-001;8;0.73;29
+Multicellular plant;Arisae matriphyllum;3.70E-001;8;2.263;29
+Multicellular plant;Arisae matriphyllum;4.70E-001;8;1.57;29
+Multicellular plant;Arisae matriphyllum;4.90E-001;8;1.022;29
+Multicellular plant;Arisae matriphyllum;4.90E-001;;1.679;29
+Multicellular plant;Arisae matriphyllum;6.10E-001;8;0.621;29
+Multicellular plant;Arisae matriphyllum;6.20E-001;8;0.84;29
+Multicellular plant;Arisae matriphyllum;7.30E-001;8;1.022;29
+Multicellular plant;Arisae matriphyllum;7.40E-001;8;0.329;29
+Multicellular plant;Ascophyllum nodosum;1.70E+001;10;0.475;29
+Multicellular plant;Ascophyllum nodosum;2.30E+001;10;0.124;29
+Multicellular plant;Ascophyllum nodosum;2.80E+001;10;0.584;29
+Multicellular plant;Ascophyllum nodosum;3.60E+001;;0.08;29
+Multicellular plant;Ascophyllum nodosum;3.70E+001;10;0.767;29
+Multicellular plant;Ascophyllum nodosum;4.30E+001;10;0.475;29
+Multicellular plant;Avicennia alba;6.50E+000;28;0.329;29
+Multicellular plant;Avicennia alba;6.50E+000;28;0.332;29
+Multicellular plant;Avicennia alba;6.50E+000;28;1.278;29
+Multicellular plant;Avicennia alba;6.50E+000;28;1.278;29
+Multicellular plant;Avicennia alba;6.50E+000;28;2.409;29
+Multicellular plant;Avicennia alba;6.50E+000;;0.913;29
+Multicellular plant;Avicennia marina;3.90E+001;28;0.164;29
+Multicellular plant;Avicennia officinalis;1.30E+001;;0.102;29
+Multicellular plant;Betula alleghaniensis;1.10E+006;;0.006;29
+Multicellular plant;Brachypodium pinnatum;2.70E-001;10;1.533;29
+Multicellular plant;Brachypodium pinnatum;2.90E-001;10;1.314;29
+Multicellular plant;Brachypodium pinnatum;3.20E-001;10;0.511;29
+Multicellular plant;Bruguiera cylindrica;2.20E+000;28;0.511;29
+Multicellular plant;Camelia japonica;2.50E+005;19;0.005;29
+Multicellular plant;Camelia japonica;5.10E+005;19;0.009;29
+Multicellular plant;Camelia sasnqua;2.20E+005;19;0.005;29
+Multicellular plant;Camelia sasnqua;5.60E+005;19;0.012;29
+Multicellular plant;Camellia japonica;5.00E+005;19;0.008;29
+Multicellular plant;Camellia sasanqua;5.30E+005;19;0.012;29
+Multicellular plant;Carex flacca;1.90E-001;10;0.08;29
+Multicellular plant;Carex flacca;2.00E-001;10;0.548;29
+Multicellular plant;Carex flacca;2.30E-001;10;0.223;29
+Multicellular plant;Carnegiea gigantea;4.40E+002;20;0.012;29
+Multicellular plant;Carnegiea gigantea;7.10E+002;20;0.009;29
+Multicellular plant;Carnegiea gigantea;4.20E+003;20;0.011;29
+Multicellular plant;Carnegiea gigantea;6.10E+003;20;0.013;29
+Multicellular plant;Carpophyllum maschalocarpum;1.10E-002;18;0.402;29
+Multicellular plant;Carpophyllum maschalocarpum;4.00E+000;18;1.46;29
+Multicellular plant;Carulerpa prolifera;5.00E-002;21;0.876;29
+Multicellular plant;Carulerpa racemosa;1.60E-003;21;21.17;29
+Multicellular plant;Carulerpa taxifolia;3.20E-002;21;2.811;29
+Multicellular plant;Catopsisssp.;2.30E-002;19;0.27;29
+Multicellular plant;Cecropia obtusifolia;6.20E+004;25;0.055;29
+Multicellular plant;Cecropia obtusifolia;9.60E+004;25;0.237;29
+Multicellular plant;Cecropia obtusifolia;2.20E+005;25;0.032;29
+Multicellular plant;Cecropia obtusifolia;5.00E+005;25;0.066;29
+Multicellular plant;Cecropia obtusifolia;9.40E+005;25;0.204;29
+Multicellular plant;Cephalanthus occidentalis;1.60E+001;;0.84;29
+Multicellular plant;Ceriops tagal;3.40E+000;28;0.321;29
+Multicellular plant;Clethra occidentalis;4.00E+004;19;0.006;29
+Multicellular plant;Cleyera japonica;4.20E+005;19;0.005;29
+Multicellular plant;Cleyera japonica;5.90E+005;19;0.011;29
+Multicellular plant;Cleyera japonica;6.30E+005;;0.009;29
+Multicellular plant;Codium bursa;4.20E+000;17;1.862;29
+Multicellular plant;Codium bursa;4.20E+000;17;2.044;29
+Multicellular plant;Codium bursa;4.20E+000;17;0.091;29
+Multicellular plant;Codium fragile;7.30E+000;15;2.665;29
+Multicellular plant;Cordia alliodora;6.20E+005;28;0.047;29
+Multicellular plant;Costaria costaria;3.90E+001;11;8.76;29
+Multicellular plant;Cymodocea nodosa;7.00E-003;19;1.387;29
+Multicellular plant;Cymodocea nodosa;1.10E-002;17;0.657;29
+Multicellular plant;Cymodocea nodosa;1.30E-002;19;2.373;29
+Multicellular plant;Cymodocea nodosa;1.80E-002;19;2.519;29
+Multicellular plant;Cymodocea nodosa;1.80E-002;19;1.241;29
+Multicellular plant;Cymodocea nodosa;1.90E-002;19;1.059;29
+Multicellular plant;Cymodocea nodosa;1.90E-002;19;2.336;29
+Multicellular plant;Cymodocea nodosa;2.20E-002;17;0.694;29
+Multicellular plant;Cymodocea nodosa;2.20E-002;19;5.11;29
+Multicellular plant;Cymodocea nodosa;2.30E-002;19;0.365;29
+Multicellular plant;Cymodocea nodosa;2.80E-002;19;0.803;29
+Multicellular plant;Cymodocea nodosa;3.00E-002;20;0.402;29
+Multicellular plant;Cymodocea nodosa;3.00E-002;20;0.986;29
+Multicellular plant;Cymodocea nodosa;3.00E-002;20;1.205;29
+Multicellular plant;Cymodocea nodosa;3.30E-002;;0.767;29
+Multicellular plant;Cymodocea nodosa;3.80E-002;19;2.701;29
+Multicellular plant;Cymodocea nodosa;4.00E-002;20;0.694;29
+Multicellular plant;Cymodocea nodosa;4.10E-002;20;1.387;29
+Multicellular plant;Cymodocea nodosa;4.90E-002;20;0.621;29
+Multicellular plant;Cymodocea nodosa;5.00E-002;20;1.241;29
+Multicellular plant;Cymodocea nodosa;5.20E-002;19;0.584;29
+Multicellular plant;Cymodocea nodosa;5.30E-002;19;0.511;29
+Multicellular plant;Cymodocea nodosa;7.00E-002;20;1.314;29
+Multicellular plant;Cymodocea nodosa;1.00E-001;19;1.46;29
+Multicellular plant;Cymodocea nodosa;1.30E-001;17;1.205;29
+Multicellular plant;Cymodocea nodosa;1.30E-001;19;2.446;29
+Multicellular plant;Cymodocea nodosa;1.30E-001;20;0.949;29
+Multicellular plant;Cymodocea nodosa;1.30E-001;22;3.103;29
+Multicellular plant;Cymodocea nodosa;1.80E-001;17;1.387;29
+Multicellular plant;Cymodocea nodosa;2.00E-001;20;0.876;29
+Multicellular plant;Cymodocea nodosa;2.50E-001;20;1.643;29
+Multicellular plant;Cymodocea nodosa;2.70E-001;17;1.059;29
+Multicellular plant;Cymodocea nodosa;2.90E-001;17;3.65;29
+Multicellular plant;Cymodocea nodosa;3.20E-001;17;1.022;29
+Multicellular plant;Cymodocea rotundata;1.20E-001;28;0.803;29
+Multicellular plant;Cymodocea serrulata;1.50E-001;28;2.884;29
+Multicellular plant;Cynoglossum officinale;2.10E+000;10;0.767;29
+Multicellular plant;Cynoglossum officinale;2.80E+000;10;0.069;29
+Multicellular plant;Cynoglossum officinale;3.80E+000;10;0.343;29
+Multicellular plant;Cystoseira humilis;3.10E-001;18;1.497;29
+Multicellular plant;Distylim racemosum;6.90E+006;19;0.008;29
+Multicellular plant;Distylim racemosum;8.30E+006;19;0.01;29
+Multicellular plant;Distylim racemosum;1.10E+007;19;0.008;29
+Multicellular plant;Dityllum brightwellii;8.30E-008;;87.6;29
+Multicellular plant;Dityllum brightwellii;8.30E-008;;21.9;29
+Multicellular plant;Drepanocladusex annulatus;1.60E-002;12;0.245;29
+Multicellular plant;Drepanocladusex annulatus;1.80E-002;6;0.511;29
+Multicellular plant;Drepanocladusex annulatus;1.90E-002;9;0.511;29
+Multicellular plant;Drymis winteri;9.50E+003;;0.01;29
+Multicellular plant;Drymis winteri;1.70E+004;;0.01;29
+Multicellular plant;Dryobalanops lanceolata;2.20E+005;26;0.011;29
+Multicellular plant;Enhalusa coroides;2.50E+000;28;0.234;29
+Multicellular plant;Eurya japonica;5.20E+004;19;0.03;29
+Multicellular plant;Eurya japonica;9.00E+004;19;0.022;29
+Multicellular plant;Eurya japonica;9.40E+004;19;0.02;29
+Multicellular plant;Excoecaria agallocha;2.20E+000;28;1.022;29
+Multicellular plant;Fagus grandifolia;1.00E+006;11;0.012;29
+Multicellular plant;Faramea juveniles;2.80E-005;28;;29
+Multicellular plant;Fucus distichus;7.30E-004;11;3.03;29
+Multicellular plant;Fucus distichus;6.70E-003;11;2.117;29
+Multicellular plant;Fucus distichus;1.30E-002;11;1.679;29
+Multicellular plant;Fucus distichus;4.00E-002;11;2.446;29
+Multicellular plant;Fucus distichus;3.50E-001;11;1.424;29
+Multicellular plant;Fucus gardneri;2.20E-001;13;0.511;29
+Multicellular plant;Fucus gardneri;1.20E+000;13;0.657;29
+Multicellular plant;Guarea glabra;4.00E+005;28;0.01;29
+Multicellular plant;Guatteria dumetorum;1.20E+006;28;0.005;29
+Multicellular plant;Gustavia superba;2.40E+005;28;0.003;29
+Multicellular plant;Halesia carolina;8.90E+005;11;0.005;29
+Multicellular plant;Halodule uninervis;5.00E-002;28;1.825;29
+Multicellular plant;Halodule wrightii;3.00E-002;;3.577;29
+Multicellular plant;Hasseltia floribunda;2.20E+005;28;0.026;29
+Multicellular plant;Hedyosmum arborescens;1.10E+004;19;0.016;29
+Multicellular plant;Heisterai concinna;1.80E+005;28;0.011;29
+Multicellular plant;Heterozostera tasmanica;5.00E-002;19;3.65;29
+Multicellular plant;Hirtella triandra;2.00E+005;28;0.011;29
+Multicellular plant;Hura crepitans;1.60E+006;28;0.005;29
+Multicellular plant;Illicium anisatum;3.20E+005;19;0.018;29
+Multicellular plant;Illicium anisatum;3.90E+005;19;0.024;29
+Multicellular plant;Illicium anisatum;4.80E+005;19;0.02;29
+Multicellular plant;Impatiens capensis;1.50E-001;8;2.117;29
+Multicellular plant;Impatiens pallida;7.50E-001;;8.03;29
+Multicellular plant;Impatiens pallida;1.10E+000;6;6.57;29
+Multicellular plant;Iris pseudacorus;1.30E+000;;0.212;29
+Multicellular plant;Iris pseudacorus;3.80E+001;;0.08;29
+Multicellular plant;Iris pseudacorus;6.70E+001;;0.153;29
+Multicellular plant;Iris pseudacorus;1.20E+002;;0.084;29
+Multicellular plant;Jacaranda copaia;2.20E+006;28;0.058;29
+Multicellular plant;Laminaria longicruris;1.50E+003;10;1.059;29
+Multicellular plant;Laminaria saccharina;5.80E+000;12;4.015;29
+Multicellular plant;Laminaria saccharina;1.00E+001;12;3.468;29
+Multicellular plant;Laminaria saccharina;1.20E+001;12;5.475;29
+Multicellular plant;Leathesia difformis;1.40E-002;10;4.38;29
+Multicellular plant;Litsea acuminata;2.00E+006;19;0.02;29
+Multicellular plant;Litsea acuminata;2.30E+006;19;0.019;29
+Multicellular plant;Litsea acuminata;2.50E+006;19;0.019;29
+Multicellular plant;Lyonia octandra;1.10E+004;19;0.006;29
+Multicellular plant;Macaranga beccariana;4.10E+005;27;0.002;29
+Multicellular plant;Macaranga gigantea;1.90E+006;27;0.001;29
+Multicellular plant;Macaranga hosei;2.30E+006;27;0.001;29
+Multicellular plant;Macaranga hullettii;4.60E+005;27;0.001;29
+Multicellular plant;Macaranga hypoleuca;8.80E+005;27;0;29
+Multicellular plant;Macaranga lamellata;2.80E+005;27;0;29
+Multicellular plant;Macaranga trachyphylla;7.80E+005;27;0.001;29
+Multicellular plant;Macaranga triloba;8.70E+005;27;0;29
+Multicellular plant;Macaranga winkleri;7.80E+005;27;0.003;29
+Multicellular plant;Mercurialis perennis;3.70E-001;10;0.767;29
+Multicellular plant;Micromona spusilla;1.90E-012;;182.5;29
+Multicellular plant;Myrsinese guinii;4.50E+004;19;0.002;29
+Multicellular plant;Myrsinese guinii;2.90E+005;19;0.004;29
+Multicellular plant;Myrsinese guinii;3.20E+005;19;0.008;29
+Multicellular plant;Neolitsea aciculata;9.80E+005;;0.022;29
+Multicellular plant;Neolitsea aciculata;1.50E+006;19;0.019;29
+Multicellular plant;Neolitsea aciculata;1.60E+006;19;0.023;29
+Multicellular plant;Nereocystis luetkeana;4.20E+001;11;13.14;29
+Multicellular plant;Nothofagus betuloides;1.80E+004;;0.01;29
+Multicellular plant;Nothofagus betuloides;6.20E+004;;0.005;29
+Multicellular plant;Nothofagus betuloides;2.70E+005;;0.005;29
+Multicellular plant;Nothofagus betuloides;2.70E+005;;0.004;29
+Multicellular plant;Nothofagus betuloides;7.50E+005;;0.004;29
+Multicellular plant;Nothofagus pumilio;2.40E+005;;0.005;29
+Multicellular plant;Nothofagus pumilio;3.20E+005;;0.005;29
+Multicellular plant;Nyssa aquatica;1.30E+001;;1.898;29
+Multicellular plant;Ormosia coccinea;4.70E+005;28;0.044;29
+Multicellular plant;Palmaria palmata;6.00E-002;16;2.336;29
+Multicellular plant;Panax quinquefolium;4.30E-001;12;0.102;29
+Multicellular plant;Parashorea macrophylla;2.40E+005;26;0.026;29
+Multicellular plant;Pelvetia fastigiata;6.90E+002;17;1.132;29
+Multicellular plant;Phaeocystis pouchetii;5.10E-011;;292;29
+Multicellular plant;Phaeodactyllum tricornutum;1.90E-011;18;6.57;29
+Multicellular plant;Phaeodactyllum tricornutum;1.90E-011;18;2.92;29
+Multicellular plant;Piceaen gelmanii;1.00E+004;11;0.009;29
+Multicellular plant;Pinus sylvestris;3.10E+004;9;0.018;29
+Multicellular plant;Podocarpus nagi;2.40E+005;19;0.022;29
+Multicellular plant;Podocarpus nagi;1.20E+006;19;0.019;29
+Multicellular plant;Podocarpus nagi;1.20E+006;19;0.022;29
+Multicellular plant;Podocarpus urbanii;1.10E+004;19;0.006;29
+Multicellular plant;Populus tremuloides;2.50E+002;7;0.332;29
+Multicellular plant;Populus tremuloides;4.40E+002;7;0.347;29
+Multicellular plant;Posidonia angustifolia;3.70E-001;19;1.241;29
+Multicellular plant;Posidonia australis;4.00E-001;19;0.365;29
+Multicellular plant;Posidonia sinuosa;2.30E-001;19;0.511;29
+Multicellular plant;Posidonia sinuosa;3.00E-001;17;0.475;29
+Multicellular plant;Posidonica oceanica;1.90E-001;19;0.172;29
+Multicellular plant;Posidonica oceanica;2.20E-001;19;0.204;29
+Multicellular plant;Posidonica oceanica;2.70E-001;;0.102;29
+Multicellular plant;Posidonica oceanica;2.80E-001;19;0.475;29
+Multicellular plant;Posidonica oceanica;2.90E-001;19;0.153;29
+Multicellular plant;Posidonica oceanica;3.20E-001;19;0.183;29
+Multicellular plant;Posidonica oceanica;4.10E-001;17;0.183;29
+Multicellular plant;Posidonica oceanica;4.50E-001;19;0.183;29
+Multicellular plant;Posidonica oceanica;4.90E-001;19;0.475;29
+Multicellular plant;Posidonica oceanica;5.10E-001;19;0.245;29
+Multicellular plant;Posidonica oceanica;5.20E-001;17;0.475;29
+Multicellular plant;Posidonica oceanica;5.50E-001;19;0.069;29
+Multicellular plant;Posidonica oceanica;5.60E-001;17;0.069;29
+Multicellular plant;Posidonica oceanica;5.70E-001;17;;29
+Multicellular plant;Posidonica oceanica;5.80E-001;17;0.08;29
+Multicellular plant;Posidonica oceanica;5.80E-001;19;0.548;29
+Multicellular plant;Posidonica oceanica;6.30E-001;17;0.234;29
+Multicellular plant;Posidonica oceanica;6.30E-001;19;0.161;29
+Multicellular plant;Posidonica oceanica;6.50E-001;17;0.08;29
+Multicellular plant;Posidonica oceanica;6.80E-001;17;0.183;29
+Multicellular plant;Posidonica oceanica;7.20E-001;19;0.069;29
+Multicellular plant;Posidonica oceanica;7.30E-001;19;0.263;29
+Multicellular plant;Posidonica oceanica;8.00E-001;19;0.08;29
+Multicellular plant;Posidonica oceanica;8.20E-001;19;0.336;29
+Multicellular plant;Posidonica oceanica;9.40E-001;19;0.08;29
+Multicellular plant;Posidonica oceanica;1.30E+000;17;0.062;29
+Multicellular plant;Posidonica oceanica;1.30E+000;19;0.062;29
+Multicellular plant;Posidonica oceanica;1.30E+000;19;0.274;29
+Multicellular plant;Posidonica oceanica;1.30E+000;19;0.263;29
+Multicellular plant;Potentilla matsumurae;1.10E+000;15;0.365;29
+Multicellular plant;Potentilla matsumurae;1.80E+000;15;4.38;29
+Multicellular plant;Poulsenia armata;1.10E+006;28;0.035;29
+Multicellular plant;Pterocarpus rohrii;9.40E+005;28;0.062;29
+Multicellular plant;Quararibea asterolepsis;2.80E+006;28;0.006;29
+Multicellular plant;Quercuss sp.;5.00E+005;10;0.011;29
+Multicellular plant;Quercuss sp.;5.00E+005;10;0.004;29
+Multicellular plant;Quercuss sp.;5.00E+005;11;0.011;29
+Multicellular plant;Quercuss sp.;5.00E+005;11;0.004;29
+Multicellular plant;Quercuss sp.;5.00E+005;12;0.004;29
+Multicellular plant;Quercuss sp.;5.00E+005;12;0.004;29
+Multicellular plant;Quercuss sp.;5.00E+005;13;0.007;29
+Multicellular plant;Quercuss sp.;5.00E+005;13;0.007;29
+Multicellular plant;Quercuss sp.;5.00E+005;14;0.009;29
+Multicellular plant;Quercuss sp.;5.00E+005;14;0.006;29
+Multicellular plant;Quercuss sp.;5.00E+005;16;0.005;29
+Multicellular plant;Quercuss sp.;5.00E+005;16;0.005;29
+Multicellular plant;Quercuss sp.;5.00E+005;;0.008;29
+Multicellular plant;Quercuss sp.;5.00E+005;;0.002;29
+Multicellular plant;Rhizophora apiculata;1.80E+001;28;0.358;29
+Multicellular plant;Rhizophora apiculata BL.;2.30E+002;27;0.153;29
+Multicellular plant;Rhizophora apiculata BL.;3.20E+002;27;0.088;29
+Multicellular plant;Rhizophor amucronata;7.00E+000;28;0.062;29
+Multicellular plant;Rhizophor amucronata;7.00E+000;28;0.193;29
+Multicellular plant;Rhizophor amucronata;7.00E+000;28;0.186;29
+Multicellular plant;Rhizophor amucronata;7.00E+000;28;0.088;29
+Multicellular plant;Rhizophor amucronata;7.00E+000;28;0.183;29
+Multicellular plant;Rhizophor amucronata;7.00E+000;28;0.949;29
+Multicellular plant;Rhizophor amucronata;5.70E+001;28;0.402;29
+Multicellular plant;Rhododendron tashiroi;1.60E+005;19;0.03;29
+Multicellular plant;Rhododendron tashiroi;1.60E+005;19;0.007;29
+Multicellular plant;Rhododendron tashiroi;2.30E+005;19;0.022;29
+Multicellular plant;Salicornia europea;1.80E-002;10;1.46;29
+Multicellular plant;Salicornia europea;7.00E-002;10;1.57;29
+Multicellular plant;Salix nigra;2.90E+001;;1.314;29
+Multicellular plant;Sargassum sinclairii;3.80E-002;18;2.081;29
+Multicellular plant;Sargassum sinclairii;2.20E+001;18;3.066;29
+Multicellular plant;Sargassum spp.;3.80E+000;20;2.701;29
+Multicellular plant;Solidago canadensis;1.40E-001;7;0.803;29
+Multicellular plant;Solidago canadensis;1.90E-001;7;1.643;29
+Multicellular plant;Sonneratia caseolaris;6.40E-001;28;3.249;29
+Multicellular plant;Sonneratia caseolaris;6.40E-001;28;1.022;29
+Multicellular plant;Sonneratia caseolaris;6.40E-001;28;4.38;29
+Multicellular plant;Sonneratia caseolaris;6.40E-001;28;2.336;29
+Multicellular plant;Sonneratia caseolaris;6.40E-001;28;1.716;29
+Multicellular plant;Sonneratia caseolaris;6.40E-001;28;5.11;29
+Multicellular plant;Sonneratia caseolaris;6.50E+000;28;0.009;29
+Multicellular plant;Spartina alterniflora;1.90E-001;14;0.694;29
+Multicellular plant;Spartina alterniflora;3.30E-001;14;0.767;29
+Multicellular plant;Spartina alterniflora;3.50E-001;14;0.84;29
+Multicellular plant;Spartina alterniflora;4.10E-001;14;0.767;29
+Multicellular plant;Sphagnum subsecundum;1.60E-002;9;0.913;29
+Multicellular plant;Sphagnum subsecundum;1.70E-002;12;1.022;29
+Multicellular plant;Sphagnum subsecundum;2.80E-002;9;0.73;29
+Multicellular plant;Sphagnum subsecundum;3.30E-002;6;0.548;29
+Multicellular plant;Symphoricarpos occidentalis;3.50E+001;0;0.099;29
+Multicellular plant;Symplocos glauca;1.60E+005;19;0.08;29
+Multicellular plant;Symplocos glauca;1.70E+005;19;0.066;29
+Multicellular plant;Symplocos glauca;1.80E+005;19;0.044;29
+Multicellular plant;Symplocos prunifolia;7.30E+005;19;0.051;29
+Multicellular plant;Symplocos prunifolia;1.20E+006;19;0.036;29
+Multicellular plant;Symplocos prunifolia;1.40E+006;19;0.058;29
+Multicellular plant;Symplocos tanakae;1.10E+005;19;0.033;29
+Multicellular plant;Symplocos tanakae;1.10E+005;19;0.037;29
+Multicellular plant;Symplocos tanakae;1.50E+005;19;0.047;29
+Multicellular plant;Syringodium filiforme;6.00E-002;26;2.081;29
+Multicellular plant;Syringodium filiforme;1.90E-001;27;1.168;29
+Multicellular plant;Syringodium isoetifolium;9.00E-002;28;2.482;29
+Multicellular plant;Taxodium disticchum;1.10E+001;;0.986;29
+Multicellular plant;Tetragastris panamensis;7.40E+005;28;0.019;29
+Multicellular plant;Thalassia hemprichii;2.60E-001;28;0.475;29
+Multicellular plant;Thalassia testudinum;4.40E-001;26;1.387;29
+Multicellular plant;Thalassia testudinum;4.60E-001;26;1.022;29
+Multicellular plant;Thalassia testudinum;5.70E-001;26;0.876;29
+Multicellular plant;Thalassodendron ciliatum;4.40E-001;26;0.73;29
+Multicellular plant;Thalassodendron pachyrrizum;5.80E-001;17;0.438;29
+Multicellular plant;Tila heterophylla;2.00E+006;11;0.01;29
+Multicellular plant;Tillandsia sp;1.70E-001;19;0.27;29
+Multicellular plant;Trichilia tuberculata;4.10E+005;28;0.017;29
+Multicellular plant;Trifolium repens;9.00E-002;8;0.876;29
+Multicellular plant;Trifolium repens;1.70E-001;8;0.73;29
+Multicellular plant;Trifolium repens;2.10E-001;8;0.949;29
+Multicellular plant;Trifolium repens;4.10E-001;8;0.621;29
+Multicellular plant;Tsuga canadensis;2.50E+006;11;0.007;29
+Multicellular plant;Typha latifolia;3.10E+001;9;1.387;29
+Multicellular plant;Urtica dioica;3.00E+000;8;3.504;29
+Multicellular plant;Viola blanda;7.60E-001;9;0.318;29
+Phytoplankton;Tropical Atlantic phytoplankton communities;7.60E-015;29;226.3;29
+Phytoplankton;Tropical Atlantic phytoplankton communities;7.80E-015;29;365;29
+Phytoplankton;Tropical Atlantic phytoplankton communities;7.90E-015;29;135.05;29
+Phytoplankton;Tropical Atlantic phytoplankton communities;1.30E-014;29;233.6;29
+Phytoplankton;Tropical Atlantic phytoplankton communities;2.10E-014;27;156.95;29
+Phytoplankton;Tropical Atlantic phytoplankton communities;4.30E-014;29;94.9;29
+Phytoplankton;Tropical Atlantic phytoplankton communities;6.10E-014;20;36.5;29
+Phytoplankton;Tropical Atlantic phytoplankton communities;1.10E-013;24;365;29
+Phytoplankton;Tropical Atlantic phytoplankton communities;1.30E-013;17;3.65;29
+Phytoplankton;Tropical Atlantic phytoplankton communities;1.90E-013;24;25.915;29
+Phytoplankton;Tropical Atlantic phytoplankton communities;2.00E-013;24;295.65;29
+Phytoplankton;Tropical Atlantic phytoplankton communities;2.80E-013;18;14.6;29
+Phytoplankton;Tropical Atlantic phytoplankton communities;3.00E-013;25;693.5;29
+Phytoplankton;Tropical Atlantic phytoplankton communities;3.70E-013;20;31.755;29
+Phytoplankton;Tropical Atlantic phytoplankton communities;4.90E-013;24;912.5;29
+Phytoplankton;Tropical Atlantic phytoplankton communities;6.10E-013;18;20.44;29
+Phytoplankton;Tropical Atlantic phytoplankton communities;7.30E-013;20;25.185;29
+Phytoplankton;Tropical Atlantic phytoplankton communities;1.20E-012;21;18.25;29
+Phytoplankton;Tropical Atlantic phytoplankton communities;1.60E-012;21;80.3;29
+Phytoplankton;Tropical Atlantic phytoplankton communities;1.80E-012;20;62.05;29
+Phytoplankton;Tropical Atlantic phytoplankton communities;1.80E-012;22;51.1;29
+Phytoplankton;Tropical Atlantic phytoplankton communities;1.90E-012;23;113.15;29
+Phytoplankton;Tropical Atlantic phytoplankton communities;2.50E-012;22;7.3;29
+Phytoplankton;Tropical Atlantic phytoplankton communities;3.20E-012;17;20.805;29
+Phytoplankton;Tropical Atlantic phytoplankton communities;3.20E-012;25;109.5;29
+Phytoplankton;Tropical Atlantic phytoplankton communities;4.50E-012;18;33.215;29
+Phytoplankton;Tropical Atlantic phytoplankton communities;4.50E-012;19;58.4;29
+Phytoplankton;Tropical Atlantic phytoplankton communities;4.70E-012;20;65.7;29
+Phytoplankton;Tropical Atlantic phytoplankton communities;3.40E-011;22;8.03;29
+Phytoplankton;Tropical Atlantic phytoplankton communities;3.20E-010;22;32.485;29
+Phytoplankton;Tropical Atlantic phytoplankton communities;6.40E-010;28;215.35;29
+Phytoplankton;Mediterranean phytoplankton;5.60E-013;25;204.4;29
+Phytoplankton;Mediterranean phytoplankton;1.10E-012;17;193.45;29
+Phytoplankton;Mediterranean phytoplankton;3.80E-012;;313.9;29
