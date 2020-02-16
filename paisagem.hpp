@@ -34,7 +34,7 @@ private:
 	/** Tipo de condição de contorno (0 = absortiva, 1 = periódica, 2 = reflexiva) */
 	const int boundary_condition;
 	/** Matriz de pixels da paisagem, assume os valores 0 quando o pixel está na matriz e 1 quando está no habitat */
-	int landscape[dim][dim];//[linha][coluna] temporariamente substituido or valor fixo
+	double landscape[dim][dim];//[linha][coluna] temporariamente substituido or valor fixo
 	/** Matriz com a determinação do fragmento a que cada pixel pertence (0 para matriz; 1, 2, 3, ... para fragmentos */
 	int patches[dim][dim];
 	/** Número de fragmentos da paisagem, desconsiderando-se a matriz. */
@@ -67,7 +67,10 @@ private:
 					/** Constante que indica quantas vezes a mortalidade basal na matriz é maior que no habitat */
 					const double death_m,
 					/** Tipo de densidade (0 = GLOBAL, 1 = LOCAL) */
-					const int dens_type
+					const int dens_type,
+					double genotype_means[],
+          double  width_sds[],
+          bool Null
 					);
 
 	/** Atualiza a lista de vizinhos de um indivíduo */
@@ -122,7 +125,10 @@ public:
 			/** Condição de contorno (0 = absortiva, 1 = periódica, 2 = reflexiva)*/
 			const int bound_condition,
 			/** Vetor de cobertura de habitat na paisagem */
-			int scape[]
+			double scape[],
+      double genotype_means[],
+      double  width_sds[],
+      bool Null
 			); //construtor
 
 	/** Atualiza as  */
@@ -158,6 +164,8 @@ public:
     int get_numb_patches(){return numb_patches;}
 	/** Retorna a área de um dado fragmento da paisagem */
     double get_patch_area(int i) const {return this->patch_area[i];}
+    
+    void walk(int lower);
 
 };
 

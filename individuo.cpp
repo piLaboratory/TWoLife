@@ -22,12 +22,24 @@ class individuo_exception: public exception
 	}
 } myex;
 
-individuo::individuo(double x, double y, int especie, double taxa_morte,
-                     double orientacao, double angulo_visada,
-                     double passo, double move, double raio,
-                     double taxa_basal, int semente, //retirar int semente 
-					 double incl_b, double incl_d,
-					 double death_mat, int dens_type):
+individuo::individuo(double x,
+                     double y,
+                     int especie,
+                     double taxa_morte,
+                     double orientacao,
+                     double angulo_visada,
+                     double passo,
+                     double move,
+                     double raio,
+                     double taxa_basal,
+                     int semente, //retirar int semente 
+                     double incl_b,
+                     double incl_d,
+                     double death_mat,
+                     int dens_type,
+                     vector <double> genotype,
+                     vector <double> width
+					 ):
 	id(++MAXID), // pega o próximo ID livre
 	x(x),
 	y(y),
@@ -56,6 +68,18 @@ individuo::individuo(double x, double y, int especie, double taxa_morte,
 		this->densi_max = (taxa_basal-taxa_morte)/(incl_b+incl_d);
 		this->birth_death_eq = taxa_morte+incl_d*((taxa_basal-taxa_morte)/(incl_b+incl_d));
 	}
+	
+	this->genotype_mean = genotype;
+	this->width_sd = width;
+	
+	this->rdn_noise = runif(-1.0,1.0);
+	
+	for (int i=0; i<this->genotype_mean.size(); i++) {
+	  
+	  this->env_optimum.push_back(this->rdn_noise+this->genotype_mean[i]);
+	}
+	
+	this->points = 10;
 }
 
 
@@ -88,8 +112,37 @@ individuo::individuo(const individuo& rhs)
 	  dens_type(rhs.dens_type),
 	  birth_death_eq(rhs.birth_death_eq)
 	  
-{ //precisamos dessa chave e da que fecha ela?
-	
+{ 
+  if (rhs.genotype_mean.size()==1)
+  {
+    
+    this->genotype_mean.push_back(rhs.genotype_mean[0] + runif(-1.0,1.0));
+    this->width_sd= rhs.width_sd;
+    this->rdn_noise= runif(-1.0,1.0);
+    this->env_optimum.push_back(this->rdn_noise+this->genotype_mean[0]);
+    
+  }
+  else
+  {
+    
+    this->rdn_noise= runif(-1.0,1.0);
+    
+    for (int i=0; i<rhs.genotype_mean.size(); i++) {
+      
+      this->genotype_mean.push_back(this->rdn_noise+rhs.genotype_mean[i]);
+    }
+    
+    //this->genotype_mean= rhs.genotype_mean;
+    this->width_sd = rhs.width_sd;
+    this->rdn_noise = runif(-1.0,1.0);
+    
+    for (int i=0; i<this->genotype_mean.size(); i++) {
+      
+      this->env_optimum.push_back(this->rdn_noise+this->genotype_mean[i]);
+    }
+    
+  }
+  this->points=rhs.points;
 }
 
 /** \brief Método de atualização dos indivíduos 
@@ -99,23 +152,39 @@ individuo::individuo(const individuo& rhs)
  * - Sorteia o tempo de acordo com as novas taxas
  * As taxas de morte e movimentação no momento fixas. Mas tambem serão funções da densidade de vizinhos (\ref TBI).
  */
+
 void individuo::update(double dens)
 {
-  double densi = dens; // densidade inclui n de vizinhos + o individuo
-  if(this->tipo_habitat==0) 
-	{
-		this->birth = 0;
-		// ToDo: Implementar aqui modelo mais geral para mortalidade na matriz. Aqui a denso dependencia é igual à do habitat, só muda a mortalidade basal que é maior que no habitat.
-		this->death = this->const_d_matrix*this->taxa_morte+this->incl_death*densi; 
-	}
-  else 
-	{
-		this->birth = this->taxa_basal-this->incl_birth*densi;
-		this->death = this->taxa_morte+this->incl_death*densi;
-		if(this->birth<0){this->birth=0;}
-	}
-	
-  this->sorteiaTempo();
+  double densi = dens; // Density of  neighbour individuals (includes focal one)
+  
+  if (this->width_sd[0] == 0) {
+    if(this->tipo_habitat==0) // Checks if the individual is currently on the matrix
+    {
+      this->birth = 0; // Sets birth rate to 0
+      
+      // To Do: Implementar aqui modelo mais geral para mortalidade na matriz. Aqui a denso dependencia é igual à do habitat, só muda a mortalidade basal que é maior que no habitat.
+      this->death = this->const_d_matrix*this->taxa_morte+this->incl_death*densi; // Sets the higer mortality rate atributed to nonhabita patches
+    }
+    else
+    {
+      this->birth = this->taxa_basal-this->incl_birth*densi; // Computes the actual birth rate on habitat patch (that is influenced by the density of neighbours)
+      this->death = this->taxa_morte+this->incl_death*densi; // Computes the actual death rate on habitat patch (that is influenced by the density of neighbours)
+    }
+  }
+  else{
+    
+    this->birth = this->taxa_basal-this->incl_birth*densi; // Computes the actual birth rate on habitat patch (that is influenced by the density of neighbours)
+    this->death = ((this->const_d_matrix*this->taxa_morte)-((dnorm_sum(this->tipo_habitat, this->genotype_mean, this->width_sd)/dnorm(this->genotype_mean[0],this->genotype_mean[0],this-> width_sd[0]))*((this->const_d_matrix*this->taxa_morte)-this->taxa_morte))); // Computes the actual death rate on habitat patch (that is influenced by the suitability of its current habitat)
+    
+  }
+  
+  if(this->birth<0) //Checks if the birth rate is lower than possible
+  {
+    this->birth=0; // Sets to the lowest possible value to Birth
+    
+  }
+  
+  this->sorteiaTempo(); // Calls the function to draft the time needed to execute the next action
 }
 
 
@@ -162,3 +231,52 @@ void individuo::anda(bool aleatorio)
     this->x+=dx;
     this->y+=dy;
 }
+
+double individuo::dnorm(double x ,double mean, double sd){
+  
+  return (1/(sd*sqrt(2*M_PI))*(exp(-1*(pow(x-mean, 2)/(2*pow(sd, 2))))));
+  
+}
+
+double individuo::dnorm_sum( double x ,vector <double> mean, vector<double> sd){
+  
+  double probcumsum=0;
+  
+  for (int i=0; i<mean.size(); i++) {
+    probcumsum= probcumsum+ dnorm(x, mean[i],sd[i]);
+    
+  }
+  return probcumsum/mean.size();
+  
+}
+
+
+void individuo::habitat_selection(double possibilitities[][3])
+{
+  double scores[this->points];
+  double cumsum=0, choice=0, score=0;
+  int final_pos= 0;
+  
+  for (int i=0; i<this->points; i++) {
+    
+    scores[i] = exp(dnorm_sum(possibilitities[i][2], this->genotype_mean, this->width_sd));
+    cumsum += scores[i];
+  }
+  
+  choice= runif(0.0,1.0);
+  
+  for (int i=0; i<this->points; i++) {
+    
+    score += (scores[i]/cumsum);
+    
+    if (score > choice) {
+      
+      final_pos= i;
+      break;
+    }
+  }
+  
+  this->x = possibilitities[final_pos][0]; // Sets new x coordinate
+  this->y = possibilitities[final_pos][1]; // Sets new y coordinate
+}
+

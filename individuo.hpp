@@ -44,7 +44,7 @@ private:
     /** Taxa intrínseca de natalidade quando no habitat e na ausência de outros indivíduos na vizinhança local */
     const double taxa_basal;
     /** Identificdor do tipo de habitat do pixel correspondente à atual posição do indivíduo (0 = matriz; 1 = habitat) */
-    int tipo_habitat;//CAMADA PERCEPTIVA
+    double tipo_habitat;//CAMADA PERCEPTIVA
     /** Identificdor do fragmento correspondente à atual posição do indivíduo (0 = matriz; 1, 2, ... = fragmentos de habitat) */
     int patch_label;
     /** Semente para gerar os numeros aleatorios */
@@ -61,6 +61,17 @@ private:
 	const double const_d_matrix;// Pensar em como considerar diferentes mortalidades (constantes) em diferentes tipos de matriz 
 	/** Forma como a densidade é calculada (0 = GLOBAL, 1 = LOCAL)*/
 	const int dens_type;
+	
+	 vector <double> env_optimum;
+	
+	 vector <double> genotype_mean;
+
+	 vector <double> width_sd;
+		
+	 double rdn_noise;
+	 
+	 int points;
+	
 	//metodos privados
 	/** Gera um número aleatório, segundo distribuição exponencial, correspondente ao tempo para a ocorrência do próximo evento, levando em consideração as taxas de mortalidade, natalidade e movimentação */
     void sorteiaTempo();
@@ -98,7 +109,12 @@ public:
 			/** Constante que indica quantas vezes a mortalidade basal na matriz é maior que no habitat */
 			const double death_mat,
 			/** Forma como a densidade é calculada (0 = GLOBAL, 1 = LOCAL)*/
-			const int dens_type);
+			const int dens_type,
+			
+			vector <double> genotype,
+			
+			vector <double> width
+  );
 	/** Construtor de cópia, usado para gerar novos indivíduos por reprodução assexuada.
 	 *  Todos os dados do individuo pai serão copiados, com a exceção de:
 	 *  - id (veja \ref individuo::get_id)
@@ -114,7 +130,7 @@ public:
 	/** Atualiza a lista de vizinhos deste indivíduo. Deve ser chamada a cada passo de tempo pela \ref paisagem */
     void set_vizinhos (/** Lista dos vizinhos */ const vector<individuo*> lis){this->lisViz=lis;}
 	/** Atualiza o tipo de hábitat no qual o indivíduo está. Deve ser chamada a cada passo de tempo pela \ref paisagem. */
-    void set_habitat (const int tipo){this->tipo_habitat=tipo;}
+    void set_habitat (const double tipo){this->tipo_habitat=tipo;}
     /** Atualiza o fragmento do indivíduo */
     void set_patch (const int label){this->patch_label=label;}
 	/** Atualiza a posição X do indivíduo */
@@ -133,6 +149,9 @@ public:
     const int NBHood_size() const {return this->lisViz.size()+1;}
 	/** Retorna o fragmento no qual o indivíduo está */
     const int get_patch() const {return this->patch_label;}
+    
+    const double get_passo() const {return this->passo;}
+    const int get_points() const {return this->points;}
 
     // outros metodos publicos
 	/** Retorna o tempo sorteado para o próximo evento acontecer com este indivíduo.
@@ -151,6 +170,13 @@ public:
 	 * (definida no construtor como orientacao) mais um ângulo aleatório dentro do ângulo de visada (angulo_visada). A definição de um 
 	 * ângulo de visada de 360 graus equivale a uma caminhada aleatória */
     void anda(/** Passe aleatorio = true para forçar uma caminhada aleatória */ bool aleatorio = true);
+    
+    double dnorm(double x ,double mean, double sd);
+    
+    double dnorm_sum( double x ,vector <double> mean, vector<double> sd);
+    
+    void habitat_selection(double possibilitities[][3]);
+    
 };
 //Falta mexer no doxygen dos construtores e da update
 

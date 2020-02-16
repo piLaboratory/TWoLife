@@ -76,7 +76,10 @@ TWoLife <- function (
 					 landscape,
 					 tempo=20,
            ini.config=0,
-           out.code=1) 
+           out.code=1,
+					 genotype_means,
+					 width_sds, 
+					 Null) 
 {
 	if(class(landscape) != "landscape") {
 		stop("Error in function TWoLife: you must provide a valid landscape. See ?Landscape")
@@ -101,12 +104,15 @@ TWoLife <- function (
               as.double(death.mat), # 14
               as.integer(ini.config), #15
               as.integer(landscape$bound.condition), #16
-              as.integer(landscape$scape), #17
+              as.double(landscape$scape), #17
               as.double(tempo), #18
               as.integer(0), # 19
               as.double(rep(0, 5000)), # 20
               as.double(rep(0,5000)), # 21 
-              as.integer(out.code)
+              as.integer(out.code),
+              as.double(genotype_means),
+              as.double(width_sds),
+              as.logical (Null)
               ## verificar se precisa definir o tamanho e se isto nao dará problemas (dois ultimos argumentos)
 				  )
 	n <- saida.C[[19]]

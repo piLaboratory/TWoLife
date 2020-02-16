@@ -5,7 +5,7 @@
 
 paisagem::paisagem(double raio, int N, double angulo_visada, double passo, double move, double taxa_basal,
 				   double taxa_morte, double incl_b, double incl_d, int numb_cells, double cell_size, int land_shape,
-				   int density_type, double death_mat, int inipos, int bound_condition, int scape[]):
+				   int density_type, double death_mat, int inipos, int bound_condition, double scape[], double genotype_means[], double  width_sds[], bool Null):
 	tamanho(numb_cells*cell_size),
 	N(N),
 	tempo_do_mundo(0),
@@ -48,7 +48,7 @@ paisagem::paisagem(double raio, int N, double angulo_visada, double passo, doubl
 		raio = this->tamanho/sqrt(M_PI);
 	}
 	/* Coloca os indivíduos na paisagem por meio da função populating() */
-	this->populating(raio,N,angulo_visada,passo,move,taxa_basal,taxa_morte,incl_b,incl_d,death_mat,density_type);
+	this->populating(raio,N,angulo_visada,passo,move,taxa_basal,taxa_morte,incl_b,incl_d,death_mat,density_type,genotype_means,width_sds, Null);
 
 	for(unsigned int i=0; i<this->popIndividuos.size(); i++)
 	{
@@ -63,19 +63,45 @@ paisagem::paisagem(double raio, int N, double angulo_visada, double passo, doubl
 		double dsty=this->calcDensity(popIndividuos[i]);
 		this->popIndividuos[i]->update(dsty);   //e atualiza o individuo i da populacao
 	}
+	
 
 }
 
 void paisagem::populating(double raio, int N, double angulo_visada, double passo, double move, double taxa_basal,
 						  double taxa_morte, double incl_b, double incl_d, double death_m,
-						  int dens_type)
+						  int dens_type,double genotype_means[], double  width_sds[], bool Null)
 {
+  //Temporary
+  
+  
+  
 	individuo::reset_id(); // reinicia o contador de id dos individuos
 	// Considerar diferentes possibilidades de posições iniciais. TBI.
+	
+	vector<double> genotype, width;
+	
+	if (Null==FALSE) {
+	  
+	  genotype.resize(1),
+	  width.resize(1);
+	}
+	else{
+	  
+	  for (int i=0; i<N; i++) {
+	    genotype.push_back(genotype_means[i]);
+	    width.push_back(width_sds[i]);
+	  }
+	}
+	  
 	if(this->initialPos==0)
 	{
 		for(int i=0; i<this->N; i++)
 		{
+		  if (Null==FALSE) {
+		    genotype[0] = genotype_means[i];	
+		    width[0] = width_sds[i];
+		  }
+		  
 			this->popIndividuos.push_back(new individuo(
 														0,//posicao x
 														0,//posicao y
@@ -91,7 +117,9 @@ void paisagem::populating(double raio, int N, double angulo_visada, double passo
 														incl_b,
 														incl_d,
 														death_m,
-														dens_type));
+														dens_type,
+														genotype,
+														width));
 			// como o popAgentes eh um ponteiro de vetores, ao adicionar enderecos das variaveis, usamos os new. Dessa forma fica mais rapido
 			//pois podemos acessar apenas o endereco e nao ficar guardando todos os valores
 		}
@@ -100,6 +128,11 @@ void paisagem::populating(double raio, int N, double angulo_visada, double passo
 	{
 		for(int i=0; i<this->N; i++)
 		{
+		  if (Null==FALSE) {
+		    genotype[0] = genotype_means[i];	
+		    width[0] = width_sds[i];
+		  }
+		  
 			this->popIndividuos.push_back(new individuo(
 														runif(this->tamanho/(-2),this->tamanho/2), //posicao x
 														runif(this->tamanho/(-2),this->tamanho/2), //posicao y
@@ -115,13 +148,20 @@ void paisagem::populating(double raio, int N, double angulo_visada, double passo
 														incl_b,
 														incl_d,
 														death_m,
-														dens_type));
+														dens_type,
+														genotype,
+														width));
 		}
     }
 	if(this->initialPos==2) // Random initial positions with normal distribution. TBI: tornar os parametros da rnorm livres
 	{
 		for(int i=0; i<this->N; i++)
 		{
+		  if (Null==FALSE) {
+		    genotype[0] = genotype_means[i];	
+		    width[0] = width_sds[i];
+		  }
+		  
 			this->popIndividuos.push_back(new individuo(
 														rnorm(0,sqrt(move)*passo),//posicao x
 														rnorm(0,sqrt(move)*passo),//posicao y
@@ -137,7 +177,9 @@ void paisagem::populating(double raio, int N, double angulo_visada, double passo
 														incl_b,
 														incl_d,
 														death_m,
-														dens_type));
+														dens_type,
+														genotype,
+														width));
 		}
 	}
 }
@@ -202,7 +244,8 @@ bool paisagem::realiza_acao(int acao, int lower) //TODO : criar matriz de distan
         break;
 
     case 2:
-        this->popIndividuos[lower]->anda();
+      
+        this->walk(lower);
 	emigrou = this->apply_boundary(popIndividuos[lower]);
 		break;
     }
@@ -318,6 +361,9 @@ double paisagem::calcDist(const individuo* a1, const individuo* a2) const //Viro
 			return sqrt(dx*dx + dy*dy);
 			break;
 	}
+  
+  // Only to stop the warning
+  return 0;
 }
 
 // A function to calculate de density of individuals according to density type (global or local) and considering landscape boundary effects in the calculation.
@@ -504,4 +550,123 @@ void paisagem::find_patches(int x, int y, int current_label)
   find_patches(x, y + 1, current_label);
   find_patches(x - 1, y, current_label);
   find_patches(x, y - 1, current_label);
+}
+/*
+void paisagem::walk(int lower){
+  
+  bool selection =TRUE;
+  
+  
+  if(selection=TRUE)
+  {
+    double possibilitities[this->popIndividuos[lower]->get_points()][3];
+    
+    double choice, dist;
+    int hx,hy;
+    
+    for (int i=0; i<this->popIndividuos[lower]->get_points(); i++)
+    {
+      
+      choice=runif(0.0,360.0);
+      dist=runif(0.0,this->popIndividuos[lower]->get_passo());
+      
+      possibilitities[i][0]=this->popIndividuos[lower]->get_x()+cos(choice)*dist;
+      possibilitities[i][1]=this->popIndividuos[lower]->get_y()+sin(choice)*dist;
+      
+      
+      hx= (double)possibilitities[i][0]/this->cell_size+this->numb_cells/2;
+      hy= ((double)possibilitities[i][1]/this->cell_size)*(-1)+this->numb_cells/2;
+      
+      possibilitities[i][2] = this->landscape[hx][hy];
+    }
+    
+    this->popIndividuos[lower]->habitat_selection(possibilitities);
+    
+  }
+  
+  else
+  {
+    this->popIndividuos[lower]->anda(); // Calls a function that changes the X and Y coordinates of the individuals
+  }
+}
+*/
+
+void paisagem::walk(int lower){
+  
+  bool selection =TRUE;
+  
+  
+  if(selection=TRUE)
+  {
+    double possibilitities[this->popIndividuos[lower]->get_points()][3];
+    
+    double choice, dist;
+    int hx,hy;
+    
+    for (int i=0; i<this->popIndividuos[lower]->get_points(); i++)
+    {
+      
+      choice=runif(0.0,360.0);
+      dist=runif(0.0,this->popIndividuos[lower]->get_passo());
+      
+      possibilitities[i][0]=this->popIndividuos[lower]->get_x()+cos(choice)*dist;
+      possibilitities[i][1]=this->popIndividuos[lower]->get_y()+sin(choice)*dist;
+      
+      
+      
+      switch(this->boundary_condition){
+      
+      case 0:
+        
+        if(possibilitities[i][0]<(this->numb_cells*this->cell_size/2)*(-1) || possibilitities[i][0]>=this->numb_cells*this->cell_size/2 || possibilitities[i][1]<(this->numb_cells*this->cell_size/2)*(-1) || possibilitities[i][1]>=this->numb_cells*this->cell_size/2)
+        {
+          
+          possibilitities[i][2] = -10000;
+        }
+        
+      case 1:
+        if(possibilitities[i][0]<(this->numb_cells*this->cell_size/2)*(-1))
+          possibilitities[i][0]=(this->tamanho+possibilitities[i][0]);
+        if(possibilitities[i][0]>=this->numb_cells*this->cell_size/2)
+          possibilitities[i][0]=(possibilitities[i][0]-this->tamanho);
+        if(possibilitities[i][1]<(this->numb_cells*this->cell_size/2)*(-1))
+          possibilitities[i][1]=(this->tamanho+possibilitities[i][1]);
+        if(possibilitities[i][1]>=this->numb_cells*this->cell_size/2 )
+          possibilitities[i][1]=(possibilitities[i][1]-this->tamanho);
+        
+        hx= (double)possibilitities[i][0]/this->cell_size+this->numb_cells/2;
+        hy= ((double)possibilitities[i][1]/this->cell_size)*(-1)+this->numb_cells/2;
+        
+        possibilitities[i][2] = this->landscape[hx][hy];
+        
+        break;
+        
+      case 2:
+        
+        while (possibilitities[i][0]<(this->numb_cells*this->cell_size/2)*(-1) || possibilitities[i][0]>=this->numb_cells*this->cell_size/2 || possibilitities[i][1]<(this->numb_cells*this->cell_size/2)*(-1) || possibilitities[i][1]>=this->numb_cells*this->cell_size/2) {
+          
+          choice=runif(0.0,360.0);
+          dist=runif(0.0,this->popIndividuos[lower]->get_passo());
+          
+          possibilitities[i][0]=this->popIndividuos[lower]->get_x()+cos(choice)*dist;
+          possibilitities[i][1]=this->popIndividuos[lower]->get_y()+sin(choice)*dist;
+        }
+        hx= (double)possibilitities[i][0]/this->cell_size+this->numb_cells/2;
+        hy= ((double)possibilitities[i][1]/this->cell_size)*(-1)+this->numb_cells/2;
+        
+        possibilitities[i][2] = this->landscape[hx][hy];
+        
+        break;
+      }
+      
+    }
+    
+    this->popIndividuos[lower]->habitat_selection(possibilitities);
+    
+  }
+  
+  else
+  {
+    this->popIndividuos[lower]->anda(); // Calls a function that changes the X and Y coordinates of the individuals
+  }
 }
