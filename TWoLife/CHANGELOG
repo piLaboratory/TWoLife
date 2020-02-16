@@ -1,0 +1,25 @@
+Modificações na revisão 1262:
+- Correções menores
+
+Modificações na revisão 1256:
+
+- Remoção do arquivo mccoy_...ods, que é redundante com o mccoy_...csv
+- Remoção dos arquivos main.cpp e Makefile. A partir de agora o projeto deve ser chamado EXCLUSIVAMENTE dentro do R
+
+Nos .cpp/.h:
+- Reordenadas as inicializações dos construtores (ganha-se um tiquinho de performance)
+- Loop em sorteia_acao só compara as probabilidades cumulativas até o n-1; garante que a função retorna algo mesmo 
+  na possibilidade de erro numérico
+- Método "nascido" agora é da paisagem. Propriedade 'nascido' do individuo foi descartada
+- Método individuo::sorteiaTempo agora usa a função rexp do R. Set.seed() pode ser feito NO R (coisa linda :P)
+- Método individuo::sorteia_acao usa runif(0,1) do R. O gerador de numeros aleatorios eh consistente
+- Incorporação de denso-dependencia na taxa de morte, assim como na de nascimento.
+- Mudanças na criação da paisagem, preparando para fragmentação de habitat.
+
+Nos .R:
+- Remoção dos arquivos pse.R e corcorr.c; substituição de source("pse.R") para library(pse)
+- Uso das novas funcionalidades do pacote pse
+
+TODO
+- Método de dispersão independente do construtor; todo indivíduo nasce no (0,0). Possibilidade de sub ou sobredispersão??
+- Refazer a documentação, referente a denso-dependencia na taxa de morte.

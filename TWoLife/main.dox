@@ -1,0 +1,43 @@
+/** 
+\mainpage TWoLife
+
+\section Introdução
+Este conjunto de funções em C++ implementa o algoritmo de Gillespie para dinâmicas estocásticas em tempo contínuo, 
+adaptado para o formalismo de modelos baseados em agentes. Os eventos possíveis são o movimento, morte ou
+nascimento de um indivíduo. O tempo passa continuamente até que um desses eventos ocorra. Os eventos são independentes, portanto
+o tempo até que um deles aconteça segue uma distribuição exponencial. A simulação é a repetição dos eventos da seguinte maneira:
+-# Condições iniciais: contador de tempo zerado, número inicial de indivíduos (parâmetro <tt>N</tt>) são
+  distribuídos ao acaso em um plano cartesiano quadrado de lado <tt>tamanho</tt>.
+-# A densidade de vizinhos no raio de vizinhança (<tt>raio</tt>) é atualizada.
+-# A taxa de natalidade \f$\lambda\f$ de cada indivíduo é atualizada, 
+  como uma função linear da densidade de vizinhos do indivíduo \f$\rho\f$:
+\f$
+ \lambda =  \left\{
+  \begin{array}{l l}
+    \mathtt{taxa.basal} - (\mathtt{taxa.basal}/\mathtt{densi.max})\rho& \quad \textrm{se } \rho < \mathtt{densi.max}\\
+    0& \quad \textrm{se } \rho \geq \mathtt{densi.max}
+  \end{array} \right.
+\f$  
+O que implica que \f$\lambda=\mathtt{taxa.basal}\f$ quando não há vizinhos, 
+e \f$\lambda=0\f$ quando a densidade de vizinhos iguala ou ultrapassa <tt>densi.max</tt>, que é a capacidade de suporte individual.
+-# Todos os indivíduos da população sorteiam um valor de tempo da distribuição exponencial, cujo parâmetro
+  é a soma das taxas de movimentação, nascimento e morte.
+-# O indivíduo com o menor tempo sorteia o evento que vai lhe ocorrer com probabilidades proporcionais
+  às taxas de cada evento:
+  - <b>nascimento:</b> um novo indivíduo com as mesmas características é adicionado no mesmo local;
+  - <b>morte:</b> o indivíduo é retirado da população;
+  - <b>movimento:</b> o indivíduo move-se para uma distância <tt>passo</tt>, com direção sorteada do arco <tt>AngVis</tt>.
+-# O tempo sorteado é somado ao contador de tempo. 
+  Retorna-se ao segundo passo até que o tempo acumulado pelo contador alcance o tempo máximo estipulado 
+  (parâmetro <tt>tempo</tt>).
+
+\section TBI
+As classes do TWoLife estão recebendo atualizações constantes. A sigla TBI, do inglês To Be Implemented, documenta
+características das classes que estão previstas para serem implementadas no futuro.
+
+\section Biblioteca R
+O código descrito aqui é uma biblioteca de funções para uso no ambiente R e usa geradores de números aleatórios
+internos do R. Desta forma, as funções <b>NÃO PODEM</b> ser chamadas de um programa C/C++ <tt>stand-alone</tt>.
+
+..
+*/
