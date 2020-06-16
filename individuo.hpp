@@ -152,6 +152,7 @@ public:
     
     const double get_passo() const {return this->passo;}
     const int get_points() const {return this->points;}
+    const double get_genotype_mean() const {return this->genotype_mean[0];}
 
     // outros metodos publicos
 	/** Retorna o tempo sorteado para o próximo evento acontecer com este indivíduo.

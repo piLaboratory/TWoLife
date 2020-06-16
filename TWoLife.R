@@ -77,9 +77,12 @@ TWoLife <- function (
 					 tempo=20,
            ini.config=0,
            out.code=1,
-					 genotype_means,
-					 width_sds, 
-					 Null) 
+					 genotype_means=(rep(1, N)),
+					 width_sds=(rep(0, N)), 
+					 Null= FALSE,
+					 initialPosX= NULL,
+					 initialPosY= NULL
+					 ) 
 {
 	if(class(landscape) != "landscape") {
 		stop("Error in function TWoLife: you must provide a valid landscape. See ?Landscape")
@@ -109,17 +112,21 @@ TWoLife <- function (
               as.integer(0), # 19
               as.double(rep(0, 5000)), # 20
               as.double(rep(0,5000)), # 21 
-              as.integer(out.code),
-              as.double(genotype_means),
-              as.double(width_sds),
-              as.logical (Null)
+              as.integer(out.code), # 22
+              as.double(genotype_means), # 23
+              as.double(width_sds), # 24
+              as.logical (Null), # 25
+              as.double(rep(0, 5000)), # 26
+              as.double(initialPosX), #27
+              as.double(initialPosY) # 28
               ## verificar se precisa definir o tamanho e se isto nao dará problemas (dois ultimos argumentos)
 				  )
 	n <- saida.C[[19]]
 	x <- saida.C[[20]]
 	y <- saida.C[[21]]
-	x <- x[1:n]; y <- y[1:n]  
-	return(data.frame(x=x,y=y))
+	m <- saida.C[[26]]
+	x <- x[1:n]; y <- y[1:n] ; m <- m[1:n];
+	return(data.frame(x=x,y=y, m=m))
 }
 
 # ## Um teste rapido
@@ -177,3 +184,4 @@ TWoLife <- function (
 ## Media das simulacoes
 #print(pop.size - Support())
 #print(mean(pop.size - Support()))
+

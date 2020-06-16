@@ -72,7 +72,7 @@ individuo::individuo(double x,
 	this->genotype_mean = genotype;
 	this->width_sd = width;
 	
-	this->rdn_noise = runif(-1.0,1.0);
+	this->rdn_noise = 0;
 	
 	for (int i=0; i<this->genotype_mean.size(); i++) {
 	  
@@ -116,16 +116,17 @@ individuo::individuo(const individuo& rhs)
   if (rhs.genotype_mean.size()==1)
   {
     
-    this->genotype_mean.push_back(rhs.genotype_mean[0] + runif(-1.0,1.0));
+    //this->genotype_mean.push_back(rhs.genotype_mean[0] + runif(-1.0,1.0));
+    this->genotype_mean.push_back(rhs.genotype_mean[0]);
     this->width_sd= rhs.width_sd;
-    this->rdn_noise= runif(-1.0,1.0);
+    this->rdn_noise= 0;
     this->env_optimum.push_back(this->rdn_noise+this->genotype_mean[0]);
     
   }
   else
   {
     
-    this->rdn_noise= runif(-1.0,1.0);
+    this->rdn_noise= 0;
     
     for (int i=0; i<rhs.genotype_mean.size(); i++) {
       
@@ -134,7 +135,7 @@ individuo::individuo(const individuo& rhs)
     
     //this->genotype_mean= rhs.genotype_mean;
     this->width_sd = rhs.width_sd;
-    this->rdn_noise = runif(-1.0,1.0);
+    this->rdn_noise = 0;
     
     for (int i=0; i<this->genotype_mean.size(); i++) {
       

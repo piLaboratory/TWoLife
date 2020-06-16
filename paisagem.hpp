@@ -70,7 +70,9 @@ private:
 					const int dens_type,
 					double genotype_means[],
           double  width_sds[],
-          bool Null
+          bool Null,
+	        double initialPosX[],
+          double initialPosY[]
 					);
 
 	/** Atualiza a lista de vizinhos de um indivíduo */
@@ -128,7 +130,9 @@ public:
 			double scape[],
       double genotype_means[],
       double  width_sds[],
-      bool Null
+      bool Null,
+      double initialPosX[],
+      double initialPosY[]
 			); //construtor
 
 	/** Atualiza as  */

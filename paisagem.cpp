@@ -5,7 +5,8 @@
 
 paisagem::paisagem(double raio, int N, double angulo_visada, double passo, double move, double taxa_basal,
 				   double taxa_morte, double incl_b, double incl_d, int numb_cells, double cell_size, int land_shape,
-				   int density_type, double death_mat, int inipos, int bound_condition, double scape[], double genotype_means[], double  width_sds[], bool Null):
+				   int density_type, double death_mat, int inipos, int bound_condition, double scape[],
+           double genotype_means[], double  width_sds[], bool Null,double initialPosX[],double initialPosY[]):
 	tamanho(numb_cells*cell_size),
 	N(N),
 	tempo_do_mundo(0),
@@ -48,7 +49,7 @@ paisagem::paisagem(double raio, int N, double angulo_visada, double passo, doubl
 		raio = this->tamanho/sqrt(M_PI);
 	}
 	/* Coloca os indivíduos na paisagem por meio da função populating() */
-	this->populating(raio,N,angulo_visada,passo,move,taxa_basal,taxa_morte,incl_b,incl_d,death_mat,density_type,genotype_means,width_sds, Null);
+	this->populating(raio,N,angulo_visada,passo,move,taxa_basal,taxa_morte,incl_b,incl_d,death_mat,density_type,genotype_means,width_sds, Null,initialPosX, initialPosY);
 
 	for(unsigned int i=0; i<this->popIndividuos.size(); i++)
 	{
@@ -69,7 +70,7 @@ paisagem::paisagem(double raio, int N, double angulo_visada, double passo, doubl
 
 void paisagem::populating(double raio, int N, double angulo_visada, double passo, double move, double taxa_basal,
 						  double taxa_morte, double incl_b, double incl_d, double death_m,
-						  int dens_type,double genotype_means[], double  width_sds[], bool Null)
+						  int dens_type,double genotype_means[], double  width_sds[], bool Null, double initialPosX[],double initialPosY[] )
 {
   //Temporary
   
@@ -181,6 +182,38 @@ void paisagem::populating(double raio, int N, double angulo_visada, double passo
 														genotype,
 														width));
 		}
+	}
+	
+	if(this->initialPos==3) // Sets given initial positions to individuals
+	{
+	  
+	  for(int i=0; i<this->N; i++)
+	  {
+	    if (Null==FALSE) {
+	      genotype[0] = genotype_means[i];	
+	      width[0] = width_sds[i];
+	    }
+	    
+	    
+	    this->popIndividuos.push_back(new individuo(
+	        initialPosX[i],//posicao x
+          initialPosY[i],//posicao y
+	        0,//especie
+	        taxa_morte,//taxa de morte
+	        runif(0,360),// orientacao
+	        angulo_visada,//angulo de visada
+	        passo,//tamanho do passo
+	        move, //taxa de movimentacao
+	        raio,//tamanho do raio
+	        taxa_basal,// taxa máxima de nascimento
+	        99, // semente de numero aleatorio
+	        incl_b,
+	        incl_d,
+	        death_m,
+	        dens_type,
+	        genotype,
+	        width));
+	  }
 	}
 }
 
@@ -596,7 +629,7 @@ void paisagem::walk(int lower){
   bool selection =TRUE;
   
   
-  if(selection=TRUE)
+  if(selection==TRUE)
   {
     double possibilitities[this->popIndividuos[lower]->get_points()][3];
     
