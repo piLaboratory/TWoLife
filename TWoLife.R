@@ -1,3 +1,5 @@
+setwd("~/Desktop/TWoLife")
+
 # Função "wrapper" para a chamada em C:
 #
 # Os passos abaixo foram adaptados de http://users.stat.umn.edu/~geyer/rc/
@@ -7,6 +9,56 @@ system("rm TWoLife.so") #limpa sources velhos
 system("rm TWoLife.o") #limpa sources velhos
 system ("R CMD SHLIB TWoLife.cpp") ## compila no R
 dyn.load("TWoLife.so") ## carrega os source resultantes como biblioteca dinamica no R
+
+eventos<-function(arquivo, npop){
+  nlines <- as.integer(unlist(strsplit(system(paste("wc -l", arquivo), intern=TRUE), split=" "))[1])
+  dados = file(arquivo, "r")
+  dpaisagem = readLines(dados, n=9)
+  
+  
+  IDmax <- 0
+  indID <- as.integer(rep(0, nlines))
+  indM <- as.double(rep(-1, nlines))
+  
+  for(i in 1:npop)
+  {
+    lin = readLines(dados, n=1)
+    lin<-strsplit(lin, " ")
+    line <- unlist(lin)
+    
+    IDmax <- IDmax + 1
+    indM[IDmax]<- line[6]
+    
+    
+  }
+  
+  
+  lin = readLines(dados, n=1)
+  
+  while(lin != "EOF")
+  {
+    lin<-strsplit(lin, " ")
+    line <- unlist(lin)
+    acao <-strtoi(line[2])
+    ID<-strtoi(line[3])
+    
+    if(acao == 1)
+    {
+      
+      indID[ID] <- indID[ID]+1
+      
+      IDmax <- IDmax + 1
+      indM[IDmax]<- line[7]
+      
+    }
+    lin = readLines(dados, n=1)
+  }
+  
+  close(dados)
+  
+  return(resp<-cbind(indM[1:IDmax],indID[1:IDmax]))
+  
+}
 
 # Generates the landscape with specified conditions. 
 # numb.cells represents both the lenght AND width of the landscape, so numb.cells=100 creates a 100x100 landscape
@@ -61,6 +113,56 @@ Landscape <- function (numb.cells = 100, cell.size = 1, land.shape = 1, type=c("
 	return(land)
 }
 
+indspec<-function(N, TNW , BIC , Method = 2 ){
+  
+  
+  
+  WIC<- TNW - BIC
+  
+  
+  ind<- matrix(nrow = N, ncol = 2) 
+  colnames(ind) <- c("genotype_Mean", "width_sd") 
+  
+  
+  #Random
+  
+  if(Method ==  0 || Method == "random" || Method == "Random"){
+    
+    for (i in 1:N) {
+      
+      for (i in 1:N) {
+        ind[i,1]<- runif(1,(1-(TNW-(WIC/2))),(1-(WIC/2)))
+      }
+    }
+    
+  }
+  
+  
+  #Sistematical
+  
+  if(Method == 1 || Method =="sistematical"  || Method == "Sistematical"){
+    
+    ind[,1] <-seq(from = (1-(TNW-(WIC/2))), to= (1-(WIC/2)), length.out = N)
+    
+  }
+  
+  #Normal
+  
+  if(Method ==  2 || Method == "Normal" ||  Method == "Normal"){
+    
+    for (i in 1:N) {
+      
+      ind[i]<- rnorm(1,(1-(TNW/2)),BIC/2)
+      while (ind[i,1]<(1-(TNW-(WIC/2))) || ind[i,1]>(1-(WIC/2))) {
+        ind[i]<- rnorm(1,(1-(TNW/2)),BIC/2)
+      }
+    }
+  }
+  
+  ind[,2]<-WIC/2
+  
+  return(ind)
+}
 TWoLife <- function (
 					 raio=0.1, 
 					 N=80, 

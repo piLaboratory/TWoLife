@@ -71,7 +71,7 @@ extern "C" void TWoLife (double * raio, int * N, double * angulo_visada, double 
 
 	for(unsigned int i=0; i<floresta->conta_individuos();i++)
 	{
-		outputSIM << floresta->tempo_do_mundo << " " << floresta->get_individuos(i)->get_id() << " "  << floresta->get_individuos(i)->get_patch() << " " << floresta->get_individuos(i)->get_x() << " " << floresta->get_individuos(i)->get_y() << endl;
+		outputSIM << floresta->tempo_do_mundo << " " << floresta->get_individuos(i)->get_id() << " "  << floresta->get_individuos(i)->get_patch() << " " << floresta->get_individuos(i)->get_x() << " " << floresta->get_individuos(i)->get_y() << " " << floresta->get_individuos(i)->get_genotype_mean() << endl;
 	}
 	while (floresta->tempo_do_mundo < tempo[0] && floresta->conta_individuos() > 0)
 	{
@@ -83,6 +83,7 @@ extern "C" void TWoLife (double * raio, int * N, double * angulo_visada, double 
 		double x_neo = floresta->get_individuos(ind_neo)->get_x();
 		double y_neo = floresta->get_individuos(ind_neo)->get_y();
 		int patch_neo = floresta->get_individuos(ind_neo)->get_patch();
+		double m_neo = floresta->get_individuos(ind_neo)->get_genotype_mean();
 		
 		bool emigrou = floresta->realiza_acao(acao, ind_neo);
 		floresta->update();
@@ -96,7 +97,7 @@ extern "C" void TWoLife (double * raio, int * N, double * angulo_visada, double 
 		else if(acao==2 && emigrou)
 			acao = 3;
 
-		outputSIM << floresta->tempo_do_mundo << " " << acao << " " << ID_neo << " "  << patch_neo << " " << x_neo << " " << y_neo << endl;
+		outputSIM << floresta->tempo_do_mundo << " " << acao << " " << ID_neo << " "  << patch_neo << " " << x_neo << " " << y_neo << " " << m_neo << endl;
 	}
 	outputSIM<< "EOF\n";
 	outputSIM.close(); //end of output file
