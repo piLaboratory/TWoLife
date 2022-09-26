@@ -198,7 +198,7 @@ void individuo::update(double dens)
         //this->move = this->taxa_move;
         
         this->birth = this->taxa_basal-this->incl_birth*densi; // Computes the actual birth rate on habitat patch (that is influenced by the density of neighbours)
-        this->death = ((this->const_d_matrix*this->taxa_morte)-((dnorm_sum(this->tipo_habitat, this->genotype_mean, this->width_sd)/dnorm(this->genotype_mean[0],this->genotype_mean[0],this-> width_sd[0]))*((this->const_d_matrix*this->taxa_morte)-this->taxa_morte))); // Computes the actual death rate on habitat patch (that is influenced by the suitability of its current habitat)
+        this->death = ((this->const_d_matrix*this->taxa_morte)-((dnorm_sum(this->tipo_habitat, this->env_optimum, this->width_sd)/dnorm(this->env_optimum[0],this->env_optimum[0],this-> width_sd[0]))*((this->const_d_matrix*this->taxa_morte)-this->taxa_morte))); // Computes the actual death rate on habitat patch (that is influenced by the suitability of its current habitat)
         
     }
     
